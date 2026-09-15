@@ -1,0 +1,28 @@
+---
+const bookingUrl = import.meta.env.PUBLIC_WHATSAPP_URL || '#reservar';
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <div class="hero-kicker" aria-hidden="true">ENTRENAMIENTO / ATENCIÓN / RECUPERACIÓN</div>
+  <h1 id="hero-title" class="hero-title">
+    <span class="yoga">Yoga</span>
+    <span class="funcional">Funcional</span>
+    <span class="panama">Panamá</span>
+  </h1>
+
+  <div class="photo-placeholder" role="img" aria-label="Espacio reservado para una fotografía real de la persona entrenadora en movimiento">
+    <div class="photo-index" aria-hidden="true">01—MOVIMIENTO REAL</div>
+    <div class="photo-mark" aria-hidden="true"><i></i><i></i><i></i></div>
+    <p>FOTOGRAFÍA<br />ENTRENADOR·A<br /><small>pendiente / archivo real</small></p>
+  </div>
+
+  <blockquote>
+    <span>No entrenamos a la persona para hacer yoga.</span>
+    <strong>Usamos el yoga para entrenar a la persona.</strong>
+  </blockquote>
+
+  <a id="reservar" class="reserve" href={bookingUrl}>
+    <span>Reservar</span><span class="reserve-arrow" aria-hidden="true">↗</span>
+  </a>
+  <p class="hero-meta"><span>PTY</span> <span>08°58'N</span> <span>CLASES / PRÓXIMAMENTE</span></p>
+</section>

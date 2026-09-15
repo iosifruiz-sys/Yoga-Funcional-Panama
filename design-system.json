@@ -1,0 +1,18 @@
+{
+  "name": "Yoga Funcional Panamá",
+  "version": "0.1.0-prototype",
+  "typography": {
+    "display": { "family": "Molot", "fallback": "Arial Black, Impact, sans-serif", "use": "Uppercase H1, major H2 and oversized statements only; never artificially condense." },
+    "utility": { "family": "League Gothic", "source": "Google Fonts", "use": "Numbers, locations, schedules, section labels and technical information." },
+    "accent": { "family": "UnifrakturCook", "weight": 700, "source": "Google Fonts", "use": "One expressive word, principally Yoga; never UI or prose." },
+    "body": { "family": "Inter", "weights": [400, 500, 600, 700], "source": "Google Fonts", "use": "Readable copy, navigation and controls." }
+  },
+  "colors": { "orange": "#FF6500", "warm": "#CECCB3", "light": "#ECE9DF", "dark": "#171714", "white": "#FFFFFF", "muted": "#66655D" },
+  "spacing": { "principle": "Fluid, viewport-aware spacing; tight inside utility structures and expansive between editorial ideas.", "gutter": "clamp(1rem, 3vw, 2.75rem)" },
+  "layout": ["Mobile-first", "Asymmetrical editorial grids", "Intentional crop and overlap", "Display type may break the grid", "Desktop is recomposed, not simply enlarged"],
+  "photography": ["Use only consented real practice photography", "Prioritize effort, balance, mobility, strength and recovery", "Use large or unusual crops with body/type overlap", "Use visibly labelled graphic placeholders until real assets exist"],
+  "motion": ["Motion reinforces type hierarchy and physicality", "Prefer CSS reveal and transform", "Never block reading", "Always honor prefers-reduced-motion"],
+  "ui": ["Square, direct controls", "Strong visible focus", "High contrast", "No decorative cards", "Minimal navigation"],
+  "responsive": ["Dominant type remains dominant on small screens", "Use clamp for fluid scale", "Collapse navigation without hiding the primary action", "Recompose at 44rem and 62rem"],
+  "forbidden": ["Lotus, mandala, chakra or spiritual symbols", "Generic yoga stock imagery", "Purple gradients and pastel rainbows", "Beige luxury spa styling", "Glassmorphism and floating blobs", "Generic SaaS hero", "Excessive rounded cards", "Identical feature-card grids", "Meaningless constant animation"]
+}
