@@ -42,7 +42,7 @@ nav a:hover { color: var(--color-orange); }
 .hero::after { content: ''; position: absolute; z-index: -1; left: 45%; top: 0; bottom: 0; border-left: 1px solid rgba(23,23,20,.3); }
 .hero-kicker { grid-column: 1/-1; padding: .4rem var(--gutter); border-bottom: 1px solid rgba(23,23,20,.3); font: 1.1rem var(--font-utility); letter-spacing: .08em; }
 .hero-title { display: contents; margin: 0; }
-.funcional { grid-column: 1/-1; grid-row: 2; z-index: 4; color: var(--color-white); font: 900 clamp(4.25rem, 20vw, 16.5rem)/.74 var(--font-display); text-transform: uppercase; letter-spacing: -.07em; white-space: nowrap; margin-left: calc(var(--gutter) * -.2); transform: translateY(.08em); }
+.funcional { grid-column: 1/-1; grid-row: 2; z-index: 4; color: var(--color-white); font: 900 clamp(4.25rem, 20vw, 16.5rem)/.74 var(--font-display); font-family: 'Arial Black', Impact, sans-serif; text-transform: uppercase; letter-spacing: -.07em; white-space: nowrap; margin-left: calc(var(--gutter) * -.2); transform: translateY(.08em); }
 .yoga { position: absolute; z-index: 6; top: clamp(4.5rem, 10vw, 8rem); left: clamp(.25rem, 1.5vw, 1.5rem); color: var(--color-orange); font: 700 clamp(3rem, 9vw, 8rem)/1 var(--font-accent); transform: rotate(-8deg); text-shadow: 1px 1px 0 var(--color-warm); }
 .panama { position: absolute; right: var(--gutter); top: clamp(8.6rem, 24vw, 15rem); z-index: 7; font: clamp(2rem, 6vw, 4.5rem)/1 var(--font-utility); text-transform: uppercase; letter-spacing: .08em; writing-mode: vertical-rl; }
 .hero-photo { grid-column: 2; grid-row: 3/5; z-index: 2; width: 100%; align-self: start; margin: 0; background: var(--color-muted); border: var(--border); border-right: 0; }
