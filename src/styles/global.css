@@ -45,10 +45,8 @@ nav a:hover { color: var(--color-orange); }
 .funcional { grid-column: 1/-1; grid-row: 2; z-index: 4; color: var(--color-white); font: 900 clamp(4.25rem, 20vw, 16.5rem)/.74 var(--font-display); text-transform: uppercase; letter-spacing: -.07em; white-space: nowrap; margin-left: calc(var(--gutter) * -.2); transform: translateY(.08em); }
 .yoga { position: absolute; z-index: 6; top: clamp(4.5rem, 10vw, 8rem); left: clamp(.25rem, 1.5vw, 1.5rem); color: var(--color-orange); font: 700 clamp(3rem, 9vw, 8rem)/1 var(--font-accent); transform: rotate(-8deg); text-shadow: 1px 1px 0 var(--color-warm); }
 .panama { position: absolute; right: var(--gutter); top: clamp(8.6rem, 24vw, 15rem); z-index: 7; font: clamp(2rem, 6vw, 4.5rem)/1 var(--font-utility); text-transform: uppercase; letter-spacing: .08em; writing-mode: vertical-rl; }
-.hero-photo { grid-column: 2; grid-row: 3/5; position: relative; z-index: 2; width: 100%; aspect-ratio: 1297/1217; align-self: start; margin: 0; }
-.hero-photo-frame { position: absolute; z-index: 1; inset: 0; overflow: hidden; background: var(--color-muted); border: var(--border); border-right: 0; }
-.hero-photo-layer { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; display: block; }
-.hero-person { z-index: 2; pointer-events: none; }
+.hero-photo { grid-column: 2; grid-row: 3/5; z-index: 2; width: 100%; align-self: start; margin: 0; background: var(--color-muted); border: var(--border); border-right: 0; }
+.hero-photo img { display: block; width: 100%; height: auto; }
 blockquote { grid-column: 1; grid-row: 3; margin: 0; padding: clamp(1rem, 4vw, 3.5rem) var(--gutter); align-self: end; font-size: clamp(.9rem, 2vw, 1.25rem); line-height: 1.25; }
 blockquote span, blockquote strong { display: block; max-width: 22rem; }
 blockquote strong { margin-top: .9rem; }
