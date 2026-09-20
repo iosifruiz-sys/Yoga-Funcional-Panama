@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Molot';
-  src: local('Molot'), url('/fonts/Molot.woff2') format('woff2');
+  src: url('/fonts/Molot.otf') format('opentype');
   font-display: swap;
   font-weight: 900;
   font-style: normal;
