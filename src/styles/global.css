@@ -175,3 +175,75 @@ blockquote strong { margin-top: .9rem; }
   .schedule-booking { grid-template-columns: 1fr auto; align-items: end; }
   .schedule-booking p { padding-bottom: .4rem; }
 }
+
+/* 05 / Sobre mí */
+.about {
+  --about-progress: 0;
+  position: relative;
+  overflow: hidden;
+  background: var(--color-light);
+  border-bottom: var(--border);
+}
+.about-header { padding: clamp(3rem, 6vw, 6rem) var(--gutter) clamp(2rem, 4vw, 4rem); border-bottom: var(--border); }
+.about-number {
+  margin: 0 0 clamp(2.5rem, 5vw, 5rem);
+  color: var(--color-orange);
+  font: clamp(1.3rem, 2vw, 2rem) var(--font-utility);
+  letter-spacing: .05em;
+}
+.about-title {
+  margin: 0;
+  font: 900 clamp(5rem, 15.8vw, 15rem)/.72 var(--font-display);
+  letter-spacing: -.07em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.about-reveal { position: relative; height: 190svh; }
+.about-stage { position: sticky; top: 0; height: 100svh; min-height: 42rem; overflow: hidden; isolation: isolate; }
+.about-visual { position: absolute; z-index: 1; top: 50%; left: 50%; width: min(38vw, 36rem); aspect-ratio: 2 / 3; transform: translate(-50%, -50%); }
+.about-circle { position: absolute; z-index: 0; top: 50%; left: 50%; width: min(34vw, 32rem); aspect-ratio: 1; border-radius: 50%; background: var(--color-orange); transform: translate(-50%, -50%) scale(calc(1 + var(--about-progress) * 1.65)); opacity: calc(1 - var(--about-progress) * 1.25); }
+.about-visual img { position: relative; z-index: 1; display: block; width: 100%; height: 100%; object-fit: cover; opacity: calc(var(--about-progress) * 1.8); clip-path: circle(calc(17% + var(--about-progress) * 63%) at 50% 50%); }
+.about-copy {
+  position: absolute;
+  z-index: 2;
+  top: 17%;
+  left: var(--gutter);
+  width: min(25vw, 22rem);
+  opacity: calc((var(--about-progress) - .28) * 2.8);
+  transform: translateY(calc((1 - var(--about-progress)) * 2rem));
+}
+.about-copy p { margin: 0; }
+.about-intro { max-width: 22rem; font-size: clamp(1.35rem, 2.3vw, 2.25rem); line-height: 1.15; font-weight: 700; }
+.about-copy p:not(.about-intro) { margin-top: 1.5rem; font-size: clamp(.95rem, 1.2vw, 1.15rem); line-height: 1.45; }
+.about-statement { position: absolute; z-index: 2; right: var(--gutter); bottom: 13%; width: min(27vw, 26rem); margin: 0; padding-top: 1rem; border-top: var(--border); font: clamp(1.65rem, 2.8vw, 2.8rem)/1.05 var(--font-utility); text-transform: uppercase; opacity: calc((var(--about-progress) - .48) * 3); transform: translateY(calc((1 - var(--about-progress)) * 2rem)); }
+.about-statement span, .about-statement strong { display: block; }
+.about-statement strong { margin-top: .25em; color: var(--color-orange); font-weight: 400; }
+
+@media (max-width: 61.999rem) {
+  .about-header { padding-block: 3rem 2rem; }
+  .about-number { margin-bottom: 2.5rem; }
+  .about-title { font-size: min(18.5vw, 5rem); letter-spacing: -.055em; }
+  .about-reveal { height: auto; }
+  .about-stage { position: relative; height: auto; min-height: 0; overflow: visible; padding-bottom: 3.5rem; }
+  .about-visual { position: sticky; top: 1rem; left: auto; width: calc(100% - (var(--gutter) * 2)); max-width: 27rem; height: min(70svh, 39rem); margin: 0 auto; transform: none; }
+  .about-circle { width: min(78vw, 21rem); transform: translate(-50%, -50%) scale(calc(1 + var(--about-progress) * .8)); }
+  .about-visual img { object-fit: cover; }
+  .about-copy, .about-statement { position: relative; top: auto; right: auto; bottom: auto; left: auto; width: auto; opacity: 1; transform: none; }
+  .about-copy { z-index: 2; margin-top: 35svh; padding: 2rem var(--gutter) 0; background: var(--color-light); }
+  .about-intro { font-size: clamp(1.45rem, 7vw, 2rem); }
+  .about-copy p:not(.about-intro) { font-size: clamp(1rem, 4.4vw, 1.15rem); }
+  .about-statement { margin: 2.75rem var(--gutter) 0; font-size: clamp(1.75rem, 8vw, 2.5rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about { --about-progress: 1; }
+  .about-reveal { height: 100svh; }
+  .about-circle { display: none; }
+  .about-copy, .about-statement { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) and (max-width: 61.999rem) {
+  .about-reveal { height: auto; }
+  .about-visual { position: relative; top: auto; }
+  .about-copy { margin-top: 0; }
+}

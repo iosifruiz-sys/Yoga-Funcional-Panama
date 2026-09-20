@@ -1,0 +1,60 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
+<section id="sobre-mi" class="about" aria-labelledby="about-title">
+  <header class="about-header">
+    <p class="about-number">05 / SOBRE MÍ</p>
+    <h2 id="about-title" class="about-title">Iosif Ruiz</h2>
+  </header>
+
+  <div class="about-reveal">
+    <div class="about-stage">
+      <div class="about-visual">
+        <span class="about-circle"></span>
+        <img src={`${base}images/IMG_6376.png`} alt="Iosif Ruiz sentado en postura de loto" loading="lazy" decoding="async" />
+      </div>
+
+      <div class="about-copy about-copy-primary">
+        <p class="about-intro">Profesor de yoga y meditación.</p>
+        <p>Practico meditación desde hace más de 20 años y yoga desde hace 15. Enseño desde 2010.</p>
+        <p>Mi trabajo combina movimiento, respiración y atención desde un enfoque funcional, sin necesidad de explicaciones esotéricas.</p>
+      </div>
+
+      <p class="about-statement">
+        <span>No entreno a las personas para hacer yoga.</span>
+        <strong>Uso el yoga para entrenar a la persona.</strong>
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const section = document.querySelector<HTMLElement>('.about');
+  const reveal = section?.querySelector<HTMLElement>('.about-reveal');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let frame = 0;
+
+  const updateReveal = () => {
+    frame = 0;
+    if (!section || !reveal) return;
+    if (reduceMotion.matches) {
+      section.style.setProperty('--about-progress', '1');
+      return;
+    }
+
+    const bounds = reveal.getBoundingClientRect();
+    const distance = Math.max(1, reveal.offsetHeight - window.innerHeight);
+    const progress = Math.min(1, Math.max(0, -bounds.top / distance));
+    section.style.setProperty('--about-progress', progress.toFixed(3));
+  };
+
+  const requestUpdate = () => {
+    if (!frame) frame = requestAnimationFrame(updateReveal);
+  };
+
+  window.addEventListener('scroll', requestUpdate, { passive: true });
+  window.addEventListener('resize', requestUpdate, { passive: true });
+  reduceMotion.addEventListener('change', requestUpdate);
+  updateReveal();
+</script>
