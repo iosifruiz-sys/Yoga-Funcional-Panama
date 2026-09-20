@@ -12,14 +12,17 @@ const base = import.meta.env.BASE_URL;
   </h1>
 
   <figure class="hero-photo">
-    <img
-      src={`${base}images/hero-bg.png`}
-      alt="Persona practicando yoga funcional sobre una esterilla rosa"
-      width="1297"
-      height="1217"
-      loading="eager"
-      fetchpriority="high"
-    />
+    <picture>
+      <source media="(min-width: 62rem)" srcset={`${base}images/hero-transparent.png`} />
+      <img
+        src={`${base}images/hero-bg.png`}
+        alt="Persona practicando yoga funcional sobre una esterilla rosa"
+        width="1297"
+        height="1217"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </picture>
   </figure>
 
   <blockquote>
