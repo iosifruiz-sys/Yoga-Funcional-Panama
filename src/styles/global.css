@@ -65,11 +65,14 @@ blockquote strong { margin-top: .9rem; }
 .method-copy { max-width: 39rem; margin: clamp(3rem, 7vw, 6rem) 0 0 auto; font-size: clamp(1rem, 2vw, 1.5rem); line-height: 1.35; }
 .method-copy strong { display: block; margin-top: .75rem; }
 .concepts { list-style: none; margin: 0; padding: 0; border-top: var(--border); }
-.concepts li { display: grid; grid-template-columns: 2.5rem 1fr auto; align-items: center; gap: .5rem; padding: .2rem var(--gutter); border-bottom: 1px solid var(--color-dark); text-transform: uppercase; }
+.concepts li { border-bottom: 1px solid var(--color-dark); text-transform: uppercase; }
 .concepts li:nth-child(even) { background: var(--color-dark); color: var(--color-light); }
+.concept-toggle { width: 100%; display: grid; grid-template-columns: 2.5rem 1fr auto; align-items: center; gap: .5rem; padding: .2rem var(--gutter); border: 0; color: inherit; background: transparent; font: inherit; text-align: left; text-transform: inherit; cursor: pointer; }
 .concepts span { font: 1.3rem var(--font-utility); color: var(--color-orange); }
 .concepts strong { font: clamp(2.8rem, 10vw, 8.5rem)/.92 var(--font-utility); font-weight: 400; letter-spacing: .02em; }
 .concepts i { font-style: normal; font-size: clamp(1.25rem, 3vw, 2.5rem); }
+.concept-panel { padding: .75rem var(--gutter) 1.25rem calc(var(--gutter) + 3rem); font-family: var(--font-body); font-size: clamp(.9rem, 2vw, 1.1rem); line-height: 1.4; text-transform: none; }
+.concept-panel p { margin: 0; }
 .end-note { padding: 1.5rem var(--gutter); background: var(--color-orange); font: clamp(1.3rem, 4vw, 3rem) var(--font-utility); white-space: nowrap; overflow: hidden; }
 
 @media (max-width: 61.999rem) {
@@ -106,6 +109,6 @@ blockquote strong { margin-top: .9rem; }
   .method h2 .method-line-middle { font-size: 23.7vw; }
   .method h2 .method-line-last { font-size: 24.5vw; }
 }
-@media (min-width: 62rem) { .hero { height: calc(100svh - 4.25rem); min-height: 0; grid-template-columns: 46% 27% 27%; grid-template-rows: auto minmax(0, 1fr) auto auto; } .hero::after { left: 46%; } .funcional { grid-row: 2; scale: 1.15 1; transform-origin: left center; } .panama { top: 50%; transform: translateY(-50%); } .hero-photo { grid-column: 2/4; grid-row: 2/5; width: 100%; max-width: none; align-self: end; justify-self: end; margin-top: clamp(6.5rem, 12vw, 10.5rem); background: transparent; } blockquote { grid-column: 1; grid-row: 3; } .reserve { grid-column: 1; grid-row: 4; } .hero-meta { position: absolute; z-index: 3; right: 0; bottom: 0; width: 65%; color: white; } .method-intro { min-height: 82vh; } .concepts li { grid-template-columns: 5rem 1fr auto; } .concepts li:nth-child(odd) strong { margin-left: calc(var(--index) * 1.25rem); } }
+@media (min-width: 62rem) { .hero { height: calc(100svh - 4.25rem); min-height: 0; grid-template-columns: 46% 27% 27%; grid-template-rows: auto minmax(0, 1fr) auto auto; } .hero::after { left: 46%; } .funcional { grid-row: 2; scale: 1.15 1; transform-origin: left center; } .panama { top: 50%; transform: translateY(-50%); } .hero-photo { grid-column: 2/4; grid-row: 2/5; width: 100%; max-width: none; align-self: end; justify-self: end; margin-top: clamp(6.5rem, 12vw, 10.5rem); background: transparent; } blockquote { grid-column: 1; grid-row: 3; } .reserve { grid-column: 1; grid-row: 4; } .hero-meta { position: absolute; z-index: 3; right: 0; bottom: 0; width: 65%; color: white; } .method-intro { min-height: 82vh; } .concept-toggle { grid-template-columns: 5rem 1fr auto; } .concepts li:nth-child(odd) strong { margin-left: calc(var(--index) * 1.25rem); } }
 @media (prefers-reduced-motion: no-preference) { .funcional { animation: reveal .65s cubic-bezier(.2,.8,.2,1) both; } .yoga { animation: accent-in .7s .2s cubic-bezier(.2,.8,.2,1) both; } @keyframes reveal { from { clip-path: inset(0 100% 0 0); transform: translateY(.4em); } to { clip-path: inset(0 0 -.12em 0); transform: translateY(.08em); } } @keyframes accent-in { from { opacity: 0; transform: translateY(1rem) rotate(-8deg); } } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }

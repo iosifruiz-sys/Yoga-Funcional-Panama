@@ -12,11 +12,40 @@ const concepts = ['Fuerza', 'Movilidad', 'Equilibrio', 'Coordinación', 'Respira
   <ol class="concepts" aria-label="Capacidades que entrenamos">
     {concepts.map((concept, index) => (
       <li style={`--index:${index}`}>
-        <span>{String(index + 1).padStart(2, '0')}</span>
-        <strong>{concept}</strong>
-        <i aria-hidden="true">↗</i>
+        <button
+          class="concept-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls={`concept-panel-${index + 1}`}
+        >
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <strong>{concept}</strong>
+          <i aria-hidden="true">+</i>
+        </button>
+        <div class="concept-panel" id={`concept-panel-${index + 1}`} hidden>
+          <p>Texto pendiente.</p>
+        </div>
       </li>
     ))}
   </ol>
   <div id="proximamente" class="end-note">CUERPO ≠ FORMA &nbsp; / &nbsp; CUERPO = INFORMACIÓN</div>
 </section>
+
+<script>
+  const conceptToggles = document.querySelectorAll<HTMLButtonElement>('.concept-toggle');
+
+  const setConceptState = (toggle: HTMLButtonElement, open: boolean) => {
+    const panelId = toggle.getAttribute('aria-controls');
+    const panel = panelId ? document.getElementById(panelId) : null;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.querySelector('i')!.textContent = open ? '−' : '+';
+    if (panel) panel.hidden = !open;
+  };
+
+  conceptToggles.forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      const shouldOpen = toggle.getAttribute('aria-expanded') !== 'true';
+      conceptToggles.forEach((item) => setConceptState(item, item === toggle && shouldOpen));
+    });
+  });
+</script>
