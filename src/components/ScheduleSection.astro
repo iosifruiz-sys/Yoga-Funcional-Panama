@@ -1,0 +1,36 @@
+---
+const schedule = [
+  { day: 'Martes', time: '6:15 PM' },
+  { day: 'Jueves', time: '6:15 PM' },
+  { day: 'Sábado', time: '10:00 AM' },
+];
+const studioBookingUrl = 'https://wa.me/50765434870';
+---
+
+<section id="horarios" class="schedule" aria-labelledby="schedule-title">
+  <header class="schedule-intro">
+    <p class="schedule-number">04 / HORARIOS</p>
+    <h2 id="schedule-title"><span>Horario</span><span>De grupo</span></h2>
+  </header>
+
+  <div class="schedule-meta" aria-label="Información de las clases">
+    <strong>Yoga Funcional</strong>
+    <span>Clase general</span>
+    <span>Clayton</span>
+  </div>
+
+  <ol class="schedule-list" aria-label="Horario actual en Clayton">
+    {schedule.map((slot) => (
+      <li class="schedule-slot">
+        <span class="schedule-day">{slot.day}</span>
+        <time class="schedule-time">{slot.time}</time>
+      </li>
+    ))}
+  </ol>
+
+  <footer class="schedule-booking">
+    <a href={studioBookingUrl}>
+      Reservar <span aria-hidden="true">→</span>
+    </a>
+  </footer>
+</section>

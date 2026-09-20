@@ -1,0 +1,59 @@
+---
+const personalBookingUrl = 'https://wa.me/50762331434';
+
+const formats = [
+  {
+    number: '01',
+    name: 'Clase general',
+    paragraphs: [
+      'Entrena en grupo siguiendo la estructura de Yoga Funcional, con opciones adaptadas a diferentes niveles.',
+      'Horarios, ubicación y condiciones dependen del espacio donde se realiza la clase.',
+    ],
+    action: 'Ver horarios',
+    href: '#horarios',
+  },
+  {
+    number: '02',
+    name: 'Clase individual',
+    price: '$30',
+    paragraphs: [
+      'Una sesión uno a uno adaptada a tu nivel, tus necesidades y lo que quieres trabajar.',
+      'Sin programas ni compromisos: una clase, un objetivo, una hora de trabajo.',
+    ],
+    action: 'Reservar',
+    href: personalBookingUrl,
+  },
+  {
+    number: '03',
+    name: 'Entrenamiento personal',
+    price: '$60',
+    paragraphs: [
+      'Un proceso diseñado alrededor de ti: evaluación, objetivos, programa de entrenamiento, progresión y ajustes.',
+      'No es solamente una clase. Es un plan para trabajar hacia un resultado concreto.',
+    ],
+    action: 'Reservar',
+    href: personalBookingUrl,
+  },
+];
+---
+
+<section id="clases" class="classes" aria-labelledby="classes-title">
+  <header class="classes-intro">
+    <p class="classes-number">03 / CLASES</p>
+    <h2 id="classes-title"><span>Entrena</span><span>A tu manera</span></h2>
+  </header>
+
+  <div class="class-formats">
+    {formats.map((format) => (
+      <article class="class-format">
+        <p class="format-number">{format.number} /</p>
+        <h3>{format.name}</h3>
+        {format.price && <p class="format-price">{format.price}</p>}
+        <div class="format-copy">
+          {format.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+        <a class="format-action" href={format.href}>{format.action} <span aria-hidden="true">→</span></a>
+      </article>
+    ))}
+  </div>
+</section>
