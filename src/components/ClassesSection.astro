@@ -1,5 +1,5 @@
 ---
-const personalBookingUrl = 'https://wa.me/50762331434';
+const personalBookingUrl = 'https://wa.me/50762331434?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20las%20clases%20de%20Yoga%20Funcional.';
 
 const formats = [
   {
@@ -52,7 +52,12 @@ const formats = [
         <div class="format-copy">
           {format.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
         </div>
-        <a class="format-action" href={format.href}>{format.action} <span aria-hidden="true">→</span></a>
+        <a
+          class="format-action"
+          href={format.href}
+          target={format.action === 'Reservar' ? '_blank' : undefined}
+          rel={format.action === 'Reservar' ? 'noopener noreferrer' : undefined}
+        >{format.action} <span aria-hidden="true">→</span></a>
       </article>
     ))}
   </div>

@@ -7,7 +7,7 @@ const links = [
   ['Sobre mí', '#proximamente'],
   ['Blog', '#proximamente'],
 ];
-const bookingUrl = 'https://wa.me/50762331434';
+const bookingUrl = 'https://wa.me/50762331434?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20las%20clases%20de%20Yoga%20Funcional.';
 ---
 
 <header class="site-header">
@@ -22,7 +22,7 @@ const bookingUrl = 'https://wa.me/50762331434';
       {links.map(([label, href]) => <li><a href={href}>{label}</a></li>)}
     </ul>
   </nav>
-  <a class="header-cta" href={bookingUrl}>Reservar <span aria-hidden="true">↗</span></a>
+  <a class="header-cta" href={bookingUrl} target="_blank" rel="noopener noreferrer">Reservar <span aria-hidden="true">↗</span></a>
 </header>
 
 <script>

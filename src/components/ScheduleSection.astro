@@ -4,7 +4,7 @@ const schedule = [
   { day: 'Jueves', time: '6:15 PM' },
   { day: 'Sábado', time: '10:00 AM' },
 ];
-const studioBookingUrl = 'https://wa.me/50765434870';
+const studioBookingUrl = 'https://wa.me/50765434870?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20las%20clases%20de%20Yoga%20Funcional.';
 ---
 
 <section id="horarios" class="schedule" aria-labelledby="schedule-title">
@@ -29,7 +29,7 @@ const studioBookingUrl = 'https://wa.me/50765434870';
   </ol>
 
   <footer class="schedule-booking">
-    <a href={studioBookingUrl}>
+    <a href={studioBookingUrl} target="_blank" rel="noopener noreferrer">
       Reservar <span aria-hidden="true">→</span>
     </a>
   </footer>
