@@ -1,3 +1,7 @@
+---
+const base = import.meta.env.BASE_URL;
+---
+
 <section id="sobre-mi" class="about" aria-labelledby="about-title">
   <p class="about-number">05 / SOBRE MÍ</p>
 
@@ -8,7 +12,7 @@
 
   <figure class="about-portrait">
     <img
-      src="/images/IMG_6376.png"
+      src={`${base}images/IMG_6376.png`}
       alt="Iosif Ruiz sentado en postura de loto"
       loading="lazy"
       decoding="async"
