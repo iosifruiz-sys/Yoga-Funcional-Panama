@@ -11,13 +11,67 @@ const bookingUrl = import.meta.env.PUBLIC_WHATSAPP_URL || '#reservar';
 ---
 
 <header class="site-header">
+  <button class="menu-toggle" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobile-navigation">
+    <span></span><span></span><span></span>
+  </button>
   <a class="brand" href={base} aria-label="Yoga Funcional Panamá, inicio">
     <span>Yoga Funcional</span>
   </a>
-  <nav aria-label="Navegación principal">
+  <nav id="mobile-navigation" aria-label="Navegación principal">
     <ul>
       {links.map(([label, href]) => <li><a href={href}>{label}</a></li>)}
     </ul>
   </nav>
   <a class="header-cta" href={bookingUrl}>Reservar <span aria-hidden="true">↗</span></a>
 </header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('.site-header');
+  const toggle = header?.querySelector<HTMLButtonElement>('.menu-toggle');
+  const navigation = header?.querySelector<HTMLElement>('nav');
+  const reserve = header?.querySelector<HTMLAnchorElement>('.header-cta');
+  const mobileQuery = window.matchMedia('(max-width: 61.999rem)');
+
+  const setMenuState = (open: boolean) => {
+    if (!header || !toggle || !navigation) return;
+    header.classList.toggle('menu-open', open);
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    navigation.toggleAttribute('inert', mobileQuery.matches && !open);
+    document.body.classList.toggle('menu-open', open);
+  };
+
+  toggle?.addEventListener('click', () => {
+    const open = toggle.getAttribute('aria-expanded') !== 'true';
+    setMenuState(open);
+    if (open) navigation?.querySelector<HTMLAnchorElement>('a')?.focus();
+  });
+
+  navigation?.addEventListener('click', (event) => {
+    if ((event.target as Element).closest('a')) setMenuState(false);
+  });
+
+  reserve?.addEventListener('click', () => setMenuState(false));
+
+  document.addEventListener('keydown', (event) => {
+    const open = toggle?.getAttribute('aria-expanded') === 'true';
+    if (event.key === 'Escape' && open) {
+      setMenuState(false);
+      toggle.focus();
+    }
+    if (event.key === 'Tab' && open && header && toggle && navigation) {
+      const first = toggle;
+      const last = reserve ?? navigation.querySelector<HTMLAnchorElement>('a:last-child');
+      if (event.shiftKey && document.activeElement === first && last) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+  });
+
+  mobileQuery.addEventListener('change', () => setMenuState(false));
+  setMenuState(false);
+</script>
