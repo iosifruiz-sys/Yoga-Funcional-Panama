@@ -1,22 +1,60 @@
 ---
 const concepts = ['Fuerza', 'Movilidad', 'Equilibrio', 'Coordinación', 'Respiración', 'Atención', 'Recuperación'];
+const descriptions = [
+  'No buscamos fuerza por la fuerza. La usamos para crear estabilidad, control y capacidad de movimiento.',
+  'No se trata de llegar más lejos. Entrenamos el movimiento que tu cuerpo puede controlar y utilizar.',
+  'No es quedarse quieto sin caer. Es aprender a responder cuando cambia tu posición, el apoyo o el movimiento.',
+  'Entrenamos al cuerpo para organizar movimientos diferentes como una sola acción: con precisión, ritmo y control.',
+  'No respiramos de una forma porque sea «correcta». Usamos la respiración según lo que estamos haciendo y el estado que necesitamos.',
+  'Entrenamos la capacidad de dirigir y mantener la atención sobre el cuerpo, la respiración y lo que estamos haciendo ahora.',
+  'No todo es activación y esfuerzo. También entrenamos la capacidad de bajar la activación y facilitar la recuperación.',
+];
 ---
 
 <section id="metodo" class="method" aria-labelledby="method-title">
   <div class="method-intro">
     <p class="section-number">02 / MÉTODO</p>
-    <h2 id="method-title"><span>Del cuerpo</span><span>hacia la postura</span></h2>
+    <h2 id="method-title"><span>Del cuerpo</span><span><span class="method-line method-line-middle">hacia la</span> <span class="method-line method-line-last">postura</span></span></h2>
     <p class="method-copy">No adaptamos el cuerpo a una asana.<br /><strong>Elegimos la postura según lo que el cuerpo necesita trabajar.</strong></p>
   </div>
 
   <ol class="concepts" aria-label="Capacidades que entrenamos">
     {concepts.map((concept, index) => (
       <li style={`--index:${index}`}>
-        <span>{String(index + 1).padStart(2, '0')}</span>
-        <strong>{concept}</strong>
-        <i aria-hidden="true">↗</i>
+        <button
+          class="concept-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls={`concept-panel-${index + 1}`}
+        >
+          <span>{String(index + 1).padStart(2, '0')}</span>
+          <strong>{concept}</strong>
+          <i aria-hidden="true">+</i>
+        </button>
+        <div class="concept-panel" id={`concept-panel-${index + 1}`} hidden>
+          <p>{descriptions[index]}</p>
+        </div>
       </li>
     ))}
   </ol>
   <div id="proximamente" class="end-note">CUERPO ≠ FORMA &nbsp; / &nbsp; CUERPO = INFORMACIÓN</div>
 </section>
+
+<script>
+  const conceptToggles = document.querySelectorAll<HTMLButtonElement>('.concept-toggle');
+
+  const setConceptState = (toggle: HTMLButtonElement, open: boolean) => {
+    const panelId = toggle.getAttribute('aria-controls');
+    const panel = panelId ? document.getElementById(panelId) : null;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.querySelector('i')!.textContent = open ? '−' : '+';
+    if (panel) panel.hidden = !open;
+  };
+
+  conceptToggles.forEach((toggle) => {
+    toggle.addEventListener('click', () => {
+      const shouldOpen = toggle.getAttribute('aria-expanded') !== 'true';
+      conceptToggles.forEach((item) => setConceptState(item, item === toggle && shouldOpen));
+    });
+  });
+</script>
