@@ -175,3 +175,79 @@ blockquote strong { margin-top: .9rem; }
   .schedule-booking { grid-template-columns: 1fr auto; align-items: end; }
   .schedule-booking p { padding-bottom: .4rem; }
 }
+
+/* 05 / Sobre mí */
+.about {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(18rem, .92fr);
+  grid-template-rows: auto auto 1fr;
+  min-height: min(68rem, 100svh);
+  overflow: hidden;
+  background: var(--color-light);
+  border-bottom: var(--border);
+  isolation: isolate;
+}
+.about-number {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  z-index: 4;
+  margin: 0;
+  padding: 1rem var(--gutter);
+  color: var(--color-orange);
+  border-bottom: var(--border);
+  font: clamp(1.3rem, 2vw, 2rem) var(--font-utility);
+  letter-spacing: .05em;
+}
+.about-title {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  z-index: 3;
+  margin: 0;
+  padding: clamp(2rem, 4vw, 4rem) var(--gutter) 0;
+  font: 900 clamp(7rem, 18vw, 17rem)/.7 var(--font-display);
+  letter-spacing: -.06em;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+.about-title span { display: block; white-space: nowrap; }
+.about-title span:last-child { margin-left: 21%; color: var(--color-orange); }
+.about-portrait {
+  grid-column: 1;
+  grid-row: 2 / 4;
+  z-index: 2;
+  width: min(76%, 47rem);
+  margin: clamp(9rem, 16vw, 15rem) 0 0 var(--gutter);
+  align-self: end;
+  border: var(--border);
+  background: var(--color-warm);
+}
+.about-portrait img { display: block; width: 100%; height: auto; }
+.about-copy {
+  grid-column: 2;
+  grid-row: 3;
+  z-index: 4;
+  align-self: end;
+  padding: clamp(3rem, 7vw, 7rem) var(--gutter) clamp(3rem, 5vw, 5rem) clamp(2rem, 5vw, 5rem);
+  border-left: var(--border);
+  background: var(--color-light);
+}
+.about-copy p { margin: 0; }
+.about-intro { max-width: 22rem; font-size: clamp(1.35rem, 2.3vw, 2.25rem); line-height: 1.15; font-weight: 700; }
+.about-bio { max-width: 31rem; margin-top: clamp(2rem, 4vw, 3.5rem); font-size: clamp(1rem, 1.3vw, 1.2rem); line-height: 1.45; }
+.about-bio p + p { margin-top: 1.25rem; }
+.about-statement { max-width: 34rem; margin-top: clamp(2.5rem, 5vw, 5rem) !important; padding-top: 1rem; border-top: var(--border); font: clamp(1.65rem, 3vw, 3rem)/1.05 var(--font-utility); text-transform: uppercase; }
+.about-statement span, .about-statement strong { display: block; }
+.about-statement strong { margin-top: .25em; color: var(--color-orange); font-weight: 400; }
+
+@media (max-width: 61.999rem) {
+  .about { display: block; min-height: 0; }
+  .about-number { padding-block: .75rem; }
+  .about-title { padding: clamp(2.5rem, 11vw, 4rem) var(--gutter) clamp(1.5rem, 7vw, 2.5rem); font-size: min(29vw, 8rem); line-height: .72; }
+  .about-title span:last-child { margin-left: 14%; }
+  .about-portrait { width: calc(100% - (var(--gutter) * 2)); margin: 0 var(--gutter); }
+  .about-copy { padding: 2rem var(--gutter) 3.5rem; border-left: 0; }
+  .about-intro { font-size: clamp(1.45rem, 7vw, 2rem); }
+  .about-bio { margin-top: 2rem; font-size: clamp(1rem, 4.4vw, 1.15rem); }
+  .about-statement { margin-top: 2.75rem !important; font-size: clamp(1.75rem, 8vw, 2.5rem); }
+}
