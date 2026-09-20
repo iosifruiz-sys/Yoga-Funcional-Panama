@@ -29,6 +29,7 @@ const bookingUrl = import.meta.env.PUBLIC_WHATSAPP_URL || '#reservar';
   const header = document.querySelector<HTMLElement>('.site-header');
   const toggle = header?.querySelector<HTMLButtonElement>('.menu-toggle');
   const navigation = header?.querySelector<HTMLElement>('nav');
+  const reserve = header?.querySelector<HTMLAnchorElement>('.header-cta');
   const mobileQuery = window.matchMedia('(max-width: 61.999rem)');
 
   const setMenuState = (open: boolean) => {
@@ -50,6 +51,8 @@ const bookingUrl = import.meta.env.PUBLIC_WHATSAPP_URL || '#reservar';
     if ((event.target as Element).closest('a')) setMenuState(false);
   });
 
+  reserve?.addEventListener('click', () => setMenuState(false));
+
   document.addEventListener('keydown', (event) => {
     const open = toggle?.getAttribute('aria-expanded') === 'true';
     if (event.key === 'Escape' && open) {
@@ -57,7 +60,6 @@ const bookingUrl = import.meta.env.PUBLIC_WHATSAPP_URL || '#reservar';
       toggle.focus();
     }
     if (event.key === 'Tab' && open && header && toggle && navigation) {
-      const reserve = header.querySelector<HTMLAnchorElement>('.header-cta');
       const first = toggle;
       const last = reserve ?? navigation.querySelector<HTMLAnchorElement>('a:last-child');
       if (event.shiftKey && document.activeElement === first && last) {
