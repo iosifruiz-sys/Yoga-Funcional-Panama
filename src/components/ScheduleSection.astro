@@ -4,6 +4,7 @@ const schedule = [
   { day: 'Jueves', time: '6:15 PM' },
   { day: 'Sábado', time: '10:00 AM' },
 ];
+const studioBookingUrl = 'https://wa.me/50765434870';
 ---
 
 <section id="horarios" class="schedule" aria-labelledby="schedule-title">
@@ -28,9 +29,8 @@ const schedule = [
   </ol>
 
   <footer class="schedule-booking">
-    <button type="button" disabled data-booking-status="pending" title="Enlace de reserva de Clayton pendiente">
+    <a href={studioBookingUrl}>
       Reservar <span aria-hidden="true">→</span>
-    </button>
-    <p>Enlace de Clayton pendiente</p>
+    </a>
   </footer>
 </section>

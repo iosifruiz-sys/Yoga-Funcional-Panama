@@ -108,7 +108,7 @@ blockquote strong { margin-top: .9rem; }
 .schedule-day { min-width: 0; font: clamp(3.8rem, 18vw, 8rem)/.9 var(--font-utility); overflow-wrap: anywhere; }
 .schedule-time { color: var(--color-orange); font: clamp(2.8rem, 13vw, 6rem)/.9 var(--font-utility); white-space: nowrap; }
 .schedule-booking { display: grid; gap: .5rem; padding: 1rem var(--gutter); background: var(--color-orange); border-bottom: var(--border); }
-.schedule-booking button { display: flex; justify-content: space-between; width: 100%; padding: 0; border: 0; color: var(--color-dark); background: transparent; font: clamp(2rem, 9vw, 4.5rem)/1 var(--font-utility); text-align: left; text-transform: uppercase; opacity: 1; }
+.schedule-booking a { display: flex; justify-content: space-between; width: 100%; padding: 0; border: 0; color: var(--color-dark); background: transparent; font: clamp(2rem, 9vw, 4.5rem)/1 var(--font-utility); text-align: left; text-decoration: none; text-transform: uppercase; opacity: 1; }
 .schedule-booking p { margin: 0; font-size: .72rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
 
 @media (max-width: 61.999rem) {
