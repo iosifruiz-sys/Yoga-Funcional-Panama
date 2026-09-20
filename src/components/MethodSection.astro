@@ -1,5 +1,14 @@
 ---
 const concepts = ['Fuerza', 'Movilidad', 'Equilibrio', 'Coordinación', 'Respiración', 'Atención', 'Recuperación'];
+const descriptions = [
+  'No buscamos fuerza por la fuerza. La usamos para crear estabilidad, control y capacidad de movimiento.',
+  'No se trata de llegar más lejos. Entrenamos el movimiento que tu cuerpo puede controlar y utilizar.',
+  'No es quedarse quieto sin caer. Es aprender a responder cuando cambia tu posición, el apoyo o el movimiento.',
+  'Entrenamos al cuerpo para organizar movimientos diferentes como una sola acción: con precisión, ritmo y control.',
+  'No respiramos de una forma porque sea «correcta». Usamos la respiración según lo que estamos haciendo y el estado que necesitamos.',
+  'Entrenamos la capacidad de dirigir y mantener la atención sobre el cuerpo, la respiración y lo que estamos haciendo ahora.',
+  'No todo es activación y esfuerzo. También entrenamos la capacidad de bajar la activación y facilitar la recuperación.',
+];
 ---
 
 <section id="metodo" class="method" aria-labelledby="method-title">
@@ -23,7 +32,7 @@ const concepts = ['Fuerza', 'Movilidad', 'Equilibrio', 'Coordinación', 'Respira
           <i aria-hidden="true">+</i>
         </button>
         <div class="concept-panel" id={`concept-panel-${index + 1}`} hidden>
-          <p>Texto pendiente.</p>
+          <p>{descriptions[index]}</p>
         </div>
       </li>
     ))}
