@@ -76,7 +76,7 @@ blockquote strong { margin-top: .9rem; }
   .hero { min-height: 0; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto auto auto auto; }
   .hero::after { display: none; }
   .hero-kicker { grid-column: 1; grid-row: 1; width: 100%; font-size: clamp(.82rem, 4.2vw, 1.1rem); }
-  .funcional { grid-column: 1; grid-row: 2; width: 100%; margin: 0; padding: .12em var(--gutter) 0; font-size: 20.75vw; line-height: .78; letter-spacing: .015em; transform: none; }
+  .funcional { grid-column: 1; grid-row: 2; width: 100%; margin: 0; padding: .12em var(--gutter) 0; font-size: 20.75vw; line-height: .78; letter-spacing: .01em; transform: none; }
   .yoga { top: clamp(4.7rem, 17.5vw, 7.5rem); left: var(--gutter); font-size: clamp(2.6rem, 13vw, 6rem); }
   .panama { position: relative; grid-column: 1; grid-row: 3; align-self: start; justify-self: end; right: auto; top: auto; margin: 1rem .35rem 0 0; font-size: clamp(2rem, 9vw, 4rem); }
   .hero-photo { grid-column: 1; grid-row: 3; width: 100%; margin: 0; background: transparent; border: 0; }
