@@ -4,29 +4,48 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description: string;
+  canonical?: URL | string;
+  ogType?: 'website' | 'article';
+  socialImage?: URL | string;
+  socialImageAlt?: string;
+  publishedTime?: Date;
+  modifiedTime?: Date;
+  structuredData?: Record<string, unknown>;
 }
 
-const { title, description } = Astro.props;
-const favicon = `${import.meta.env.BASE_URL}images/funcyo.png`;
-const canonical = new URL(Astro.url.pathname, Astro.site);
+const {
+  title,
+  description,
+  canonical: canonicalProp,
+  ogType = 'website',
+  socialImage,
+  socialImageAlt,
+  publishedTime,
+  modifiedTime,
+  structuredData: additionalStructuredData,
+} = Astro.props;
+const canonical = canonicalProp ? new URL(canonicalProp, Astro.site) : new URL(Astro.url.pathname, Astro.site);
+const socialImageUrl = socialImage ? new URL(socialImage, Astro.site) : undefined;
+const siteHomepage = new URL(import.meta.env.BASE_URL, Astro.site);
 const structuredData = {
   '@context': 'https://schema.org',
   '@graph': [
     {
       '@type': 'WebSite',
-      '@id': `${canonical.href}#website`,
-      url: canonical.href,
+      '@id': `${siteHomepage.href}#website`,
+      url: siteHomepage.href,
       name: 'Yoga Funcional Panamá',
       inLanguage: 'es-PA',
-      author: { '@id': `${canonical.href}#person` },
+      author: { '@id': `${siteHomepage.href}#person` },
     },
     {
       '@type': 'Person',
-      '@id': `${canonical.href}#person`,
+      '@id': `${siteHomepage.href}#person`,
       name: 'Iosif Ruiz',
-      url: canonical.href,
+      url: siteHomepage.href,
       jobTitle: 'Profesor de yoga y meditación',
     },
+    ...(additionalStructuredData ? [additionalStructuredData] : []),
   ],
 };
 ---
@@ -44,15 +63,21 @@ const structuredData = {
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=League+Gothic&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet" />
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:locale" content="es_PA" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="Yoga Funcional Panamá" />
+    {socialImageUrl && <meta property="og:image" content={socialImageUrl} />}
+    {socialImageUrl && socialImageAlt && <meta property="og:image:alt" content={socialImageAlt} />}
+    {publishedTime && <meta property="article:published_time" content={publishedTime.toISOString()} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime.toISOString()} />}
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    {socialImageUrl && <meta name="twitter:image" content={socialImageUrl} />}
+    {socialImageUrl && socialImageAlt && <meta name="twitter:image:alt" content={socialImageAlt} />}
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
     <title>{title}</title>
   </head>
