@@ -262,3 +262,74 @@ blockquote strong { margin-top: .9rem; }
 @media (prefers-reduced-motion: reduce) and (max-width: 37.5rem) {
   .about-visual-track { height: auto; margin-top: 0; }
 }
+
+/* 06 / Contacto */
+.contact {
+  min-height: 90svh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(20rem, 38%);
+  grid-template-rows: auto 1fr auto;
+  background: var(--color-orange);
+  border-bottom: var(--border);
+  overflow: hidden;
+}
+.contact-number {
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 1rem var(--gutter);
+  border-bottom: var(--border);
+  font: clamp(1.3rem, 2vw, 2rem) var(--font-utility);
+  letter-spacing: .05em;
+}
+.contact-title {
+  grid-column: 1 / -1;
+  align-self: center;
+  margin: 0;
+  padding: clamp(3rem, 7vw, 7rem) var(--gutter);
+  font: 900 clamp(5.5rem, 13.6vw, 13rem)/.72 var(--font-display);
+  letter-spacing: -.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.contact-copy {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 1.5rem var(--gutter);
+  border-top: var(--border);
+}
+.contact-copy p { max-width: 34rem; margin: 0; font-size: clamp(1.15rem, 1.8vw, 1.7rem); line-height: 1.25; font-weight: 700; }
+.contact-copy small { font: 1.2rem var(--font-utility); letter-spacing: .06em; }
+.contact-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.25rem var(--gutter);
+  color: var(--color-light);
+  background: var(--color-dark);
+  border-top: var(--border);
+  border-left: var(--border);
+  font: clamp(3.5rem, 7vw, 7rem)/.9 var(--font-utility);
+  letter-spacing: .02em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.contact-action span:last-child { color: var(--color-orange); transition: transform .2s ease; }
+.contact-action:hover span:last-child { transform: translate(4px, -4px); }
+
+@media (max-width: 37.5rem) {
+  .contact { min-height: 0; display: block; }
+  .contact-number { padding-block: .75rem; font-size: 1.2rem; }
+  .contact-title { padding: clamp(4rem, 20vw, 6rem) var(--gutter); font-size: 12.7vw; line-height: .8; white-space: normal; overflow-wrap: normal; }
+  .contact-copy { min-height: 14rem; padding-block: 1.25rem; border-bottom: var(--border); }
+  .contact-copy p { font-size: clamp(1.05rem, 5vw, 1.35rem); }
+  .contact-copy small { font-size: 1rem; }
+  .contact-action { min-height: 6.5rem; padding-block: 1rem; border-top: 0; border-left: 0; font-size: clamp(3rem, 15vw, 4.5rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-action span:last-child { transition: none; }
+}
