@@ -4,21 +4,17 @@
   background: var(--color-light);
   overflow: hidden;
 }
+.blog-index { padding-top: clamp(1.875rem, 4.5vw, 4.5rem); }
 
 .blog-index-header,
 .blog-list,
 .blog-empty,
 .blog-article { max-width: 90rem; margin-inline: auto; }
 
-.blog-index-header { padding-bottom: clamp(1.5rem, 3vw, 2.5rem); border-bottom: var(--border); }
+.blog-index-header { padding-bottom: clamp(1.1rem, 2vw, 1.75rem); border-bottom: var(--border); }
 .blog-section-marker,
 .blog-taxonomy { margin: 0; font-family: var(--font-utility); letter-spacing: .06em; text-transform: uppercase; }
-.blog-section-marker { color: var(--color-orange); font-size: clamp(1.3rem, 2vw, 2rem); }
-.blog-index-header h1 {
-  margin: clamp(2.25rem, 5vw, 5rem) 0 clamp(1.5rem, 3vw, 2.5rem);
-  font: 900 clamp(5.2rem, 17vw, 15rem)/.72 var(--font-display);
-  letter-spacing: -.055em;
-}
+.blog-section-marker { margin-bottom: clamp(.85rem, 1.5vw, 1.35rem); color: var(--color-orange); font-size: clamp(1.3rem, 2vw, 2rem); font-weight: 400; }
 .blog-taxonomy { font-size: clamp(1.1rem, 2vw, 1.65rem); line-height: 1.1; }
 
 .blog-list { list-style: none; margin-block: 0; padding: 0; }
@@ -73,7 +69,7 @@
 
 @media (max-width: 47.999rem) {
   .blog-main { padding-top: 2.25rem; }
-  .blog-index-header h1 { margin-top: 2.5rem; }
+  .blog-index { padding-top: 1.75rem; }
   .blog-taxonomy { max-width: 24rem; line-height: 1.25; }
   .blog-list-image img { min-height: 19rem; aspect-ratio: 16 / 10; }
   .blog-list h2 { overflow-wrap: normal; }
