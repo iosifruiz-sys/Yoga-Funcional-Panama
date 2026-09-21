@@ -1,17 +1,21 @@
 ---
-const socialLabels = ['Instagram', 'YouTube', 'Patreon', 'TikTok'];
-const homepage = new URL(import.meta.env.BASE_URL, Astro.site);
-const aboutHref = new URL('#sobre-mi', homepage).href;
-const topHref = new URL('#contenido', homepage).href;
+const basePath = import.meta.env.BASE_URL;
+const footerLinks = {
+  about: `${basePath}#sobre-mi`,
+  top: `${basePath}#contenido`,
+} as const;
 ---
 
 <footer class="site-footer">
   <ul class="footer-socials" aria-label="Redes sociales">
-    {socialLabels.map((label) => <li><span>{label}</span></li>)}
+    <li><span>Instagram</span></li>
+    <li><span>YouTube</span></li>
+    <li><span>Patreon</span></li>
+    <li><span>TikTok</span></li>
   </ul>
 
   <div class="footer-meta">
-    <small><a href={aboutHref}>© 2026 IOSIF RUIZ</a></small>
-    <small><a href={topHref}>YOGA FUNCIONAL · PANAMÁ</a></small>
+    <small><a href={footerLinks.about}>© 2026 IOSIF RUIZ</a></small>
+    <small><a href={footerLinks.top}>YOGA FUNCIONAL · PANAMÁ</a></small>
   </div>
 </footer>
