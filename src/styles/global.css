@@ -325,3 +325,42 @@ blockquote strong { margin-top: .9rem; }
   .contact-closing strong { font-size: clamp(2rem, 9.5vw, 2.7rem); line-height: .92; }
   .contact-action { min-height: 4rem; padding-block: .6rem; border-top: 0; font-size: clamp(2rem, 10vw, 3rem); }
 }
+
+/* Site colophon */
+.site-footer {
+  color: var(--color-light);
+  background: var(--color-dark);
+  border-bottom: var(--border);
+}
+.footer-socials {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  gap: clamp(1.5rem, 5vw, 5rem);
+  margin: 0;
+  padding: 1.25rem var(--gutter);
+  border-top: 1px solid rgba(236, 233, 223, .35);
+  font: clamp(1.35rem, 2.2vw, 2.2rem)/1 var(--font-utility);
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.footer-socials li { min-width: 0; }
+.footer-socials span { display: block; }
+.footer-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .75rem var(--gutter);
+  border-top: 1px solid rgba(236, 233, 223, .35);
+  color: var(--color-warm);
+  font: .8rem var(--font-utility);
+  letter-spacing: .06em;
+}
+.footer-meta small { font: inherit; }
+
+@media (max-width: 37.5rem) {
+  .footer-socials { grid-template-columns: repeat(2, minmax(0, 1fr)); display: grid; gap: .85rem 1rem; padding-block: 1rem; font-size: 1.35rem; }
+  .footer-socials li:nth-child(even) { text-align: right; }
+  .footer-meta { align-items: flex-end; font-size: .72rem; }
+  .footer-meta small:last-child { max-width: 10rem; text-align: right; }
+}
