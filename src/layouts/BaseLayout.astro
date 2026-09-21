@@ -24,6 +24,7 @@ const {
   modifiedTime,
   structuredData: additionalStructuredData,
 } = Astro.props;
+const favicon = `${import.meta.env.BASE_URL}images/funcyo.png`;
 const canonical = canonicalProp ? new URL(canonicalProp, Astro.site) : new URL(Astro.url.pathname, Astro.site);
 const socialImageUrl = socialImage ? new URL(socialImage, Astro.site) : undefined;
 const siteHomepage = new URL(import.meta.env.BASE_URL, Astro.site);
