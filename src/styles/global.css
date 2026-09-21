@@ -362,6 +362,8 @@ blockquote strong { margin-top: .9rem; }
   letter-spacing: .06em;
 }
 .footer-meta small { font: inherit; }
+.footer-meta a { color: inherit; text-decoration: none; cursor: pointer; transition: opacity .18s ease; }
+@media (hover: hover) and (pointer: fine) { .footer-meta a:hover { opacity: .7; } }
 
 @media (max-width: 37.5rem) {
   .footer-socials { grid-template-columns: repeat(2, minmax(0, 1fr)); display: grid; gap: .85rem 1rem; padding-block: 1rem; font-size: 1.35rem; }
