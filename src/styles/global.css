@@ -293,7 +293,7 @@ blockquote strong { margin-top: .9rem; }
 .contact-closing {
   grid-column: 1 / -1;
   margin: 0;
-  padding: clamp(1rem, 1.75vw, 1.75rem) var(--gutter) clamp(1.75rem, 3vw, 3rem);
+  padding: clamp(1rem, 1.75vw, 1.75rem) var(--gutter) clamp(.9rem, 1.55vw, 1.55rem);
   font-family: var(--font-utility);
   line-height: .95;
   text-transform: uppercase;
@@ -320,7 +320,7 @@ blockquote strong { margin-top: .9rem; }
   .contact { min-height: 0; display: block; }
   .contact-number { padding-block: .75rem; font-size: 1.2rem; }
   .contact-title { padding: 2.5rem var(--gutter) 1.25rem; font-size: 11vw; line-height: .8; white-space: normal; overflow-wrap: normal; }
-  .contact-closing { padding-block: 1rem 1.75rem; }
+  .contact-closing { padding-block: 1rem .9rem; }
   .contact-closing span { font-size: clamp(1.25rem, 5.8vw, 1.55rem); }
   .contact-closing strong { font-size: clamp(2rem, 9.5vw, 2.7rem); line-height: .92; }
   .contact-action { min-height: 4rem; padding-block: .6rem; border-top: 0; font-size: clamp(2rem, 10vw, 3rem); }
