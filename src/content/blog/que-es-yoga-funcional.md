@@ -12,6 +12,9 @@ tags:
   - respiración
   - atención
 draft: false
+cover:
+  image: "../../../public/images/yoga-funcional-grupo-meditacion.jpeg"
+  alt: "Clase grupal de Yoga Funcional durante una práctica de meditación en Panamá"
 ---
 
 Yoga Funcional es una forma de construir la práctica en la que las posturas, el movimiento, la respiración y la meditación se utilizan como herramientas para desarrollar capacidades de la persona, en lugar de convertirse en objetivos por sí mismos.
