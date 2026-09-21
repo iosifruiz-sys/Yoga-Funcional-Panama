@@ -208,7 +208,7 @@ blockquote strong { margin-top: .9rem; }
   position: absolute;
   z-index: 2;
   top: 17%;
-  left: var(--gutter);
+  right: calc(50% + min(19vw, 18rem) + clamp(3.125rem, 4vw, 5rem));
   width: min(25vw, 22rem);
   opacity: calc((var(--about-progress) - .4) * 3.4);
   transform: translateY(calc((1 - var(--about-progress)) * 2rem));
@@ -216,7 +216,7 @@ blockquote strong { margin-top: .9rem; }
 .about-copy p { margin: 0; }
 .about-intro { max-width: 22rem; font-size: clamp(1.25rem, 1.8vw, 1.8rem); line-height: 1.15; font-weight: 700; }
 .about-copy p:not(.about-intro) { margin-top: 1rem; font-size: clamp(.82rem, .92vw, .98rem); line-height: 1.35; }
-.about-statement { position: absolute; z-index: 2; right: var(--gutter); bottom: 13%; width: min(27vw, 26rem); margin: 0; padding-top: 1rem; border-top: var(--border); font: clamp(1.65rem, 2.8vw, 2.8rem)/1.05 var(--font-utility); text-transform: uppercase; opacity: calc((var(--about-progress) - .52) * 3.5); transform: translateY(calc((1 - var(--about-progress)) * 2rem)); }
+.about-statement { position: absolute; z-index: 2; left: calc(50% + min(19vw, 18rem) + clamp(3.125rem, 4vw, 5rem)); bottom: 13%; width: min(27vw, 26rem); margin: 0; padding-top: 1rem; border-top: var(--border); font: clamp(1.65rem, 2.8vw, 2.8rem)/1.05 var(--font-utility); text-transform: uppercase; opacity: calc((var(--about-progress) - .52) * 3.5); transform: translateY(calc((1 - var(--about-progress)) * 2rem)); }
 .about-statement span, .about-statement strong { display: block; }
 .about-statement strong { margin-top: .25em; color: var(--color-orange); font-weight: 400; }
 
