@@ -5,6 +5,7 @@
   overflow: hidden;
 }
 .blog-index { padding-top: clamp(1.875rem, 4.5vw, 4.5rem); }
+.blog-article-main { padding-top: clamp(1.75rem, 3.75vw, 3.75rem); }
 
 .blog-index-header,
 .blog-list,
@@ -37,15 +38,18 @@
 @media (hover: hover) and (pointer: fine) { .blog-list-image:hover img { transform: scale(1.015); } }
 .blog-empty { padding-block: 3rem; }
 
-.blog-back { display: inline-flex; min-height: 2.75rem; align-items: center; margin-bottom: clamp(2.5rem, 5vw, 5rem); font: 1.3rem var(--font-utility); letter-spacing: .06em; text-decoration: none; }
+.blog-back { display: inline-flex; min-height: 2.75rem; align-items: center; margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem); font: 1.3rem var(--font-utility); letter-spacing: .06em; text-decoration: none; }
 .blog-back:hover { color: var(--color-orange); }
-.blog-article-header { padding-bottom: clamp(2rem, 4vw, 4rem); border-bottom: var(--border); }
-.blog-article-category { margin: 0 0 clamp(1.5rem, 3vw, 3rem); color: var(--color-orange); font: clamp(1.3rem, 2vw, 2rem) var(--font-utility); letter-spacing: .06em; text-transform: uppercase; }
+.blog-article-header { padding-bottom: clamp(1.5rem, 2.5vw, 2.5rem); border-bottom: var(--border); }
+.blog-article-category { margin: 0 0 clamp(1rem, 1.75vw, 1.75rem); color: var(--color-orange); font: clamp(1.3rem, 2vw, 2rem) var(--font-utility); letter-spacing: .06em; text-transform: uppercase; }
 .blog-article-header h1 { max-width: 13ch; margin: 0; font: 900 clamp(3.7rem, 8.8vw, 9rem)/.84 var(--font-display); letter-spacing: -.045em; }
-.blog-article-description { max-width: 52rem; margin: clamp(2rem, 4vw, 3.5rem) 0 0 auto; font-size: clamp(1.15rem, 1.65vw, 1.5rem); line-height: 1.4; }
-.blog-article-meta { display: flex; flex-wrap: wrap; gap: .4rem clamp(2rem, 5vw, 5rem); margin-top: clamp(2rem, 4vw, 3.5rem); font: clamp(1.15rem, 1.5vw, 1.4rem) var(--font-utility); letter-spacing: .06em; text-transform: uppercase; }
+.blog-article-description { max-width: 52rem; margin: clamp(1.25rem, 2vw, 1.75rem) 0 0 auto; font-size: clamp(1.15rem, 1.65vw, 1.5rem); line-height: 1.4; }
+.blog-article-meta { display: flex; flex-wrap: wrap; gap: .4rem clamp(2rem, 5vw, 5rem); margin-top: clamp(1.25rem, 1.75vw, 1.5rem); font: clamp(1.15rem, 1.5vw, 1.4rem) var(--font-utility); letter-spacing: .06em; text-transform: uppercase; }
 .blog-article-meta p { margin: 0; }
-.blog-article-cover { max-width: 90rem; margin: clamp(1.5rem, 3vw, 3rem) 0 clamp(3.5rem, 7vw, 7rem); }
+.blog-author-link { text-decoration: none; }
+.blog-author-link:hover,
+.blog-author-link:focus-visible { color: var(--color-orange); }
+.blog-article-cover { max-width: 90rem; margin: clamp(.9rem, 1.5vw, 1.5rem) 0 clamp(3.5rem, 7vw, 7rem); }
 .blog-article-cover img { display: block; width: 100%; height: auto; }
 .blog-body { max-width: 46rem; margin: 0 auto clamp(4rem, 7vw, 7rem); font-size: clamp(1rem, 1.25vw, 1.08rem); line-height: 1.75; overflow-wrap: break-word; }
 .blog-body h2 { margin-block: clamp(3.75rem, 7vw, 6rem) 1.25rem; font: clamp(2.3rem, 4vw, 3.5rem)/.95 var(--font-utility); text-transform: uppercase; }
@@ -70,6 +74,7 @@
 @media (max-width: 47.999rem) {
   .blog-main { padding-top: 2.25rem; }
   .blog-index { padding-top: 1.75rem; }
+  .blog-article-main { padding-top: 1.75rem; }
   .blog-taxonomy { max-width: 24rem; line-height: 1.25; }
   .blog-list-image img { min-height: 19rem; aspect-ratio: 16 / 10; }
   .blog-list h2 { overflow-wrap: normal; }

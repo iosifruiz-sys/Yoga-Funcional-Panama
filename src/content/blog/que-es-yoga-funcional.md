@@ -71,7 +71,7 @@ A mí me interesa mucho más otra pregunta:
 
 ¿Y realmente necesitamos esta forma concreta para desarrollar esa capacidad en esta persona concreta?
 
-De ahí nace uno de los principios fundamentales de Yoga Funcional:
+De ahí nace uno de los [principios fundamentales de Yoga Funcional](../../#metodo):
 
 **primero la persona y la tarea; después, el ejercicio.**
 
@@ -161,7 +161,7 @@ Alguien puede tener muchísima movilidad y necesitar desarrollar fuerza y contro
 
 En Yoga Funcional intentamos adaptar la práctica a la persona en lugar de adaptar a la persona a la práctica.
 
-Por eso la mayoría de nuestras clases son generales y multinivel.
+Por eso [la mayoría de nuestras clases](../../#clases) son generales y multinivel.
 
 En la misma clase puede estar alguien que nunca ha practicado yoga y, a pocos metros, una persona con muchos años de experiencia.
 

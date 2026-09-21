@@ -49,7 +49,7 @@ const formatDate = (date: Date) => [date.getUTCDate(), date.getUTCMonth() + 1, d
   structuredData={articleStructuredData}
 >
   <Header />
-  <main id="contenido" class="blog-main">
+  <main id="contenido" class="blog-main blog-article-main">
     <article class="blog-article">
       <a class="blog-back" href={`${base}blog/`}>← BLOG</a>
       <header class="blog-article-header">
@@ -57,7 +57,7 @@ const formatDate = (date: Date) => [date.getUTCDate(), date.getUTCMonth() + 1, d
         <h1>{data.title}</h1>
         <p class="blog-article-description">{data.description}</p>
         <div class="blog-article-meta">
-          <p>POR {data.author}</p>
+          <p>POR <a class="blog-author-link" href={`${base}#sobre-mi`}>{data.author}</a></p>
           <time datetime={data.publishDate.toISOString()}>{formatDate(data.publishDate)}</time>
           {data.updatedDate && <time datetime={data.updatedDate.toISOString()}>ACTUALIZADO: {formatDate(data.updatedDate)}</time>}
         </div>
