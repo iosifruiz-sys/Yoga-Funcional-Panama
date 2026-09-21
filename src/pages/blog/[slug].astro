@@ -1,0 +1,22 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+
+const slugFor = (id: string) => id.replace(/\.md$/, '');
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: slugFor(post.id) },
+    props: { post, slug: slugFor(post.id) },
+  }));
+};
+
+const { post, slug } = Astro.props;
+const { Content } = await render(post);
+---
+
+<ArticleLayout post={post} slug={slug}>
+  <Content />
+</ArticleLayout>

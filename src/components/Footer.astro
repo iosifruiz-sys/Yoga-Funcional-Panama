@@ -1,0 +1,15 @@
+---
+const socialLabels = ['Instagram', 'YouTube', 'Patreon', 'TikTok'];
+const base = import.meta.env.BASE_URL;
+---
+
+<footer class="site-footer">
+  <ul class="footer-socials" aria-label="Redes sociales">
+    {socialLabels.map((label) => <li><span>{label}</span></li>)}
+  </ul>
+
+  <div class="footer-meta">
+    <small><a href={`${base}#sobre-mi`}>© 2026 IOSIF RUIZ</a></small>
+    <small><a href={`${base}#contenido`}>YOGA FUNCIONAL · PANAMÁ</a></small>
+  </div>
+</footer>
