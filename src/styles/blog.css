@@ -9,6 +9,15 @@
 .blog-article-header { padding-bottom: 2rem; border-bottom: var(--border); }
 .blog-article-header > * { margin-block: .75rem 0; }
 .blog-article-header time { display: block; }
-.blog-body { max-width: 48rem; margin-block: 3rem; font-size: 1.05rem; line-height: 1.6; }
+.blog-body { max-width: 48rem; margin-block: 3rem; font-size: 1.05rem; line-height: 1.7; overflow-wrap: break-word; }
+.blog-body h2 { margin-block: 3.5rem 1.25rem; font: 2.4rem/1 var(--font-utility); text-transform: uppercase; }
+.blog-body h3 { margin-block: 2.25rem .75rem; font-size: 1.25rem; line-height: 1.25; }
+.blog-body p { margin-block: 1rem; }
+.blog-body a { text-decoration-thickness: .1em; text-underline-offset: .15em; }
+.blog-body strong { font-weight: 700; }
 .blog-body img { max-width: 100%; height: auto; }
 .blog-article-footer { padding-top: 1.5rem; border-top: var(--border); }
+
+@media (max-width: 40rem) {
+  .blog-body h2 { font-size: 2rem; overflow-wrap: anywhere; }
+}
