@@ -10,9 +10,11 @@ const base = import.meta.env.BASE_URL;
 
   <div class="about-reveal">
     <div class="about-stage">
-      <div class="about-visual">
-        <span class="about-circle"></span>
-        <img src={`${base}images/IMG_6376.png`} alt="Iosif Ruiz sentado en postura de loto" loading="lazy" decoding="async" />
+      <div class="about-visual-track">
+        <div class="about-visual">
+          <span class="about-circle"></span>
+          <img src={`${base}images/IMG_6376.png`} alt="Iosif Ruiz sentado en postura de loto" loading="lazy" decoding="async" />
+        </div>
       </div>
 
       <div class="about-copy about-copy-primary">
@@ -34,6 +36,8 @@ const base = import.meta.env.BASE_URL;
 <script>
   const section = document.querySelector<HTMLElement>('.about');
   const reveal = section?.querySelector<HTMLElement>('.about-reveal');
+  const mobileTrack = section?.querySelector<HTMLElement>('.about-visual-track');
+  const mobileLayout = window.matchMedia('(max-width: 37.5rem)');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let frame = 0;
 
@@ -45,8 +49,9 @@ const base = import.meta.env.BASE_URL;
       return;
     }
 
-    const bounds = reveal.getBoundingClientRect();
-    const distance = Math.max(1, reveal.offsetHeight - window.innerHeight);
+    const progressArea = mobileLayout.matches && mobileTrack ? mobileTrack : reveal;
+    const bounds = progressArea.getBoundingClientRect();
+    const distance = Math.max(1, progressArea.offsetHeight - window.innerHeight);
     const progress = Math.min(1, Math.max(0, -bounds.top / distance));
     section.style.setProperty('--about-progress', progress.toFixed(3));
   };
@@ -57,6 +62,7 @@ const base = import.meta.env.BASE_URL;
 
   window.addEventListener('scroll', requestUpdate, { passive: true });
   window.addEventListener('resize', requestUpdate, { passive: true });
+  mobileLayout.addEventListener('change', requestUpdate);
   reduceMotion.addEventListener('change', requestUpdate);
   updateReveal();
 </script>

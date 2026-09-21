@@ -201,6 +201,7 @@ blockquote strong { margin-top: .9rem; }
 .about-title strong { color: var(--color-orange); font: inherit; }
 .about-reveal { position: relative; height: 200svh; }
 .about-stage { position: sticky; top: 0; height: 100svh; overflow: hidden; isolation: isolate; }
+.about-visual-track { display: contents; }
 .about-visual { position: absolute; z-index: 1; top: 50%; left: 50%; width: min(38vw, 36rem); aspect-ratio: 2 / 3; transform: translate(-50%, -50%); }
 .about-circle { position: absolute; z-index: 0; top: 50%; left: 50%; width: min(34vw, 32rem); aspect-ratio: 1; border-radius: 50%; background: var(--color-orange); transform: translate(-50%, -50%) scale(calc(1 + var(--about-progress) * .18)); opacity: calc(1 - var(--about-progress) * 1.7); }
 .about-visual img { position: relative; z-index: 1; display: block; width: 100%; height: 100%; object-fit: cover; opacity: calc(var(--about-progress) * 2.5); clip-path: circle(calc(12% + var(--about-progress) * 68%) at 50% 50%); }
@@ -235,6 +236,16 @@ blockquote strong { margin-top: .9rem; }
   .about-statement { margin: 2.75rem var(--gutter) 0; font-size: clamp(1.75rem, 8vw, 2.5rem); }
 }
 
+@media (max-width: 37.5rem) {
+  .about-visual-track { display: block; height: 130svh; margin-top: -1.5rem; }
+  .about-visual { top: 0; width: 88%; height: auto; aspect-ratio: 2 / 3; }
+  .about-circle { width: 65vw; }
+  .about-visual img { object-fit: contain; }
+  .about-copy { padding-top: 1.5rem; }
+  .about-copy p:not(.about-intro) { margin-top: .8rem; font-size: clamp(.86rem, 3.7vw, .95rem); line-height: 1.3; }
+  .about-statement { width: auto; font-size: clamp(1.65rem, 7.5vw, 2.25rem); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .about { --about-progress: 1; }
   .about-reveal { height: 100svh; }
@@ -246,4 +257,8 @@ blockquote strong { margin-top: .9rem; }
   .about-reveal { height: auto; }
   .about-visual { position: relative; top: auto; }
   .about-copy { margin-top: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) and (max-width: 37.5rem) {
+  .about-visual-track { height: auto; margin-top: 0; }
 }
