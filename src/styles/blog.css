@@ -1,0 +1,14 @@
+.blog-main { min-height: 70svh; padding: clamp(3rem, 7vw, 7rem) var(--gutter); background: var(--color-light); }
+.blog-index-header, .blog-list, .blog-empty, .blog-article { max-width: 72rem; margin-inline: auto; }
+.blog-index-header h1, .blog-article h1 { margin: 0; }
+.blog-list { list-style: none; margin-block: 3rem 0; padding: 0; }
+.blog-list li { padding-block: 1.5rem; border-top: var(--border); }
+.blog-list article { display: grid; gap: 1rem; }
+.blog-list img { display: block; max-width: 100%; height: auto; }
+.blog-list h2, .blog-list p { margin: 0; }
+.blog-article-header { padding-bottom: 2rem; border-bottom: var(--border); }
+.blog-article-header > * { margin-block: .75rem 0; }
+.blog-article-header time { display: block; }
+.blog-body { max-width: 48rem; margin-block: 3rem; font-size: 1.05rem; line-height: 1.6; }
+.blog-body img { max-width: 100%; height: auto; }
+.blog-article-footer { padding-top: 1.5rem; border-top: var(--border); }

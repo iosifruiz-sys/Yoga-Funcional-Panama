@@ -1,0 +1,17 @@
+---
+const socialLabels = ['Instagram', 'YouTube', 'Patreon', 'TikTok'];
+const homepage = new URL(import.meta.env.BASE_URL, Astro.site);
+const aboutHref = new URL('#sobre-mi', homepage).href;
+const topHref = new URL('#contenido', homepage).href;
+---
+
+<footer class="site-footer">
+  <ul class="footer-socials" aria-label="Redes sociales">
+    {socialLabels.map((label) => <li><span>{label}</span></li>)}
+  </ul>
+
+  <div class="footer-meta">
+    <small><a href={aboutHref}>© 2026 IOSIF RUIZ</a></small>
+    <small><a href={topHref}>YOGA FUNCIONAL · PANAMÁ</a></small>
+  </div>
+</footer>
