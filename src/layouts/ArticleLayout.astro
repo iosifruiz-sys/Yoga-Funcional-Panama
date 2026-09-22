@@ -4,14 +4,18 @@ import { getImage, Image } from 'astro:assets';
 import BaseLayout from './BaseLayout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import ShareButton from '../components/ShareButton.astro';
+import { slugForPost } from '../lib/blog';
 import '../styles/blog.css';
 
 interface Props {
   post: CollectionEntry<'blog'>;
   slug: string;
+  previousPost?: CollectionEntry<'blog'>;
+  nextPost?: CollectionEntry<'blog'>;
 }
 
-const { post, slug } = Astro.props;
+const { post, slug, previousPost, nextPost } = Astro.props;
 const { data } = post;
 const base = import.meta.env.BASE_URL;
 const canonical = new URL(`${base}blog/${slug}/`, Astro.site);
@@ -60,6 +64,7 @@ const formatDate = (date: Date) => [date.getUTCDate(), date.getUTCMonth() + 1, d
           <p>POR <a class="blog-author-link" href={`${base}#sobre-mi`}>{data.author}</a></p>
           <time datetime={data.publishDate.toISOString()}>{formatDate(data.publishDate)}</time>
           {data.updatedDate && <time datetime={data.updatedDate.toISOString()}>ACTUALIZADO: {formatDate(data.updatedDate)}</time>}
+          <ShareButton title={data.title} />
         </div>
       </header>
 
@@ -74,8 +79,27 @@ const formatDate = (date: Date) => [date.getUTCDate(), date.getUTCMonth() + 1, d
       </div>
 
       <footer class="blog-article-footer">
-        {data.tags.length > 0 && <p>{data.tags.join(' · ')}</p>}
-        <a href={`${base}blog/`}>Volver al Blog</a>
+        <ShareButton title={data.title} prominent />
+
+        <nav class="blog-article-navigation" aria-label="Navegación entre artículos">
+          {(previousPost || nextPost) && (
+            <div class="blog-adjacent-links">
+              {previousPost && (
+                <a class="blog-adjacent-link blog-adjacent-link--previous" href={`${base}blog/${slugForPost(previousPost)}/`} aria-label={`Artículo anterior: ${previousPost.data.title}`}>
+                  <span class="blog-adjacent-direction">← ANTERIOR</span>
+                  <span class="blog-adjacent-title">{previousPost.data.title}</span>
+                </a>
+              )}
+              {nextPost && (
+                <a class="blog-adjacent-link blog-adjacent-link--next" href={`${base}blog/${slugForPost(nextPost)}/`} aria-label={`Artículo siguiente: ${nextPost.data.title}`}>
+                  <span class="blog-adjacent-direction">SIGUIENTE →</span>
+                  <span class="blog-adjacent-title">{nextPost.data.title}</span>
+                </a>
+              )}
+            </div>
+          )}
+          <a class="blog-all-articles" href={`${base}blog/`}>VER TODOS LOS ARTÍCULOS</a>
+        </nav>
       </footer>
     </article>
   </main>

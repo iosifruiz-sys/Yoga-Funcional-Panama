@@ -1,14 +1,11 @@
 import rss from '@astrojs/rss';
-import { getCollection } from 'astro:content';
-
-const slugFor = (id: string) => id.replace(/\.md$/, '');
+import { getPublishedPosts, slugForPost } from '../lib/blog';
 
 export async function GET(context: { site: URL | undefined }) {
   if (!context.site) throw new Error('Astro site URL is required to generate rss.xml');
 
   const base = import.meta.env.BASE_URL;
-  const posts = (await getCollection('blog', ({ data }) => !data.draft))
-    .sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+  const posts = await getPublishedPosts();
 
   return rss({
     title: 'Blog | Yoga Funcional Panamá',
@@ -18,7 +15,7 @@ export async function GET(context: { site: URL | undefined }) {
       title: post.data.title,
       description: post.data.description,
       pubDate: post.data.publishDate,
-      link: `${base}blog/${slugFor(post.id)}/`,
+      link: `${base}blog/${slugForPost(post)}/`,
       categories: [...(post.data.category ? [post.data.category] : []), ...post.data.tags],
     })),
   });
