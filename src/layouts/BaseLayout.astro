@@ -98,6 +98,28 @@ const structuredData = {
       gtag('js', new Date());
       gtag('config', 'G-X7C607TLBK');
     </script>
+    <script is:inline>
+      (() => {
+        const authorModeKey = 'yfp-author-mode';
+        const adminParameter = new URLSearchParams(window.location.search).get('admin');
+        let authorModeEnabled = adminParameter === '1';
+
+        try {
+          if (adminParameter === '1') {
+            localStorage.setItem(authorModeKey, '1');
+          } else if (adminParameter === '0') {
+            localStorage.removeItem(authorModeKey);
+          } else {
+            authorModeEnabled = localStorage.getItem(authorModeKey) === '1';
+          }
+        } catch {
+          // Author mode is only a local convenience; the page must work without storage.
+        }
+
+        if (adminParameter === '0') authorModeEnabled = false;
+        document.documentElement.toggleAttribute('data-author-mode', authorModeEnabled);
+      })();
+    </script>
     <title>{title}</title>
   </head>
   <body>
