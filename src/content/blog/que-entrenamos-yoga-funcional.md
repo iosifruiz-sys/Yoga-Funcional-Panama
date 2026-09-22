@@ -1,9 +1,10 @@
 ---
-title: "Fuerza, flexibilidad, atención o voluntad: ¿qué es más importante en el Yoga Funcional?"
-description: "Fuerza, movilidad, equilibrio, respiración, atención y voluntad no funcionan por separado. Así las integramos en la práctica de Yoga Funcional."
+title: ¿Qué es más importante en el Yoga Funcional?
+description: Fuerza, movilidad, equilibrio, respiración, atención y voluntad no
+  funcionan por separado. Así las integramos en la práctica de Yoga Funcional.
 publishDate: 2026-09-22
-author: "Iosif Ruiz"
-category: "Yoga Funcional"
+author: Iosif Ruiz
+category: Yoga Funcional
 tags:
   - yoga funcional
   - fuerza
@@ -11,11 +12,12 @@ tags:
   - respiración
   - atención
   - yoga en Panamá
-draft: false
 cover:
-  image: "../../../public/images/yoga-funcional-fuerza-movilidad-atencion.png"
-  alt: "Iosif Ruiz en una postura invertida — fuerza, movilidad, atención y voluntad en Yoga Funcional"
-socialImage: "../../../public/images/yoga-funcional-fuerza-movilidad-atencion.png"
+  image: ../../../public/images/yoga-funcional-fuerza-movilidad-atencion.png
+  alt: Iosif Ruiz en una postura invertida — fuerza, movilidad, atención y
+    voluntad en Yoga Funcional
+socialImage: ../../../public/images/yoga-funcional-fuerza-movilidad-atencion.png
+draft: false
 ---
 
 Imagínate que necesitas **levantar un refrigerador urgentemente**. No preguntes por qué.
