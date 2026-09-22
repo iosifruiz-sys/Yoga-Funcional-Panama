@@ -63,6 +63,15 @@ const structuredData = {
 <!doctype html>
 <html lang="es">
   <head>
+    <!-- Google tag (gtag.js) -->
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-X7C60T7LBK"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-X7C60T7LBK');
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
@@ -91,13 +100,6 @@ const structuredData = {
     <meta name="twitter:image" content={socialImageUrl} />
     <meta name="twitter:image:alt" content={socialImageDescription} />
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-X7C607TLBK"></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
-      gtag('config', 'G-X7C607TLBK');
-    </script>
     <script is:inline>
       (() => {
         const authorModeKey = 'yfp-author-mode';
