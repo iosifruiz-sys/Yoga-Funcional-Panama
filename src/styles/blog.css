@@ -21,8 +21,8 @@
 .blog-list { list-style: none; margin-block: 0; padding: 0; }
 .blog-list > li { border-bottom: var(--border); }
 .blog-list-entry { display: grid; gap: clamp(1.5rem, 3.5vw, 4.5rem); padding-block: clamp(2rem, 5vw, 5rem); }
-.blog-list-image { display: block; min-width: 0; background: var(--color-warm); overflow: hidden; }
-.blog-list-image img { display: block; width: 100%; height: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: center; transition: transform .3s ease; }
+.blog-list-image { display: block; min-width: 0; }
+.blog-list-image img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
 .blog-list-content { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; }
 .blog-list-number,
 .blog-list-meta { margin: 0; font-family: var(--font-utility); letter-spacing: .06em; text-transform: uppercase; }
@@ -35,7 +35,6 @@
 .blog-list-cta span { color: var(--color-orange); font-size: 1.4em; }
 .blog-list h2 a:hover,
 .blog-list-cta:hover { color: var(--color-orange); }
-@media (hover: hover) and (pointer: fine) { .blog-list-image:hover img { transform: scale(1.015); } }
 .blog-empty { padding-block: 3rem; }
 
 .blog-back { display: inline-flex; min-height: 2.75rem; align-items: center; margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem); font: 1.3rem var(--font-utility); letter-spacing: .06em; text-decoration: none; }
@@ -65,7 +64,7 @@
 .blog-article-footer a { display: inline-flex; min-height: 2.75rem; align-items: center; font-weight: 700; text-underline-offset: .2em; }
 
 @media (min-width: 48rem) {
-  .blog-list-entry { grid-template-columns: minmax(0, 1.15fr) minmax(19rem, .85fr); align-items: stretch; }
+  .blog-list-entry { grid-template-columns: minmax(0, 1.15fr) minmax(19rem, .85fr); align-items: center; }
   .blog-list > li:nth-child(even) .blog-list-image { order: 2; }
   .blog-list-entry--no-cover { grid-template-columns: minmax(0, .55fr) minmax(24rem, .45fr); }
   .blog-list-entry--no-cover::before { content: ''; min-height: 20rem; background: var(--color-warm); }
@@ -82,7 +81,6 @@
   .blog-article-meta { margin-top: 1.05rem; }
   .blog-article-cover { margin-top: .75rem; }
   .blog-taxonomy { max-width: 24rem; line-height: 1.25; }
-  .blog-list-image img { min-height: 19rem; aspect-ratio: 16 / 10; }
   .blog-list h2 { overflow-wrap: normal; }
   .blog-article-header h1 { max-width: 10ch; overflow-wrap: normal; }
   .blog-article-cover { margin-inline: calc(var(--gutter) * -1); }
