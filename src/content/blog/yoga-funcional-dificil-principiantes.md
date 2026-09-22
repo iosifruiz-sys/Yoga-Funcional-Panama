@@ -11,7 +11,7 @@ tags:
   - entrenamiento
 draft: false
 cover:
-  image: "../../../public/images/yoga-funcional-demasiado-dificil.jpg"
+  image: "../../../public/images/yoga-funcional-demasiado-dificil.png"
   alt: "Persona practicando una postura de fuerza y equilibrio sobre un mat de yoga"
 ---
 
