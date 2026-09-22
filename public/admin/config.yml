@@ -4,10 +4,7 @@ backend:
   name: github
   repo: iosifruiz-sys/Yoga-Funcional-Panama
   branch: main
-  # GitHub Pages cannot keep an OAuth client secret. Replace this value with the
-  # HTTPS URL of the external OAuth bridge configured by the site owner.
-  base_url: https://REPLACE-WITH-YOUR-OAUTH-BRIDGE.example.com
-  auth_endpoint: auth
+  base_url: https://api.decapcms.org
 
 media_folder: public/images
 # Astro's image() schema expects source-relative paths to files in public/images.
