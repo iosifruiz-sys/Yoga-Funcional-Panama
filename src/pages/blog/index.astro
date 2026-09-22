@@ -25,7 +25,7 @@ const slugFor = (id: string) => id.replace(/\.md$/, '');
 
     {posts.length > 0 ? (
       <ol class="blog-list">
-        {posts.map((post, index) => {
+        {posts.map((post) => {
           const slug = slugFor(post.id);
           const href = `${base}blog/${slug}/`;
           return (
@@ -37,7 +37,6 @@ const slugFor = (id: string) => id.replace(/\.md$/, '');
                   </a>
                 )}
                 <div class="blog-list-content">
-                  <p class="blog-list-number">{String(index + 1).padStart(2, '0')}</p>
                   <p class="blog-list-meta">
                     {post.data.category ?? 'Blog'} <span aria-hidden="true">·</span>{' '}
                     <time datetime={post.data.publishDate.toISOString()}>{formatDate(post.data.publishDate)}</time>

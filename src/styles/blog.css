@@ -24,10 +24,7 @@
 .blog-list-image { display: block; min-width: 0; }
 .blog-list-image img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
 .blog-list-content { min-width: 0; display: flex; flex-direction: column; align-items: flex-start; }
-.blog-list-number,
-.blog-list-meta { margin: 0; font-family: var(--font-utility); letter-spacing: .06em; text-transform: uppercase; }
-.blog-list-number { color: var(--color-orange); font-size: clamp(2.25rem, 4vw, 4.5rem); line-height: .8; }
-.blog-list-meta { margin-top: clamp(1.5rem, 3vw, 3rem); font-size: clamp(1.1rem, 1.5vw, 1.35rem); }
+.blog-list-meta { margin: 0; font: clamp(1.1rem, 1.5vw, 1.35rem) var(--font-utility); letter-spacing: .06em; text-transform: uppercase; }
 .blog-list h2 { margin: clamp(1rem, 2vw, 1.75rem) 0 0; font: clamp(3rem, 5.4vw, 5.75rem)/.88 var(--font-utility); text-transform: uppercase; overflow-wrap: anywhere; }
 .blog-list h2 a { text-decoration: none; }
 .blog-list-description { max-width: 37rem; margin: clamp(1.5rem, 2vw, 2.25rem) 0; font-size: clamp(1rem, 1.25vw, 1.15rem); line-height: 1.5; }
