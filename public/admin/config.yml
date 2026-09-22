@@ -2,7 +2,7 @@ locale: es
 
 backend:
   name: turbo-github
-  turbo_site_id: c3593ca7-f227-42f0-8069-2b27acfb1add
+  turbo_site_id: e3593ca7-f227-42f0-8069-2b27acfb1add
   branch: main
 
 media_folder: public/images
