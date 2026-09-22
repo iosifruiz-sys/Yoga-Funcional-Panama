@@ -38,8 +38,7 @@
 .blog-back,
 .blog-edit { min-height: 2.75rem; align-items: center; font: 1.3rem var(--font-utility); letter-spacing: .06em; text-decoration: none; }
 .blog-back { display: inline-flex; }
-.blog-edit { display: none; }
-html[data-author-mode] .blog-edit { display: inline-flex; }
+.blog-edit { display: inline-flex; }
 .blog-back:hover,
 .blog-edit:hover { color: var(--color-orange); }
 .blog-article-header { padding-bottom: clamp(1.5rem, 2.5vw, 2.5rem); border-bottom: var(--border); }
@@ -85,7 +84,7 @@ html[data-author-mode] .blog-edit { display: inline-flex; }
 .blog-share--prominent .blog-share-button { font: clamp(1.55rem, 3vw, 2.25rem) var(--font-utility); }
 .blog-article-navigation { padding-top: clamp(1.5rem, 3vw, 2.25rem); }
 .blog-adjacent-links { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(1.5rem, 5vw, 4rem); }
-.blog-adjacent-link { min-width: 0; display: flex; flex-direction: column; gap: .65rem; color: var(--color-dark); text-decoration: none; }
+.blog-adjacent-link { width: 100%; min-width: 0; display: flex; flex-direction: column; gap: .65rem; color: var(--color-dark); text-decoration: none; white-space: normal; overflow-wrap: anywhere; }
 .blog-adjacent-link--previous { grid-column: 1; }
 .blog-adjacent-link--next { grid-column: 2; text-align: right; }
 .blog-adjacent-direction { color: var(--color-orange); font: 1.2rem var(--font-utility); letter-spacing: .06em; }
