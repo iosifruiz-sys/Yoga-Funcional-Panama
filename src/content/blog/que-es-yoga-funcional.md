@@ -12,6 +12,9 @@ tags:
   - respiración
   - atención
 draft: false
+cover:
+  image: "../../../public/images/yoga-funcional-grupo-meditacion.jpeg"
+  alt: "Clase grupal de Yoga Funcional durante una práctica de meditación en Panamá"
 ---
 
 Yoga Funcional es una forma de construir la práctica en la que las posturas, el movimiento, la respiración y la meditación se utilizan como herramientas para desarrollar capacidades de la persona, en lugar de convertirse en objetivos por sí mismos.
@@ -68,7 +71,7 @@ A mí me interesa mucho más otra pregunta:
 
 ¿Y realmente necesitamos esta forma concreta para desarrollar esa capacidad en esta persona concreta?
 
-De ahí nace uno de los principios fundamentales de Yoga Funcional:
+De ahí nace uno de los [principios fundamentales de Yoga Funcional](../../#metodo):
 
 **primero la persona y la tarea; después, el ejercicio.**
 
@@ -158,7 +161,7 @@ Alguien puede tener muchísima movilidad y necesitar desarrollar fuerza y contro
 
 En Yoga Funcional intentamos adaptar la práctica a la persona en lugar de adaptar a la persona a la práctica.
 
-Por eso la mayoría de nuestras clases son generales y multinivel.
+Por eso [la mayoría de nuestras clases](../../#clases) son generales y multinivel.
 
 En la misma clase puede estar alguien que nunca ha practicado yoga y, a pocos metros, una persona con muchos años de experiencia.
 
