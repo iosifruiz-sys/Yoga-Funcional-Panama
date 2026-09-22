@@ -8,13 +8,14 @@ const xmlEntities: Record<string, string> = {
 };
 const escapeXml = (value: string) => value.replace(/[<>&'\"]/g, (character) => xmlEntities[character]);
 const slugFor = (id: string) => id.replace(/\.md$/, '');
+type SitemapEntry = { url: URL; lastmod?: Date };
 
 export const GET: APIRoute = async ({ site }) => {
   if (!site) throw new Error('Astro site URL is required to generate sitemap.xml');
 
   const base = import.meta.env.BASE_URL;
   const posts = await getCollection('blog', ({ data }) => !data.draft);
-  const urls = [
+  const urls: SitemapEntry[] = [
     { url: new URL(base, site) },
     { url: new URL(`${base}blog/`, site) },
     ...posts.map((post) => ({
