@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { getCollection } from 'astro:content';
+import { getPublishedPosts, slugForPost } from '../lib/blog';
 
 export const prerender = true;
 
@@ -7,19 +7,18 @@ const xmlEntities: Record<string, string> = {
   '<': '&lt;', '>': '&gt;', '&': '&amp;', "'": '&apos;', '"': '&quot;',
 };
 const escapeXml = (value: string) => value.replace(/[<>&'\"]/g, (character) => xmlEntities[character]);
-const slugFor = (id: string) => id.replace(/\.md$/, '');
 type SitemapEntry = { url: URL; lastmod?: Date };
 
 export const GET: APIRoute = async ({ site }) => {
   if (!site) throw new Error('Astro site URL is required to generate sitemap.xml');
 
   const base = import.meta.env.BASE_URL;
-  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const posts = await getPublishedPosts();
   const urls: SitemapEntry[] = [
     { url: new URL(base, site) },
     { url: new URL(`${base}blog/`, site) },
     ...posts.map((post) => ({
-      url: new URL(`${base}blog/${slugFor(post.id)}/`, site),
+      url: new URL(`${base}blog/${slugForPost(post)}/`, site),
       lastmod: post.data.updatedDate ?? post.data.publishDate,
     })),
   ];

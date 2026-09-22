@@ -1,0 +1,71 @@
+---
+interface Props {
+  title: string;
+  prominent?: boolean;
+}
+
+const { title, prominent = false } = Astro.props;
+---
+
+<div class:list={['blog-share', { 'blog-share--prominent': prominent }]} data-share-control>
+  <button type="button" class="blog-share-button" data-share-button data-article-title={title}>
+    <span data-share-label>COMPARTIR ↗</span>
+  </button>
+  <span class="blog-share-status" data-share-status aria-live="polite"></span>
+</div>
+
+<script>
+  const defaultLabel = 'COMPARTIR ↗';
+  const copiedLabel = 'ENLACE COPIADO ✓';
+
+  document.querySelectorAll<HTMLElement>('[data-share-control]').forEach((control) => {
+    const button = control.querySelector<HTMLButtonElement>('[data-share-button]');
+    const label = control.querySelector<HTMLElement>('[data-share-label]');
+    const status = control.querySelector<HTMLElement>('[data-share-status]');
+    let resetTimer: number | undefined;
+
+    if (!button || !label || !status || button.dataset.shareReady) return;
+    button.dataset.shareReady = 'true';
+
+    const showCopied = () => {
+      window.clearTimeout(resetTimer);
+      label.textContent = copiedLabel;
+      status.textContent = 'El enlace del artículo se copió al portapapeles.';
+      resetTimer = window.setTimeout(() => {
+        label.textContent = defaultLabel;
+        status.textContent = '';
+      }, 2500);
+    };
+
+    button.addEventListener('click', async () => {
+      status.textContent = '';
+      const url = new URL(window.location.href);
+      url.hash = '';
+      const shareData = { title: button.dataset.articleTitle ?? document.title, url: url.href };
+
+      if (typeof navigator.share === 'function') {
+        try {
+          await navigator.share(shareData);
+        } catch (error) {
+          if (!(error instanceof DOMException && error.name === 'AbortError')) {
+            status.textContent = 'No se pudo abrir el menú para compartir.';
+          }
+        }
+        return;
+      }
+
+      if (navigator.clipboard?.writeText) {
+        try {
+          await navigator.clipboard.writeText(shareData.url);
+          showCopied();
+          return;
+        } catch {
+          // Continue to the accessible manual-copy fallback below.
+        }
+      }
+
+      window.prompt('Copia el enlace de este artículo:', shareData.url);
+      status.textContent = 'Selecciona y copia el enlace mostrado.';
+    });
+  });
+</script>
