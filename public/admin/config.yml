@@ -1,10 +1,9 @@
 locale: es
 
 backend:
-  name: github
-  repo: iosifruiz-sys/Yoga-Funcional-Panama
+  name: turbo-github
+  turbo_site_id: c3593ca7-f227-42f0-8069-2b27acfb1add
   branch: main
-  base_url: https://api.decapcms.org
 
 media_folder: public/images
 # Astro's image() schema expects source-relative paths to files in public/images.
