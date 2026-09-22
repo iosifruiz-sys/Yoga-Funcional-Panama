@@ -13,7 +13,7 @@ export async function GET(context: { site: URL | undefined }) {
   return rss({
     title: 'Blog | Yoga Funcional Panamá',
     description: 'Artículos sobre Yoga Funcional, fuerza, movilidad, respiración, atención, recuperación y meditación.',
-    site: context.site,
+    site: new URL(base, context.site),
     items: posts.map((post) => ({
       title: post.data.title,
       description: post.data.description,
