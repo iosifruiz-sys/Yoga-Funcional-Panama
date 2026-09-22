@@ -1,0 +1,80 @@
+locale: es
+
+backend:
+  name: turbo-github
+  turbo_site_id: e3593ca7-f227-42f0-8069-2b27acfb1add
+  branch: main
+
+media_folder: public/images
+# Astro's image() schema expects source-relative paths to files in public/images.
+public_folder: ../../../public/images
+
+slug:
+  encoding: ascii
+  clean_accents: true
+  sanitize_replacement: "-"
+
+collections:
+  - name: blog
+    label: Artículos
+    label_singular: Artículo
+    folder: src/content/blog
+    create: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    summary: "{{title}} — {{publishDate}}"
+    sortable_fields: [title, publishDate]
+    view_filters:
+      - label: Borradores
+        field: draft
+        pattern: "true"
+      - label: Publicados
+        field: draft
+        pattern: "false"
+    fields:
+      - { label: Título, name: title, widget: string }
+      - { label: Descripción, name: description, widget: text }
+      - label: Fecha de publicación
+        name: publishDate
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+        picker_utc: true
+      - label: Fecha de actualización
+        name: updatedDate
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+        picker_utc: true
+        required: false
+      - { label: Autor, name: author, widget: string, default: "Iosif Ruiz" }
+      - { label: Categoría, name: category, widget: string, required: false }
+      - label: Etiquetas
+        name: tags
+        widget: list
+        default: []
+        required: false
+        field: { label: Etiqueta, name: tag, widget: string }
+      - label: Portada
+        name: cover
+        widget: object
+        required: false
+        collapsed: false
+        hint: "Imagen recomendada: 1600 × 900 px (16:9). El CMS no recorta ni redimensiona la imagen."
+        fields:
+          - { label: Imagen, name: image, widget: image }
+          - { label: Texto alternativo, name: alt, widget: string }
+      - label: Imagen social
+        name: socialImage
+        widget: image
+        required: false
+        hint: "Opcional. Si se omite, el sitio usa la portada."
+      - label: Borrador
+        name: draft
+        widget: boolean
+        default: true
+        hint: "Actívalo para excluir el artículo del sitio, RSS, sitemap y navegación. Desactívalo antes de publicar."
+      - { label: Texto, name: body, widget: markdown }
