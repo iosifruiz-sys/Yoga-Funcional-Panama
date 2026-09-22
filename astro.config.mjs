@@ -4,7 +4,7 @@ const repository = 'Yoga-Funcional-Panama';
 
 export default defineConfig({
   output: 'static',
-  site: process.env.SITE_URL ?? 'https://yoga-funcional-panama.github.io',
+  site: process.env.SITE_URL ?? 'https://iosifruiz-sys.github.io',
   base: process.env.PUBLIC_BASE_PATH ?? `/${repository}`,
   trailingSlash: 'always',
   build: { format: 'directory' },
