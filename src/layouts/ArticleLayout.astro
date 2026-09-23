@@ -8,7 +8,7 @@ const {post,slug,locale,previousPost,nextPost,translationSlug}=Astro.props; cons
 const articlePath=`blog/${slug}/`; const canonical=new URL(localizedPath(locale,articlePath),Astro.site); const translationLocale=locale==='es'?'ru':'es';
 const alternateUrl=translationSlug ? localizedPath(translationLocale,`blog/${translationSlug}/`) : localizedPath(translationLocale,'blog/');
 const alternates=translationSlug ? {es:locale==='es'?canonical:alternateUrl,ru:locale==='ru'?canonical:alternateUrl}:undefined;
-const collection=locale==='es'?'blog_es':'blog_ru'; const editUrl=new URL(`${import.meta.env.BASE_URL}admin/#/collections/${collection}/entries/${encodeURIComponent(slug)}`,'https://iosifruiz-sys.github.io');
+const collection=locale==='es'?'blog_es':'blog_ru'; const editUrl=new URL(`${import.meta.env.BASE_URL}admin/#/collections/${collection}/entries/${encodeURIComponent(slug)}`,Astro.site);
 const personId=`${new URL(import.meta.env.BASE_URL,Astro.site).href}#person`; const source=data.socialImage??data.cover?.image; const image=source?await getImage({src:source}):undefined; const socialImageUrl=image?new URL(image.src,Astro.site):undefined;
 const articleStructuredData={'@type':'BlogPosting','@id':`${canonical.href}#article`,headline:data.title,description:data.description,datePublished:data.publishDate.toISOString(),...(data.updatedDate?{dateModified:data.updatedDate.toISOString()}:{}),inLanguage:locale==='es'?'es-PA':'ru',mainEntityOfPage:canonical.href,url:canonical.href,author:{'@id':personId},...(socialImageUrl?{image:socialImageUrl.href}:{})};
 const formatDate=(date:Date)=>[date.getUTCDate(),date.getUTCMonth()+1,date.getUTCFullYear()].map(part=>String(part).padStart(2,'0')).join('.'); const blogUrl=localizedPath(locale,'blog/');

@@ -43,15 +43,9 @@ npm run preview
 
 `PUBLIC_WHATSAPP_URL` permite configurar el enlace de **Reservar** sin tocar componentes. Hasta recibir el destino final, apunta a `#reservar`.
 
-## GitHub Pages y dominio futuro
+## GitHub Pages y dominio personalizado
 
-El workflow `.github/workflows/deploy.yml` instala, construye y publica `dist/` al hacer push. La base predeterminada es `/Yoga-Funcional-Panama/`, por lo que los assets funcionan como project site. En **Settings → Pages**, seleccione *GitHub Actions* como fuente.
-
-Para un dominio personalizado, configure el dominio en GitHub Pages y defina durante el build:
-
-```sh
-SITE_URL=https://www.ejemplo.com PUBLIC_BASE_PATH=/ npm run build
-```
+El workflow `.github/workflows/deploy.yml` instala, construye y publica `dist/` al hacer push. El sitio se genera para `https://iosifruiz.com/`, con `/` como ruta base. En **Settings → Pages**, seleccione *GitHub Actions* como fuente y mantenga configurado el dominio personalizado.
 
 ## Pendientes editoriales
 
