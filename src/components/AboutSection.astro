@@ -1,10 +1,14 @@
 ---
+import { ui, type Locale } from '../i18n';
+interface Props { locale?: Locale }
+const { locale = 'es' } = Astro.props;
+const t = ui[locale];
 const base = import.meta.env.BASE_URL;
 ---
 
 <section id="sobre-mi" class="about" aria-labelledby="about-title">
   <header class="about-header">
-    <p class="about-number">05 / SOBRE MÍ</p>
+    <p class="about-number">{t.about.number}</p>
     <h2 id="about-title" class="about-title"><span>Iosif</span> <strong>Ruiz</strong></h2>
   </header>
 
@@ -13,21 +17,18 @@ const base = import.meta.env.BASE_URL;
       <div class="about-visual-track">
         <div class="about-visual">
           <span class="about-circle"></span>
-          <img src={`${base}images/IMG_6376.png`} alt="Iosif Ruiz sentado en postura de loto" loading="lazy" decoding="async" />
+          <img src={`${base}images/IMG_6376.png`} alt={t.about.alt} loading="lazy" decoding="async" />
         </div>
       </div>
 
       <div class="about-copy about-copy-primary">
-        <p class="about-intro">Profesor de yoga y meditación.</p>
-        <p>Llevo más de 20 años practicando yoga y meditación y enseño desde 2010. Pero mi experiencia nunca se limitó solamente al yoga.</p>
-        <p>A lo largo de estos años he explorado diferentes escuelas de yoga y meditación, tradiciones budistas, artes marciales y distintas formas de entrenamiento físico. Cada una me dio herramientas y una manera diferente de entender el movimiento, el esfuerzo, la respiración, la atención y la recuperación.</p>
-        <p>De ese recorrido nació Yoga Funcional. No como una nueva tradición ni como una colección de ejercicios, sino como un método propio que integra esas herramientas en una práctica completa: fuerza, movilidad, equilibrio, coordinación, respiración, atención, activación y recuperación.</p>
-        <p>No necesitas compartir una filosofía determinada para practicar conmigo.</p>
+        <p class="about-intro">{t.about.intro}</p>
+        {t.about.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
       </div>
 
       <p class="about-statement">
-        <span>Que todo lo que hacemos durante una práctica</span>
-        <strong>tenga una utilidad fuera de ella.</strong>
+        <span>{t.about.statement[0]}</span>
+        <strong>{t.about.statement[1]}</strong>
       </p>
     </div>
   </div>

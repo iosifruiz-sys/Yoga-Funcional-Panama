@@ -12,6 +12,7 @@ tags:
   - respiración
   - atención
 draft: false
+translationSlug: "chto-takoe-funktsionalnaya-yoga"
 cover:
   image: "../../../public/images/yoga-funcional-grupo-meditacion.jpeg"
   alt: "Clase grupal de Yoga Funcional durante una práctica de meditación en Panamá"

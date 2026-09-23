@@ -59,3 +59,14 @@ SITE_URL=https://www.ejemplo.com PUBLIC_BASE_PATH=/ npm run build
 - Proporcionar `Molot.woff2` y confirmar su licencia.
 - Confirmar URL de WhatsApp, horarios, ubicación y datos de marca.
 - Diseñar las rutas rusa y de blog únicamente en una iteración posterior.
+
+## Contenido bilingüe
+
+El español sigue siendo el idioma predeterminado (`/`) y el ruso se publica bajo `/ru/`. Las cadenas de la interfaz y los metadatos de ambos idiomas se editan en `src/i18n.ts`; las páginas comparten los mismos componentes y estilos.
+
+Decap CMS mantiene el mismo acceso en `/admin/` y muestra dos colecciones:
+
+- **Blog ES** guarda artículos en `src/content/blog/` y los publica en `/blog/[slug]/`.
+- **Blog RU** guarda artículos en `src/content/blog/ru/` y los publica en `/ru/blog/[slug]/`.
+
+Para enlazar dos traducciones, indique en el campo `translationSlug` de cada artículo el slug del artículo equivalente en la otra colección. El selector de idioma irá directamente a la traducción cuando ambas entradas publicadas se referencien; si no hay traducción, vuelve de forma segura al índice del blog del otro idioma.

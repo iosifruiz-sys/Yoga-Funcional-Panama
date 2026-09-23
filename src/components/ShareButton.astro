@@ -2,14 +2,17 @@
 interface Props {
   title: string;
   prominent?: boolean;
+  locale?: Locale;
 }
 
-const { title, prominent = false } = Astro.props;
+import { ui, type Locale } from '../i18n';
+const { title, prominent = false, locale = 'es' } = Astro.props;
+const t = ui[locale].blog;
 ---
 
 <div class:list={['blog-share', { 'blog-share--prominent': prominent }]} data-share-control>
   <button type="button" class="blog-share-button" data-share-button data-article-title={title}>
-    <span data-share-label>COMPARTIR ↗</span>
+    <span data-share-label>{t.share}</span>
   </button>
   <span class="blog-share-status" data-share-status aria-live="polite"></span>
 </div>

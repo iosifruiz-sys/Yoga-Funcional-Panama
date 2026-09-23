@@ -2,8 +2,8 @@
 import type { GetStaticPaths } from 'astro';
 import type { CollectionEntry } from 'astro:content';
 import { render } from 'astro:content';
-import ArticleLayout from '../../layouts/ArticleLayout.astro';
-import { findTranslation, getPublishedPosts, slugForPost } from '../../lib/blog';
+import ArticleLayout from '../../../layouts/ArticleLayout.astro';
+import { findTranslation, getPublishedPosts, slugForPost } from '../../../lib/blog';
 
 interface Props {
   post: CollectionEntry<'blog'>;
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getPublishedPosts();
+  const posts = await getPublishedPosts('ru');
   return posts.map((post, index) => ({
     params: { slug: slugForPost(post) },
     props: {
@@ -26,10 +26,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const { post, slug, previousPost, nextPost } = Astro.props;
-const translation = await findTranslation(post, 'ru');
+const translation = await findTranslation(post, 'es');
 const { Content } = await render(post);
 ---
 
-<ArticleLayout post={post} slug={slug} locale="es" previousPost={previousPost} nextPost={nextPost} translationSlug={translation ? slugForPost(translation) : undefined}>
+<ArticleLayout post={post} slug={slug} locale="ru" previousPost={previousPost} nextPost={nextPost} translationSlug={translation ? slugForPost(translation) : undefined}>
   <Content />
 </ArticleLayout>
