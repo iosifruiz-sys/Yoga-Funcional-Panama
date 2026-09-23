@@ -197,7 +197,7 @@ blockquote strong { margin-top: .9rem; }
 }
 
 :lang(ru) .method h2 {
-  font-size: clamp(3.6rem, 15vw, 13.5rem);
+  font-size: clamp(3.6rem, 20vw, 18rem);
 }
 :lang(ru) .method h2 > span:last-child {
   margin-left: 0;
@@ -216,7 +216,7 @@ blockquote strong { margin-top: .9rem; }
   white-space: nowrap;
 }
 :lang(ru) .schedule h2 {
-  font-size: min(6.25vw, 6.25rem);
+  font-size: min(7.7vw, 8rem);
 }
 :lang(ru) .schedule-day {
   font-size: clamp(4rem, 7vw, 7.25rem);
@@ -224,7 +224,7 @@ blockquote strong { margin-top: .9rem; }
 
 @media (max-width: 61.999rem) {
   :lang(ru) .method h2 {
-    font-size: clamp(3rem, 17.8vw, 7rem);
+    font-size: clamp(3rem, 20.5vw, 8.5rem);
   }
   :lang(ru) .method h2 .method-line {
     display: inline;
