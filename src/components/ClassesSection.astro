@@ -48,10 +48,12 @@ const formats = [
   </header>
 
   <div class="class-formats">
-    {formats.map((format) => (
+    {formats.map((format, index) => (
       <article class="class-format">
         <p class="format-number">{format.number} /</p>
-        <h3>{format.name}</h3>
+        <h3>{locale === 'ru' && index > 0
+          ? format.name.split(' ').map((word) => <span class="format-name-line">{word}</span>)
+          : format.name}</h3>
         {format.price && <p class="format-price">{format.price}</p>}
         <div class="format-copy">
           {format.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
