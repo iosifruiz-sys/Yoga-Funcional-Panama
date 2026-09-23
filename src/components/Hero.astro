@@ -1,10 +1,14 @@
 ---
+import { ui, type Locale } from '../i18n';
+interface Props { locale?: Locale }
+const { locale = 'es' } = Astro.props;
+const t = ui[locale];
 const bookingUrl = 'https://wa.me/50762331434?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20las%20clases%20de%20Yoga%20Funcional.';
 const base = import.meta.env.BASE_URL;
 ---
 
 <section class="hero" aria-labelledby="hero-title">
-  <div class="hero-kicker" aria-hidden="true">ENTRENAMIENTO / ATENCIÓN / RECUPERACIÓN</div>
+  <div class="hero-kicker" aria-hidden="true">{t.hero.kicker}</div>
   <h1 id="hero-title" class="hero-title">
     <span class="yoga">Yoga</span>
     <span class="funcional">Funcional</span>
@@ -16,7 +20,7 @@ const base = import.meta.env.BASE_URL;
       <source media="(min-width: 62rem)" srcset={`${base}images/hero-transparent.png`} />
       <img
         src={`${base}images/hero-transparent.png`}
-        alt="Persona practicando yoga funcional sobre una esterilla rosa"
+        alt={t.hero.alt}
         width="1194"
         height="1317"
         loading="eager"
@@ -26,12 +30,12 @@ const base = import.meta.env.BASE_URL;
   </figure>
 
   <blockquote>
-    <span>No entrenamos a la persona para hacer yoga.</span>
-    <strong>Usamos el yoga para entrenar a la persona.</strong>
+    <span>{t.hero.quote}</span>
+    <strong>{t.hero.strong}</strong>
   </blockquote>
 
   <a id="reservar" class="reserve" href={bookingUrl} target="_blank" rel="noopener noreferrer">
-    <span>Reservar</span><span class="reserve-arrow" aria-hidden="true">↗</span>
+    <span>{t.reserve}</span><span class="reserve-arrow" aria-hidden="true">↗</span>
   </a>
-  <p class="hero-meta"><span>PTY</span> <span>08°58'N</span> <span>CLASES / PRÓXIMAMENTE</span></p>
+  <p class="hero-meta"><span>PTY</span> <span>08°58'N</span> <span>{t.hero.soon}</span></p>
 </section>

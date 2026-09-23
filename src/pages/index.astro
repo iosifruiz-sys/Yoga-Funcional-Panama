@@ -8,10 +8,12 @@ import ScheduleSection from '../components/ScheduleSection.astro';
 import AboutSection from '../components/AboutSection.astro';
 import ContactSection from '../components/ContactSection.astro';
 import Footer from '../components/Footer.astro';
+import { ui, localizedPath } from '../i18n';
+const t = ui.es;
 ---
 
-<BaseLayout title="Yoga Funcional en Panamá | Iosif Ruiz" description="Yoga Funcional en Panamá con Iosif Ruiz. Entrenamiento de fuerza, movilidad, equilibrio, coordinación, respiración y atención.">
-  <Header />
+<BaseLayout title={t.meta.title} description={t.meta.description} locale="es" alternates={{ es: localizedPath('es'), ru: localizedPath('ru') }}>
+  <Header locale="es" alternateUrl={localizedPath('ru')} />
   <main id="contenido">
     <Hero />
     <MethodSection />
@@ -20,5 +22,5 @@ import Footer from '../components/Footer.astro';
     <AboutSection />
     <ContactSection />
   </main>
-  <Footer />
+  <Footer locale="es" />
 </BaseLayout>

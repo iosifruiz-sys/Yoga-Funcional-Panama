@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Hero from '../../components/Hero.astro';
+import MethodSection from '../../components/MethodSection.astro';
+import ClassesSection from '../../components/ClassesSection.astro';
+import ScheduleSection from '../../components/ScheduleSection.astro';
+import AboutSection from '../../components/AboutSection.astro';
+import ContactSection from '../../components/ContactSection.astro';
+import Footer from '../../components/Footer.astro';
+import { ui, localizedPath } from '../../i18n';
+const t = ui.ru;
+---
+<BaseLayout title={t.meta.title} description={t.meta.description} locale="ru" alternates={{ es: localizedPath('es'), ru: localizedPath('ru') }}>
+  <Header locale="ru" alternateUrl={localizedPath('es')} />
+  <main id="contenido">
+    <Hero locale="ru" /><MethodSection locale="ru" /><ClassesSection locale="ru" />
+    <ScheduleSection locale="ru" /><AboutSection locale="ru" /><ContactSection locale="ru" />
+  </main>
+  <Footer locale="ru" />
+</BaseLayout>

@@ -38,6 +38,8 @@ nav { overflow: hidden; }
 nav ul { list-style: none; display: flex; gap: 1.25rem; margin: 0; padding: .5rem 0; overflow-x: auto; scrollbar-width: none; }
 nav a { text-decoration: none; white-space: nowrap; }
 nav a:hover { color: var(--color-orange); }
+.language-switcher { display: flex; align-items: center; gap: .4rem; }
+.language-switcher a[aria-current="page"] { color: var(--color-orange); }
 .header-cta { color: var(--color-white); background: var(--color-dark); padding: .85rem .75rem; text-decoration: none; }
 .header-cta:hover { background: var(--color-orange); color: var(--color-dark); }
 
