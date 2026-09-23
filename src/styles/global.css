@@ -208,8 +208,15 @@ blockquote strong { margin-top: .9rem; }
 :lang(ru) .class-format h3 {
   font-size: clamp(2.2rem, 3.5vw, 4rem);
 }
+:lang(ru) .class-format:nth-child(n+2) h3 {
+  font-size: clamp(2.475rem, 3.94vw, 4.5rem);
+}
+:lang(ru) .format-name-line {
+  display: block;
+  white-space: nowrap;
+}
 :lang(ru) .schedule h2 {
-  font-size: min(8.7vw, 8rem);
+  font-size: min(6.25vw, 6.25rem);
 }
 :lang(ru) .schedule-day {
   font-size: clamp(4rem, 7vw, 7.25rem);
@@ -237,6 +244,9 @@ blockquote strong { margin-top: .9rem; }
   }
   :lang(ru) .class-format h3 {
     font-size: clamp(2.35rem, 11vw, 4.75rem);
+  }
+  :lang(ru) .class-format:nth-child(n+2) h3 {
+    font-size: clamp(2.65rem, 12.35vw, 5.35rem);
   }
   :lang(ru) .schedule h2 {
     font-size: clamp(3rem, 14vw, 7rem);
