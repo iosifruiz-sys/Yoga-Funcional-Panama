@@ -1,111 +1,22 @@
 ---
 import type { CollectionEntry } from 'astro:content';
 import { getImage, Image } from 'astro:assets';
-import BaseLayout from './BaseLayout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import ShareButton from '../components/ShareButton.astro';
-import { slugForPost } from '../lib/blog';
-import '../styles/blog.css';
-
-interface Props {
-  post: CollectionEntry<'blog'>;
-  slug: string;
-  previousPost?: CollectionEntry<'blog'>;
-  nextPost?: CollectionEntry<'blog'>;
-}
-
-const { post, slug, previousPost, nextPost } = Astro.props;
-const { data } = post;
-const base = import.meta.env.BASE_URL;
-const canonical = new URL(`${base}blog/${slug}/`, Astro.site);
-const editUrl = new URL(`${base}admin/#/collections/blog/entries/${encodeURIComponent(slug)}`, 'https://iosifruiz-sys.github.io');
-const personId = `${new URL(base, Astro.site).href}#person`;
-const socialImageSource = data.socialImage ?? data.cover?.image;
-const socialImage = socialImageSource ? await getImage({ src: socialImageSource }) : undefined;
-const socialImageUrl = socialImage ? new URL(socialImage.src, Astro.site) : undefined;
-const articleStructuredData = {
-  '@type': 'BlogPosting',
-  '@id': `${canonical.href}#article`,
-  headline: data.title,
-  description: data.description,
-  datePublished: data.publishDate.toISOString(),
-  ...(data.updatedDate ? { dateModified: data.updatedDate.toISOString() } : {}),
-  inLanguage: 'es-PA',
-  mainEntityOfPage: canonical.href,
-  url: canonical.href,
-  author: { '@id': personId },
-  ...(socialImageUrl ? { image: socialImageUrl.href } : {}),
-};
-const formatDate = (date: Date) => [date.getUTCDate(), date.getUTCMonth() + 1, date.getUTCFullYear()]
-  .map((part) => String(part).padStart(2, '0'))
-  .join('.');
+import BaseLayout from './BaseLayout.astro'; import Header from '../components/Header.astro'; import Footer from '../components/Footer.astro'; import ShareButton from '../components/ShareButton.astro';
+import { slugForPost } from '../lib/blog'; import { ui, localizedPath, type Locale } from '../i18n'; import '../styles/blog.css';
+interface Props { post:CollectionEntry<'blog'>; slug:string; locale:Locale; previousPost?:CollectionEntry<'blog'>; nextPost?:CollectionEntry<'blog'>; translationSlug?:string }
+const {post,slug,locale,previousPost,nextPost,translationSlug}=Astro.props; const {data}=post; const t=ui[locale].blog;
+const articlePath=`blog/${slug}/`; const canonical=new URL(localizedPath(locale,articlePath),Astro.site); const translationLocale=locale==='es'?'ru':'es';
+const alternateUrl=translationSlug ? localizedPath(translationLocale,`blog/${translationSlug}/`) : localizedPath(translationLocale,'blog/');
+const alternates=translationSlug ? {es:locale==='es'?canonical:alternateUrl,ru:locale==='ru'?canonical:alternateUrl}:undefined;
+const collection=locale==='es'?'blog_es':'blog_ru'; const editUrl=new URL(`${import.meta.env.BASE_URL}admin/#/collections/${collection}/entries/${encodeURIComponent(slug)}`,'https://iosifruiz-sys.github.io');
+const personId=`${new URL(import.meta.env.BASE_URL,Astro.site).href}#person`; const source=data.socialImage??data.cover?.image; const image=source?await getImage({src:source}):undefined; const socialImageUrl=image?new URL(image.src,Astro.site):undefined;
+const articleStructuredData={'@type':'BlogPosting','@id':`${canonical.href}#article`,headline:data.title,description:data.description,datePublished:data.publishDate.toISOString(),...(data.updatedDate?{dateModified:data.updatedDate.toISOString()}:{}),inLanguage:locale==='es'?'es-PA':'ru',mainEntityOfPage:canonical.href,url:canonical.href,author:{'@id':personId},...(socialImageUrl?{image:socialImageUrl.href}:{})};
+const formatDate=(date:Date)=>[date.getUTCDate(),date.getUTCMonth()+1,date.getUTCFullYear()].map(part=>String(part).padStart(2,'0')).join('.'); const blogUrl=localizedPath(locale,'blog/');
 ---
-
-<BaseLayout
-  title={`${data.title} | Yoga Funcional Panamá`}
-  description={data.description}
-  canonical={canonical}
-  ogType="article"
-  socialImage={socialImageUrl}
-  socialImageAlt={data.cover?.alt}
-  publishedTime={data.publishDate}
-  modifiedTime={data.updatedDate}
-  structuredData={articleStructuredData}
->
-  <Header />
-  <main id="contenido" class="blog-main blog-article-main">
-    <article class="blog-article">
-      <div class="blog-article-actions">
-        <a class="blog-back" href={`${base}blog/`}>← BLOG</a>
-        <a class="blog-edit" data-author-edit href={editUrl} target="_blank" rel="noopener noreferrer">EDITAR ↗</a>
-      </div>
-      <header class="blog-article-header">
-        {data.category && <p class="blog-article-category">{data.category}</p>}
-        <h1>{data.title}</h1>
-        <p class="blog-article-description">{data.description}</p>
-        <div class="blog-article-meta">
-          <p>POR <a class="blog-author-link" href={`${base}#sobre-mi`}>{data.author}</a></p>
-          <time datetime={data.publishDate.toISOString()}>{formatDate(data.publishDate)}</time>
-          {data.updatedDate && <time datetime={data.updatedDate.toISOString()}>ACTUALIZADO: {formatDate(data.updatedDate)}</time>}
-          <ShareButton title={data.title} />
-        </div>
-      </header>
-
-      {data.cover && (
-        <figure class="blog-article-cover">
-          <Image src={data.cover.image} alt={data.cover.alt} widths={[768, 1200, 1600]} sizes="100vw" />
-        </figure>
-      )}
-
-      <div class="blog-body">
-        <slot />
-      </div>
-
-      <footer class="blog-article-footer">
-        <ShareButton title={data.title} prominent />
-
-        <nav class="blog-article-navigation" aria-label="Navegación entre artículos">
-          {(previousPost || nextPost) && (
-            <div class="blog-adjacent-links">
-              {previousPost && (
-                <a class="blog-adjacent-link blog-adjacent-link--previous" href={`${base}blog/${slugForPost(previousPost)}/`} aria-label={`Artículo anterior: ${previousPost.data.title}`}>
-                  <span class="blog-adjacent-direction">← ANTERIOR</span>
-                  <span class="blog-adjacent-title">{previousPost.data.title}</span>
-                </a>
-              )}
-              {nextPost && (
-                <a class="blog-adjacent-link blog-adjacent-link--next" href={`${base}blog/${slugForPost(nextPost)}/`} aria-label={`Artículo siguiente: ${nextPost.data.title}`}>
-                  <span class="blog-adjacent-direction">SIGUIENTE →</span>
-                  <span class="blog-adjacent-title">{nextPost.data.title}</span>
-                </a>
-              )}
-            </div>
-          )}
-          <a class="blog-all-articles" href={`${base}blog/`}>VER TODOS LOS ARTÍCULOS</a>
-        </nav>
-      </footer>
-    </article>
-  </main>
-  <Footer />
-</BaseLayout>
+<BaseLayout title={`${data.title} | Yoga Funcional Panamá`} description={data.description} canonical={canonical} locale={locale} alternates={alternates} ogType="article" socialImage={socialImageUrl} socialImageAlt={data.cover?.alt} publishedTime={data.publishDate} modifiedTime={data.updatedDate} structuredData={articleStructuredData}>
+<Header locale={locale} alternateUrl={alternateUrl}/><main id="contenido" class="blog-main blog-article-main"><article class="blog-article">
+<div class="blog-article-actions"><a class="blog-back" href={blogUrl}>{t.back}</a><a class="blog-edit" data-author-edit href={editUrl} target="_blank" rel="noopener noreferrer">{t.edit}</a></div>
+<header class="blog-article-header">{data.category&&<p class="blog-article-category">{data.category}</p>}<h1>{data.title}</h1><p class="blog-article-description">{data.description}</p><div class="blog-article-meta"><p>{t.by} <a class="blog-author-link" href={`${localizedPath(locale)}#sobre-mi`}>{data.author}</a></p><time datetime={data.publishDate.toISOString()}>{formatDate(data.publishDate)}</time>{data.updatedDate&&<time datetime={data.updatedDate.toISOString()}>{t.updated}: {formatDate(data.updatedDate)}</time>}<ShareButton title={data.title} locale={locale}/></div></header>
+{data.cover&&<figure class="blog-article-cover"><Image src={data.cover.image} alt={data.cover.alt} widths={[768,1200,1600]} sizes="100vw"/></figure>}<div class="blog-body"><slot/></div>
+<footer class="blog-article-footer"><ShareButton title={data.title} locale={locale} prominent/><nav class="blog-article-navigation" aria-label={t.articleNav}>{(previousPost||nextPost)&&<div class="blog-adjacent-links">{previousPost&&<a class="blog-adjacent-link blog-adjacent-link--previous" href={`${blogUrl}${slugForPost(previousPost)}/`}><span class="blog-adjacent-direction">{t.previous}</span><span class="blog-adjacent-title">{previousPost.data.title}</span></a>}{nextPost&&<a class="blog-adjacent-link blog-adjacent-link--next" href={`${blogUrl}${slugForPost(nextPost)}/`}><span class="blog-adjacent-direction">{t.next}</span><span class="blog-adjacent-title">{nextPost.data.title}</span></a>}</div>}<a class="blog-all-articles" href={blogUrl}>{t.all}</a></nav></footer>
+</article></main><Footer locale={locale}/></BaseLayout>

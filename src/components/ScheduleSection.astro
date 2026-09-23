@@ -1,25 +1,29 @@
 ---
+import { ui, type Locale } from '../i18n';
+interface Props { locale?: Locale }
+const { locale = 'es' } = Astro.props;
+const t = ui[locale];
 const schedule = [
-  { day: 'Martes', time: '6:15 PM' },
-  { day: 'Jueves', time: '6:15 PM' },
-  { day: 'Sábado', time: '10:00 AM' },
+  { day: t.schedule.days[0], time: '6:15 PM' },
+  { day: t.schedule.days[1], time: '6:15 PM' },
+  { day: t.schedule.days[2], time: '10:00 AM' },
 ];
 const studioBookingUrl = 'https://wa.me/50765434870?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20las%20clases%20de%20Yoga%20Funcional.';
 ---
 
 <section id="horarios" class="schedule" aria-labelledby="schedule-title">
   <header class="schedule-intro">
-    <p class="schedule-number">04 / HORARIOS</p>
-    <h2 id="schedule-title"><span>Horario</span><span>De grupo</span></h2>
+    <p class="schedule-number">{t.schedule.number}</p>
+    <h2 id="schedule-title"><span>{t.schedule.title[0]}</span><span>{t.schedule.title[1]}</span></h2>
   </header>
 
-  <div class="schedule-meta" aria-label="Información de las clases">
+  <div class="schedule-meta" aria-label={t.schedule.info}>
     <strong>Yoga Funcional</strong>
-    <span>Clase general</span>
+    <span>{t.schedule.kind}</span>
     <span>Clayton</span>
   </div>
 
-  <ol class="schedule-list" aria-label="Horario actual en Clayton">
+  <ol class="schedule-list" aria-label={t.schedule.label}>
     {schedule.map((slot) => (
       <li class="schedule-slot">
         <span class="schedule-day">{slot.day}</span>
@@ -30,7 +34,7 @@ const studioBookingUrl = 'https://wa.me/50765434870?text=Hola%2C%20quiero%20sabe
 
   <footer class="schedule-booking">
     <a href={studioBookingUrl} target="_blank" rel="noopener noreferrer">
-      Reservar <span aria-hidden="true">→</span>
+      {t.reserve} <span aria-hidden="true">→</span>
     </a>
   </footer>
 </section>

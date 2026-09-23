@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { ui, type Locale } from '../i18n';
 
 interface Props {
   title: string;
@@ -13,6 +14,8 @@ interface Props {
   publishedTime?: Date;
   modifiedTime?: Date;
   structuredData?: Record<string, unknown>;
+  locale?: Locale;
+  alternates?: { es: URL | string; ru: URL | string };
 }
 
 const {
@@ -27,7 +30,10 @@ const {
   publishedTime,
   modifiedTime,
   structuredData: additionalStructuredData,
+  locale = 'es',
+  alternates,
 } = Astro.props;
+const t = ui[locale];
 const favicon = `${import.meta.env.BASE_URL}images/funcyo.png`;
 const canonical = canonicalProp ? new URL(canonicalProp, Astro.site) : new URL(Astro.url.pathname, Astro.site);
 const defaultSocialImage = `${import.meta.env.BASE_URL}images/og-image.png`;
@@ -45,7 +51,7 @@ const structuredData = {
       '@id': `${siteHomepage.href}#website`,
       url: siteHomepage.href,
       name: 'Yoga Funcional Panamá',
-      inLanguage: 'es-PA',
+      inLanguage: locale === 'es' ? 'es-PA' : 'ru',
       author: { '@id': `${siteHomepage.href}#person` },
     },
     {
@@ -53,7 +59,7 @@ const structuredData = {
       '@id': `${siteHomepage.href}#person`,
       name: 'Iosif Ruiz',
       url: siteHomepage.href,
-      jobTitle: 'Profesor de yoga y meditación',
+      jobTitle: locale === 'es' ? 'Profesor de yoga y meditación' : 'Преподаватель йоги и медитации',
     },
     ...(additionalStructuredData ? [additionalStructuredData] : []),
   ],
@@ -61,7 +67,7 @@ const structuredData = {
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={locale}>
   <head>
     <!-- Google tag (gtag.js) -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-X7C60T7LBK"></script>
@@ -79,11 +85,14 @@ const structuredData = {
     <meta name="theme-color" content="#171714" />
     <link rel="icon" type="image/png" href={favicon} />
     <link rel="canonical" href={canonical} />
+    {alternates && <link rel="alternate" hreflang="es" href={new URL(alternates.es, Astro.site)} />}
+    {alternates && <link rel="alternate" hreflang="ru" href={new URL(alternates.ru, Astro.site)} />}
+    {alternates && <link rel="alternate" hreflang="x-default" href={new URL(alternates.es, Astro.site)} />}
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=League+Gothic&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet" />
     <meta property="og:type" content={ogType} />
-    <meta property="og:locale" content="es_PA" />
+    <meta property="og:locale" content={locale === 'es' ? 'es_PA' : 'ru_RU'} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
@@ -125,7 +134,7 @@ const structuredData = {
     <title>{title}</title>
   </head>
   <body>
-    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <a class="skip-link" href="#contenido">{t.skip}</a>
     <slot />
   </body>
 </html>
