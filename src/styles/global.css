@@ -245,11 +245,11 @@ blockquote strong { margin-top: .9rem; }
   :lang(ru) .class-format h3 {
     font-size: clamp(2.35rem, 11vw, 4.75rem);
   }
-  :lang(ru) .class-format:nth-child(n+2) h3 {
-    /* Keep the deliberately unbroken format-name lines inside the padded card.
-       The former 2.65rem floor made «Индивидуальное» wider than the
-       card at the narrowest supported viewport. */
-    font-size: clamp(2.2rem, 11vw, 5.35rem);
+  :lang(ru) .class-format:nth-child(2) h3 {
+    font-size: clamp(2rem, 10vw, 4.25rem);
+  }
+  :lang(ru) .class-format:nth-child(3) h3 {
+    font-size: clamp(2.1rem, 10.5vw, 4.75rem);
   }
   :lang(ru) .schedule h2 {
     font-size: clamp(3rem, 14vw, 7rem);
