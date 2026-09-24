@@ -38,9 +38,10 @@ collections:
       - label: Fecha de publicación
         name: publishDate
         widget: datetime
+        default: "{{now}}"
         date_format: YYYY-MM-DD
-        time_format: false
-        format: YYYY-MM-DD
+        time_format: HH:mm:ss
+        format: YYYY-MM-DDTHH:mm:ss.SSSZ
         picker_utc: true
       - label: Fecha de actualización
         name: updatedDate
@@ -103,9 +104,10 @@ collections:
       - label: Fecha de publicación
         name: publishDate
         widget: datetime
+        default: "{{now}}"
         date_format: YYYY-MM-DD
-        time_format: false
-        format: YYYY-MM-DD
+        time_format: HH:mm:ss
+        format: YYYY-MM-DDTHH:mm:ss.SSSZ
         picker_utc: true
       - label: Fecha de actualización
         name: updatedDate
