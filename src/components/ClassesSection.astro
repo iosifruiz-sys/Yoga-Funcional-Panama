@@ -52,7 +52,7 @@ const formats = [
       <article class="class-format">
         <p class="format-number">{format.number} /</p>
         <h3>{locale === 'ru' && index > 0
-          ? format.name.split(' ').map((word, wordIndex) => <>{wordIndex > 0 && ' '}<span class="format-name-line">{word}</span></>)
+          ? format.name.split(' ').map((word) => <span class="format-name-line">{word}</span>)
           : format.name}</h3>
         {format.price && <p class="format-price">{format.price}</p>}
         <div class="format-copy">
