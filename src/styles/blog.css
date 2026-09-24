@@ -112,7 +112,7 @@
   .blog-article-cover { margin-top: .75rem; }
   .blog-taxonomy { max-width: 24rem; line-height: 1.25; }
   .blog-list h2 { overflow-wrap: normal; }
-  html[lang='ru'] .blog-list h2 { font-size: 2.5rem; word-break: normal; overflow-wrap: normal; }
+  html[lang='ru'] .blog-list h2 { font-size: 1.75rem; word-break: normal; overflow-wrap: normal; }
   .blog-article-header h1 { max-width: 10ch; overflow-wrap: normal; }
   .blog-article-cover { margin-inline: calc(var(--gutter) * -1); }
   .blog-body h2 { overflow-wrap: normal; }
