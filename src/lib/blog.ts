@@ -8,7 +8,8 @@ export const localeForPost = (post: BlogPost): Locale => post.id.startsWith('ru/
 export const slugForPost = (post: BlogPost) => post.id.replace(/^ru\//, '').replace(/\.md$/, '');
 
 export const sortPostsNewestFirst = (posts: BlogPost[]) => [...posts].sort((a, b) =>
-  b.data.publishDate.valueOf() - a.data.publishDate.valueOf() || a.id.localeCompare(b.id),
+  b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
+    || (slugForPost(a) < slugForPost(b) ? -1 : slugForPost(a) > slugForPost(b) ? 1 : 0),
 );
 
 export const getPublishedPosts = async (locale: Locale = 'es') => sortPostsNewestFirst(
