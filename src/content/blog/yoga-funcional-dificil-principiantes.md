@@ -1,6 +1,6 @@
 ---
-title: "¿Por qué el Yoga Funcional puede parecer difícil al principio?"
-description: "El Yoga Funcional puede parecer difícil al principio, pero eso no significa que no sea para ti. Aprende a adaptar la práctica a tus capacidades y a encontrar tus límites sin competir ni forzar el cuerpo."
+title: "¿Por qué Yoga Funcional parece difícil?"
+description: "El Yoga Funcional puede parecer difícil al principio. Aprende a adaptar la práctica a tus capacidades, encontrar tus límites y avanzar sin competir ni forzar."
 publishDate: 2026-09-21
 author: "Iosif Ruiz"
 category: "Yoga Funcional"

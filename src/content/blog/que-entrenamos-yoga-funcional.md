@@ -1,5 +1,5 @@
 ---
-title: ¿Qué es más importante en el Yoga Funcional?
+title: ¿Qué entrenamos en Yoga Funcional?
 description: Fuerza, movilidad, equilibrio, respiración, atención y voluntad no
   funcionan por separado. Así las integramos en la práctica de Yoga Funcional.
 publishDate: 2026-09-22
