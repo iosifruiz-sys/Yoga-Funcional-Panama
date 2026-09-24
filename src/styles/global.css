@@ -208,6 +208,9 @@ blockquote strong { margin-top: .9rem; }
 }
 
 @media (max-width: 61.999rem) {
+  :lang(ru) .site-header nav a {
+    font-size: clamp(2.5rem, 13vw, 7rem);
+  }
   :lang(ru) .method h2 .method-line {
     display: inline;
   }
