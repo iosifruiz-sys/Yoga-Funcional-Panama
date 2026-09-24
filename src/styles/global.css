@@ -23,7 +23,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 4.25rem; background: var(--color-dark); }
-body { margin: 0; color: var(--color-dark); background: var(--color-warm); font-family: var(--font-body); overflow-x: hidden; }
+body { margin: 0; color: var(--color-dark); background: var(--color-warm); font-family: var(--font-body); }
 a { color: inherit; }
 .skip-link { position: fixed; inset: .5rem auto auto .5rem; z-index: 100; padding: .75rem 1rem; background: var(--color-white); transform: translateY(-150%); }
 .skip-link:focus { transform: none; }
@@ -245,8 +245,11 @@ blockquote strong { margin-top: .9rem; }
   :lang(ru) .class-format h3 {
     font-size: clamp(2.35rem, 11vw, 4.75rem);
   }
-  :lang(ru) .class-format:nth-child(n+2) h3 {
-    font-size: clamp(2.65rem, 12.35vw, 5.35rem);
+  :lang(ru) .class-format:nth-child(2) h3 {
+    font-size: clamp(2rem, 10vw, 4.25rem);
+  }
+  :lang(ru) .class-format:nth-child(3) h3 {
+    font-size: clamp(2.1rem, 10.5vw, 4.75rem);
   }
   :lang(ru) .schedule h2 {
     font-size: clamp(3rem, 14vw, 7rem);
