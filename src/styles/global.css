@@ -23,7 +23,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 4.25rem; background: var(--color-dark); }
-body { margin: 0; color: var(--color-dark); background: var(--color-warm); font-family: var(--font-body); overflow-x: hidden; }
+body { margin: 0; color: var(--color-dark); background: var(--color-warm); font-family: var(--font-body); }
 a { color: inherit; }
 .skip-link { position: fixed; inset: .5rem auto auto .5rem; z-index: 100; padding: .75rem 1rem; background: var(--color-white); transform: translateY(-150%); }
 .skip-link:focus { transform: none; }
@@ -183,61 +183,42 @@ blockquote strong { margin-top: .9rem; }
   .schedule-booking p { padding-bottom: .4rem; }
 }
 
-/* Russian display type needs language-specific fitting: Cyrillic words are
-   longer than their Spanish counterparts and must only wrap at spaces. */
-:lang(ru) .method h2,
-:lang(ru) .concepts strong,
-:lang(ru) .classes h2,
-:lang(ru) .class-format h3,
-:lang(ru) .schedule h2,
-:lang(ru) .schedule-day {
-  word-break: normal;
-  overflow-wrap: normal;
-  hyphens: none;
-}
+/* Desktop-only Cyrillic fitting. Mobile uses the same layout and responsive
+   rules as Spanish, with only the long display words fitted below. */
+@media (min-width: 62rem) {
+  :lang(ru) .method h2,
+  :lang(ru) .concepts strong,
+  :lang(ru) .classes h2,
+  :lang(ru) .class-format h3,
+  :lang(ru) .schedule h2,
+  :lang(ru) .schedule-day {
+    word-break: normal;
+    overflow-wrap: normal;
+    hyphens: none;
+  }
 
-:lang(ru) .method h2 {
-  font-size: clamp(3.6rem, min(14vw, 18vh), 12rem);
-}
-:lang(ru) .method h2 > span:last-child {
-  margin-left: 0;
-}
-:lang(ru) .concepts strong {
-  min-width: 0;
-}
-:lang(ru) .class-format h3 {
-  font-size: clamp(2.2rem, 3.5vw, 4rem);
-}
-:lang(ru) .class-format:nth-child(n+2) h3 {
-  font-size: clamp(2.475rem, 3.94vw, 4.5rem);
-}
-:lang(ru) .format-name-line {
-  display: block;
-  white-space: nowrap;
-}
-:lang(ru) .schedule h2 {
-  font-size: min(7.7vw, 8rem);
-}
-:lang(ru) .schedule-day {
-  font-size: clamp(4rem, 7vw, 7.25rem);
+  :lang(ru) .method h2 { font-size: clamp(3.6rem, min(14vw, 18vh), 12rem); }
+  :lang(ru) .method h2 > span:last-child { margin-left: 0; }
+  :lang(ru) .concepts strong { min-width: 0; }
+  :lang(ru) .class-format h3 { font-size: clamp(2.2rem, 3.5vw, 4rem); }
+  :lang(ru) .class-format:nth-child(n+2) h3 { font-size: clamp(2.475rem, 3.94vw, 4.5rem); }
+  :lang(ru) .format-name-line { display: block; white-space: nowrap; }
+  :lang(ru) .schedule h2 { font-size: min(7.7vw, 8rem); }
+  :lang(ru) .schedule-day { font-size: clamp(4rem, 7vw, 7.25rem); }
 }
 
 @media (max-width: 61.999rem) {
-  :lang(ru) .method h2 {
-    font-size: clamp(3rem, 17.8vw, 7rem);
+  :lang(ru) .site-header nav a {
+    font-size: clamp(2.5rem, 13vw, 7rem);
   }
   :lang(ru) .method h2 .method-line {
     display: inline;
-    font-size: inherit;
   }
   :lang(ru) .concepts strong {
-    font-size: clamp(2.35rem, 10.5vw, 6rem);
+    font-size: clamp(1.65rem, 7.2vw, 5rem);
   }
-  :lang(ru) .concepts li:nth-child(2) strong,
-  :lang(ru) .concepts li:nth-child(3) strong,
-  :lang(ru) .concepts li:nth-child(4) strong,
-  :lang(ru) .concepts li:nth-child(7) strong {
-    font-size: clamp(2rem, 8.5vw, 5rem);
+  :lang(ru) .end-note {
+    font-size: clamp(.875rem, 3.4vw, 1.3rem);
   }
   :lang(ru) .classes h2 {
     font-size: clamp(3rem, 14vw, 7rem);
@@ -245,14 +226,26 @@ blockquote strong { margin-top: .9rem; }
   :lang(ru) .class-format h3 {
     font-size: clamp(2.35rem, 11vw, 4.75rem);
   }
-  :lang(ru) .class-format:nth-child(n+2) h3 {
-    font-size: clamp(2.65rem, 12.35vw, 5.35rem);
+  :lang(ru) .class-format:nth-child(2) h3 {
+    font-size: clamp(1.7rem, 8.5vw, 3.75rem);
+  }
+  :lang(ru) .class-format:nth-child(2) .format-name-line {
+    display: block;
+    white-space: nowrap;
+  }
+  :lang(ru) .class-format:nth-child(3) h3 {
+    font-size: clamp(2.1rem, 10.5vw, 4.75rem);
   }
   :lang(ru) .schedule h2 {
     font-size: clamp(3rem, 14vw, 7rem);
   }
-  :lang(ru) .schedule-day {
-    font-size: clamp(3.25rem, 14vw, 6.5rem);
+  :lang(ru) .schedule-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .25rem;
+    font-size: clamp(.625rem, 2.5vw, .75rem);
+    white-space: nowrap;
   }
 }
 
