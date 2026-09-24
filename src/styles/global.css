@@ -212,7 +212,10 @@ blockquote strong { margin-top: .9rem; }
     display: inline;
   }
   :lang(ru) .concepts strong {
-    font-size: clamp(2rem, 8.5vw, 5rem);
+    font-size: clamp(1.65rem, 7.2vw, 5rem);
+  }
+  :lang(ru) .end-note {
+    font-size: clamp(.875rem, 3.4vw, 1.3rem);
   }
   :lang(ru) .classes h2 {
     font-size: clamp(3rem, 14vw, 7rem);
@@ -235,14 +238,11 @@ blockquote strong { margin-top: .9rem; }
   }
   :lang(ru) .schedule-meta {
     display: flex;
-    align-items: baseline;
-    gap: .35rem;
+    align-items: center;
+    justify-content: space-between;
+    gap: .25rem;
     font-size: clamp(.625rem, 2.5vw, .75rem);
     white-space: nowrap;
-  }
-  :lang(ru) .schedule-meta > :not(:last-child)::after {
-    content: '·';
-    margin-left: .35rem;
   }
 }
 
