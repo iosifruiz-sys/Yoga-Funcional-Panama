@@ -183,56 +183,31 @@ blockquote strong { margin-top: .9rem; }
   .schedule-booking p { padding-bottom: .4rem; }
 }
 
-/* Russian display type needs language-specific fitting: Cyrillic words are
-   longer than their Spanish counterparts and must only wrap at spaces. */
-:lang(ru) .method h2,
-:lang(ru) .concepts strong,
-:lang(ru) .classes h2,
-:lang(ru) .class-format h3,
-:lang(ru) .schedule h2,
-:lang(ru) .schedule-day {
-  word-break: normal;
-  overflow-wrap: normal;
-  hyphens: none;
-}
+/* Desktop-only Cyrillic fitting. Mobile uses the same layout and responsive
+   rules as Spanish, with only the long display words fitted below. */
+@media (min-width: 62rem) {
+  :lang(ru) .method h2,
+  :lang(ru) .concepts strong,
+  :lang(ru) .classes h2,
+  :lang(ru) .class-format h3,
+  :lang(ru) .schedule h2,
+  :lang(ru) .schedule-day {
+    word-break: normal;
+    overflow-wrap: normal;
+    hyphens: none;
+  }
 
-:lang(ru) .method h2 {
-  font-size: clamp(3.6rem, min(14vw, 18vh), 12rem);
-}
-:lang(ru) .method h2 > span:last-child {
-  margin-left: 0;
-}
-:lang(ru) .concepts strong {
-  min-width: 0;
-}
-:lang(ru) .class-format h3 {
-  font-size: clamp(2.2rem, 3.5vw, 4rem);
-}
-:lang(ru) .class-format:nth-child(n+2) h3 {
-  font-size: clamp(2.475rem, 3.94vw, 4.5rem);
-}
-:lang(ru) .format-name-line {
-  display: block;
-  white-space: nowrap;
-}
-:lang(ru) .schedule h2 {
-  font-size: min(7.7vw, 8rem);
-}
-:lang(ru) .schedule-day {
-  font-size: clamp(4rem, 7vw, 7.25rem);
+  :lang(ru) .method h2 { font-size: clamp(3.6rem, min(14vw, 18vh), 12rem); }
+  :lang(ru) .method h2 > span:last-child { margin-left: 0; }
+  :lang(ru) .concepts strong { min-width: 0; }
+  :lang(ru) .class-format h3 { font-size: clamp(2.2rem, 3.5vw, 4rem); }
+  :lang(ru) .class-format:nth-child(n+2) h3 { font-size: clamp(2.475rem, 3.94vw, 4.5rem); }
+  :lang(ru) .format-name-line { display: block; white-space: nowrap; }
+  :lang(ru) .schedule h2 { font-size: min(7.7vw, 8rem); }
+  :lang(ru) .schedule-day { font-size: clamp(4rem, 7vw, 7.25rem); }
 }
 
 @media (max-width: 61.999rem) {
-  :lang(ru) .method h2 {
-    font-size: clamp(3rem, 17.8vw, 7rem);
-  }
-  :lang(ru) .method h2 .method-line {
-    display: inline;
-    font-size: inherit;
-  }
-  :lang(ru) .concepts strong {
-    font-size: clamp(2.35rem, 10.5vw, 6rem);
-  }
   :lang(ru) .concepts li:nth-child(2) strong,
   :lang(ru) .concepts li:nth-child(3) strong,
   :lang(ru) .concepts li:nth-child(4) strong,
@@ -253,9 +228,6 @@ blockquote strong { margin-top: .9rem; }
   }
   :lang(ru) .schedule h2 {
     font-size: clamp(3rem, 14vw, 7rem);
-  }
-  :lang(ru) .schedule-day {
-    font-size: clamp(3.25rem, 14vw, 6.5rem);
   }
 }
 
