@@ -30,6 +30,6 @@ const translation = await findTranslation(post, 'es');
 const { Content } = await render(post);
 ---
 
-<ArticleLayout post={post} slug={slug} locale="ru" previousPost={previousPost} nextPost={nextPost} translationSlug={translation ? slugForPost(translation) : undefined}>
+<ArticleLayout post={post} slug={slug} locale="ru" previousPost={previousPost} nextPost={nextPost} translationSlug={translation ? slugForPost(translation) : undefined} translatedPost={translation}>
   <Content />
 </ArticleLayout>
