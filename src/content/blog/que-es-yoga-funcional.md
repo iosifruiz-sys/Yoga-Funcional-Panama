@@ -1,6 +1,6 @@
 ---
-title: "¿Qué es Yoga Funcional y para qué sirve?"
-description: "Yoga Funcional es una forma de construir la práctica desde las capacidades y necesidades de la persona. Fuerza, movilidad, respiración, atención, activación y recuperación al servicio de la vida fuera del mat."
+title: "¿Para qué sirve el Yoga Funcional?"
+description: "Yoga Funcional construye la práctica según las capacidades y necesidades de cada persona para desarrollar fuerza, movilidad, respiración y atención."
 author: "Iosif Ruiz"
 publishDate: 2026-09-21
 category: "Yoga Funcional"

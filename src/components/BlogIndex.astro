@@ -13,8 +13,18 @@ const posts = await getPublishedPosts(locale);
 const blogUrl = localizedPath(locale, 'blog/');
 const alternateBlog = localizedPath(locale === 'es' ? 'ru' : 'es', 'blog/');
 const formatDate = (date: Date) => [date.getUTCDate(), date.getUTCMonth()+1, date.getUTCFullYear()].map((part)=>String(part).padStart(2,'0')).join('.');
+const canonical = new URL(blogUrl, Astro.site);
+const collectionStructuredData = {
+  '@type': 'CollectionPage',
+  '@id': `${canonical.href}#collectionpage`,
+  url: canonical.href,
+  name: t.title,
+  description: t.description,
+  inLanguage: locale === 'es' ? 'es-PA' : 'ru',
+  isPartOf: { '@id': `${new URL(import.meta.env.BASE_URL, Astro.site).href}#website` },
+};
 ---
-<BaseLayout title={t.title} description={t.description} locale={locale} alternates={{es:localizedPath('es','blog/'),ru:localizedPath('ru','blog/')}}>
+<BaseLayout title={t.title} description={t.description} locale={locale} alternates={{es:localizedPath('es','blog/'),ru:localizedPath('ru','blog/')}} structuredData={collectionStructuredData}>
   <Header locale={locale} alternateUrl={alternateBlog} />
   <main id="contenido" class="blog-main blog-index">
     <header class="blog-index-header"><h1 class="blog-section-marker">07 / BLOG</h1><p class="blog-taxonomy">{t.taxonomy}</p></header>
