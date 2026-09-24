@@ -153,6 +153,12 @@ blockquote strong { margin-top: .9rem; }
   .method h2 .method-line-last { font-size: 24.5vw; }
 }
 @media (min-width: 62rem) { .hero { height: calc(100svh - 4.25rem); min-height: 0; grid-template-columns: 46% 27% 27%; grid-template-rows: auto minmax(0, 1fr) auto auto; } .hero::after { left: 46%; } .funcional { grid-row: 2; } .panama { top: 50%; transform: translateY(-50%); } .hero-photo { grid-column: 2/4; grid-row: 2/5; width: 100%; max-width: none; align-self: end; justify-self: end; margin-top: clamp(6.5rem, 12vw, 10.5rem); background: transparent; } blockquote { grid-column: 1; grid-row: 3; } .reserve { grid-column: 1; grid-row: 4; } .hero-meta { position: absolute; z-index: 3; right: 0; bottom: 0; width: 65%; color: white; } .method-intro { min-height: 82vh; } .concept-toggle { grid-template-columns: 5rem 1fr auto; } .concepts li:nth-child(odd) strong { margin-left: calc(var(--index) * 1.25rem); } }
+@media (min-width: 62rem) {
+  .method-intro { height: calc(100svh - 4.25rem); min-height: 0; display: flex; flex-direction: column; padding-block: clamp(2rem, 4vh, 3rem); }
+  .method .section-number { margin-bottom: clamp(1rem, 2vh, 1.5rem); }
+  .method h2 { font-size: clamp(3.6rem, 10.5vw, 10.5rem); line-height: .76; }
+  .method-copy { margin-top: auto; font-size: clamp(1rem, 1.35vw, 1.2rem); }
+}
 @media (prefers-reduced-motion: no-preference) { .funcional { animation: reveal .65s cubic-bezier(.2,.8,.2,1) both; } .yoga { animation: accent-in .7s .2s cubic-bezier(.2,.8,.2,1) both; } @keyframes reveal { from { clip-path: inset(0 100% 0 0); transform: translateY(.4em); } to { clip-path: inset(0 0 -.12em 0); transform: translateY(.08em); } } @keyframes accent-in { from { opacity: 0; transform: translateY(1rem) rotate(-8deg); } } }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; } }
 
