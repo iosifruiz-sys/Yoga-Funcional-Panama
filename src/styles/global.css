@@ -208,10 +208,10 @@ blockquote strong { margin-top: .9rem; }
 }
 
 @media (max-width: 61.999rem) {
-  :lang(ru) .concepts li:nth-child(2) strong,
-  :lang(ru) .concepts li:nth-child(3) strong,
-  :lang(ru) .concepts li:nth-child(4) strong,
-  :lang(ru) .concepts li:nth-child(7) strong {
+  :lang(ru) .method h2 .method-line {
+    display: inline;
+  }
+  :lang(ru) .concepts strong {
     font-size: clamp(2rem, 8.5vw, 5rem);
   }
   :lang(ru) .classes h2 {
@@ -221,13 +221,28 @@ blockquote strong { margin-top: .9rem; }
     font-size: clamp(2.35rem, 11vw, 4.75rem);
   }
   :lang(ru) .class-format:nth-child(2) h3 {
-    font-size: clamp(2rem, 10vw, 4.25rem);
+    font-size: clamp(1.7rem, 8.5vw, 3.75rem);
+  }
+  :lang(ru) .class-format:nth-child(2) .format-name-line {
+    display: block;
+    white-space: nowrap;
   }
   :lang(ru) .class-format:nth-child(3) h3 {
     font-size: clamp(2.1rem, 10.5vw, 4.75rem);
   }
   :lang(ru) .schedule h2 {
     font-size: clamp(3rem, 14vw, 7rem);
+  }
+  :lang(ru) .schedule-meta {
+    display: flex;
+    align-items: baseline;
+    gap: .35rem;
+    font-size: clamp(.625rem, 2.5vw, .75rem);
+    white-space: nowrap;
+  }
+  :lang(ru) .schedule-meta > :not(:last-child)::after {
+    content: '·';
+    margin-left: .35rem;
   }
 }
 
