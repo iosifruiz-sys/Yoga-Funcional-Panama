@@ -12,17 +12,6 @@ for (const pageUnderTest of pages) {
     await page.goto(pageUnderTest.path, { waitUntil: 'load' });
     await page.evaluate(async () => {
       await document.fonts.ready;
-      await Promise.all(
-        [...document.images]
-          .filter((image) => !image.complete)
-          .map(
-            (image) =>
-              new Promise<void>((resolve) => {
-                image.addEventListener('load', () => resolve(), { once: true });
-                image.addEventListener('error', () => resolve(), { once: true });
-              }),
-          ),
-      );
       await new Promise<void>((resolve) =>
         requestAnimationFrame(() => requestAnimationFrame(() => resolve())),
       );
