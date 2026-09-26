@@ -1,0 +1,49 @@
+name: Generate visual regression baselines
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  generate-baselines:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v5
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Generate visual baselines
+        run: npm run test:visual:update
+
+      - name: Verify baseline count
+        shell: bash
+        run: |
+          mapfile -d '' baselines < <(find tests/visual -type f -path '*-snapshots/*.png' -print0)
+          printf 'Generated %d baseline screenshots:\n' "${#baselines[@]}"
+          printf '%s\n' "${baselines[@]}"
+          if [[ "${#baselines[@]}" -ne 8 ]]; then
+            echo "Expected exactly 8 baseline screenshots." >&2
+            exit 1
+          fi
+
+      - name: Upload visual baselines
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-visual-baselines
+          path: tests/visual/**/*-snapshots/*.png
+          if-no-files-found: error
+          retention-days: 14
