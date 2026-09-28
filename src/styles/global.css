@@ -162,7 +162,7 @@ blockquote strong { margin-top: .9rem; }
   .method h2 { font-size: clamp(3.6rem, 10.5vw, 10.5rem); line-height: .76; }
   html[lang='ru'] .method h2 { font-size: clamp(5rem, min(18vw, 24vh), 15rem); letter-spacing: -.02em; }
   html[lang='ru'] .method h2 > span:last-child { margin-left: .72em; }
-  .method-copy { margin-top: auto; font-size: clamp(1rem, 1.35vw, 1.2rem); transform: translateY(-10rem); }
+  .method-copy { margin-top: auto; font-size: clamp(1rem, 1.35vw, 1.2rem); }
   html[lang='ru'] .method-copy { transform: translateY(-6rem); }
   .concepts { --concept-row-height: 5.75rem; height: auto; display: block; }
   .concepts li { min-height: var(--concept-row-height); display: flex; flex-direction: column; }
