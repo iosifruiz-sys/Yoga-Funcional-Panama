@@ -3,6 +3,7 @@ import { ui, type Locale } from '../i18n';
 interface Props { locale?: Locale }
 const { locale = 'es' } = Astro.props;
 const t = ui[locale];
+const desktopClosing = 'desktopClosing' in t.contact ? t.contact.desktopClosing : undefined;
 const contactUrl = 'https://wa.me/50762331434';
 ---
 
@@ -11,10 +12,15 @@ const contactUrl = 'https://wa.me/50762331434';
 
   <h2 id="contact-title" class="contact-title">{t.contact.title}</h2>
 
-  <p class="contact-closing">
+  <p class:list={['contact-closing', { 'contact-closing--mobile': desktopClosing }]}>
     <span>{t.contact.closing[0]}</span>
     <strong>{t.contact.closing[1]}</strong>
   </p>
+
+  {desktopClosing && <p class="contact-closing contact-closing--desktop">
+    <span>{desktopClosing[0]}</span>
+    <strong>{desktopClosing[1]}</strong>
+  </p>}
 
   <a class="contact-action" href={contactUrl} target="_blank" rel="noopener noreferrer">
     <span>{t.reserve} →</span>
