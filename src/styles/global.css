@@ -194,6 +194,7 @@ blockquote strong { margin-top: .9rem; }
   .schedule-intro { padding-block: clamp(2.5rem, 4vw, 4rem); }
   .schedule-number { margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem); }
   .schedule h2 { display: flex; gap: .12em; font-size: 11.5vw; }
+  html[lang='ru'] .schedule h2 { font-size: clamp(4rem, 6.5vw, 8rem); }
   .schedule h2 span { display: inline; }
   .schedule h2 .schedule-title-line-last { margin-left: 0; }
   .schedule-title-mobile { display: none !important; }
@@ -204,6 +205,7 @@ blockquote strong { margin-top: .9rem; }
   .schedule-slot { min-height: 28rem; display: flex; flex-direction: column; justify-content: space-between; align-items: flex-start; border-right: var(--border); }
   .schedule-slot:last-child { border-right: 0; }
   .schedule-day { font-size: clamp(5rem, 8vw, 9rem); }
+  html[lang='ru'] .schedule-day { font-size: clamp(3.5rem, 5vw, 5.5rem); }
   .schedule-time { font-size: clamp(4rem, 7vw, 7rem); }
   .schedule-booking { grid-template-columns: 1fr auto; align-items: end; }
   .schedule-booking p { padding-bottom: .4rem; }
