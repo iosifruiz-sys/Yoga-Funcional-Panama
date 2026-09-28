@@ -259,6 +259,8 @@ blockquote strong { margin-top: .9rem; }
 @media (min-width: 62rem) {
   html[lang='es'] .about-copy { right: calc(50% + min(19vw, 18rem) + clamp(1.25rem, 1.5vw, 2rem)); }
   html[lang='es'] .about-statement { left: calc(50% + min(19vw, 18rem) + clamp(1.25rem, 1.5vw, 2rem)); }
+  html[lang='ru'] .about-copy { right: calc(50% + min(19vw, 18rem) + clamp(1.25rem, 1.5vw, 2rem)); }
+  html[lang='ru'] .about-statement { left: calc(50% + min(19vw, 18rem) + clamp(1.25rem, 1.5vw, 2rem)); }
 }
 
 @media (max-width: 61.999rem) {
