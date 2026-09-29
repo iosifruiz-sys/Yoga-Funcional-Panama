@@ -3,6 +3,7 @@ import { ui, type Locale } from '../i18n';
 interface Props { locale?: Locale }
 const { locale = 'es' } = Astro.props;
 const t = ui[locale];
+const desktopTitle = 'desktopTitle' in t.schedule ? t.schedule.desktopTitle : undefined;
 const schedule = [
   { day: t.schedule.days[0], time: '6:15 PM' },
   { day: t.schedule.days[1], time: '6:15 PM' },
@@ -14,7 +15,10 @@ const studioBookingUrl = 'https://wa.me/50765434870?text=Hola%2C%20quiero%20sabe
 <section id="horarios" class="schedule" aria-labelledby="schedule-title">
   <header class="schedule-intro">
     <p class="schedule-number">{t.schedule.number}</p>
-    <h2 id="schedule-title"><span>{t.schedule.title[0]}</span><span>{t.schedule.title[1]}</span></h2>
+    <h2 id="schedule-title">
+      <span class:list={{ 'schedule-title-mobile': desktopTitle }}>{t.schedule.title[0]}</span><span class:list={['schedule-title-line-last', { 'schedule-title-mobile': desktopTitle }]}>{t.schedule.title[1]}</span>
+      {desktopTitle && <><span class="schedule-title-desktop">{desktopTitle[0]}</span><span class="schedule-title-desktop schedule-title-line-last">{desktopTitle[1]}</span></>}
+    </h2>
   </header>
 
   <div class="schedule-meta" aria-label={t.schedule.info}>
