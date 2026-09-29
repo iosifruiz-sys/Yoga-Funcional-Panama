@@ -372,6 +372,13 @@ blockquote strong { margin-top: .9rem; }
   .contact-action { grid-row: 6; }
 }
 
+@media (max-width: 61.999rem) {
+  html[lang='es'] .contact-title,
+  html[lang='es'] .contact-closing { text-align: center; }
+  html[lang='es'] .contact-closing--mobile { display: none; }
+  html[lang='es'] .contact-closing--desktop { display: block; }
+}
+
 @media (max-width: 37.5rem) {
   .contact { min-height: 0; display: block; }
   .contact-number { padding-block: .75rem; font-size: 1.2rem; }
