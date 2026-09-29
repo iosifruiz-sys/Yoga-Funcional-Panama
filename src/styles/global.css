@@ -158,6 +158,7 @@ blockquote strong { margin-top: .9rem; }
   .method h2 .method-line { display: block; margin-left: 0; }
   .method h2 .method-line-middle { font-size: 23.7vw; }
   .method h2 .method-line-last { font-size: 24.5vw; }
+  html[lang='ru'] .method h2 { scale: 1.25; transform-origin: left center; }
   html[lang='ru'] .method h2 .method-line { display: inline; font-size: inherit; }
   html[lang='ru'] .method h2 > span:last-child { margin-left: .72em; }
   html[lang='ru'] .concepts strong { font-family: 'Oswald', sans-serif; font-size: clamp(1.6rem, 7vw, 2.75rem); font-weight: 400; }
