@@ -147,10 +147,10 @@ blockquote strong { margin-top: .9rem; }
   blockquote strong { margin-top: .65rem; }
   .hero-meta { grid-column: 1; grid-row: 5; flex-wrap: wrap; gap: .25rem .75rem; padding: .55rem var(--gutter); font-size: clamp(.86rem, 4.2vw, 1.1rem); border-top: 1px solid rgba(23,23,20,.3); }
   .reserve { grid-column: 1; grid-row: 6; min-height: 4.25rem; padding: .75rem var(--gutter); }
-  html[lang='es'] .schedule-meta { grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; }
-  html[lang='es'] .schedule-meta > strong,
-  html[lang='es'] .schedule-meta > span:first-of-type,
-  html[lang='es'] .schedule-meta > span:last-child { justify-self: center; white-space: nowrap; }
+  html[lang='es'] .schedule-meta { grid-template-columns: auto 1fr auto 1fr auto; align-items: center; }
+  html[lang='es'] .schedule-meta > strong { grid-column: 1; justify-self: start; white-space: nowrap; }
+  html[lang='es'] .schedule-meta > span:first-of-type { grid-column: 3; justify-self: center; white-space: nowrap; }
+  html[lang='es'] .schedule-meta > span:last-child { grid-column: 5; justify-self: end; white-space: nowrap; }
   .method h2 { font-size: 17.8vw; }
   .method h2 > span:last-child { margin-left: 0; }
   .method h2 .method-line { display: block; margin-left: 0; }
