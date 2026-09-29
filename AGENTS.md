@@ -68,3 +68,136 @@ Before reporting a task complete, state:
 - exact changes made;
 - checks performed;
 - whether anything outside the requested scope changed.
+
+## Mandatory agent-first production workflow
+
+All production work in this repository must go through every relevant installed specialist agent or skill. Codex must not replace an available specialist with its own analysis or review.
+
+### Before implementation
+
+For every production task:
+
+1. Inspect the installed project agents and skills and determine which are relevant.
+2. Actually invoke all relevant specialists before modifying production files.
+3. Use their findings to define the scope, implementation approach, affected files/selectors/components, regression risks, and required validation.
+4. If more than one specialist is relevant, invoke all of them.
+5. Do not describe Codex's own reasoning as an agent, Kowalski, design, or specialist review.
+
+If a required or relevant installed specialist cannot be invoked, stop before modifying production files and report the unavailable agent or skill.
+
+### Implementation
+
+Implementation may begin only after the required pre-implementation specialist reviews. Codex is the implementation layer and must follow the reviewed plan without silently broadening scope.
+
+### After implementation
+
+Before any production commit or pull request:
+
+1. Actually invoke the relevant specialist and reviewer agents again.
+2. Require them to inspect the actual final diff, not the intended change.
+3. Verify scope compliance, regressions, unrelated changes, shared dependencies, locale impact, and responsive impact.
+4. If a review finds a problem, fix it and invoke the relevant reviewer again.
+
+No production commit or pull request may be created until all required post-implementation reviews pass.
+
+### No fake agent reviews
+
+Never claim a Kowalski review, agent review, design review, or specialist review unless the relevant installed agent or skill was actually invoked.
+
+Every production-task final report must contain a section titled `AGENTS ACTUALLY INVOKED`. For every invoked agent or skill, state:
+
+- its exact installed name;
+- why it was invoked;
+- its pre-implementation findings;
+- its post-implementation findings.
+
+## Installed project specialists and invocation
+
+The installed project skills under `.agents/skills/` are:
+
+- `emil-design-eng` — Kowalski design-engineering and UI review;
+- `mobile-native` — mobile-web and touch-behavior review;
+- `animate` — motion implementation;
+- `review-animations` — review of existing animation and motion code;
+- `improve-animations` — read-only codebase motion audit and implementation planning;
+- `find-animation-opportunities` — read-only discovery of appropriate motion opportunities;
+- `animation-vocabulary` — identification of named motion patterns;
+- `pick-ui-library` — explicitly invoked UI-library selection;
+- `prototype` — explicitly invoked UI prototyping.
+
+Their authoritative instructions are the corresponding `.agents/skills/<name>/SKILL.md` files. Invoke them through the skill mechanism exposed by the current Codex environment; reading a `SKILL.md` without applying it to the task is not an invocation.
+
+The installed read-only custom agents under `.github/agents/` are:
+
+- `code-review` — regression, scope, CSS, bilingual, responsive, and architecture review;
+- `visual-qa` — visual regression and layout QA across ES/RU and desktop/mobile.
+
+Invoke custom agents through the agent/delegation mechanism exposed by the current environment. If the current runtime does not expose a required installed specialist, follow the stop rule rather than simulating or claiming its review.
+
+For every production implementation, invoke `code-review` after implementation and require it to inspect the actual final diff before commit or pull request. For every perceptible production UI change, also invoke `visual-qa` after implementation on the actual final diff before commit or pull request. If either required custom reviewer is unavailable, stop under the missing-specialist rule.
+
+## Mandatory Kowalski review for UI work
+
+For every production task involving CSS, layout, typography, responsive behavior, spacing, positioning, grid or flex, visual hierarchy, homepage UI, blog UI, or locale-specific visual behavior, the installed `emil-design-eng` specialist is mandatory:
+
+1. invoke it before implementation;
+2. invoke it again after implementation to review the actual final diff.
+
+If `emil-design-eng` cannot actually be invoked, stop before modifying production files. Codex self-review is not a substitute.
+
+## RU and ES isolation
+
+The ES desktop version is a protected visual baseline. RU-only work must not modify ES behavior.
+
+For RU desktop-only work:
+
+- treat existing unprefixed/shared desktop selectors as golden-owned;
+- do not modify a shared selector merely to solve an RU issue;
+- use additive RU-scoped overrides whenever technically possible;
+- keep RU desktop overrides inside the existing desktop breakpoint;
+- explicitly scope them through `html[lang='ru']`.
+
+Preferred form:
+
+```css
+@media (min-width: 62rem) {
+  html[lang='ru'] .specific-section .specific-target {
+    /* only the explicitly requested RU-only property */
+  }
+}
+```
+
+Protected shared surfaces include, but are not limited to:
+
+- Hero: `.hero`, `.funcional`, `.panama`, `.hero-photo`, `.reserve`, `.hero-meta`;
+- Method: `.method-intro`, `.method h2`, `.method-copy`;
+- Concepts: `.concepts`, `.concepts li`, `.concept-toggle`, `.concepts strong`;
+- Classes: `.classes h2`, `.class-format`, `.class-format h3`, `.format-price`, `.format-copy`, `.format-action`;
+- Schedule: `.schedule-intro`, `.schedule h2`, `.schedule h2 span`, `.schedule-list`, `.schedule-slot`, `.schedule-day`, `.schedule-time`, `.schedule-booking`;
+- About: `.about`, `.about-header`, `.about-reveal`, `.about-stage`, `.about-visual`, `.about-copy`, `.about-statement`;
+- Contact: `.contact`, `.contact-title`, `.contact-closing`, `.contact-action`.
+
+If an RU-only task appears to require a shared selector change, stop and have the relevant specialist review why it is necessary. Do not make a shared ES+RU change without explicit user approval.
+
+## Typography must not silently change geometry
+
+For a typography, font-size, or wrapping task, do not compensate by changing grid, flex, width, max-width, height, min-height, padding, margin, transform, positioning, section geometry, or component markup unless the user explicitly requests a geometry or layout change.
+
+When the requested problem is font size or wrapping, change only the required typography property whenever technically possible.
+
+## ES desktop golden baseline
+
+The documented ES desktop golden baseline is:
+
+- commit: `7129ebbaba3e8f323681954502430e37e330568b`;
+- tag: `es-desktop-golden`.
+
+The current execution clone is known to lack this commit object and tag and has no configured Git remote from which they can be recovered. Do not fabricate, recreate, substitute, or repoint this reference.
+
+For future RU desktop production work, perform the exact golden comparison whenever it is required and the reference is available. If the reference is unavailable, report that limitation truthfully and stop at the point where exact comparison becomes required. Never claim that ES is unchanged unless the required comparison was actually performed.
+
+The missing golden object never authorizes modification of shared ES/RU selectors. The agent-first workflow and RU/ES isolation requirements remain mandatory.
+
+## Stop instead of guessing
+
+If a required agent, skill, dependency, reference, repository fact, or validation step is unavailable, do not silently replace it with an approximation. Stop when the missing requirement becomes necessary and report it.
