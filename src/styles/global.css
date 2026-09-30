@@ -424,7 +424,7 @@ blockquote strong { margin-top: .9rem; }
   text-transform: uppercase;
 }
 .footer-socials li { min-width: 0; }
-.footer-socials span { display: block; }
+.footer-socials a { display: block; text-decoration: none; }
 .footer-meta {
   display: flex;
   justify-content: space-between;
