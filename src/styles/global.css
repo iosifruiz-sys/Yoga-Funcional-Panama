@@ -281,7 +281,7 @@ blockquote strong { margin-top: .9rem; }
 }
 
 @media (max-width: 61.999rem) {
-  .about-header { grid-template-columns: 1fr; gap: .75rem; padding-block: 1.25rem; }
+  .about-header { grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; gap: .75rem; padding-block: 1.25rem; }
   .about-title { justify-self: end; max-width: 100%; font-size: min(10.5vw, 3rem); letter-spacing: -.045em; }
   .about-reveal { height: auto; }
   .about-stage { position: relative; height: auto; min-height: 0; overflow: visible; padding-bottom: 3.5rem; }
