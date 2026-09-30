@@ -387,7 +387,9 @@ blockquote strong { margin-top: .9rem; }
 
 @media (max-width: 61.999rem) {
   html[lang='es'] .contact-title,
-  html[lang='es'] .contact-closing { text-align: center; }
+  html[lang='es'] .contact-closing,
+  html[lang='ru'] .contact-title,
+  html[lang='ru'] .contact-closing { text-align: center; }
   html[lang='es'] .contact-closing--mobile { display: none; }
   html[lang='es'] .contact-closing--desktop { display: block; }
 }
