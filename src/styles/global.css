@@ -134,6 +134,7 @@ blockquote strong { margin-top: .9rem; }
   .site-header nav li { border-top: var(--border); }
   .site-header nav li:last-child { border-bottom: var(--border); }
   .site-header nav a { display: block; padding: .2em var(--gutter); font: clamp(3.5rem, 16vw, 8rem)/.95 var(--font-utility); letter-spacing: .01em; }
+  html[lang='ru'] .site-header nav a { font-family: 'Oswald', sans-serif; font-size: clamp(3.15rem, 16vw, 8rem); font-weight: 500; }
   .menu-toggle, .header-cta { position: relative; z-index: 2; }
   .hero { min-height: 0; grid-template-columns: minmax(0, 1fr); grid-template-rows: auto auto auto auto auto auto; }
   .hero::after { display: none; }
