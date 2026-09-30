@@ -162,10 +162,10 @@ blockquote strong { margin-top: .9rem; }
   html[lang='ru'] .method h2 { scale: 1.25; transform-origin: left center; }
   html[lang='ru'] .method h2 .method-line { display: inline; font-size: inherit; }
   html[lang='ru'] .method h2 > span:last-child { margin-left: .72em; }
-  html[lang='ru'] .concepts strong { font-family: 'Oswald', sans-serif; font-size: clamp(1.6rem, 7vw, 2.75rem); font-weight: 400; }
-  html[lang='ru'] .end-note { font-family: 'Oswald', sans-serif; font-size: clamp(.9rem, 3.5vw, 1.3rem); font-weight: 400; }
+  html[lang='ru'] .concepts strong { font-family: 'Oswald', sans-serif; font-size: clamp(1.6rem, 7vw, 2.75rem); font-weight: 500; }
+  html[lang='ru'] .end-note { font-family: 'Oswald', sans-serif; font-size: clamp(.9rem, 3.5vw, 1.3rem); font-weight: 500; }
   html[lang='ru'] .schedule h2 { scale: .90; transform-origin: left center; }
-  html[lang='ru'] .class-format h3 { font-family: 'Oswald', sans-serif; font-size: clamp(2rem, 10vw, 3.75rem); font-weight: 400; overflow-wrap: normal; }
+  html[lang='ru'] .class-format h3 { font-family: 'Oswald', sans-serif; font-size: clamp(2rem, 10vw, 3.75rem); font-weight: 500; overflow-wrap: normal; }
   html[lang='ru'] .schedule-meta { grid-template-columns: auto 1fr auto 1fr auto; align-items: center; font-size: .7rem; }
   html[lang='ru'] .schedule-meta > strong { grid-column: 1; justify-self: start; white-space: nowrap; }
   html[lang='ru'] .schedule-meta > span:first-of-type { grid-column: 3; justify-self: center; font-family: 'Oswald', sans-serif; font-weight: 500; letter-spacing: .08em; white-space: nowrap; }
