@@ -1,0 +1,40 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import BlogPostList from './BlogPostList.astro';
+import { FEATURED_BLOG_TAGS, localizedBlogTagPath, type BlogTagId } from '../lib/blogTags';
+import { ui, type Locale } from '../i18n';
+import '../styles/blog.css';
+
+interface Props {
+  locale: Locale;
+  tag: BlogTagId;
+  posts: CollectionEntry<'blog'>[];
+}
+
+const { locale, tag, posts } = Astro.props;
+const t = ui[locale].blog;
+const tagLabel = t.tags[tag];
+const canonical = new URL(localizedBlogTagPath(locale, tag), Astro.site);
+const alternateLocale = locale === 'es' ? 'ru' : 'es';
+const alternateUrl = localizedBlogTagPath(alternateLocale, tag);
+const structuredData = {
+  '@type': 'CollectionPage',
+  '@id': `${canonical.href}#collectionpage`,
+  url: canonical.href,
+  name: `#${tagLabel}`,
+  description: `${t.tagArchiveTitle} #${tagLabel}`,
+  inLanguage: locale === 'es' ? 'es-PA' : 'ru',
+};
+---
+
+<BaseLayout title={`#${tagLabel} | ${t.title}`} description={`${t.tagArchiveTitle} #${tagLabel}`} canonical={canonical} locale={locale} alternates={{es:localizedBlogTagPath('es',tag),ru:localizedBlogTagPath('ru',tag)}} structuredData={structuredData}>
+  <Header locale={locale} alternateUrl={alternateUrl} />
+  <main id="contenido" class="blog-main blog-index">
+    <header class="blog-index-header"><h1 class="blog-section-marker">07 / #{tagLabel}</h1><nav class="blog-taxonomy" aria-label={t.tagsLabel}>{FEATURED_BLOG_TAGS.map((featuredTag) => <a href={localizedBlogTagPath(locale, featuredTag)} aria-label={`${t.tagLinkLabel}: ${t.tags[featuredTag]}`}>#{t.tags[featuredTag]}</a>)}</nav></header>
+    <BlogPostList locale={locale} posts={posts} emptyMessage={t.tagEmpty} />
+  </main>
+  <Footer locale={locale} />
+</BaseLayout>

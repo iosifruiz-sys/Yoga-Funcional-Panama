@@ -2,15 +2,14 @@
 title: "¿Para qué sirve el Yoga Funcional?"
 description: "Yoga Funcional construye la práctica según las capacidades y necesidades de cada persona para desarrollar fuerza, movilidad, respiración y atención."
 author: "Iosif Ruiz"
-publishDate: 2026-09-21
+publishDate: 2026-09-21T09:00:00-05:00
 category: "Yoga Funcional"
 tags:
-  - yoga funcional
-  - yoga en Panamá
-  - movilidad
-  - fuerza
-  - respiración
-  - atención
+  - yoga
+  - movement
+  - meditation
+  - body
+  - attention
 draft: false
 translationSlug: "chto-takoe-funktsionalnaya-yoga"
 cover:

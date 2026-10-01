@@ -1,5 +1,6 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
+import { BLOG_TAG_IDS } from './lib/blogTags';
 
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
@@ -10,7 +11,7 @@ const blog = defineCollection({
     updatedDate: z.coerce.date().optional(),
     author: z.string().default('Iosif Ruiz'),
     category: z.string().optional(),
-    tags: z.array(z.string()).default([]),
+    tags: z.array(z.enum(BLOG_TAG_IDS)).default([]),
     draft: z.boolean().default(false),
     cover: z.object({
       image: image(),
