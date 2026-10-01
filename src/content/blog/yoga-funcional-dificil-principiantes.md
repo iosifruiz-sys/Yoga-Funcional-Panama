@@ -5,10 +5,9 @@ publishDate: 2026-09-21
 author: "Iosif Ruiz"
 category: "Yoga Funcional"
 tags:
-  - yoga funcional
-  - yoga para principiantes
-  - yoga en Panamá
-  - entrenamiento
+  - yoga
+  - movement
+  - body
 draft: false
 cover:
   image: "../../../public/images/yoga-funcional-demasiado-dificil.png"

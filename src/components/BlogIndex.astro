@@ -4,6 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
 import { findTranslation, getPublishedPosts, slugForPost } from '../lib/blog';
+import { FEATURED_BLOG_TAGS } from '../lib/blogTags';
 import { ui, localizedPath, type Locale } from '../i18n';
 import '../styles/blog.css';
 interface Props { locale: Locale }
@@ -31,10 +32,10 @@ const collectionStructuredData = {
 <BaseLayout title={t.title} description={t.description} locale={locale} alternates={{es:localizedPath('es','blog/'),ru:localizedPath('ru','blog/')}} structuredData={collectionStructuredData}>
   <Header locale={locale} alternateUrl={alternateBlog} />
   <main id="contenido" class="blog-main blog-index">
-    <header class="blog-index-header"><h1 class="blog-section-marker">07 / BLOG</h1><p class="blog-taxonomy">{t.taxonomy}</p></header>
+    <header class="blog-index-header"><h1 class="blog-section-marker">07 / BLOG</h1><div class="blog-taxonomy" aria-label={t.tagsLabel}>{FEATURED_BLOG_TAGS.map((tag) => <span>#{t.tags[tag]}</span>)}</div></header>
     {cards.length ? <ol class="blog-list">{cards.map(({post,cover})=>{const href=`${blogUrl}${slugForPost(post)}/`;return <li><article class:list={['blog-list-entry',{'blog-list-entry--no-cover':!cover}]}>
       {cover && <a class="blog-list-image" href={href} aria-label={`${t.readLabel}: ${post.data.title}`}><Image src={cover.image} alt={cover.alt} widths={[640,960,1280]} sizes="(min-width: 62rem) 55vw, 100vw" /></a>}
-      <div class="blog-list-content"><p class="blog-list-meta">{post.data.category ?? 'Blog'} <span aria-hidden="true">·</span>{' '}<time datetime={post.data.publishDate.toISOString()}>{formatDate(post.data.publishDate)}</time></p><h2><a href={href}>{post.data.title}</a></h2><p class="blog-list-description">{post.data.description}</p><a class="blog-list-cta" href={href} aria-label={`${t.readLabel}: ${post.data.title}`}>{t.read} <span aria-hidden="true">→</span></a></div>
+      <div class="blog-list-content"><p class="blog-list-meta">{post.data.category ?? 'Blog'} <span aria-hidden="true">·</span>{' '}<time datetime={post.data.publishDate.toISOString()}>{formatDate(post.data.publishDate)}</time></p><p class="blog-post-tags">{post.data.tags.map((tag) => <span>#{t.tags[tag]}</span>)}</p><h2><a href={href}>{post.data.title}</a></h2><p class="blog-list-description">{post.data.description}</p><a class="blog-list-cta" href={href} aria-label={`${t.readLabel}: ${post.data.title}`}>{t.read} <span aria-hidden="true">→</span></a></div>
     </article></li>})}</ol> : <p class="blog-empty">{t.empty}</p>}
   </main><Footer locale={locale} />
 </BaseLayout>
