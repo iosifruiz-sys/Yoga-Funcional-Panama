@@ -1,0 +1,18 @@
+---
+import type { GetStaticPaths } from 'astro';
+import BlogTagArchive from '../../../../components/BlogTagArchive.astro';
+import { getPublishedPosts } from '../../../../lib/blog';
+import { BLOG_TAG_IDS, type BlogTagId } from '../../../../lib/blogTags';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getPublishedPosts('ru');
+  return BLOG_TAG_IDS.map((tag) => ({
+    params: { tag },
+    props: { tag, posts: posts.filter((post) => post.data.tags.includes(tag)) },
+  }));
+};
+
+const { tag, posts } = Astro.props as { tag: BlogTagId; posts: Awaited<ReturnType<typeof getPublishedPosts>> };
+---
+
+<BlogTagArchive locale="ru" tag={tag} posts={posts} />

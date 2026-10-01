@@ -5,12 +5,11 @@ author: "Iosif Ruiz"
 publishDate: 2026-09-21
 category: "Yoga Funcional"
 tags:
-  - yoga funcional
-  - yoga en Panamá
-  - movilidad
-  - fuerza
-  - respiración
-  - atención
+  - yoga
+  - movement
+  - meditation
+  - body
+  - attention
 draft: false
 translationSlug: "chto-takoe-funktsionalnaya-yoga"
 cover:
