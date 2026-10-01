@@ -22,3 +22,6 @@ export const FEATURED_BLOG_TAGS = [
   'body',
   'attention',
 ] as const satisfies readonly BlogTagId[];
+
+export const localizedBlogTagPath = (locale: 'es' | 'ru', tag: BlogTagId) =>
+  `${import.meta.env.BASE_URL}${locale === 'ru' ? 'ru/' : ''}blog/tag/${tag}/`;

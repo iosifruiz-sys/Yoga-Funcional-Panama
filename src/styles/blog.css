@@ -19,6 +19,12 @@
 .blog-section-marker { color: var(--color-orange); font-size: clamp(1.3rem, 2vw, 2rem); font-weight: 400; }
 .blog-taxonomy { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: .35rem clamp(.65rem, 1.5vw, 1.25rem); font-size: clamp(.85rem, 1.1vw, 1rem); line-height: 1.1; }
 .blog-post-tags { display: flex; flex-wrap: wrap; gap: .3rem .75rem; margin-top: .65rem; color: var(--color-orange); font-size: 1rem; line-height: 1.1; }
+.blog-taxonomy a,
+.blog-post-tags a { color: inherit; text-decoration: none; text-underline-offset: .2em; }
+.blog-taxonomy a:hover,
+.blog-taxonomy a:focus-visible,
+.blog-post-tags a:hover,
+.blog-post-tags a:focus-visible { color: var(--color-orange); text-decoration: underline; }
 
 .blog-list { list-style: none; margin-block: 0; padding: 0; }
 .blog-list > li { border-bottom: var(--border); }
