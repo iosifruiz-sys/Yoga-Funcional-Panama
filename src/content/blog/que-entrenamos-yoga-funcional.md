@@ -2,7 +2,7 @@
 title: ¿Qué entrenamos en Yoga Funcional?
 description: Fuerza, movilidad, equilibrio, respiración, atención y voluntad no
   funcionan por separado. Así las integramos en la práctica de Yoga Funcional.
-publishDate: 2026-09-22
+publishDate: 2026-09-22T11:34:00-05:00
 author: Iosif Ruiz
 category: Yoga Funcional
 tags:

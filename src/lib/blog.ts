@@ -7,10 +7,18 @@ export type BlogPost = CollectionEntry<'blog'>;
 export const localeForPost = (post: BlogPost): Locale => post.id.startsWith('ru/') ? 'ru' : 'es';
 export const slugForPost = (post: BlogPost) => post.id.replace(/^ru\//, '').replace(/\.md$/, '');
 
-export const sortPostsNewestFirst = (posts: BlogPost[]) => [...posts].sort((a, b) =>
-  b.data.publishDate.valueOf() - a.data.publishDate.valueOf()
-    || (slugForPost(a) < slugForPost(b) ? -1 : slugForPost(a) > slugForPost(b) ? 1 : 0),
-);
+export const sortPostsNewestFirst = (posts: BlogPost[]) => {
+  const publicationTimes = new Set<number>();
+  posts.forEach((post) => {
+    const publicationTime = post.data.publishDate.valueOf();
+    if (publicationTimes.has(publicationTime)) {
+      throw new Error(`Duplicate publication datetime: ${post.data.publishDate.toISOString()}`);
+    }
+    publicationTimes.add(publicationTime);
+  });
+
+  return [...posts].sort((a, b) => b.data.publishDate.valueOf() - a.data.publishDate.valueOf());
+};
 
 export const getPublishedPosts = async (locale: Locale = 'es') => sortPostsNewestFirst(
   await getCollection('blog', (post) => !post.data.draft && localeForPost(post) === locale),
