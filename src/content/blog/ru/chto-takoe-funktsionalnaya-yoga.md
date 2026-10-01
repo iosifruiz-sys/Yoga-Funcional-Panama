@@ -5,12 +5,11 @@ author: "Iosif Ruiz"
 publishDate: 2026-09-21
 category: "Функциональная йога"
 tags:
-  - функциональная йога
-  - йога в Панаме
-  - мобильность
-  - сила
-  - дыхание
-  - внимание
+  - yoga
+  - movement
+  - meditation
+  - body
+  - attention
 draft: false
 translationSlug: "que-es-yoga-funcional"
 ---

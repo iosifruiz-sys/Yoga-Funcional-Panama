@@ -6,12 +6,10 @@ publishDate: 2026-09-22
 author: Iosif Ruiz
 category: Yoga Funcional
 tags:
-  - yoga funcional
-  - fuerza
-  - movilidad
-  - respiración
-  - atención
-  - yoga en Panamá
+  - yoga
+  - movement
+  - body
+  - attention
 cover:
   image: ../../../public/images/yoga-funcional-fuerza-movilidad-atencion.png
   alt: Iosif Ruiz en una postura invertida — fuerza, movilidad, atención y
