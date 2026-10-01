@@ -42,19 +42,13 @@
 .blog-list-cta:hover { color: var(--color-orange); }
 .blog-empty { padding-block: 3rem; }
 
-.blog-article-actions { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem); }
-.blog-back,
-.blog-edit { min-height: 2.75rem; align-items: center; font: 1.3rem var(--font-utility); letter-spacing: .06em; text-decoration: none; }
-.blog-back { display: inline-flex; }
-.blog-edit { display: inline-flex; }
-.blog-back:hover,
-.blog-edit:hover { color: var(--color-orange); }
 .blog-article-header { padding-bottom: clamp(1.5rem, 2.5vw, 2.5rem); border-bottom: var(--border); }
-.blog-article-category { margin: 0 0 clamp(1rem, 1.75vw, 1.75rem); color: var(--color-orange); font: clamp(1.3rem, 2vw, 2rem) var(--font-utility); letter-spacing: .06em; text-transform: uppercase; }
+.blog-article-toolbar { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: .75rem clamp(1.5rem, 4vw, 4rem); margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem); }
 .blog-article-header h1 { max-width: 13ch; margin: 0; font: 900 clamp(3.7rem, 8.8vw, 9rem)/.84 var(--font-display); letter-spacing: -.045em; }
 .blog-article-description { max-width: 52rem; margin: clamp(1.25rem, 2vw, 1.75rem) 0 0 auto; font-size: clamp(1.15rem, 1.65vw, 1.5rem); line-height: 1.4; }
-.blog-article-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem clamp(2rem, 5vw, 5rem); margin-top: clamp(1.25rem, 1.75vw, 1.5rem); font: clamp(1.15rem, 1.5vw, 1.4rem) var(--font-utility); letter-spacing: .06em; text-transform: uppercase; }
+.blog-article-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem clamp(2rem, 5vw, 5rem); font: clamp(1.15rem, 1.5vw, 1.4rem) var(--font-utility); letter-spacing: .06em; text-transform: uppercase; }
 .blog-article-meta p { margin: 0; }
+.blog-article-toolbar .blog-post-tags { justify-content: flex-end; margin-top: 0; }
 .blog-share { display: inline-flex; min-width: 0; align-items: center; gap: .75rem; }
 .blog-share-button {
   min-height: 2.75rem;
@@ -112,11 +106,9 @@
   .blog-main { padding-top: 2.25rem; }
   .blog-index { padding-top: 1.75rem; }
   .blog-article-main { padding-top: 1.5rem; }
-  .blog-article-actions { margin-bottom: 1.25rem; }
   .blog-article-header { padding-bottom: 1.25rem; }
-  .blog-article-category { margin-bottom: .825rem; }
   .blog-article-description { margin-top: 1.05rem; margin-left: 0; }
-  .blog-article-meta { margin-top: 1.05rem; }
+  .blog-article-toolbar { margin-bottom: 1.25rem; }
   .blog-article-cover { margin-top: .75rem; }
   .blog-taxonomy { max-width: 24rem; line-height: 1.25; }
   .blog-list h2 { overflow-wrap: normal; }
