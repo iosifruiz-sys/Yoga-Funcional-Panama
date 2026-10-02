@@ -2,15 +2,14 @@
 title: "Что такое функциональная йога?"
 description: "Функциональная йога — подход, в котором асаны, движение, дыхание и медитация развивают силу, мобильность, баланс, координацию и внимание."
 author: "Iosif Ruiz"
-publishDate: 2026-09-21
+publishDate: 2026-09-21T09:00:00-05:00
 category: "Функциональная йога"
 tags:
-  - функциональная йога
-  - йога в Панаме
-  - мобильность
-  - сила
-  - дыхание
-  - внимание
+  - yoga
+  - movement
+  - meditation
+  - body
+  - attention
 draft: false
 translationSlug: "que-es-yoga-funcional"
 ---
