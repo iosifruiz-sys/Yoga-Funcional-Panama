@@ -102,6 +102,10 @@
   .blog-list-entry--no-cover::before { content: ''; min-height: 20rem; background: var(--color-warm); }
 }
 
+@media (min-width: 62rem) {
+  html[lang='ru'] .blog-list h2 { font-family: var(--font-utility); font-size: clamp(2.5rem, 4vw, 4rem); font-weight: 400; line-height: .9; word-break: normal; overflow-wrap: normal; }
+}
+
 @media (max-width: 47.999rem) {
   .blog-main { padding-top: 2.25rem; }
   .blog-index { padding-top: 1.75rem; }
