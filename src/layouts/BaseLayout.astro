@@ -5,6 +5,8 @@ import { ui, type Locale } from '../i18n';
 interface Props {
   title: string;
   description: string;
+  ogTitle?: string;
+  ogDescription?: string;
   canonical?: URL | string;
   ogType?: 'website' | 'article';
   socialImage?: URL | string;
@@ -21,6 +23,8 @@ interface Props {
 const {
   title,
   description,
+  ogTitle = title,
+  ogDescription = description,
   canonical: canonicalProp,
   ogType = 'website',
   socialImage,
@@ -93,8 +97,8 @@ const structuredData = {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=League+Gothic&family=Oswald:wght@500&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet" />
     <meta property="og:type" content={ogType} />
     <meta property="og:locale" content={locale === 'es' ? 'es_PA' : 'ru_RU'} />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
     <meta property="og:url" content={canonical} />
     <meta property="og:site_name" content="Yoga Funcional Panamá" />
     <meta property="og:image" content={socialImageUrl} />

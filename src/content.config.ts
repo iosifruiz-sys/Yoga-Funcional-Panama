@@ -7,6 +7,9 @@ const blog = defineCollection({
   schema: ({ image }) => z.object({
     title: z.string(),
     description: z.string(),
+    ogTitle: z.string().optional(),
+    ogDescription: z.string().optional(),
+    faq: z.array(z.object({ question: z.string(), answer: z.string() })).optional(),
     publishDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
     author: z.string().default('Iosif Ruiz'),
