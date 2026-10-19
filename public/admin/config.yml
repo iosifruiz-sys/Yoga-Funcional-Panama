@@ -461,6 +461,66 @@ collections:
             widget: image
             hint: "Una foto para ES y RU. Recomendado: retrato aprox. 2:3, como el PNG actual de 1025 × 1535 px, con fondo transparente y composición similar. Prepara encuadre, proporciones y tamaño antes de subir; no hay recorte ni procesamiento automático. Общее фото ES/RU: заранее подготовьте портрет около 2:3, прозрачный фон и композицию как у исходного PNG 1025 × 1535. Автоматического кадрирования и обработки нет."
 
+  - name: contact
+    label: Contacto
+    format: json
+    editor:
+      preview: false
+    files:
+      - name: contact_es
+        label: Contacto ES
+        file: src/data/contact/es.json
+        fields:
+          - { label: Número y nombre de sección, name: number, widget: string }
+          - label: Título principal
+            name: title
+            widget: string
+            hint: "Conserva el guion blando U+00AD entre ENTRE y NAMOS; no lo sustituyas por un guion normal."
+          - label: Cierre base (dos partes)
+            name: closing
+            widget: object
+            fields:
+              - { label: Primera parte, name: first, widget: string }
+              - { label: Segunda parte destacada, name: second, widget: string }
+          - label: Cierre de escritorio (dos partes)
+            name: desktopClosing
+            widget: object
+            hint: "El CSS actual muestra esta variante también en móvil ES. La variante base se conserva sin cambiar ese comportamiento."
+            fields:
+              - { label: Primera parte, name: first, widget: string }
+              - { label: Segunda parte destacada, name: second, widget: string }
+          - { label: Texto del botón, name: reserve, widget: string }
+      - name: contact_ru
+        label: Контакт RU
+        file: src/data/contact/ru.json
+        fields:
+          - { label: Номер и название раздела, name: number, widget: string }
+          - label: Главный заголовок
+            name: title
+            widget: string
+          - label: Заключительный текст mobile (две части)
+            name: closing
+            widget: object
+            fields:
+              - { label: Первая часть, name: first, widget: string }
+              - { label: Вторая выделенная часть, name: second, widget: string }
+          - label: Заключительный текст desktop (две части)
+            name: desktopClosing
+            widget: object
+            fields:
+              - { label: Первая часть, name: first, widget: string }
+              - { label: Вторая выделенная часть, name: second, widget: string }
+          - { label: Подпись кнопки записи, name: reserve, widget: string }
+      - name: contact_links
+        label: WhatsApp CONTACTO ES + RU
+        file: src/data/contact/links.json
+        fields:
+          - label: WhatsApp URL
+            name: whatsappUrl
+            widget: string
+            pattern: ['^https://[^\s]+$', 'Usa una URL HTTPS completa, por ejemplo https://wa.me/50762331434.']
+            hint: "Una sola URL para CONTACTO en ES y RU. No modifica los enlaces de HERO, CLASES ni HORARIOS."
+
   - name: blog_es
     label: Blog ES
     label_singular: Artículo ES
