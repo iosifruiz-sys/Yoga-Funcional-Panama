@@ -2,7 +2,7 @@ name: Deploy Astro site to Pages
 
 on:
   push:
-    branches: [main, work]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
