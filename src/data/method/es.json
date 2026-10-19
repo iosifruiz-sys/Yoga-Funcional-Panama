@@ -1,0 +1,43 @@
+{
+  "number": "02 / MÉTODO",
+  "title": {
+    "first": "Del cuerpo",
+    "middle": "hacia la",
+    "last": "postura"
+  },
+  "copy": "Yoga Funcional es un método de entrenamiento que utiliza herramientas del yoga para desarrollar fuerza, movilidad, equilibrio, coordinación, respiración, atención y recuperación.",
+  "copy2": "No adaptamos el cuerpo a una asana.",
+  "copy3": "Elegimos la postura según lo que el cuerpo necesita trabajar.",
+  "label": "Capacidades que entrenamos",
+  "qualities": {
+    "strength": {
+      "name": "Fuerza",
+      "description": "No buscamos fuerza por la fuerza. La usamos para crear estabilidad, control y capacidad de movimiento."
+    },
+    "mobility": {
+      "name": "Movilidad",
+      "description": "No se trata de llegar más lejos. Entrenamos el movimiento que tu cuerpo puede controlar y utilizar."
+    },
+    "balance": {
+      "name": "Equilibrio",
+      "description": "No es quedarse quieto sin caer. Es aprender a responder cuando cambia tu posición, el apoyo o el movimiento."
+    },
+    "coordination": {
+      "name": "Coordinación",
+      "description": "Entrenamos al cuerpo para organizar movimientos diferentes como una sola acción: con precisión, ritmo y control."
+    },
+    "breathing": {
+      "name": "Respiración",
+      "description": "No respiramos de una forma porque sea «correcta». Usamos la respiración según lo que estamos haciendo y el estado que necesitamos."
+    },
+    "attention": {
+      "name": "Atención",
+      "description": "Entrenamos la capacidad de dirigir y mantener la atención sobre el cuerpo, la respiración y lo que estamos haciendo ahora."
+    },
+    "recovery": {
+      "name": "Recuperación",
+      "description": "No todo es activación y esfuerzo. También entrenamos la capacidad de bajar la activación y facilitar la recuperación."
+    }
+  },
+  "end": "CUERPO ≠ FORMA   /   CUERPO = INFORMACIÓN"
+}

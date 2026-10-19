@@ -60,6 +60,139 @@ collections:
           - { label: Координаты, name: coordinates, widget: string }
           - { label: Подпись о занятиях, name: soon, widget: string }
 
+  - name: method
+    label: Método
+    format: json
+    editor:
+      preview: false
+    files:
+      - name: method_es
+        label: Método ES
+        file: src/data/method/es.json
+        fields:
+          - { label: Número y nombre de sección, name: number, widget: string }
+          - label: Título (tres líneas)
+            name: title
+            widget: object
+            fields:
+              - { label: Línea 1, name: first, widget: string }
+              - { label: Línea 2, name: middle, widget: string }
+              - { label: Línea 3, name: last, widget: string }
+          - { label: Texto introductorio, name: copy, widget: string }
+          - { label: Afirmación adicional, name: copy2, widget: string }
+          - { label: Afirmación destacada, name: copy3, widget: string }
+          - { label: Etiqueta accesible de las capacidades, name: label, widget: string }
+          - label: Siete capacidades (orden fijo)
+            name: qualities
+            widget: object
+            fields:
+              - label: 01 / Fuerza
+                name: strength
+                widget: object
+                fields:
+                  - { label: Nombre, name: name, widget: string }
+                  - { label: Descripción, name: description, widget: string }
+              - label: 02 / Movilidad
+                name: mobility
+                widget: object
+                fields:
+                  - { label: Nombre, name: name, widget: string }
+                  - { label: Descripción, name: description, widget: string }
+              - label: 03 / Equilibrio
+                name: balance
+                widget: object
+                fields:
+                  - { label: Nombre, name: name, widget: string }
+                  - { label: Descripción, name: description, widget: string }
+              - label: 04 / Coordinación
+                name: coordination
+                widget: object
+                fields:
+                  - { label: Nombre, name: name, widget: string }
+                  - { label: Descripción, name: description, widget: string }
+              - label: 05 / Respiración
+                name: breathing
+                widget: object
+                fields:
+                  - { label: Nombre, name: name, widget: string }
+                  - { label: Descripción, name: description, widget: string }
+              - label: 06 / Atención
+                name: attention
+                widget: object
+                fields:
+                  - { label: Nombre, name: name, widget: string }
+                  - { label: Descripción, name: description, widget: string }
+              - label: 07 / Recuperación
+                name: recovery
+                widget: object
+                fields:
+                  - { label: Nombre, name: name, widget: string }
+                  - { label: Descripción, name: description, widget: string }
+          - { label: Frase final, name: end, widget: string }
+      - name: method_ru
+        label: Метод RU
+        file: src/data/method/ru.json
+        fields:
+          - { label: Номер и название раздела, name: number, widget: string }
+          - label: Заголовок (три строки)
+            name: title
+            widget: object
+            fields:
+              - { label: Строка 1, name: first, widget: string }
+              - { label: Строка 2, name: middle, widget: string }
+              - { label: Строка 3, name: last, widget: string }
+          - { label: Вводный текст, name: copy, widget: string }
+          - { label: Дополнительное утверждение, name: copy2, widget: string }
+          - { label: Выделенное утверждение, name: copy3, widget: string }
+          - { label: Подпись списка качеств для скринридеров, name: label, widget: string }
+          - label: Семь качеств (фиксированный порядок)
+            name: qualities
+            widget: object
+            fields:
+              - label: 01 / Сила
+                name: strength
+                widget: object
+                fields:
+                  - { label: Название, name: name, widget: string }
+                  - { label: Описание, name: description, widget: string }
+              - label: 02 / Мобильность
+                name: mobility
+                widget: object
+                fields:
+                  - { label: Название, name: name, widget: string }
+                  - { label: Описание, name: description, widget: string }
+              - label: 03 / Равновесие
+                name: balance
+                widget: object
+                fields:
+                  - { label: Название, name: name, widget: string }
+                  - { label: Описание, name: description, widget: string }
+              - label: 04 / Координация
+                name: coordination
+                widget: object
+                fields:
+                  - { label: Название, name: name, widget: string }
+                  - { label: Описание, name: description, widget: string }
+              - label: 05 / Дыхание
+                name: breathing
+                widget: object
+                fields:
+                  - { label: Название, name: name, widget: string }
+                  - { label: Описание, name: description, widget: string }
+              - label: 06 / Внимание
+                name: attention
+                widget: object
+                fields:
+                  - { label: Название, name: name, widget: string }
+                  - { label: Описание, name: description, widget: string }
+              - label: 07 / Восстановление
+                name: recovery
+                widget: object
+                fields:
+                  - { label: Название, name: name, widget: string }
+                  - { label: Описание, name: description, widget: string }
+          - { label: Заключительная фраза, name: end, widget: string }
+
   - name: blog_es
     label: Blog ES
     label_singular: Artículo ES

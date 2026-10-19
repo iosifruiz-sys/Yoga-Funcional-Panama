@@ -1,21 +1,23 @@
 ---
-import { ui, type Locale } from '../i18n';
+import type { Locale } from '../i18n';
+import methodEs from '../data/method/es.json';
+import methodRu from '../data/method/ru.json';
 interface Props { locale?: Locale }
 const { locale = 'es' } = Astro.props;
-const t = ui[locale];
-const concepts = t.method.concepts;
-const descriptions = t.method.descriptions;
+const method = { es: methodEs, ru: methodRu }[locale];
+const qualityOrder = ['strength', 'mobility', 'balance', 'coordination', 'breathing', 'attention', 'recovery'] as const;
+const concepts = qualityOrder.map((key) => method.qualities[key]);
 
 ---
 
 <section id="metodo" class="method" aria-labelledby="method-title">
   <div class="method-intro">
-    <p class="section-number">{t.method.number}</p>
-    <h2 id="method-title"><span>{t.method.title[0]}</span><span><span class="method-line method-line-middle">{t.method.title[1]}</span> <span class="method-line method-line-last">{t.method.title[2]}</span></span></h2>
-    <p class="method-copy">{t.method.copy}<br /><br />{t.method.copy2}<br /><strong>{t.method.copy3}</strong></p>
+    <p class="section-number">{method.number}</p>
+    <h2 id="method-title"><span>{method.title.first}</span><span><span class="method-line method-line-middle">{method.title.middle}</span> <span class="method-line method-line-last">{method.title.last}</span></span></h2>
+    <p class="method-copy">{method.copy}<br /><br />{method.copy2}<br /><strong>{method.copy3}</strong></p>
   </div>
 
-  <ol class="concepts" aria-label={t.method.label}>
+  <ol class="concepts" aria-label={method.label}>
     {concepts.map((concept, index) => (
       <li style={`--index:${index}`}>
         <button
@@ -25,16 +27,16 @@ const descriptions = t.method.descriptions;
           aria-controls={`concept-panel-${index + 1}`}
         >
           <span>{String(index + 1).padStart(2, '0')}</span>
-          <strong>{concept}</strong>
+          <strong>{concept.name}</strong>
           <i aria-hidden="true">+</i>
         </button>
         <div class="concept-panel" id={`concept-panel-${index + 1}`} hidden>
-          <p>{descriptions[index]}</p>
+          <p>{concept.description}</p>
         </div>
       </li>
     ))}
   </ol>
-  <div id="proximamente" class="end-note">{t.method.end}</div>
+  <div id="proximamente" class="end-note">{method.end}</div>
 </section>
 
 <script>
