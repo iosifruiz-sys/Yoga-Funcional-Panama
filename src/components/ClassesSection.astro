@@ -1,41 +1,44 @@
 ---
-import { ui, type Locale } from '../i18n';
+import type { Locale } from '../i18n';
+import classesEs from '../data/classes/es.json';
+import classesRu from '../data/classes/ru.json';
+import links from '../data/classes/links.json';
 interface Props { locale?: Locale }
 const { locale = 'es' } = Astro.props;
-const t = ui[locale];
-const personalBookingUrl = 'https://wa.me/50762331434?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20las%20clases%20de%20Yoga%20Funcional.';
+const classes = { es: classesEs, ru: classesRu }[locale];
+const personalBookingUrl = links.personalBookingUrl;
 
 const formats = [
   {
     number: '01',
-    name: t.classes.formats[0][0],
+    name: classes.formats.group.name,
     paragraphs: [
-      t.classes.formats[0][1],
-      t.classes.formats[0][2],
+      classes.formats.group.description,
+      classes.formats.group.details,
     ],
-    action: t.classes.formats[0][3],
+    action: classes.formats.group.action,
     href: '#horarios',
   },
   {
     number: '02',
-    name: t.classes.formats[1][0],
-    price: '$30',
+    name: classes.formats.individual.name,
+    price: classes.formats.individual.price,
     paragraphs: [
-      t.classes.formats[1][1],
-      t.classes.formats[1][2],
+      classes.formats.individual.description,
+      classes.formats.individual.details,
     ],
-    action: t.reserve,
+    action: classes.formats.individual.action,
     href: personalBookingUrl,
   },
   {
     number: '03',
-    name: t.classes.formats[2][0],
-    price: '$60',
+    name: classes.formats.personal.name,
+    price: classes.formats.personal.price,
     paragraphs: [
-      t.classes.formats[2][1],
-      t.classes.formats[2][2],
+      classes.formats.personal.description,
+      classes.formats.personal.details,
     ],
-    action: t.reserve,
+    action: classes.formats.personal.action,
     href: personalBookingUrl,
   },
 ];
@@ -43,8 +46,8 @@ const formats = [
 
 <section id="clases" class="classes" aria-labelledby="classes-title">
   <header class="classes-intro">
-    <p class="classes-number">{t.classes.number}</p>
-    <h2 id="classes-title"><span>{t.classes.title[0]}</span><span>{t.classes.title[1]}</span></h2>
+    <p class="classes-number">{classes.number}</p>
+    <h2 id="classes-title"><span>{classes.title.first}</span><span>{classes.title.second}</span></h2>
   </header>
 
   <div class="class-formats">

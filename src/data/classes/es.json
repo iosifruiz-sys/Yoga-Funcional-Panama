@@ -1,0 +1,29 @@
+{
+  "number": "03 / CLASES",
+  "title": {
+    "first": "Entrena",
+    "second": "A tu manera"
+  },
+  "formats": {
+    "group": {
+      "name": "Clase general",
+      "description": "Entrena en grupo siguiendo la estructura de Yoga Funcional, con opciones adaptadas a diferentes niveles. No necesitas experiencia previa para empezar.",
+      "details": "Horarios, ubicación y condiciones dependen del espacio donde se realiza la clase.",
+      "action": "Ver horarios"
+    },
+    "individual": {
+      "name": "Clase individual",
+      "price": "$30",
+      "description": "Una sesión uno a uno adaptada a tu nivel, tus necesidades y lo que quieres trabajar.",
+      "details": "Sin programas ni compromisos: una clase, un objetivo, una hora de trabajo.",
+      "action": "Reservar"
+    },
+    "personal": {
+      "name": "Entrenamiento personal",
+      "price": "$60",
+      "description": "Un proceso diseñado alrededor de ti: evaluación, objetivos, programa de entrenamiento, progresión y ajustes.",
+      "details": "No es solamente una clase. Es un plan para trabajar hacia un resultado concreto.",
+      "action": "Reservar"
+    }
+  }
+}

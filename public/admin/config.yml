@@ -193,6 +193,103 @@ collections:
                   - { label: Описание, name: description, widget: string }
           - { label: Заключительная фраза, name: end, widget: string }
 
+  - name: classes
+    label: Clases
+    format: json
+    editor:
+      preview: false
+    files:
+      - name: classes_es
+        label: Clases ES
+        file: src/data/classes/es.json
+        fields:
+          - { label: Número y nombre de sección, name: number, widget: string }
+          - label: Título (dos líneas)
+            name: title
+            widget: object
+            fields:
+              - { label: Línea 1, name: first, widget: string }
+              - { label: Línea 2, name: second, widget: string }
+          - label: Tres formatos (orden fijo)
+            name: formats
+            widget: object
+            fields:
+              - label: 01 / Clase general
+                name: group
+                widget: object
+                fields:
+                  - { label: Nombre, name: name, widget: string }
+                  - { label: Primer párrafo, name: description, widget: string }
+                  - { label: Segundo párrafo, name: details, widget: string }
+                  - { label: Texto del botón, name: action, widget: string }
+              - label: 02 / Clase individual
+                name: individual
+                widget: object
+                fields:
+                  - { label: Nombre, name: name, widget: string }
+                  - { label: Precio, name: price, widget: string }
+                  - { label: Primer párrafo, name: description, widget: string }
+                  - { label: Segundo párrafo, name: details, widget: string }
+                  - { label: Texto del botón, name: action, widget: string }
+              - label: 03 / Entrenamiento personal
+                name: personal
+                widget: object
+                fields:
+                  - { label: Nombre, name: name, widget: string }
+                  - { label: Precio, name: price, widget: string }
+                  - { label: Primer párrafo, name: description, widget: string }
+                  - { label: Segundo párrafo, name: details, widget: string }
+                  - { label: Texto del botón, name: action, widget: string }
+      - name: classes_ru
+        label: Занятия RU
+        file: src/data/classes/ru.json
+        fields:
+          - { label: Номер и название раздела, name: number, widget: string }
+          - label: Заголовок (две строки)
+            name: title
+            widget: object
+            fields:
+              - { label: Строка 1, name: first, widget: string }
+              - { label: Строка 2, name: second, widget: string }
+          - label: Три формата (фиксированный порядок)
+            name: formats
+            widget: object
+            fields:
+              - label: 01 / Общее занятие
+                name: group
+                widget: object
+                fields:
+                  - { label: Название, name: name, widget: string }
+                  - { label: Первый абзац, name: description, widget: string }
+                  - { label: Второй абзац, name: details, widget: string }
+                  - { label: Подпись кнопки, name: action, widget: string }
+              - label: 02 / Индивидуальное занятие
+                name: individual
+                widget: object
+                fields:
+                  - { label: Название, name: name, widget: string }
+                  - { label: Цена, name: price, widget: string }
+                  - { label: Первый абзац, name: description, widget: string }
+                  - { label: Второй абзац, name: details, widget: string }
+                  - { label: Подпись кнопки, name: action, widget: string }
+              - label: 03 / Персональная тренировка
+                name: personal
+                widget: object
+                fields:
+                  - { label: Название, name: name, widget: string }
+                  - { label: Цена, name: price, widget: string }
+                  - { label: Первый абзац, name: description, widget: string }
+                  - { label: Второй абзац, name: details, widget: string }
+                  - { label: Подпись кнопки, name: action, widget: string }
+      - name: classes_links
+        label: Enlace de reserva / Общая ссылка записи
+        file: src/data/classes/links.json
+        fields:
+          - label: WhatsApp ES + RU
+            name: personalBookingUrl
+            widget: string
+            hint: "CLASES / ЗАНЯТИЯ — ссылка индивидуальных и персональных занятий для обоих языков. Solo las clases individuales y personales; no cambia otros apartados."
+
   - name: blog_es
     label: Blog ES
     label_singular: Artículo ES
