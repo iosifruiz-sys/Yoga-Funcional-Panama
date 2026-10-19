@@ -1,18 +1,20 @@
 ---
-import { ui, type Locale } from '../i18n';
+import type { Locale } from '../i18n';
+import heroEs from '../data/hero/es.json';
+import heroRu from '../data/hero/ru.json';
 interface Props { locale?: Locale }
 const { locale = 'es' } = Astro.props;
-const t = ui[locale];
+const hero = { es: heroEs, ru: heroRu }[locale];
 const bookingUrl = 'https://wa.me/50762331434?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20las%20clases%20de%20Yoga%20Funcional.';
 const base = import.meta.env.BASE_URL;
 ---
 
 <section class="hero" aria-labelledby="hero-title">
-  <div class="hero-kicker" aria-hidden="true">{t.hero.kicker}</div>
+  <div class="hero-kicker" aria-hidden="true">{hero.kicker}</div>
   <h1 id="hero-title" class="hero-title">
-    <span class="yoga">Yoga</span>
-    <span class="funcional">Funcional</span>
-    <span class="panama">Panamá</span>
+    <span class="yoga">{hero.title.yoga}</span>
+    <span class="funcional">{hero.title.funcional}</span>
+    <span class="panama">{hero.title.panama}</span>
   </h1>
 
   <figure class="hero-photo">
@@ -20,7 +22,7 @@ const base = import.meta.env.BASE_URL;
       <source media="(min-width: 62rem)" srcset={`${base}images/hero-transparent.png`} />
       <img
         src={`${base}images/hero-transparent.png`}
-        alt={t.hero.alt}
+        alt={hero.alt}
         width="1194"
         height="1317"
         loading="eager"
@@ -30,12 +32,12 @@ const base = import.meta.env.BASE_URL;
   </figure>
 
   <blockquote>
-    <span>{t.hero.quote}</span>
-    <strong>{t.hero.strong}</strong>
+    <span>{hero.quote}</span>
+    <strong>{hero.strong}</strong>
   </blockquote>
 
   <a id="reservar" class="reserve" href={bookingUrl} target="_blank" rel="noopener noreferrer">
-    <span>{t.reserve}</span><span class="reserve-arrow" aria-hidden="true">↗</span>
+    <span>{hero.reserve}</span><span class="reserve-arrow" aria-hidden="true">↗</span>
   </a>
-  <p class="hero-meta"><span>PTY</span> <span>08°58'N</span> <span>{t.hero.soon}</span></p>
+  <p class="hero-meta"><span>{hero.location}</span> <span>{hero.coordinates}</span> <span>{hero.soon}</span></p>
 </section>
