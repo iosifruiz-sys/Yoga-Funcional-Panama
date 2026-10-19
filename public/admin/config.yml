@@ -15,6 +15,51 @@ slug:
   sanitize_replacement: "-"
 
 collections:
+  - name: hero
+    label: Hero
+    format: json
+    editor:
+      preview: false
+    files:
+      - name: hero_es
+        label: Hero ES
+        file: src/data/hero/es.json
+        fields:
+          - { label: Franja superior, name: kicker, widget: string }
+          - label: Título (tres líneas)
+            name: title
+            widget: object
+            fields:
+              - { label: Línea 1, name: yoga, widget: string }
+              - { label: Línea 2, name: funcional, widget: string }
+              - { label: Línea 3, name: panama, widget: string }
+          - { label: Texto alternativo de la imagen, name: alt, widget: string }
+          - { label: Frase inicial, name: quote, widget: string }
+          - { label: Frase destacada, name: strong, widget: string }
+          - { label: Botón de reserva, name: reserve, widget: string, hint: "Solo el botón del Hero; no cambia otros botones." }
+          - { label: Ubicación, name: location, widget: string }
+          - { label: Coordenadas, name: coordinates, widget: string }
+          - { label: Aviso de clases, name: soon, widget: string }
+      - name: hero_ru
+        label: Hero RU
+        file: src/data/hero/ru.json
+        fields:
+          - { label: Верхняя строка, name: kicker, widget: string }
+          - label: Заголовок (три строки)
+            name: title
+            widget: object
+            fields:
+              - { label: Строка 1, name: yoga, widget: string }
+              - { label: Строка 2, name: funcional, widget: string }
+              - { label: Строка 3, name: panama, widget: string }
+          - { label: Альтернативный текст изображения, name: alt, widget: string }
+          - { label: Первая фраза, name: quote, widget: string }
+          - { label: Выделенная фраза, name: strong, widget: string }
+          - { label: Кнопка записи, name: reserve, widget: string, hint: "Только кнопка Hero; остальные кнопки не меняются." }
+          - { label: Место, name: location, widget: string }
+          - { label: Координаты, name: coordinates, widget: string }
+          - { label: Подпись о занятиях, name: soon, widget: string }
+
   - name: blog_es
     label: Blog ES
     label_singular: Artículo ES
