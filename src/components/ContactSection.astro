@@ -1,20 +1,26 @@
 ---
-import { ui, type Locale } from '../i18n';
+import type { Locale } from '../i18n';
+import contactEs from '../data/contact/es.json';
+import contactRu from '../data/contact/ru.json';
+import links from '../data/contact/links.json';
 interface Props { locale?: Locale }
 const { locale = 'es' } = Astro.props;
-const t = ui[locale];
-const desktopClosing = 'desktopClosing' in t.contact ? t.contact.desktopClosing : undefined;
-const contactUrl = 'https://wa.me/50762331434';
+const t = { es: contactEs, ru: contactRu }[locale];
+const desktopClosing = 'desktopClosing' in t ? [t.desktopClosing.first, t.desktopClosing.second] : undefined;
+const contactUrl = links.whatsappUrl;
+if (new URL(contactUrl).protocol !== 'https:' || !contactUrl.startsWith('https://') || /\s/.test(contactUrl)) {
+  throw new Error('CONTACTO WhatsApp URL must be a valid HTTPS URL without whitespace.');
+}
 ---
 
 <section id="contacto" class="contact" aria-labelledby="contact-title">
-  <p class="contact-number">{t.contact.number}</p>
+  <p class="contact-number">{t.number}</p>
 
-  <h2 id="contact-title" class="contact-title">{t.contact.title}</h2>
+  <h2 id="contact-title" class="contact-title">{t.title}</h2>
 
   <p class:list={['contact-closing', { 'contact-closing--mobile': desktopClosing }]}>
-    <span>{t.contact.closing[0]}</span>
-    <strong>{t.contact.closing[1]}</strong>
+    <span>{t.closing.first}</span>
+    <strong>{t.closing.second}</strong>
   </p>
 
   {desktopClosing && <p class="contact-closing contact-closing--desktop">
