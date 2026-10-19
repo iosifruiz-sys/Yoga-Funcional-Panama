@@ -1,0 +1,26 @@
+{
+  "number": "04 / HORARIOS",
+  "info": "Información de las clases",
+  "kind": "Clase general",
+  "label": "Horario actual en Clayton",
+  "title": {
+    "first": "Horario",
+    "second": "De grupo"
+  },
+  "desktopTitle": {
+    "first": "Clases",
+    "second": "De grupo"
+  },
+  "program": "Yoga Funcional",
+  "location": "Clayton",
+  "reserve": "Reservar",
+  "days": {
+    "monday": "Lunes",
+    "tuesday": "Martes",
+    "wednesday": "Miércoles",
+    "thursday": "Jueves",
+    "friday": "Viernes",
+    "saturday": "Sábado",
+    "sunday": "Domingo"
+  }
+}

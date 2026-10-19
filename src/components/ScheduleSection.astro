@@ -1,33 +1,37 @@
 ---
-import { ui, type Locale } from '../i18n';
+import type { Locale } from '../i18n';
+import scheduleEs from '../data/schedule/es.json';
+import scheduleRu from '../data/schedule/ru.json';
+import scheduleData from '../data/schedule/classes.json';
+import { sortGroupClasses, formatScheduleTime, validateScheduleBookingUrl, type GroupSchedule } from '../lib/schedule';
 interface Props { locale?: Locale }
 const { locale = 'es' } = Astro.props;
-const t = ui[locale];
-const desktopTitle = 'desktopTitle' in t.schedule ? t.schedule.desktopTitle : undefined;
-const schedule = [
-  { day: t.schedule.days[0], time: '6:15 PM' },
-  { day: t.schedule.days[1], time: '6:15 PM' },
-  { day: t.schedule.days[2], time: '10:00 AM' },
-];
-const studioBookingUrl = 'https://wa.me/50765434870?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20las%20clases%20de%20Yoga%20Funcional.';
+const t = { es: scheduleEs, ru: scheduleRu }[locale];
+const desktopTitle = 'desktopTitle' in t ? [t.desktopTitle.first, t.desktopTitle.second] : undefined;
+const sharedSchedule: GroupSchedule = scheduleData;
+const schedule = sortGroupClasses(sharedSchedule.classes).map((slot) => ({
+  day: t.days[slot.day],
+  time: formatScheduleTime(slot.startTime),
+}));
+const studioBookingUrl = validateScheduleBookingUrl(sharedSchedule.bookingUrl);
 ---
 
 <section id="horarios" class="schedule" aria-labelledby="schedule-title">
   <header class="schedule-intro">
-    <p class="schedule-number">{t.schedule.number}</p>
+    <p class="schedule-number">{t.number}</p>
     <h2 id="schedule-title">
-      <span class:list={{ 'schedule-title-mobile': desktopTitle }}>{t.schedule.title[0]}</span><span class:list={['schedule-title-line-last', { 'schedule-title-mobile': desktopTitle }]}>{t.schedule.title[1]}</span>
+      <span class:list={{ 'schedule-title-mobile': desktopTitle }}>{t.title.first}</span><span class:list={['schedule-title-line-last', { 'schedule-title-mobile': desktopTitle }]}>{t.title.second}</span>
       {desktopTitle && <><span class="schedule-title-desktop">{desktopTitle[0]}</span><span class="schedule-title-desktop schedule-title-line-last">{desktopTitle[1]}</span></>}
     </h2>
   </header>
 
-  <div class="schedule-meta" aria-label={t.schedule.info}>
-    <strong>Yoga Funcional</strong>
-    <span>{t.schedule.kind}</span>
-    <span>Clayton</span>
+  <div class="schedule-meta" aria-label={t.info}>
+    <strong>{t.program}</strong>
+    <span>{t.kind}</span>
+    <span>{t.location}</span>
   </div>
 
-  <ol class="schedule-list" aria-label={t.schedule.label}>
+  <ol class="schedule-list" aria-label={t.label}>
     {schedule.map((slot) => (
       <li class="schedule-slot">
         <span class="schedule-day">{slot.day}</span>

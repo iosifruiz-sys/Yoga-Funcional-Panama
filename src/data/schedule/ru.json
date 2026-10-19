@@ -1,0 +1,22 @@
+{
+  "number": "04 / РАСПИСАНИЕ",
+  "info": "Информация о занятиях",
+  "kind": "Общее занятие",
+  "label": "Текущее расписание в Clayton",
+  "title": {
+    "first": "Групповые",
+    "second": "Тренировки"
+  },
+  "program": "Yoga Funcional",
+  "location": "Clayton",
+  "reserve": "Записаться",
+  "days": {
+    "monday": "Понедельник",
+    "tuesday": "Вторник",
+    "wednesday": "Среда",
+    "thursday": "Четверг",
+    "friday": "Пятница",
+    "saturday": "Суббота",
+    "sunday": "Воскресенье"
+  }
+}
