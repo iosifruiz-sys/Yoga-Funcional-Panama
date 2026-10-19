@@ -1,0 +1,26 @@
+{
+  "bookingUrl": "https://wa.me/50765434870?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20las%20clases%20de%20Yoga%20Funcional.",
+  "classes": [
+    {
+      "day": "tuesday",
+      "startTime": "18:15",
+      "studio": "Clayton",
+      "classType": "group",
+      "bookingUrl": "https://wa.me/50765434870?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20las%20clases%20de%20Yoga%20Funcional."
+    },
+    {
+      "day": "thursday",
+      "startTime": "18:15",
+      "studio": "Clayton",
+      "classType": "group",
+      "bookingUrl": "https://wa.me/50765434870?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20las%20clases%20de%20Yoga%20Funcional."
+    },
+    {
+      "day": "saturday",
+      "startTime": "10:00",
+      "studio": "Clayton",
+      "classType": "group",
+      "bookingUrl": "https://wa.me/50765434870?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20las%20clases%20de%20Yoga%20Funcional."
+    }
+  ]
+}

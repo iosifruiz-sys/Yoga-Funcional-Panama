@@ -290,6 +290,120 @@ collections:
             widget: string
             hint: "CLASES / ЗАНЯТИЯ — ссылка индивидуальных и персональных занятий для обоих языков. Solo las clases individuales y personales; no cambia otros apartados."
 
+  - name: schedule
+    label: Horarios
+    format: json
+    editor:
+      preview: false
+    files:
+      - name: schedule_classes
+        label: Horarios — Clases grupales
+        file: src/data/schedule/classes.json
+        fields:
+          - label: Enlace del botón general de reserva
+            name: bookingUrl
+            widget: string
+            pattern: ['^https://[^\s]+$', 'Usa una URL HTTPS completa, incluido https://wa.me/.']
+            hint: "Botón general de HORARIOS en ES y RU. Es independiente de los enlaces de cada clase y no cambia HERO ni CLASES."
+          - label: Clases grupales
+            name: classes
+            widget: list
+            required: false
+            default: []
+            summary: "{{fields.day}} / {{fields.startTime}} / {{fields.studio}}"
+            hint: "Solo clases grupales. Se ordenan de lunes a domingo y por hora; admite varias clases al día. El listado actual muestra solo día y hora. Los demás datos se guardan para un futuro calendario. La cuadrícula de escritorio mantiene tres columnas y crea filas adicionales."
+            fields:
+              - label: Día
+                name: day
+                widget: select
+                options:
+                  - { label: Lunes, value: monday }
+                  - { label: Martes, value: tuesday }
+                  - { label: Miércoles, value: wednesday }
+                  - { label: Jueves, value: thursday }
+                  - { label: Viernes, value: friday }
+                  - { label: Sábado, value: saturday }
+                  - { label: Domingo, value: sunday }
+              - label: Hora de inicio (HH:mm)
+                name: startTime
+                widget: string
+                pattern: ['^(?:[01][0-9]|2[0-3]):[0-5][0-9]$', 'Usa HH:mm, de 00:00 a 23:59 (por ejemplo 18:15).']
+                hint: "Hora local, sin conversión de zona horaria. El sitio conserva el formato AM/PM."
+              - { label: Estudio / lugar, name: studio, widget: string, hint: "El sitio actual solo indica Clayton; sustituye esta referencia por el nombre real cuando lo conozcas. No se muestra por clase en este listado." }
+              - label: Tipo de clase
+                name: classType
+                widget: select
+                default: group
+                options:
+                  - { label: Clase grupal, value: group }
+              - label: Enlace de reserva de esta clase
+                name: bookingUrl
+                widget: string
+                pattern: ['^https://[^\s]+$', 'Usa una URL HTTPS de WhatsApp o del estudio.']
+                hint: "Se guarda para esta clase. No sustituye el botón general ni se muestra como enlace adicional."
+      - name: schedule_es
+        label: Horarios ES
+        file: src/data/schedule/es.json
+        fields:
+          - { label: Número y nombre de sección, name: number, widget: string }
+          - label: Título móvil (dos líneas)
+            name: title
+            widget: object
+            fields:
+              - { label: Línea 1, name: first, widget: string }
+              - { label: Línea 2, name: second, widget: string }
+          - label: Título de escritorio ES (dos líneas)
+            name: desktopTitle
+            widget: object
+            fields:
+              - { label: Línea 1, name: first, widget: string }
+              - { label: Línea 2, name: second, widget: string }
+          - { label: Etiqueta accesible de información, name: info, widget: string }
+          - { label: Tipo mostrado en la franja, name: kind, widget: string }
+          - { label: Etiqueta accesible del listado, name: label, widget: string }
+          - { label: Nombre mostrado en la franja, name: program, widget: string }
+          - { label: Lugar mostrado en la franja, name: location, widget: string }
+          - { label: Texto del botón general, name: reserve, widget: string }
+          - label: Nombres de los siete días
+            name: days
+            widget: object
+            fields:
+              - { label: Lunes, name: monday, widget: string }
+              - { label: Martes, name: tuesday, widget: string }
+              - { label: Miércoles, name: wednesday, widget: string }
+              - { label: Jueves, name: thursday, widget: string }
+              - { label: Viernes, name: friday, widget: string }
+              - { label: Sábado, name: saturday, widget: string }
+              - { label: Domingo, name: sunday, widget: string }
+      - name: schedule_ru
+        label: Расписание RU
+        file: src/data/schedule/ru.json
+        fields:
+          - { label: Номер и название раздела, name: number, widget: string }
+          - label: Заголовок (две строки)
+            name: title
+            widget: object
+            fields:
+              - { label: Строка 1, name: first, widget: string }
+              - { label: Строка 2, name: second, widget: string }
+          - { label: Подпись информации для скринридеров, name: info, widget: string }
+          - { label: Тип занятия в общей строке, name: kind, widget: string }
+          - { label: Подпись списка для скринридеров, name: label, widget: string }
+          - { label: Название в общей строке, name: program, widget: string }
+          - { label: Место в общей строке, name: location, widget: string }
+          - { label: Подпись общей кнопки, name: reserve, widget: string }
+          - label: Названия семи дней недели
+            name: days
+            widget: object
+            fields:
+              - { label: Понедельник, name: monday, widget: string }
+              - { label: Вторник, name: tuesday, widget: string }
+              - { label: Среда, name: wednesday, widget: string }
+              - { label: Четверг, name: thursday, widget: string }
+              - { label: Пятница, name: friday, widget: string }
+              - { label: Суббота, name: saturday, widget: string }
+              - { label: Воскресенье, name: sunday, widget: string }
+
   - name: blog_es
     label: Blog ES
     label_singular: Artículo ES
