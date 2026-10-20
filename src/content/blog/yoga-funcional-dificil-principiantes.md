@@ -26,7 +26,7 @@ tags:
 draft: false
 cover:
   image: "../../../public/images/yoga-funcional-demasiado-dificil.png"
-  alt: "Persona practicando una postura de fuerza y equilibrio sobre un mat de yoga"
+  alt: "Cartel «Demasiado Difícil» con una persona en postura de meditación"
 ---
 
 A veces, después de una primera clase, alguien me dice:
