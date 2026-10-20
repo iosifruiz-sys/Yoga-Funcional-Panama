@@ -10,6 +10,14 @@ const alternateUrl=translationSlug ? localizedPath(translationLocale,`blog/${tra
 const alternates=translationSlug ? {es:locale==='es'?canonical:alternateUrl,ru:locale==='ru'?canonical:alternateUrl}:undefined;
 const personId=`${new URL(import.meta.env.BASE_URL,Astro.site).href}#person`; const hasOwnImage=Boolean(data.socialImage||data.cover); const inheritedImage=!hasOwnImage?translatedPost?.data.socialImage??translatedPost?.data.cover?.image:undefined; const source=data.socialImage??data.cover?.image??inheritedImage; const cover=data.cover??(inheritedImage?{image:inheritedImage,alt:translatedPost?.data.cover?.alt??data.title}:undefined); const image=source?await getImage({src:source}):undefined; const socialImageUrl=image?new URL(image.src,Astro.site):undefined;
 const articleStructuredData={'@type':'BlogPosting','@id':`${canonical.href}#article`,headline:data.title,description:data.description,datePublished:data.publishDate.toISOString(),...(data.updatedDate?{dateModified:data.updatedDate.toISOString()}:{}),inLanguage:locale==='es'?'es-PA':'ru',mainEntityOfPage:canonical.href,url:canonical.href,author:{'@id':personId},...(socialImageUrl?{image:socialImageUrl.href}:{})};
+const articleContent = await Astro.slots.render('default');
+// Preserve existing editorial FAQ sections instead of appending a duplicate.
+const articleHeadings = [...articleContent.matchAll(/<h[2-6]\b[^>]*>([\s\S]*?)<\/h[2-6]>/gi)]
+  .map(([, heading]) => heading.replace(/<[^>]*>/g, '').trim());
+const hasVisibleFaq = articleHeadings.some((heading) => /^(?:preguntas frecuentes|частые вопросы|вопросы и ответы|faq)(?:\s|[:：?—–-]|$)/i.test(heading))
+  || Boolean(data.faq?.length && data.faq.every(({ question }) => articleHeadings.includes(question)));
+const showFaq = Boolean(data.faq?.length) && !hasVisibleFaq;
+const faqTitle = locale === 'es' ? 'Preguntas frecuentes' : 'Частые вопросы';
 const faqStructuredData=data.faq?.length?{'@context':'https://schema.org','@type':'FAQPage','@id':`${canonical.href}#faq`,mainEntity:data.faq.map(({question,answer})=>({'@type':'Question',name:question,acceptedAnswer:{'@type':'Answer',text:answer}}))}:undefined;
 const formatDate=(date:Date)=>[date.getUTCDate(),date.getUTCMonth()+1,date.getUTCFullYear()].map(part=>String(part).padStart(2,'0')).join('.'); const blogUrl=localizedPath(locale,'blog/');
 ---
@@ -17,6 +25,15 @@ const formatDate=(date:Date)=>[date.getUTCDate(),date.getUTCMonth()+1,date.getUT
 {faqStructuredData&&<script type="application/ld+json" set:html={JSON.stringify(faqStructuredData).replace(/</g, '\\u003c')} />}
 <Header locale={locale} alternateUrl={alternateUrl}/><main id="contenido" class="blog-main blog-article-main"><article class="blog-article">
 <header class="blog-article-header"><div class="blog-article-toolbar"><div class="blog-article-meta"><p>{t.authorPrefix && `${t.authorPrefix} `}<a class="blog-author-link" href={`${localizedPath(locale)}#sobre-mi`}>{t.authorName}</a></p><time datetime={data.publishDate.toISOString()}>{formatDate(data.publishDate)}</time>{data.updatedDate&&<time datetime={data.updatedDate.toISOString()}>{t.updated}: {formatDate(data.updatedDate)}</time>}<ShareButton title={data.title} locale={locale}/></div><p class="blog-post-tags">{data.tags.map((tag) => <a href={localizedBlogTagPath(locale, tag)} aria-label={`${t.tagLinkLabel}: ${t.tags[tag]}`}>#{t.tags[tag]}</a>)}</p></div><h1>{data.title}</h1><p class="blog-article-description">{data.description}</p></header>
-{cover&&<figure class="blog-article-cover"><Image src={cover.image} alt={cover.alt} widths={[768,1200,1600]} sizes="100vw"/></figure>}<div class="blog-body"><slot/></div>
+{cover&&<figure class="blog-article-cover"><Image src={cover.image} alt={cover.alt} widths={[768,1200,1600]} sizes="100vw"/></figure>}<div class="blog-body">
+  <Fragment set:html={articleContent} />
+  {showFaq && <section aria-labelledby="article-faq-title">
+    <h2 id="article-faq-title">{faqTitle}</h2>
+    {data.faq?.map(({ question, answer }) => <>
+      <h3>{question}</h3>
+      <p>{answer}</p>
+    </>)}
+  </section>}
+</div>
 <footer class="blog-article-footer"><ShareButton title={data.title} locale={locale} prominent/><nav class="blog-article-navigation" aria-label={t.articleNav}>{(previousPost||nextPost)&&<div class="blog-adjacent-links">{previousPost&&<a class="blog-adjacent-link blog-adjacent-link--previous" href={`${blogUrl}${slugForPost(previousPost)}/`}><span class="blog-adjacent-direction">{t.previous}</span><span class="blog-adjacent-title">{previousPost.data.title}</span></a>}{nextPost&&<a class="blog-adjacent-link blog-adjacent-link--next" href={`${blogUrl}${slugForPost(nextPost)}/`}><span class="blog-adjacent-direction">{t.next}</span><span class="blog-adjacent-title">{nextPost.data.title}</span></a>}</div>}<a class="blog-all-articles" href={blogUrl}>{t.all}</a></nav></footer>
 </article></main><Footer locale={locale}/></BaseLayout>

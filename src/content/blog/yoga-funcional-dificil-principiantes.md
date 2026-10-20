@@ -1,6 +1,21 @@
 ---
 title: "¿Por qué Yoga Funcional parece difícil?"
 description: "El Yoga Funcional puede parecer difícil al principio. Aprende a adaptar la práctica a tus capacidades, encontrar tus límites y avanzar sin competir ni forzar."
+ogTitle: "¿Yoga Funcional parece difícil? Cómo adaptar la práctica"
+ogDescription: "Que una práctica te cueste no significa que tengas que aguantar. Cómo adaptar Yoga Funcional a tus capacidades de hoy, sin competir ni forzar."
+faq:
+  - question: "¿Por qué el Yoga Funcional puede sentirse difícil al principio?"
+    answer: "Porque puede exigir sostener el propio peso, mantener el equilibrio, coordinar movimientos y controlar la respiración al mismo tiempo. Al empezar, el cuerpo se enfrenta a tareas que todavía no realiza con facilidad, incluso si están adaptadas al nivel de la persona."
+  - question: "¿Necesitas estar en forma para empezar Yoga Funcional?"
+    answer: "No. No necesitas desarrollar fuerza, equilibrio o flexibilidad antes de empezar a trabajarlos. La práctica se adapta a tus capacidades actuales, y una primera clase muestra dónde estás hoy, no todo lo que podrás llegar a hacer."
+  - question: "¿Qué hacemos si aparece dolor o el malestar es demasiado intenso?"
+    answer: "Reducimos. La práctica no consiste en atravesar el dolor ni en soportar más. Trabajamos con el cuerpo que tenemos hoy, sin competir con otras personas ni exigirnos hacer más que ayer."
+  - question: "¿Cómo se adapta Yoga Funcional a diferentes niveles?"
+    answer: "Una misma tarea puede adaptarse usando un apoyo, reduciendo la amplitud, acortando el tiempo de permanencia, cambiando la posición de manos o pies, eligiendo una variante más estable o parando antes. Son distintas maneras de trabajar, no versiones buenas y malas de una postura."
+  - question: "¿Por qué algunas tareas cuestan aunque lleves años practicando yoga?"
+    answer: "Los años de práctica no indican por sí solos qué capacidades se han entrenado. Si la práctica se ha centrado en estiramientos, relajación o secuencias conocidas, otras tareas de fuerza, equilibrio, coordinación o control corporal pueden seguir resultando difíciles."
+  - question: "¿Se busca hacer las posturas lo más difíciles posible?"
+    answer: "No. La dificultad por sí misma no es un objetivo. Una variante se hace más compleja cuando esa complejidad cumple una función concreta y la persona tiene la fuerza, movilidad y control necesarios."
 publishDate: 2026-09-21T20:56:00-05:00
 author: "Iosif Ruiz"
 category: "Yoga Funcional"
@@ -11,7 +26,7 @@ tags:
 draft: false
 cover:
   image: "../../../public/images/yoga-funcional-demasiado-dificil.png"
-  alt: "Persona practicando una postura de fuerza y equilibrio sobre un mat de yoga"
+  alt: "Cartel «Demasiado Difícil» con una persona en postura de meditación"
 ---
 
 A veces, después de una primera clase, alguien me dice:
