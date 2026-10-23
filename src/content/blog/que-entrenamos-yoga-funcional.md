@@ -16,6 +16,7 @@ cover:
     voluntad en Yoga Funcional
 socialImage: ../../../public/images/yoga-funcional-fuerza-movilidad-atencion.png
 draft: false
+translationSlug: "sila-gibkost-vnimanie-volya-funkcionalnaya-yoga"
 ---
 
 Imagínate que necesitas **levantar un refrigerador urgentemente**. No preguntes por qué.
