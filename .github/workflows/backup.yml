@@ -1,0 +1,44 @@
+name: Backup Website
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backup:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: main
+          persist-credentials: false
+      - name: Snapshot all available refs and verify restoration
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          AUTH=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)
+          echo "::add-mask::$AUTH"
+          git -c "http.extraHeader=AUTHORIZATION: basic $AUTH" clone --mirror \
+            "https://github.com/${GITHUB_REPOSITORY}.git" "$RUNNER_TEMP/website.git"
+          unset AUTH GH_TOKEN
+          python3 scripts/backup-website.py "$RUNNER_TEMP/website.git" "$RUNNER_TEMP/website-backup"
+      - name: Upload verified backup
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: website-backup-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/website-backup/*
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: ${{ github.retention_days }}
+      - name: Report download link
+        env:
+          ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
+        run: |
+          cat "$RUNNER_TEMP/website-backup/REPORT.md" >> "$GITHUB_STEP_SUMMARY"
+          printf '\nDownload: %s\n' "$ARTIFACT_URL" >> "$GITHUB_STEP_SUMMARY"
