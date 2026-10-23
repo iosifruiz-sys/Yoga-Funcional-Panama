@@ -15,8 +15,8 @@ slug:
   sanitize_replacement: "-"
 
 collections:
-  - name: hero
-    label: Hero
+  - name: homepage
+    label: Página principal
     format: json
     editor:
       preview: false
@@ -60,12 +60,6 @@ collections:
           - { label: Координаты, name: coordinates, widget: string }
           - { label: Подпись о занятиях, name: soon, widget: string }
 
-  - name: method
-    label: Método
-    format: json
-    editor:
-      preview: false
-    files:
       - name: method_es
         label: Método ES
         file: src/data/method/es.json
@@ -193,12 +187,6 @@ collections:
                   - { label: Описание, name: description, widget: string }
           - { label: Заключительная фраза, name: end, widget: string }
 
-  - name: classes
-    label: Clases
-    format: json
-    editor:
-      preview: false
-    files:
       - name: classes_es
         label: Clases ES
         file: src/data/classes/es.json
@@ -290,12 +278,6 @@ collections:
             widget: string
             hint: "CLASES / ЗАНЯТИЯ — ссылка индивидуальных и персональных занятий для обоих языков. Solo las clases individuales y personales; no cambia otros apartados."
 
-  - name: schedule
-    label: Horarios
-    format: json
-    editor:
-      preview: false
-    files:
       - name: schedule_classes
         label: Horarios — Clases grupales
         file: src/data/schedule/classes.json
@@ -404,12 +386,6 @@ collections:
               - { label: Суббота, name: saturday, widget: string }
               - { label: Воскресенье, name: sunday, widget: string }
 
-  - name: about
-    label: Sobre mí
-    format: json
-    editor:
-      preview: false
-    files:
       - name: about_es
         label: Sobre mí ES
         file: src/data/about/es.json
@@ -461,12 +437,6 @@ collections:
             widget: image
             hint: "Una foto para ES y RU. Recomendado: retrato aprox. 2:3, como el PNG actual de 1025 × 1535 px, con fondo transparente y composición similar. Prepara encuadre, proporciones y tamaño antes de subir; no hay recorte ni procesamiento automático. Общее фото ES/RU: заранее подготовьте портрет около 2:3, прозрачный фон и композицию как у исходного PNG 1025 × 1535. Автоматического кадрирования и обработки нет."
 
-  - name: contact
-    label: Contacto
-    format: json
-    editor:
-      preview: false
-    files:
       - name: contact_es
         label: Contacto ES
         file: src/data/contact/es.json
