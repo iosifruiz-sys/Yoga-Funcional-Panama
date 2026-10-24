@@ -1,0 +1,107 @@
+---
+import type { PracticeResource } from '../lib/resources';
+interface Props { resources: PracticeResource[] }
+const { resources } = Astro.props;
+const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CUESTIONARIO', test: 'TEST' };
+---
+<section class="practice-index" data-practice-index>
+  <header class="practice-heading">
+    <p>RECURSOS GRATUITOS</p>
+    <h1>Índice de<br />práctica<span aria-hidden="true">↗</span></h1>
+  </header>
+  {resources.length ? (
+    <ol class="practice-list">
+      {resources.map((resource, index) => (
+        <li>
+          <button type="button" class="practice-row" data-resource-trigger={resource.id}
+            aria-haspopup="dialog" aria-controls="practice-preview" aria-expanded="false">
+            <span class="practice-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <span class="practice-title">{resource.title}</span>
+            <span class="practice-kind">{labels[resource.type]}</span>
+            <span class="practice-arrow" aria-hidden="true">↗</span>
+          </button>
+          <noscript><a class="practice-fallback" href={resource.href} download={resource.download}>{resource.title} ↗</a></noscript>
+        </li>
+      ))}
+    </ol>
+  ) : <p class="practice-empty">Todavía no hay recursos publicados.</p>}
+  <dialog id="practice-preview" class="practice-preview" aria-labelledby="practice-preview-title" aria-describedby="practice-preview-description">
+    <button class="practice-close" type="button" aria-label="Cerrar vista previa">CERRAR <span aria-hidden="true">×</span></button>
+    <div class="practice-preview-content" data-preview-content>
+      <div class="practice-visual">
+        <img data-preview-image alt="" hidden />
+        <div class="practice-type-visual" data-preview-typography aria-hidden="true"><span>YOGA FUNCIONAL</span><strong data-preview-cover-title></strong></div>
+      </div>
+      <div class="practice-preview-copy">
+        <p class="practice-preview-kind" data-preview-kind></p>
+        <h2 id="practice-preview-title"></h2>
+        <p id="practice-preview-description"></p>
+        <a class="practice-action" data-preview-action></a>
+        <a class="practice-article" data-preview-article hidden>LEER ARTÍCULO <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </dialog>
+  <script type="application/json" data-practice-data set:html={JSON.stringify(resources).replace(/</g, '\\u003c')} />
+</section>
+<script>
+  import { setupPracticeIndex } from '../scripts/practicePreview';
+  document.querySelectorAll<HTMLElement>('[data-practice-index]').forEach(setupPracticeIndex);
+</script>
+<style>
+  .practice-index { background: var(--color-light); min-height: calc(100svh - 4.25rem); padding: clamp(2rem, 6vw, 6rem) var(--gutter) clamp(3rem, 7vw, 7rem); }
+  .practice-heading > p { margin: 0 0 2rem; font: 1.25rem var(--font-utility); letter-spacing: .05em; }
+  .practice-heading h1 { margin: 0 0 clamp(3rem, 6vw, 6rem); font: 900 clamp(3.8rem, 9vw, 9rem)/.85 var(--font-display); text-transform: uppercase; letter-spacing: -.035em; }
+  .practice-heading h1 > span { display: inline-block; margin-left: .2em; color: var(--color-orange); font-family: var(--font-body); font-size: .7em; }
+  .practice-list { list-style: none; padding: 0; margin: 0; border-top: var(--border); }
+  .practice-list > li { border-bottom: var(--border); }
+  .practice-row { width: 100%; min-width: 0; display: grid; grid-template-columns: 3.5rem minmax(0, 1fr) auto 2rem; align-items: baseline; gap: 1rem; padding: 1.7rem 0; border: 0; color: inherit; background: transparent; text-align: left; cursor: pointer; }
+  .practice-number { color: var(--color-orange); font: 1.6rem var(--font-utility); }
+  .practice-title { font: 900 clamp(1.8rem, 4.1vw, 4.5rem)/1 var(--font-display); text-transform: uppercase; overflow-wrap: anywhere; }
+  .practice-kind { font: 1.1rem var(--font-utility); letter-spacing: .04em; }
+  .practice-arrow { font: 1.5rem var(--font-body); }
+  .practice-row[aria-expanded='true'] .practice-arrow { color: var(--color-orange); }
+  .practice-row:focus-visible { outline-offset: -4px; }
+  .practice-fallback { display: block; padding: 1rem 0; }
+  .practice-empty { border-block: var(--border); margin: 0; padding: 2rem 0; font-size: 1rem; }
+  .practice-preview { position: fixed; inset: auto; margin: 0; padding: 0; width: min(26rem, calc(100vw - 2rem)); max-width: none; max-height: calc(100svh - 6.25rem); overflow: auto; overscroll-behavior: contain; border: var(--border); background: var(--color-warm); color: var(--color-dark); box-shadow: .5rem .5rem 0 var(--color-dark); opacity: 0; transform: translateY(6px) scale(.98); transform-origin: left center; transition: opacity 120ms cubic-bezier(.23,1,.32,1), transform 120ms cubic-bezier(.23,1,.32,1); z-index: 30; }
+  .practice-preview[data-visible] { opacity: 1; transform: translateY(0) scale(1); transition-duration: 180ms; }
+  .practice-close { display: flex; justify-content: space-between; align-items: center; width: 100%; padding: .65rem 1rem; border: 0; border-bottom: var(--border); background: var(--color-warm); color: inherit; font: 1rem var(--font-utility); letter-spacing: .04em; cursor: pointer; }
+  .practice-close > span { font: 1.5rem/1 var(--font-body); }
+  .practice-preview-content { opacity: 1; transition: opacity 120ms cubic-bezier(.23,1,.32,1); }
+  .practice-preview-content[data-changing] { opacity: 0; }
+  .practice-visual { border-bottom: var(--border); }
+  .practice-visual img { display: block; width: 100%; height: 12rem; object-fit: contain; }
+  .practice-visual img[hidden], .practice-type-visual[hidden], .practice-article[hidden] { display: none; }
+  .practice-type-visual { padding: 1.25rem; min-height: 11rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1.5rem; }
+  .practice-type-visual > span { font: 1rem var(--font-utility); letter-spacing: .04em; }
+  .practice-type-visual strong { max-width: 100%; font: 900 2.5rem/.95 var(--font-display); text-transform: uppercase; overflow-wrap: anywhere; }
+  .practice-preview-copy { padding: 1.25rem; }
+  .practice-preview-kind { margin: 0 0 1rem; font: 1.1rem var(--font-utility); letter-spacing: .05em; }
+  .practice-preview-copy h2 { margin: 0; font: 700 1.25rem/1.2 var(--font-body); overflow-wrap: anywhere; }
+  .practice-preview-copy > p:not(.practice-preview-kind) { font: .95rem/1.5 var(--font-body); margin: 1rem 0 1.5rem; }
+  .practice-action { display: flex; justify-content: space-between; gap: 1rem; padding: .9rem 1rem; background: var(--color-orange); color: var(--color-dark); font: 700 .85rem var(--font-body); text-decoration: none; transition: transform 120ms cubic-bezier(.23,1,.32,1); }
+  .practice-action:active { transform: scale(.98); }
+  .practice-article { display: inline-block; margin-top: 1rem; font: 1rem var(--font-utility); letter-spacing: .03em; text-underline-offset: .2em; }
+  .practice-preview::backdrop { background: rgba(23,23,20,.45); }
+  :global(html.practice-sheet-open) { overflow: hidden; }
+  .practice-preview[data-instant], .practice-preview[data-instant] .practice-preview-content { transition: none; }
+  @media (hover: hover) and (pointer: fine) { .practice-row:hover .practice-arrow { color: var(--color-orange); } }
+  @media (max-width: 61.999rem), (hover: none), (pointer: coarse) {
+    .practice-preview { inset: auto 0 0; width: 100%; max-height: calc(100svh - 2rem); padding-bottom: env(safe-area-inset-bottom); border-bottom: 0; box-shadow: none; transform: translateY(12px); }
+    .practice-preview[data-visible] { transform: translateY(0); }
+  }
+  @media (max-width: 37.5rem) {
+    .practice-heading h1 { font-size: clamp(3.2rem, 14vw, 5rem); }
+    .practice-row { grid-template-columns: 2rem minmax(0, 1fr) 1.5rem; gap: .65rem; padding: 1.25rem 0; }
+    .practice-number { font-size: 1.3rem; }
+    .practice-title { font-size: clamp(1.5rem, 7vw, 2.5rem); }
+    .practice-kind { grid-column: 2; grid-row: 2; font-size: .95rem; }
+    .practice-arrow { grid-column: 3; grid-row: 1; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .practice-preview, .practice-preview[data-visible] { transform: none; transition: opacity 100ms ease; }
+    .practice-preview-content { transition-duration: 100ms; }
+    .practice-action { transition: none; }
+    .practice-action:active { transform: none; }
+  }
+</style>
