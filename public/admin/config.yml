@@ -510,7 +510,10 @@ collections:
         pattern: "false"
     fields:
       - { label: Título, name: title, widget: string }
+      - { label: Título SEO, name: seoTitle, widget: string, required: false, hint: "Opcional. Cambia el título del buscador sin cambiar el H1 del artículo." }
       - { label: Descripción, name: description, widget: text }
+      - { label: Título Open Graph, name: ogTitle, widget: string, required: false }
+      - { label: Descripción Open Graph, name: ogDescription, widget: text, required: false }
       - label: Fecha de publicación
         name: publishDate
         widget: datetime
@@ -544,11 +547,11 @@ collections:
         fields:
           - { label: Imagen, name: image, widget: image }
           - { label: Texto alternativo, name: alt, widget: string }
-      - label: Imagen social
+      - label: Imagen Open Graph (independiente)
         name: socialImage
         widget: image
         required: false
-        hint: "Opcional. Si se omite, el sitio usa la portada."
+        hint: "Opcional. Se puede reemplazar sin cambiar la portada, el texto ni el PDF. Si se omite, el sitio usa la portada."
       - label: Borrador
         name: draft
         widget: boolean
