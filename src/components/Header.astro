@@ -1,13 +1,16 @@
 ---
 import { ui, localizedPath, type Locale } from '../i18n';
+import { resourceNavigation } from '../data/resource-navigation';
 interface Props { locale?: Locale; alternateUrl?: string }
 const { locale = 'es', alternateUrl } = Astro.props;
 const t = ui[locale];
 const home = localizedPath(locale);
+const resources = resourceNavigation[locale];
 const links = [
   [t.nav[0], `${home}#metodo`], [t.nav[1], `${home}#clases`],
   [t.nav[2], `${home}#horarios`], [t.nav[3], `${home}#sobre-mi`],
   [t.nav[4], localizedPath(locale, 'blog/')],
+  ...(resources.path ? [[resources.label, localizedPath(locale, resources.path)]] : []),
 ];
 const fallbackAlternate = localizedPath(locale === 'es' ? 'ru' : 'es');
 const bookingUrl = 'https://wa.me/50762331434?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20las%20clases%20de%20Yoga%20Funcional.';
