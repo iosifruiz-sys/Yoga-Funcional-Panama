@@ -2,7 +2,8 @@
 // No fixture is an approved resource, and no fixture enters the production build.
 import { chromium, expect } from '@playwright/test';
 import { spawn } from 'node:child_process';
-import { mkdir, writeFile, unlink, access } from 'node:fs/promises';
+import { mkdir, readFile, writeFile, unlink, access } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
 
 const output = process.env.RESOURCES_REVIEW_OUTPUT;
@@ -54,8 +55,8 @@ const eligible = {es:await getPracticeResources('es'),ru:await getPracticeResour
     await page.setViewportSize({ width, height:width < 992 ? 844 : 1000 });
     await page.goto(serverUrl + '/recursos/');
     await page.evaluate(() => document.fonts.ready);
-    await expect(page.locator('.practice-row')).toHaveCount(0);
-    await expect(page.getByText('¿Qué tan móvil eres?', {exact:true})).toHaveCount(0);
+    await expect(page.locator('.practice-row')).toHaveCount(1);
+    await expect(page.locator('.practice-title')).toHaveText('¿Qué tan móvil eres?');
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBe(width);
     await expect(page.locator('link[rel=canonical]')).toHaveAttribute('href','https://iosifruiz.com/recursos/');
     if ([390,1440].includes(width)) {
@@ -63,6 +64,31 @@ const eligible = {es:await getPracticeResources('es'),ru:await getPracticeResour
       await page.screenshot({path:resolve(output,`resources-public-${width}.png`),fullPage:true});
     }
   }
+  const expectedHash = createHash('sha256').update(await readFile('public/resources/que-tan-movil-eres.pdf')).digest('hex');
+  for (const width of [390,1440]) {
+    const real = await browser.newPage({viewport:{width,height:width===390?844:1000},hasTouch:width===390});
+    real.on('pageerror',(error)=>errors.push(error.message));
+    await real.goto(serverUrl+'/recursos/');
+    await real.addStyleTag({content:'astro-dev-toolbar {display:none}'});
+    await real.evaluate(()=>document.fonts.ready);
+    if(width===1440) await real.locator('.practice-row').hover({position:{x:120,y:20}});
+    else await real.locator('.practice-row').click();
+    await expect(real.locator('.practice-preview')).toBeVisible();
+    await expect(real.locator('[data-preview-image]')).toBeVisible();
+    await real.locator('[data-preview-image]').evaluate(img=>img.decode());
+    await expect(real.locator('[data-preview-article]')).toBeHidden();
+    await real.waitForTimeout(250);
+    await real.screenshot({path:resolve(output,`resources-real-preview-${width}.png`)});
+    const downloaded=real.waitForEvent('download');
+    await real.locator('[data-preview-action]').click();
+    const download=await downloaded;
+    expect(await download.failure()).toBeNull();
+    expect(download.suggestedFilename()).toBe('que-tan-movil-eres.pdf');
+    const received=createHash('sha256').update(await readFile(await download.path())).digest('hex');
+    expect(received).toBe(expectedHash);
+    await real.close();
+  }
+  console.log('PASS real PDF preview and byte-identical browser downloads: desktop/mobile');
   for (const width of [390,1440]) {
     await page.setViewportSize({ width, height:900 });
     for (const path of ['/','/ru/','/blog/','/ru/blog/']) {
@@ -97,7 +123,7 @@ const eligible = {es:await getPracticeResources('es'),ru:await getPracticeResour
   await pause(1000);
   await page.goto(serverUrl+'/resources-review-local/');
   const eligible = JSON.parse(await page.locator('#review-eligible').textContent());
-  expect(eligible.es.map(x=>x.id).sort()).toEqual(['es/__review-optional-missing','es/__review-valid']);
+  expect(eligible.es.map(x=>x.id).sort()).toEqual(['es/__review-optional-missing','es/__review-valid','es/que-tan-movil-eres']);
   expect(eligible.en.map(x=>x.id)).toEqual(['en/__review-independent']);
   expect(eligible.ru).toEqual([]);
   expect(eligible.es.find(x=>x.id.endsWith('-valid')).article).toBe('/blog/que-es-yoga-funcional/');

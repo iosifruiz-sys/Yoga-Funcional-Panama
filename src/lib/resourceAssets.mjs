@@ -22,17 +22,30 @@ export async function publicFile(path, prefix) {
   } catch { return undefined; }
 }
 
-/** @param {string} url */
-export async function reachable(url) {
-  if (!safeHttps(url)) return false;
-  try {
-    let response = await fetch(url, { method: 'HEAD', redirect: 'follow', signal: AbortSignal.timeout(6000) });
-    if (response.status === 405 || response.status === 501) {
+/**
+ * A temporary outage is not evidence that an editor-approved destination is gone.
+ * @param {string} url
+ * @returns {Promise<'available' | 'unavailable' | 'temporary'>}
+ */
+export async function checkResourceUrl(url, { attempts = 3, timeout = 4000, delay = 250, fetcher = fetch } = {}) {
+  if (!safeHttps(url)) return 'unavailable';
+  for (let attempt = 0; attempt < attempts; attempt++) {
+    try {
+      let response = await fetcher(url, { method: 'HEAD', redirect: 'follow', signal: AbortSignal.timeout(timeout) });
+      // Some CDNs deny or mishandle HEAD even when the actual link works.
+      if ([401, 403, 404, 405, 501].includes(response.status)) {
+        await response.body?.cancel();
+        response = await fetcher(url, { headers: { Range: 'bytes=0-0' }, redirect: 'follow', signal: AbortSignal.timeout(timeout) });
+      }
+      const { status, ok } = response;
+      const secure = safeHttps(response.url);
       await response.body?.cancel();
-      response = await fetch(url, { headers: { Range: 'bytes=0-0' }, redirect: 'follow', signal: AbortSignal.timeout(6000) });
-    }
-    const valid = response.ok && safeHttps(response.url);
-    await response.body?.cancel();
-    return valid;
-  } catch { return false; }
+      if (!secure) return 'unavailable';
+      if (ok) return 'available';
+      if ([400, 404, 410, 422].includes(status)) return 'unavailable';
+      // Timeouts, throttling, access challenges and 5xx remain inconclusive.
+    } catch { /* Retry network errors; do not silently remove approved content. */ }
+    if (attempt + 1 < attempts && delay) await new Promise((done) => setTimeout(done, delay));
+  }
+  return 'temporary';
 }

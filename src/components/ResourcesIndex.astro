@@ -3,10 +3,11 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
 import PracticeIndex from './PracticeIndex.astro';
-import { getPracticeResources } from '../lib/resources';
+import type { PracticeResource } from '../lib/resources';
 import { localizedPath } from '../i18n';
 
-const resources = await getPracticeResources('es');
+interface Props { resources: PracticeResource[] }
+const { resources } = Astro.props;
 const title = 'Recursos gratuitos';
 const canonical = new URL(localizedPath('es', 'recursos/'), Astro.site);
 ---

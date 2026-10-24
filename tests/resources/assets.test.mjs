@@ -1,6 +1,13 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { publicFile, reachable } from '../../src/lib/resourceAssets.mjs';
+import { createHash } from 'node:crypto';
+import { publicFile, checkResourceUrl } from '../../src/lib/resourceAssets.mjs';
+
+test('approved original PDF is unchanged and its real preview exists',async()=>{
+  const bytes=await publicFile('/resources/que-tan-movil-eres.pdf','/resources/');
+  assert.equal(createHash('sha256').update(bytes).digest('hex'),'4150c89b9df488118acf239469c3ea86c86516dff1f40caad4c6e5e5bedcd94d');
+  assert.ok((await publicFile('/resources/que-tan-movil-eres-preview.png','/resources/')).length);
+});
 
 test('public files stay inside the resources directory', async () => {
   assert.ok((await publicFile('/resources/README.md','/resources/')).length);
@@ -9,26 +16,33 @@ test('public files stay inside the resources directory', async () => {
   }
 });
 
-test('external destinations fail closed and retry unsupported HEAD with a bounded GET', async () => {
-  const originalFetch = globalThis.fetch;
+const response = (status,url='https://example.test/resource') => ({status,ok:status>=200&&status<300,url,body:{cancel:async()=>{}}});
+test('external links distinguish confirmed errors from temporary failures', async () => {
   const calls = [];
-  const response = (status,url='https://example.test/resource') => ({status,ok:status>=200&&status<300,url,body:{cancel:async()=>{}}});
-  try {
-    globalThis.fetch = async (url,options) => {calls.push({url,options});return response(200);};
-    assert.equal(await reachable('https://example.test/resource'),true);
-    assert.equal(calls[0].options.method,'HEAD');
-    assert.ok(calls[0].options.signal);
-    assert.equal(await reachable('http://example.test/resource'),false);
-    assert.equal(await reachable('javascript:alert(1)'),false);
-    assert.equal(await reachable('https://user:password@example.test/'),false);
-    assert.equal(calls.length,1);
-    globalThis.fetch = async (_url,options) => options.method==='HEAD'?response(405):response(206);
-    assert.equal(await reachable('https://example.test/resource'),true);
-    globalThis.fetch = async () => response(404);
-    assert.equal(await reachable('https://example.test/resource'),false);
-    globalThis.fetch = async () => response(200,'http://example.test/redirect');
-    assert.equal(await reachable('https://example.test/resource'),false);
-    globalThis.fetch = async () => {throw new Error('network unavailable');};
-    assert.equal(await reachable('https://example.test/resource'),false);
-  } finally {globalThis.fetch=originalFetch;}
+  const options = {delay:0,fetcher:async(url,request)=>{calls.push({url,request});return response(200);}};
+  assert.equal(await checkResourceUrl('https://example.test/resource',options),'available');
+  assert.equal(calls[0].request.method,'HEAD');
+  assert.ok(calls[0].request.signal);
+  for (const url of ['http://example.test/','javascript:alert(1)','https://user:password@example.test/']) {
+    assert.equal(await checkResourceUrl(url,options),'unavailable');
+  }
+  assert.equal(calls.length,1);
+  for(const status of [401,403,404,405,501]) {
+    const methods=[];
+    assert.equal(await checkResourceUrl('https://example.test/',{delay:0,fetcher:async(_url,request)=>{methods.push(request);return request.method==='HEAD'?response(status):response(206);}}),'available');
+    assert.equal(methods[1].headers.Range,'bytes=0-0');
+  }
+  for(const status of [400,404,410,422]) {
+    assert.equal(await checkResourceUrl('https://example.test/',{delay:0,fetcher:async()=>response(status)}),'unavailable');
+  }
+  for(const status of [408,429,500,503]) {
+    let attempts=0;
+    assert.equal(await checkResourceUrl('https://example.test/',{delay:0,fetcher:async()=>{attempts++;return response(status);}}),'temporary');
+    assert.equal(attempts,3);
+  }
+  let attempts=0;
+  assert.equal(await checkResourceUrl('https://example.test/',{delay:0,fetcher:async()=>{if(++attempts<3)throw Error('timeout');return response(200);}}),'available');
+  assert.equal(attempts,3);
+  assert.equal(await checkResourceUrl('https://example.test/',{delay:0,fetcher:async()=>{throw Error('offline');}}),'temporary');
+  assert.equal(await checkResourceUrl('https://example.test/',{delay:0,fetcher:async()=>response(200,'http://example.test/redirect')}),'unavailable');
 });

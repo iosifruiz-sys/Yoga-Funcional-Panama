@@ -44,7 +44,8 @@ export function setupPracticeIndex(root: HTMLElement) {
     title.textContent = coverTitle.textContent = resource.title;
     description.textContent = resource.description;
     kind.textContent = kinds[resource.type];
-    action.textContent = `${actions[resource.type]} ${resource.download ? '↓' : '↗'}`;
+    const label = resource.download ? `DESCARGAR ${kinds[resource.type]}` : actions[resource.type];
+    action.textContent = `${label} ${resource.download ? '↓' : '↗'}`;
     action.href = resource.href;
     action.toggleAttribute('download', resource.download);
     article.hidden = !resource.article;
