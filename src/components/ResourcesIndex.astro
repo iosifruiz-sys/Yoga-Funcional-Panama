@@ -1,0 +1,19 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import PracticeIndex from './PracticeIndex.astro';
+import type { PracticeResource } from '../lib/resources';
+import { localizedPath } from '../i18n';
+
+interface Props { resources: PracticeResource[] }
+const { resources } = Astro.props;
+const title = 'Recursos gratuitos';
+const canonical = new URL(localizedPath('es', 'recursos/'), Astro.site);
+---
+<BaseLayout title={`${title} | Yoga Funcional Panamá`} description={title} canonical={canonical} locale="es"
+  structuredData={{ '@type': 'CollectionPage', url: canonical.href, name: title, inLanguage: 'es' }}>
+  <Header locale="es" />
+  <main id="contenido"><PracticeIndex resources={resources} /></main>
+  <Footer locale="es" />
+</BaseLayout>

@@ -1,0 +1,14 @@
+{
+  "title": "¿Qué tan móvil eres?",
+  "language": "es",
+  "type": "pdf",
+  "order": 1,
+  "draft": false,
+  "approved": true,
+  "description": "Cinco experimentos de movimiento para explorar tu movilidad y comparar tus expectativas con lo que observas. PDF de 8 páginas.",
+  "file": "/resources/que-tan-movil-eres.pdf",
+  "url": "",
+  "image": "/resources/que-tan-movil-eres-preview.png",
+  "imageAlt": "Primera página de «¿Qué tan móvil eres?».",
+  "relatedArticle": ""
+}

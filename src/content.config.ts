@@ -1,6 +1,7 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { BLOG_TAG_IDS } from './lib/blogTags';
+import { resourceSchema } from './lib/resourceSchema';
 
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
@@ -25,4 +26,9 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { blog };
+const resources = defineCollection({
+  loader: glob({ pattern: '**/*.json', base: './src/content/resources' }),
+  schema: resourceSchema,
+});
+
+export const collections = { blog, resources };

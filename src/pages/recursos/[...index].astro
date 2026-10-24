@@ -1,0 +1,12 @@
+---
+import ResourcesIndex from '../../components/ResourcesIndex.astro';
+import { getPracticeResources, type PracticeResource } from '../../lib/resources';
+
+export async function getStaticPaths() {
+  const resources = await getPracticeResources('es');
+  return resources.length ? [{ params: { index: undefined }, props: { resources } }] : [];
+}
+interface Props { resources: PracticeResource[] }
+const { resources } = Astro.props;
+---
+<ResourcesIndex resources={resources} />
