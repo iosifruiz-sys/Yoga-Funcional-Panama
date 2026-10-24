@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import { localizedPath, type Locale } from '../i18n';
+import { resources } from '../data/resources';
+
+interface Props { locale: Locale }
+const { locale } = Astro.props;
+const copy = {
+  es: {
+    title: 'Recursos gratuitos',
+    description: 'Materiales educativos gratuitos de Yoga Funcional para explorar el movimiento y la movilidad.',
+    download: 'DESCARGAR PDF',
+    unavailable: 'PDF todavía no disponible',
+    languages: { es: 'EN ESPAÑOL', ru: 'EN RUSO' },
+  },
+  ru: {
+    title: 'Бесплатные материалы',
+    description: 'Бесплатные образовательные материалы Yoga Funcional для изучения движения и мобильности.',
+    download: 'СКАЧАТЬ PDF',
+    unavailable: 'PDF пока недоступен',
+    languages: { es: 'НА ИСПАНСКОМ', ru: 'НА РУССКОМ' },
+  },
+}[locale];
+const canonical = new URL(localizedPath(locale, 'recursos/'), Astro.site);
+const alternates = { es: localizedPath('es', 'recursos/'), ru: localizedPath('ru', 'recursos/') };
+const base = import.meta.env.BASE_URL;
+---
+<BaseLayout
+  title={`${copy.title} | Yoga Funcional Panamá`}
+  description={copy.description}
+  canonical={canonical}
+  locale={locale}
+  alternates={alternates}
+  structuredData={{ '@type': 'CollectionPage', url: canonical.href, name: copy.title, description: copy.description, inLanguage: locale }}
+>
+  <Header locale={locale} alternateUrl={alternates[locale === 'es' ? 'ru' : 'es']} />
+  <main id="contenido" class="resources-main">
+    <header class="resources-intro">
+      <p class="resources-marker">YOGA FUNCIONAL / {locale === 'es' ? 'RECURSOS' : 'МАТЕРИАЛЫ'}</p>
+      <h1>{copy.title}</h1>
+      <p class="resources-description">{copy.description}</p>
+    </header>
+    <ul class="resources-grid">
+      {resources.map((resource) => (
+        <li>
+          <article aria-labelledby={`resource-${resource.id}`}>
+            <div class="resource-cover">
+              {resource.cover ? (
+                <img src={`${base}${resource.cover}`} alt="" width="600" height="750" loading="lazy" />
+              ) : (
+                <div class="resource-cover-type" aria-hidden="true">
+                  <span>YOGA FUNCIONAL</span>
+                  <strong lang={resource.language}>{resource.title}</strong>
+                  <span>IOSIF RUIZ</span>
+                </div>
+              )}
+            </div>
+            <div class="resource-copy">
+              <p class="resource-format">PDF / {copy.languages[resource.language]}</p>
+              <h2 id={`resource-${resource.id}`} lang={resource.language}>{resource.title}</h2>
+              <p>{resource.description[locale]}</p>
+              {resource.pdf ? (
+                <a class="resource-download" href={`${base}${resource.pdf}`} download>{copy.download} <span aria-hidden="true">↓</span></a>
+              ) : (
+                <p class="resource-status">{copy.unavailable}</p>
+              )}
+            </div>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </main>
+  <Footer locale={locale} />
+</BaseLayout>
+
+<style>
+  .resources-main { background: var(--color-light); padding: clamp(2rem, 6vw, 6rem) var(--gutter); min-height: calc(100svh - 4.25rem); }
+  .resources-intro { border-bottom: var(--border); padding-bottom: clamp(2rem, 4vw, 4rem); }
+  .resources-marker, .resource-format { font: 1.15rem var(--font-utility); letter-spacing: .05em; margin: 0 0 1.5rem; }
+  h1 { max-width: 18ch; margin: 0; font: 900 clamp(2.7rem, 7vw, 7rem)/.95 var(--font-display); text-transform: uppercase; overflow-wrap: anywhere; }
+  .resources-description { max-width: 42rem; margin: 1.5rem 0 0; font-size: clamp(1rem, 1.5vw, 1.25rem); line-height: 1.5; }
+  .resources-grid { list-style: none; padding: 0; margin: 2rem 0 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 32rem), 1fr)); gap: 2rem; }
+  .resources-grid > li { min-width: 0; }
+  article { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); height: 100%; border: var(--border); }
+  .resource-cover { background: var(--color-warm); border-right: var(--border); }
+  .resource-cover img { display: block; width: 100%; height: auto; }
+  .resource-cover-type { min-height: 100%; aspect-ratio: 4 / 5; padding: clamp(1rem, 3vw, 2.5rem); display: flex; flex-direction: column; justify-content: space-between; gap: 2rem; }
+  .resource-cover-type span { font: 1.1rem var(--font-utility); letter-spacing: .05em; }
+  .resource-cover-type strong { font: 900 clamp(2.5rem, 4.5vw, 5rem)/.95 var(--font-display); text-transform: uppercase; overflow-wrap: anywhere; }
+  .resource-copy { min-width: 0; padding: clamp(1.25rem, 3vw, 2.5rem); display: flex; flex-direction: column; align-items: start; }
+  .resource-format { color: var(--color-muted); }
+  h2 { margin: 0; font-size: clamp(1.5rem, 2.5vw, 2rem); line-height: 1.15; overflow-wrap: anywhere; }
+  .resource-copy > p:not(.resource-format) { line-height: 1.5; }
+  .resource-download { margin-top: auto; padding: .85rem 1rem; background: var(--color-orange); font-weight: 700; text-decoration: none; }
+  .resource-status { margin-bottom: 0; padding-top: 1rem; color: var(--color-muted); }
+  @media (max-width: 37.5rem) {
+    article { grid-template-columns: minmax(0, 1fr); }
+    .resource-cover { border-right: 0; border-bottom: var(--border); }
+    .resource-cover-type { aspect-ratio: 1; }
+    .resource-cover-type strong { font-size: clamp(2.5rem, 12vw, 4rem); }
+  }
+</style>
