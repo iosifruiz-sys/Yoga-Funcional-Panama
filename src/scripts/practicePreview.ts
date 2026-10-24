@@ -13,12 +13,13 @@ export function setupPracticeIndex(root: HTMLElement) {
   const article = root.querySelector<HTMLAnchorElement>('[data-preview-article]')!;
   const closeButton = root.querySelector<HTMLButtonElement>('.practice-close')!;
   const resources: PracticeResource[] = JSON.parse(root.querySelector('[data-practice-data]')!.textContent!);
-  const rows = [...root.querySelectorAll<HTMLButtonElement>('[data-resource-trigger]')];
+  const rows = [...root.querySelectorAll<HTMLElement>('[data-resource-row]')];
   const hover = matchMedia('(min-width: 62rem) and (hover: hover) and (pointer: fine)');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   const actions = { pdf: 'DESCARGAR PDF', video: 'VER VÍDEO', audio: 'ESCUCHAR AUDIO', questionnaire: 'ABRIR CUESTIONARIO', test: 'ABRIR TEST' };
   const kinds = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CUESTIONARIO', test: 'TEST' };
-  let active: HTMLButtonElement | undefined;
+  let active: HTMLElement | undefined;
+  let opener: HTMLButtonElement | undefined;
   let closeTimer = 0;
   let swapTimer = 0;
   let finishTimer = 0;
@@ -29,12 +30,21 @@ export function setupPracticeIndex(root: HTMLElement) {
   let lastRowPoint: { x: number; y: number } | undefined;
 
   const cancelClose = () => { clearTimeout(closeTimer); clearTimeout(finishTimer); };
+  const setExpanded = (row: HTMLElement, expanded: boolean) => {
+    row.toggleAttribute('data-active', expanded);
+    row.querySelectorAll('[data-resource-open]').forEach((button) => button.setAttribute('aria-expanded', String(expanded)));
+  };
   const position = () => {
     if (!hover.matches || !active || !dialog.open) return;
     const row = active.getBoundingClientRect();
     const headerBottom = document.querySelector('.site-header')?.getBoundingClientRect().bottom ?? 0;
-    const left = Math.max(16, innerWidth - dialog.offsetWidth - 24);
+    let left = Math.max(16, innerWidth - dialog.offsetWidth - 24);
     const top = Math.max(headerBottom + 12, Math.min(row.top, innerHeight - dialog.offsetHeight - 16));
+    const arrow = active.querySelector('.practice-arrow')?.getBoundingClientRect();
+    // Keep the explicit preview button reachable when the floating panel overlaps its row.
+    if (arrow && top < arrow.bottom && top + dialog.offsetHeight > arrow.top && left < arrow.right && left + dialog.offsetWidth > arrow.left) {
+      left = Math.max(16, arrow.left - dialog.offsetWidth - 12);
+    }
     dialog.style.left = `${left}px`;
     dialog.style.top = `${top}px`;
   };
@@ -64,13 +74,14 @@ export function setupPracticeIndex(root: HTMLElement) {
   const finish = (restoreFocus: boolean) => {
     dialog.close();
     document.documentElement.classList.remove('practice-sheet-open');
-    if (restoreFocus) active?.focus({ preventScroll: true });
+    if (restoreFocus) (opener ?? active?.querySelector<HTMLButtonElement>('[data-resource-open]'))?.focus({ preventScroll: true });
     active = undefined;
+    opener = undefined;
     pinned = false;
   };
   const close = (restoreFocus = false, instant = false) => {
     cancelClose(); clearTimeout(swapTimer); generation++;
-    rows.forEach((row) => row.setAttribute('aria-expanded', 'false'));
+    rows.forEach((row) => setExpanded(row, false));
     dialog.toggleAttribute('data-instant', instant);
     dialog.removeAttribute('data-visible');
     content.removeAttribute('data-changing');
@@ -83,16 +94,17 @@ export function setupPracticeIndex(root: HTMLElement) {
     clearTimeout(closeTimer);
     closeTimer = window.setTimeout(() => close(), 150);
   };
-  const open = (row: HTMLButtonElement, interactive = false, instant = false) => {
+  const open = (row: HTMLElement, interactive = false, instant = false, trigger?: HTMLButtonElement) => {
     if (!interactive && (pinned || dialog.contains(document.activeElement))) return;
     cancelClose();
     corridor = undefined;
-    const resource = resources.find((item) => item.id === row.dataset.resourceTrigger);
+    const resource = resources.find((item) => item.id === row.dataset.resourceRow);
     if (!resource) return;
     const changed = active !== row;
     active = row;
+    opener = interactive ? trigger : undefined;
     pinned = interactive;
-    rows.forEach((item) => item.setAttribute('aria-expanded', String(item === row)));
+    rows.forEach((item) => setExpanded(item, item === row));
     dialog.toggleAttribute('data-instant', instant);
     const token = ++generation;
     clearTimeout(swapTimer);
@@ -149,7 +161,9 @@ export function setupPracticeIndex(root: HTMLElement) {
       corridor = { ...(lastRowPoint ?? { x: event.clientX, y: event.clientY }), until: performance.now() + 450 };
       scheduleClose();
     });
-    row.addEventListener('click', (event) => open(row, true, event.detail === 0));
+    row.querySelectorAll<HTMLButtonElement>('[data-resource-open]').forEach((button) => {
+      button.addEventListener('click', (event) => open(row, true, event.detail === 0, button));
+    });
   });
   document.addEventListener('pointermove', (event) => {
     if (!hover.matches || !dialog.open || pinned) return;
@@ -160,7 +174,7 @@ export function setupPracticeIndex(root: HTMLElement) {
       closeTimer = window.setTimeout(() => close(), Math.max(150, corridor!.until - performance.now()));
       return;
     }
-    const row = (event.target as Element).closest<HTMLButtonElement>('[data-resource-trigger]');
+    const row = (event.target as Element).closest<HTMLElement>('[data-resource-row]');
     if (row && rows.includes(row) && row !== active) open(row);
   });
   dialog.addEventListener('pointerenter', cancelClose);
