@@ -35,7 +35,10 @@ test('real record maps to the CMS fields without requiring an invented blog arti
   assert.equal(record.language,'es');
   assert.equal(record.approved,true);
   assert.equal(record.draft,false);
-  assert.equal(record.relatedArticle,'');
+  assert.equal(record.relatedArticle,'que-tan-movil-eres');
+  const article=await readFile(`src/content/blog/${record.relatedArticle}.md`,'utf8');
+  const metadata=yaml.load(article.match(/^---\r?\n([\s\S]*?)\r?\n---/)[1]);
+  assert.equal(metadata.draft,false);
   assert.equal(record.url,'');
   assert.ok(record.file.startsWith('/resources/'));
   assert.ok(record.image.startsWith('/resources/'));
