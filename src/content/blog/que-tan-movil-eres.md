@@ -1,16 +1,25 @@
 ---
-title: "¿Qué tan móvil eres? Cinco movimientos para conocer mejor tu cuerpo"
-seoTitle: "¿Qué tan móvil eres? 5 movimientos para descubrirlo"
-description: "Descubre cómo se mueve tu cuerpo con cinco ejercicios sencillos. Descarga gratis una guía PDF de movilidad con ilustraciones e instrucciones."
-ogTitle: "¿Qué tan bien conoces tu cuerpo?"
-ogDescription: "Cinco movimientos, un pequeño experimento y una guía gratuita para explorar tu movilidad y descubrir de qué es capaz tu cuerpo."
-publishDate: "2026-10-24"
-author: "Iosif Ruiz"
-category: "Yoga Funcional"
-tags: ["yoga","movement","mobility","body"]
+title: "¿Qué tan móvil eres? "
+seoTitle: ¿Qué tan móvil eres? 5 movimientos para descubrirlo
+description: Descubre cómo se mueve tu cuerpo con cinco ejercicios sencillos.
+  Descarga gratis una guía PDF de movilidad con ilustraciones e instrucciones.
+ogTitle: ¿Qué tan bien conoces tu cuerpo?
+ogDescription: Cinco movimientos, un pequeño experimento y una guía gratuita
+  para explorar tu movilidad y descubrir de qué es capaz tu cuerpo.
+publishDate: 2026-10-24
+author: Iosif Ruiz
+category: Yoga Funcional
+tags:
+  - yoga
+  - movement
+  - mobility
+  - body
+cover:
+  image: ../../../public/images/que-tan-movil-eres-cover.png
+  alt: Guía gratuita ¿Qué tan móvil eres? — cinco movimientos para explorar la
+    movilidad del cuerpo.
+socialImage: ../../../public/resources/que-tan-movil-eres-preview.png
 draft: false
-cover: {"image":"../../../public/images/que-tan-movil-eres-cover.png","alt":"Guía gratuita ¿Qué tan móvil eres? — cinco movimientos para explorar la movilidad del cuerpo."}
-socialImage: "../../../public/resources/que-tan-movil-eres-preview.png"
 ---
 
 ¿Qué tan bien conoces tu cuerpo? ¿Puedes levantar los brazos por encima de la cabeza sin arquear la espalda? ¿Te resulta igual de fácil girar el torso hacia ambos lados?
