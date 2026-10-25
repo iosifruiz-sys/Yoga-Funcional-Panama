@@ -9,7 +9,7 @@ author: "Iosif Ruiz"
 category: "Yoga Funcional"
 tags: ["yoga","movement","mobility","body"]
 draft: false
-cover: {"image":"../../../public/resources/que-tan-movil-eres-preview.png","alt":"Guía gratuita ¿Qué tan móvil eres? — cinco movimientos para explorar la movilidad del cuerpo."}
+cover: {"image":"../../../public/images/que-tan-movil-eres-cover.png","alt":"Guía gratuita ¿Qué tan móvil eres? — cinco movimientos para explorar la movilidad del cuerpo."}
 socialImage: "../../../public/resources/que-tan-movil-eres-preview.png"
 ---
 
