@@ -3,13 +3,18 @@ import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import yaml from 'js-yaml';
 
-test('Decap resources have independent locale records, safe publication defaults and all formats',async()=>{
+test('Decap has one Spanish Recursos collection with safe defaults and all formats',async()=>{
   const config=yaml.load(await readFile('public/admin/config.yml','utf8'));
   const names=config.collections.map(x=>x.name);
   assert.equal(new Set(names).size,names.length);
-  for(const locale of ['es','ru','en']){
+  assert.ok(!names.includes('resources_ru'));
+  assert.ok(!names.includes('resources_en'));
+  assert.equal(names.filter(name=>name.startsWith('resources')).length,1);
+  for(const locale of ['es']){
     const collection=config.collections.find(x=>x.name==='resources_'+locale);
     assert.equal(collection.folder,'src/content/resources/'+locale);
+    assert.equal(collection.label,'Recursos');
+    assert.equal(collection.create,true);
     assert.equal(collection.format,'json');
     assert.equal(collection.media_folder,'/public/resources');
     assert.equal(collection.public_folder,'/resources');
@@ -20,7 +25,8 @@ test('Decap resources have independent locale records, safe publication defaults
     assert.deepEqual(fields.get('type').options,['pdf','video','audio','questionnaire','test']);
     assert.equal(fields.get('image').required,false);
     assert.equal(fields.get('relatedArticle').required,false);
-    if(locale!=='en')assert.equal(fields.get('relatedArticle').collection,'blog_'+locale);
+    assert.equal(fields.get('relatedArticle').widget,'relation');
+    assert.equal(fields.get('relatedArticle').collection,'blog_es');
     const urlPattern=new RegExp(fields.get('url').pattern[0]);
     assert.ok(urlPattern.test('https://example.test/resource'));
     assert.ok(!urlPattern.test('https://example.test/a b'));

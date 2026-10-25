@@ -628,7 +628,7 @@ collections:
 
 
   - name: resources_es
-    label: Recursos ES
+    label: Recursos
     label_singular: Recurso ES
     folder: src/content/resources/es
     create: true
@@ -673,93 +673,3 @@ collections:
         value_field: "{{slug}}"
         required: false
         hint: "Solo se mostrará si el artículo de este idioma está publicado."
-
-  - name: resources_ru
-    label: Recursos RU
-    label_singular: Recurso RU
-    folder: src/content/resources/ru
-    create: true
-    extension: json
-    format: json
-    slug: "{{slug}}"
-    summary: "{{title}} — {{type}}"
-    sortable_fields: [order, title]
-    media_folder: /public/resources
-    public_folder: /resources
-    editor:
-      preview: false
-    fields:
-      - { label: Título aprobado, name: title, widget: string }
-      - { label: Idioma, name: language, widget: hidden, default: ru }
-      - label: Tipo de recurso
-        name: type
-        widget: select
-        options: [pdf, video, audio, questionnaire, test]
-      - { label: Orden, name: order, widget: number, value_type: int, min: 0, default: 0 }
-      - { label: Borrador, name: draft, widget: boolean, default: true }
-      - label: Contenido y destino aprobados
-        name: approved
-        widget: boolean
-        default: false
-        hint: "Activa solo tras aprobar el texto y el archivo final o enlace. Cada idioma se publica de forma independiente. Solo ES está habilitado en el sitio."
-      - { label: Descripción breve aprobada, name: description, widget: text, required: false }
-      - label: Archivo final aprobado
-        name: file
-        widget: file
-        required: false
-        hint: "Usa el archivo final sin modificar. Elige archivo O URL; no ambos."
-      - { label: URL HTTPS del recurso, name: url, widget: string, required: false, pattern: ['^https://[^\s]+$', 'Usa una URL HTTPS completa.'] }
-      - { label: Imagen opcional, name: image, widget: image, required: false }
-      - { label: Texto alternativo de la imagen, name: imageAlt, widget: string, required: false }
-      - label: Artículo relacionado (opcional)
-        name: relatedArticle
-        widget: relation
-        collection: blog_ru
-        search_fields: [title]
-        display_fields: [title]
-        value_field: "{{slug}}"
-        required: false
-        hint: "Solo se mostrará si el artículo de este idioma está publicado."
-
-  - name: resources_en
-    label: Recursos EN
-    label_singular: Recurso EN
-    folder: src/content/resources/en
-    create: true
-    extension: json
-    format: json
-    slug: "{{slug}}"
-    summary: "{{title}} — {{type}}"
-    sortable_fields: [order, title]
-    media_folder: /public/resources
-    public_folder: /resources
-    editor:
-      preview: false
-    fields:
-      - { label: Título aprobado, name: title, widget: string }
-      - { label: Idioma, name: language, widget: hidden, default: en }
-      - label: Tipo de recurso
-        name: type
-        widget: select
-        options: [pdf, video, audio, questionnaire, test]
-      - { label: Orden, name: order, widget: number, value_type: int, min: 0, default: 0 }
-      - { label: Borrador, name: draft, widget: boolean, default: true }
-      - label: Contenido y destino aprobados
-        name: approved
-        widget: boolean
-        default: false
-        hint: "Activa solo tras aprobar el texto y el archivo final o enlace. Cada idioma se publica de forma independiente. Solo ES está habilitado en el sitio."
-      - { label: Descripción breve aprobada, name: description, widget: text, required: false }
-      - label: Archivo final aprobado
-        name: file
-        widget: file
-        required: false
-        hint: "Usa el archivo final sin modificar. Elige archivo O URL; no ambos."
-      - { label: URL HTTPS del recurso, name: url, widget: string, required: false, pattern: ['^https://[^\s]+$', 'Usa una URL HTTPS completa.'] }
-      - { label: Imagen opcional, name: image, widget: image, required: false }
-      - { label: Texto alternativo de la imagen, name: imageAlt, widget: string, required: false }
-      - label: Slug del artículo EN (futuro, opcional)
-        name: relatedArticle
-        widget: string
-        required: false
-        hint: "No se mostrará hasta que exista un blog EN con el artículo publicado."
