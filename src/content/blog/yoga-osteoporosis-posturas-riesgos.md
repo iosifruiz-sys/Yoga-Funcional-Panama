@@ -312,3 +312,6 @@ https://pmc.ncbi.nlm.nih.gov/articles/PMC9304091/
 
 5. Bajaj P. et al. (2025). *Effect of yoga on balance, falls, and bone metabolism: a systematic review of randomized controlled trials in healthy individuals.* Osteoporosis International.\
 https://pubmed.ncbi.nlm.nih.gov/39607489/
+
+6. Watson S. L. et al. (2019). *High-Intensity Exercise Did Not Cause Vertebral Fractures and Improves Thoracic Kyphosis in Postmenopausal Women With Low to Very Low Bone Mass: The LIFTMOR Trial.* Osteoporosis International.\
+[https://pubmed.ncbi.nlm.nih.gov/30612163/](https://pubmed.ncbi.nlm.nih.gov/30612163/)
