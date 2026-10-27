@@ -1,17 +1,44 @@
 ---
-title: "Columna de cristal, o cómo el yoga destruye tu columna vertebral"
+title: Cómo el yoga destruye tu columna vertebral
 seoTitle: "Yoga y osteoporosis: posturas, fracturas y evidencia científica"
-description: "¿Se puede practicar yoga con osteoporosis? Puentes, torsiones, riesgos de fractura y lo que realmente dicen los estudios científicos."
-ogTitle: "Columna de cristal, o cómo el yoga destruye tu columna vertebral"
-ogDescription: "Unos prometen regenerar tus huesos con yoga. Otros prohíben hasta agacharse. ¿Qué dicen realmente los estudios?"
-publishDate: "2026-10-27"
-author: "Iosif Ruiz"
-category: "Yoga Funcional"
-tags: ["yoga","science","strength","body"]
+description: ¿Se puede practicar yoga con osteoporosis? Puentes, torsiones,
+  riesgos de fractura y lo que realmente dicen los estudios científicos.
+ogTitle: Columna de cristal, o cómo el yoga destruye tu columna vertebral
+ogDescription: Unos prometen regenerar tus huesos con yoga. Otros prohíben hasta
+  agacharse. ¿Qué dicen realmente los estudios?
+publishDate: 2026-10-27
+author: Iosif Ruiz
+category: Yoga Funcional
+tags:
+  - yoga
+  - science
+  - strength
+  - body
+cover:
+  image: ../../../public/images/yoga-osteoporosis-columna-cristal.png
+  alt: Columna vertebral de cristal con los textos «Peligroso» y «Osteoporosis».
+    Ilustración sobre yoga y osteoporosis.
+socialImage: ../../../public/images/yoga-osteoporosis-columna-cristal.png
 draft: false
-cover: {"image":"../../../public/images/yoga-osteoporosis-columna-cristal.png","alt":"Columna vertebral de cristal con los textos «Peligroso» y «Osteoporosis». Ilustración sobre yoga y osteoporosis."}
-socialImage: "../../../public/images/yoga-osteoporosis-columna-cristal.png"
-faq: [{"question":"¿Puedo practicar yoga si tengo osteoporosis?","answer":"En la mayoría de los casos, sí. Pero depende del riesgo de fractura, de si ya has tenido alguna lesión, de tu condición física y de los ejercicios que quieras hacer. Algunas posturas pueden necesitar modificaciones."},{"question":"¿Puedo hacer inclinaciones y torsiones?","answer":"No están prohibidas para todo el mundo. Lo importante es cómo las haces y cuál es tu riesgo de fractura. Hay que tener especial cuidado con las flexiones de columna profundas, repetitivas o realizadas con peso adicional, sobre todo si ya has tenido fracturas vertebrales."},{"question":"¿El yoga aumenta la densidad de los huesos?","answer":"Algunos estudios encontraron mejoras, pero todavía no tenemos pruebas suficientemente sólidas. El entrenamiento de fuerza con cargas progresivas está mucho mejor estudiado para ese objetivo."},{"question":"¿Qué hago si me duele la espalda durante una postura?","answer":"Deja de hacer el movimiento que provoca dolor. Si aparece un dolor nuevo, fuerte o que no desaparece, especialmente si tienes osteoporosis, conviene acudir al médico. Una fractura vertebral por compresión puede ocurrir incluso sin una caída."}]
+faq:
+  - question: ¿Puedo practicar yoga si tengo osteoporosis?
+    answer: En la mayoría de los casos, sí. Pero depende del riesgo de fractura, de
+      si ya has tenido alguna lesión, de tu condición física y de los ejercicios
+      que quieras hacer. Algunas posturas pueden necesitar modificaciones.
+  - question: ¿Puedo hacer inclinaciones y torsiones?
+    answer: No están prohibidas para todo el mundo. Lo importante es cómo las haces
+      y cuál es tu riesgo de fractura. Hay que tener especial cuidado con las
+      flexiones de columna profundas, repetitivas o realizadas con peso
+      adicional, sobre todo si ya has tenido fracturas vertebrales.
+  - question: ¿El yoga aumenta la densidad de los huesos?
+    answer: Algunos estudios encontraron mejoras, pero todavía no tenemos pruebas
+      suficientemente sólidas. El entrenamiento de fuerza con cargas progresivas
+      está mucho mejor estudiado para ese objetivo.
+  - question: ¿Qué hago si me duele la espalda durante una postura?
+    answer: Deja de hacer el movimiento que provoca dolor. Si aparece un dolor
+      nuevo, fuerte o que no desaparece, especialmente si tienes osteoporosis,
+      conviene acudir al médico. Una fractura vertebral por compresión puede
+      ocurrir incluso sin una caída.
 ---
 
 Al terminar las clases siempre les pregunto a mis alumnos si tienen alguna duda. Normalmente nadie dice nada. Esta vez, igual.
