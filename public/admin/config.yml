@@ -36,6 +36,9 @@ collections:
           - { label: Texto alternativo de la imagen, name: alt, widget: string }
           - { label: Frase inicial, name: quote, widget: string }
           - { label: Frase destacada, name: strong, widget: string }
+          - { label: Hero — título principal, name: offerTitle, widget: string }
+          - { label: Hero — descripción, name: offerDescription, widget: text }
+          - { label: Hero — frase final, name: offerClosing, widget: string }
           - { label: Botón de reserva, name: reserve, widget: string, hint: "Solo el botón del Hero; no cambia otros botones." }
           - { label: Ubicación, name: location, widget: string }
           - { label: Coordenadas, name: coordinates, widget: string }
