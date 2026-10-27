@@ -34,7 +34,7 @@
 
 ## 1. ¿Para qué sirve el Yoga Funcional?
 
-**Файл:** `src/content/blog/que-es-yoga-funcional.md`  
+**Файл:** `src/content/blog/que-es-yoga-funcional.md`
 **Естественность:** 7/10. **Шаблонность:** высокая. **Приоритет:** серьёзная редактура.
 
 - **Строки 32, 44:** «algo bastante curioso»; «una pregunta bastante sencilla». Объявление значимости создаёт ожидание вместо самого наблюдения. Направление: проверить необходимость подводок, сохранив личную последовательность рассуждения.
@@ -47,7 +47,7 @@
 
 ## 2. ¿Por qué Yoga Funcional parece difícil?
 
-**Файл:** `src/content/blog/yoga-funcional-dificil-principiantes.md`  
+**Файл:** `src/content/blog/yoga-funcional-dificil-principiantes.md`
 **Естественность:** 7/10. **Шаблонность:** высокая. **Приоритет:** серьёзная редактура.
 
 - **Строка 74:** «Aquí está probablemente la parte más importante». Подводка объявляет важность, хотя заголовок уже объясняет её. Направление: оценить необходимость, сохранив смысл о боли и регулировании нагрузки.
@@ -61,7 +61,7 @@
 
 ## 3. Respiración en Yoga Funcional: para qué sirve y cómo la usamos
 
-**Файл:** `src/content/blog/respiracion-yoga-funcional.md`  
+**Файл:** `src/content/blog/respiracion-yoga-funcional.md`
 **Естественность:** 7/10. **Шаблонность:** средняя. **Приоритет:** точечная редактура с пересмотром концовки.
 
 - **Строки 44, 54–56, 70:** «No buscamos respirar “bien”, sino…», «No intentamos someterla. Aprendemos a regularla», «Lo importante no es… sino…». Каждая фраза понятна, но вместе они оформляют объяснение одним способом. Направление: проверить, где контраст исправляет возможное недоразумение.
@@ -74,7 +74,7 @@
 
 ## 4. ¿Qué entrenamos en Yoga Funcional?
 
-**Файл:** `src/content/blog/que-entrenamos-yoga-funcional.md`  
+**Файл:** `src/content/blog/que-entrenamos-yoga-funcional.md`
 **Естественность:** 8/10. **Шаблонность:** средняя. **Приоритет:** точечная редактура.
 
 - **Строки 56, 84:** «aparecen cosas bastante interesantes»; «la cosa se pone todavía más interesante». Расплывчатые обещания интереса отдаляют от конкретного наблюдения и повторяются. Направление: оценить необходимость мостиков.
@@ -86,7 +86,7 @@
 
 ## 5. Cómo el yoga destruye tu columna vertebral
 
-**Файл:** `src/content/blog/yoga-osteoporosis-posturas-riesgos.md`  
+**Файл:** `src/content/blog/yoga-osteoporosis-posturas-riesgos.md`
 **Естественность:** 8/10. **Шаблонность:** низкая. **Приоритет:** точечная редактура; PR #200 уже в `main`.
 
 - **Строки 142–144:** «Desde el Polo Sur nos gritan…», «Desde el Polo Norte nos gritan…». Метафора повторяет два преувеличенных лагеря, уже представленных на строках 54–56. Она намеренно комическая, но второй заход может ощущаться излишним. Направление: проверить, развивает ли повтор спор или разыгрывает ту же шутку.
@@ -99,7 +99,7 @@
 
 ## 6. Más difícil no significa mejor, y más divertido no significa peor
 
-**Файл:** `src/content/blog/mas-dificil-no-significa-mejor.md`  
+**Файл:** `src/content/blog/mas-dificil-no-significa-mejor.md`
 **Естественность:** 8/10. **Шаблонность:** низкая. **Приоритет:** точечная редактура.
 
 - **Строка 108:** «Pero hay algo interesante». Подводка обозначает интерес вместо того, чтобы опираться на описанное ограничение метаанализа. Направление: оценить её необходимость, не меняя оговорок к исследованию.
@@ -111,7 +111,7 @@
 
 ## 7. ¿Qué tan móvil eres?
 
-**Файл:** `src/content/blog/que-tan-movil-eres.md`  
+**Файл:** `src/content/blog/que-tan-movil-eres.md`
 **Естественность:** 8/10. **Шаблонность:** низкая. **Приоритет:** можно оставить без изменений.
 
 - **Строка 27:** «los resultados pueden sorprenderte». Типичная промофраза с обещанием неожиданности, хотя сами вопросы конкретны. Направление: при следующем добровольном пересмотре оценить необходимость обещания; само по себе оно не делает текст неестественным.
