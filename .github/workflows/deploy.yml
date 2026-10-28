@@ -23,6 +23,8 @@ jobs:
         with:
           node-version: 22
       - run: npm ci
+      - name: Install PDF page renderer
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
