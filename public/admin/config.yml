@@ -61,6 +61,8 @@ collections:
           - { label: Hero — заголовок RU, name: offerTitle, widget: string }
           - { label: Hero — описание RU, name: offerDescription, widget: text }
           - { label: Hero — заключительная строка RU, name: offerClosing, widget: string }
+          - { label: Hero Mobile — заголовок RU, name: mobileOfferTitle, widget: string }
+          - { label: Hero Mobile — заключительная строка RU, name: mobileOfferClosing, widget: string }
           - { label: Кнопка записи, name: reserve, widget: string, hint: "Только кнопка Hero; остальные кнопки не меняются." }
           - { label: Место, name: location, widget: string }
           - { label: Координаты, name: coordinates, widget: string }
