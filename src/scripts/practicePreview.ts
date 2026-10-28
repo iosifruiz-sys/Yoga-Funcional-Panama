@@ -16,6 +16,62 @@ export function setupPracticeIndex(root: HTMLElement) {
   const rows = [...root.querySelectorAll<HTMLElement>('[data-resource-row]')];
   const hover = matchMedia('(min-width: 62rem) and (hover: hover) and (pointer: fine)');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+  // The selected resource is an in-page panel on desktop; mobile keeps the existing dialog.
+  const detail = root.querySelector<HTMLElement>('[data-detail-title]');
+  const detailTitle = detail!;
+  const detailNumber = root.querySelector<HTMLElement>('[data-detail-number]')!;
+  const detailKind = root.querySelector<HTMLElement>('[data-detail-kind]')!;
+  const detailKindMeta = root.querySelector<HTMLElement>('[data-detail-kind-meta]')!;
+  const detailDescription = root.querySelector<HTMLElement>('[data-detail-description]')!;
+  const detailImage = root.querySelector<HTMLImageElement>('[data-detail-image]')!;
+  const detailFallback = root.querySelector<HTMLElement>('[data-detail-fallback]')!;
+  const detailFallbackTitle = root.querySelector<HTMLElement>('[data-detail-fallback-title]')!;
+  const detailAction = root.querySelector<HTMLAnchorElement>('[data-detail-action]')!;
+  const detailArticle = root.querySelector<HTMLAnchorElement>('[data-detail-article]')!;
+  const selectDesktop = (row: HTMLElement) => {
+    const index = rows.indexOf(row);
+    const resource = resources.find((item) => item.id === row.dataset.resourceRow);
+    if (!resource || !detail) return;
+    rows.forEach((item) => {
+      const selected = item === row;
+      item.toggleAttribute('data-active', selected);
+      item.querySelectorAll('[data-resource-open]').forEach((button) => button.setAttribute('aria-expanded', String(selected)));
+    });
+    detailNumber.textContent = `ITEM ${String(index + 1).padStart(3, '0')}`;
+    detailTitle.textContent = detailFallbackTitle.textContent = resource.title;
+    detailKind.textContent = detailKindMeta.textContent = kinds[resource.type];
+    detailDescription.textContent = resource.description;
+    detailAction.textContent = resource.download ? `DESCARGAR ${kinds[resource.type]} ↗` : `${actions[resource.type]} ↗`;
+    detailAction.href = resource.href;
+    detailAction.toggleAttribute('download', resource.download);
+    detailArticle.hidden = !resource.article;
+    if (resource.article) detailArticle.href = resource.article;
+    else detailArticle.removeAttribute('href');
+    detailImage.hidden = !resource.image;
+    detailFallback.classList.toggle('detail-hidden', !!resource.image);
+    if (resource.image) {
+      detailImage.src = resource.image;
+      detailImage.alt = resource.imageAlt ?? '';
+    } else { detailImage.removeAttribute('src'); detailImage.alt = ''; }
+  };
+  detailImage.addEventListener('error', () => { detailImage.hidden = true; detailFallback.classList.remove('detail-hidden'); });
+  const configureDisplay = () => {
+    rows.forEach((row) => row.querySelectorAll('[data-resource-open]').forEach((button) => {
+      button.setAttribute('aria-controls', hover.matches ? 'practice-detail' : 'practice-preview');
+      if (hover.matches) button.removeAttribute('aria-haspopup');
+      else button.setAttribute('aria-haspopup', 'dialog');
+    }));
+    if (hover.matches && rows.length) selectDesktop(rows.find((row) => row.hasAttribute('data-active')) ?? rows[0]);
+  };
+  rows.forEach((row) => {
+    row.addEventListener('pointerenter', () => { if (hover.matches) selectDesktop(row); });
+    row.querySelectorAll<HTMLButtonElement>('[data-resource-open]').forEach((button) => button.addEventListener('click', () => {
+      if (hover.matches) selectDesktop(row);
+    }));
+  });
+  configureDisplay();
+  hover.addEventListener('change', configureDisplay);
+
   const actions = { pdf: 'DESCARGAR PDF', video: 'VER VÍDEO', audio: 'ESCUCHAR AUDIO', questionnaire: 'ABRIR CUESTIONARIO', test: 'ABRIR TEST' };
   const kinds = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CUESTIONARIO', test: 'TEST' };
   let active: HTMLElement | undefined;
@@ -95,6 +151,7 @@ export function setupPracticeIndex(root: HTMLElement) {
     closeTimer = window.setTimeout(() => close(), 150);
   };
   const open = (row: HTMLElement, interactive = false, instant = false, trigger?: HTMLButtonElement) => {
+    if (hover.matches) return;
     if (!interactive && (pinned || dialog.contains(document.activeElement))) return;
     cancelClose();
     corridor = undefined;
