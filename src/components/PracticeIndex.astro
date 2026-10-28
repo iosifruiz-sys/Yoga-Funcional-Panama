@@ -3,6 +3,7 @@ import type { PracticeResource } from '../lib/resources';
 interface Props { resources: PracticeResource[] }
 const { resources } = Astro.props;
 const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CUESTIONARIO', test: 'TEST' };
+const actions = { pdf: 'DESCARGAR PDF', video: 'VER VÍDEO', audio: 'ESCUCHAR AUDIO', questionnaire: 'ABRIR CUESTIONARIO', test: 'ABRIR TEST' };
 ---
 <section class="practice-index" data-practice-index>
   <header class="practice-heading">
@@ -29,6 +30,29 @@ const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CU
             <button type="button" class="practice-arrow" data-resource-open
               aria-label={`Abrir vista previa: ${resource.title}`} aria-haspopup="dialog"
               aria-controls="practice-preview" aria-expanded="false"><span aria-hidden="true">↗</span></button>
+          </div>
+          <div class="practice-mobile">
+            <button class="practice-mobile-trigger" type="button" aria-expanded={index === 0 ? 'true' : 'false'} aria-controls={`practice-mobile-panel-${index}`} data-mobile-trigger>
+              <span class="practice-mobile-number">ITEM {String(index + 1).padStart(3, '0')}</span>
+              <span class="practice-mobile-title">{resource.title}</span>
+              <span class="practice-mobile-kind">{labels[resource.type]}</span>
+              <span class="practice-mobile-arrow" aria-hidden="true"></span>
+            </button>
+            <div class="practice-mobile-panel" id={`practice-mobile-panel-${index}`} hidden={index !== 0} data-mobile-panel>
+              <div class="practice-mobile-visual">
+                <div class="practice-mobile-pages" data-mobile-pages hidden={!resource.previewPages?.length}>
+                  {resource.previewPages?.map((page, pageIndex) => <img src={page} alt={`Página ${pageIndex + 1} de ${resource.title}`} loading={index === 0 ? 'eager' : 'lazy'} />)}
+                </div>
+                {resource.image && <img class="practice-mobile-cover" data-mobile-cover src={resource.image} alt={resource.imageAlt ?? ''} hidden={!!resource.previewPages?.length} />}
+                <div class="practice-mobile-fallback" data-mobile-fallback hidden={!!(resource.image || resource.previewPages?.length)}><span>YOGA FUNCIONAL / RECURSOS</span><strong>{resource.title}</strong></div>
+              </div>
+              <div class="practice-mobile-meta"><span>ARCHIVO / <strong>{labels[resource.type]}</strong></span><span>ACCESO / <strong>LIBRE</strong></span></div>
+              <p class="practice-mobile-description">{resource.description}</p>
+              <div class="practice-mobile-actions">
+                <a href={resource.href} download={resource.download ? true : undefined}>{resource.download ? `DESCARGAR ${labels[resource.type]}` : actions[resource.type]} <span aria-hidden="true">↗</span></a>
+                {resource.article && <a href={resource.article}>LEER ARTÍCULO <span aria-hidden="true">↗</span></a>}
+              </div>
+            </div>
           </div>
           <noscript><a class="practice-fallback" href={resource.href} download={resource.download}>{resource.title} ↗</a></noscript>
         </li>
@@ -85,6 +109,41 @@ const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CU
 <script>
   import { setupPracticeIndex } from '../scripts/practicePreview';
   document.querySelectorAll<HTMLElement>('[data-practice-index]').forEach(setupPracticeIndex);
+  document.querySelectorAll<HTMLElement>('[data-practice-index]').forEach((root) => {
+    const triggers = [...root.querySelectorAll<HTMLButtonElement>('[data-mobile-trigger]')];
+    triggers.forEach((trigger) => trigger.addEventListener('click', () => {
+      const expand = trigger.getAttribute('aria-expanded') !== 'true';
+      triggers.forEach((item) => {
+        const panel = document.getElementById(item.getAttribute('aria-controls')!);
+        const selected = item === trigger && expand;
+        item.setAttribute('aria-expanded', String(selected));
+        if (panel) panel.hidden = !selected;
+      });
+    }));
+    root.querySelectorAll<HTMLElement>('[data-mobile-panel]').forEach((panel) => {
+      const pages = panel.querySelector<HTMLElement>('[data-mobile-pages]')!;
+      const cover = panel.querySelector<HTMLImageElement>('[data-mobile-cover]');
+      const fallback = panel.querySelector<HTMLElement>('[data-mobile-fallback]')!;
+      pages.querySelectorAll('img').forEach((img) => {
+        const onError = () => {
+          img.remove();
+          if (!pages.querySelector('img')) {
+            pages.hidden = true;
+            if (cover && cover.complete && cover.naturalWidth === 0) { cover.hidden = true; fallback.hidden = false; }
+            else if (cover) cover.hidden = false;
+            else fallback.hidden = false;
+          }
+        };
+        img.addEventListener('error', onError);
+        if (img.complete && img.naturalWidth === 0) onError();
+      });
+      if (cover) {
+        const onCoverError = () => { cover.hidden = true; if (pages.hidden) fallback.hidden = false; };
+        cover.addEventListener('error', onCoverError);
+        if (cover.complete && cover.naturalWidth === 0) onCoverError();
+      }
+    });
+  });
 </script>
 <style>
   .practice-index { background: var(--color-light); min-height: calc(100svh - 4.25rem); padding: clamp(2rem, 6vw, 6rem) var(--gutter) clamp(3rem, 7vw, 7rem); }
@@ -173,6 +232,7 @@ const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CU
   .practice-detail-actions .practice-detail-action { flex: 3 1 0; min-width: min(100%, 12rem); align-items: center; }
   .practice-detail-actions .practice-detail-article { display: flex; flex: 2 1 0; min-width: min(100%, 10rem); align-items: center; justify-content: center; margin: 0; padding: 1rem; box-sizing: border-box; background: var(--color-light); border: var(--border); color: var(--color-dark); text-decoration: none; }
   .practice-detail-actions .practice-detail-article[hidden] { display: none; }
+  .practice-mobile { display: none; }
   @media (max-width: 61.999rem), (hover: none), (pointer: coarse) {
     .practice-workspace { display: block; }
     .practice-detail { display: none; }
@@ -247,5 +307,36 @@ const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CU
     .practice-detail-visual .practice-page-stack :global(img):nth-child(4) { top: 5%; }
     .practice-detail-meta { padding: .65rem 0; }
     .practice-detail > p { margin: .75rem 0; }
+  }
+  @media (max-width: 61.999rem), (hover: none), (pointer: coarse) {
+    .practice-index { min-height: 0; padding-bottom: 0; }
+    .practice-row { display: none; }
+    .practice-mobile { display: block; }
+    .practice-mobile-trigger { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .55rem; width: 100%; padding: 1.25rem var(--gutter); border: 0; background: transparent; color: var(--color-dark); text-align: left; cursor: pointer; }
+    .practice-mobile-trigger[aria-expanded="true"] { background: var(--color-orange); }
+    .practice-mobile-number, .practice-mobile-kind { grid-column: 1; font: 1rem var(--font-utility); }
+    .practice-mobile-title { grid-column: 1; font: 900 clamp(1.8rem, 7vw, 2.5rem)/1 var(--font-display); text-transform: uppercase; overflow-wrap: anywhere; }
+    .practice-mobile-arrow { grid-column: 2; grid-row: 1 / 4; align-self: center; font: 1.5rem var(--font-body); }
+    .practice-mobile-arrow::before { content: '↓'; }
+    .practice-mobile-trigger[aria-expanded="true"] .practice-mobile-arrow::before { content: '↑'; }
+    .practice-mobile-trigger:focus-visible { outline: 2px solid var(--color-dark); outline-offset: -4px; }
+    .practice-mobile-panel { padding: 1.25rem var(--gutter) 1.5rem; }
+    .practice-mobile-panel[hidden], .practice-mobile-visual [hidden] { display: none; }
+    .practice-mobile-visual { background: var(--color-warm); padding: .75rem .5rem; }
+    .practice-mobile-pages { display: flex; align-items: center; justify-content: center; }
+    .practice-mobile-pages img { position: relative; display: block; flex: 0 1 30%; width: 30%; max-width: 8.25rem; height: auto; box-shadow: .15rem .2rem .4rem rgba(0,0,0,.16); }
+    .practice-mobile-pages img + img { margin-left: -7.5%; }
+    .practice-mobile-pages img:nth-child(1) { z-index: 4; }
+    .practice-mobile-pages img:nth-child(2) { z-index: 3; }
+    .practice-mobile-pages img:nth-child(3) { z-index: 2; }
+    .practice-mobile-pages img:nth-child(4) { z-index: 1; }
+    .practice-mobile-cover { display: block; width: auto; max-width: min(45%, 9rem); max-height: 12rem; margin: 0 auto; }
+    .practice-mobile-fallback { min-height: 8rem; display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; padding: 1rem; font: 1rem var(--font-utility); }
+    .practice-mobile-fallback strong { font: 900 2rem/1 var(--font-display); text-transform: uppercase; overflow-wrap: anywhere; }
+    .practice-mobile-meta { display: flex; flex-wrap: wrap; gap: 1.5rem; padding: .75rem 0; border-bottom: var(--border); font: 1rem var(--font-utility); }
+    .practice-mobile-description { margin: 1rem 0; font: 1rem/1.5 var(--font-body); }
+    .practice-mobile-actions { display: grid; gap: .65rem; }
+    .practice-mobile-actions a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .9rem 1rem; background: var(--color-orange); color: var(--color-dark); font: 700 .85rem var(--font-body); text-decoration: none; }
+    .practice-mobile-actions a + a { justify-content: center; border: var(--border); background: var(--color-light); font: 1rem var(--font-utility); }
   }
 </style>
