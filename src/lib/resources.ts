@@ -13,6 +13,7 @@ export interface PracticeResource {
   download: boolean;
   image?: string;
   imageAlt?: string;
+  previewPages?: string[];
   article?: string;
 }
 
@@ -39,10 +40,21 @@ async function loadPracticeResources(language: ResourceData['language']): Promis
       href = data.url;
     }
     const image = data.image && data.imageAlt.trim() && await publicFile(data.image, '/resources/') ? `${import.meta.env.BASE_URL}${data.image.slice(1)}` : undefined;
+    // The prebuild step renders these from the original PDF. If previews are
+    // unavailable (e.g. a dev machine without Poppler), use the CMS cover.
+    const previewPages: string[] = [];
+    if (data.type === 'pdf' && data.file && /^\/resources\/[-a-z0-9_]+\.pdf$/i.test(data.file)) {
+      const base = data.file.slice('/resources/'.length).replace(/\.pdf$/i, '');
+      for (let i = 1; i <= 4; i++) {
+        const filename = `/resources/previews/${base}-page-${String(i).padStart(2, '0')}.png`;
+        if (!await publicFile(filename, '/resources/previews/')) break;
+        previewPages.push(`${import.meta.env.BASE_URL}${filename.slice(1)}`);
+      }
+    }
     const post = posts.find((post) => slugForPost(post) === data.relatedArticle);
     output.push({
       id, title: data.title, description: data.description, type: data.type, href,
-      download: Boolean(data.file), image, imageAlt: image ? data.imageAlt : undefined,
+      download: Boolean(data.file), image, imageAlt: image ? data.imageAlt : undefined, previewPages,
       article: post ? localizedPath(localeForPost(post), `blog/${slugForPost(post)}/`) : undefined,
     });
   }

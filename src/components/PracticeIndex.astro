@@ -41,8 +41,13 @@ const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CU
       </div>
       <h2 data-detail-title>{resources[0].title}</h2>
       <div class="practice-detail-visual">
-        {resources[0].image ? <img data-detail-image src={resources[0].image} alt={resources[0].imageAlt ?? ''} /> : <img data-detail-image alt="" hidden />}
-        <div data-detail-fallback class:list={{ 'detail-hidden': !!resources[0].image }} aria-hidden="true">
+        <div class="practice-page-stack" data-detail-stack hidden={!resources[0].previewPages?.length} aria-label="Vista de las primeras páginas del PDF">
+          {resources[0].previewPages?.map((page, index) => (
+            <img src={page} alt={`Página ${index + 1} de ${resources[0].title}`} loading={index ? 'lazy' : 'eager'} style={`--page-index: ${index}; --page-count: ${resources[0].previewPages?.length ?? 0}`} />
+          ))}
+        </div>
+        {resources[0].image ? <img data-detail-image src={resources[0].image} alt={resources[0].imageAlt ?? ''} hidden={!!resources[0].previewPages?.length} /> : <img data-detail-image alt="" hidden />}
+        <div data-detail-fallback class:list={{ 'detail-hidden': !!(resources[0].image || resources[0].previewPages?.length) }} aria-hidden="true">
           <span>YOGA FUNCIONAL / RECURSOS</span>
           <strong data-detail-fallback-title>{resources[0].title}</strong>
         </div>
@@ -186,4 +191,22 @@ const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CU
     .practice-action { transition: none; }
     .practice-action:active { transform: none; }
   }
+
+  /* Real PDF pages in a restrained fanned-paper composition. */
+  .practice-detail-visual { overflow: hidden; }
+  .practice-detail-visual > .practice-page-stack { position: relative; width: 100%; min-height: 0; height: clamp(17rem, 30vw, 28rem); display: block; padding: 0; background: var(--color-warm); }
+  .practice-detail-visual > .practice-page-stack[hidden] { display: none; }
+  .practice-page-stack img {
+    position: absolute; display: block; width: 45%; height: 79%; max-height: none;
+    left: calc(3% + var(--page-index) * 16%); top: calc(8% + var(--page-index) * 2.8%);
+    object-fit: contain; object-position: top left; background: #f5f1e8;
+    box-shadow: 0.35rem 0.45rem 0.75rem rgba(0,0,0,.13);
+    border: 1px solid rgba(0,0,0,.08);
+    z-index: calc(10 - var(--page-index)); transform: rotate(calc(var(--page-index) * 1deg));
+    transition: transform 230ms ease, left 230ms ease;
+  }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .practice-page-stack:hover img { transform: translateX(calc(var(--page-index) * .35rem)) rotate(calc(var(--page-index) * 1.5deg)); }
+  }
+  @media (prefers-reduced-motion: reduce) { .practice-page-stack img { transition: none; } }
 </style>
