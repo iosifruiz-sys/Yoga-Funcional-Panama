@@ -25,6 +25,7 @@ export function setupPracticeIndex(root: HTMLElement) {
   const detailKindMeta = root.querySelector<HTMLElement>('[data-detail-kind-meta]')!;
   const detailDescription = root.querySelector<HTMLElement>('[data-detail-description]')!;
   const detailImage = root.querySelector<HTMLImageElement>('[data-detail-image]')!;
+  const detailStack = root.querySelector<HTMLElement>('[data-detail-stack]')!;
   const detailFallback = root.querySelector<HTMLElement>('[data-detail-fallback]')!;
   const detailFallbackTitle = root.querySelector<HTMLElement>('[data-detail-fallback-title]')!;
   const detailAction = root.querySelector<HTMLAnchorElement>('[data-detail-action]')!;
@@ -48,8 +49,31 @@ export function setupPracticeIndex(root: HTMLElement) {
     detailArticle.hidden = !resource.article;
     if (resource.article) detailArticle.href = resource.article;
     else detailArticle.removeAttribute('href');
-    detailImage.hidden = !resource.image;
-    detailFallback.classList.toggle('detail-hidden', !!resource.image);
+    // Replace the page fan when selection changes; fall back to the CMS cover.
+    detailStack.replaceChildren();
+    const pages = resource.previewPages ?? [];
+    detailStack.hidden = pages.length === 0;
+    if (pages.length) {
+      for (const [pageIndex, page] of pages.entries()) {
+        const thumb = document.createElement('img');
+        thumb.src = page;
+        thumb.alt = `Página ${pageIndex + 1} de ${resource.title}`;
+        thumb.loading = pageIndex ? 'lazy' : 'eager';
+        thumb.style.setProperty('--page-index', String(pageIndex));
+        thumb.style.setProperty('--page-count', String(pages.length));
+        thumb.addEventListener('error', () => {
+          thumb.remove();
+          if (!detailStack.querySelector('img')) {
+            detailStack.hidden = true;
+            detailImage.hidden = !resource.image;
+            detailFallback.classList.toggle('detail-hidden', !!resource.image);
+          }
+        });
+        detailStack.append(thumb);
+      }
+    }
+    detailImage.hidden = !!pages.length || !resource.image;
+    detailFallback.classList.toggle('detail-hidden', !!pages.length || !!resource.image);
     if (resource.image) {
       detailImage.src = resource.image;
       detailImage.alt = resource.imageAlt ?? '';
