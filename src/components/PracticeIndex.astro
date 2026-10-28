@@ -8,7 +8,7 @@ const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CU
   <header class="practice-heading">
     <h1>RECURSOS</h1>
     <div class="practice-heading-meta">
-      <p>INVENTARIO / HERRAMIENTAS</p>
+      <p>INVENTARIO / ARSENAL DE PRÁCTICA</p>
       <p>MATERIAL PRÁCTICO PARA ENTRENAR</p>
     </div>
   </header>
@@ -156,7 +156,7 @@ const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CU
   .practice-row[data-active] .practice-number, .practice-row[data-active] .practice-arrow { color: var(--color-dark); }
   .practice-detail { min-width: 0; border-left: var(--border); padding: clamp(1rem, 2.5vw, 3rem); align-self: stretch; }
   .practice-detail-head { display: flex; justify-content: space-between; font: 1.05rem var(--font-utility); }
-  .practice-detail h2 { margin: .8rem 0 1.5rem; font: 900 clamp(2.1rem, 4.2vw, 5rem)/.95 var(--font-display); text-transform: uppercase; overflow-wrap: anywhere; }
+  .practice-detail h2 { margin: .8rem 0 1.5rem; font: 900 clamp(2rem, 2.8vw, 3.25rem)/.95 var(--font-display); text-transform: uppercase; overflow-wrap: anywhere; }
   .practice-detail-visual { min-height: 15rem; display: grid; place-items: center; background: var(--color-warm); border: var(--border); overflow: hidden; }
   .practice-detail-visual img { display: block; max-width: 100%; width: 100%; max-height: 26rem; object-fit: contain; }
   .practice-detail-visual img[hidden], .practice-detail-visual .detail-hidden, .practice-detail-article[hidden] { display: none; }
@@ -200,7 +200,7 @@ const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CU
     background: var(--color-warm);
   }
   .practice-detail-visual > .practice-page-stack[hidden] { display: none; }
-  .practice-detail-visual .practice-page-stack img {
+  .practice-detail-visual .practice-page-stack :global(img) {
     position: absolute; display: block; width: 32%; height: 78%;
     max-width: 15rem; max-height: 17rem; top: 10%; left: 6%;
     object-fit: contain; object-position: center; background: #f5f1e8;
@@ -208,10 +208,10 @@ const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CU
     border: 1px solid rgba(0,0,0,.12);
     transform: rotate(-2deg); transition: transform 200ms ease;
   }
-  .practice-detail-visual .practice-page-stack img:nth-child(1) { left: 6%; top: 11%; z-index: 4; transform: rotate(-3deg); }
-  .practice-detail-visual .practice-page-stack img:nth-child(2) { left: 26%; top: 9%; z-index: 3; transform: rotate(-1deg); }
-  .practice-detail-visual .practice-page-stack img:nth-child(3) { left: 46%; top: 11%; z-index: 2; transform: rotate(1deg); }
-  .practice-detail-visual .practice-page-stack img:nth-child(4) { left: 65%; top: 13%; z-index: 1; transform: rotate(3deg); }
+  .practice-detail-visual .practice-page-stack :global(img):nth-child(1) { left: 6%; top: 11%; z-index: 4; transform: rotate(-3deg); }
+  .practice-detail-visual .practice-page-stack :global(img):nth-child(2) { left: 26%; top: 9%; z-index: 3; transform: rotate(-1deg); }
+  .practice-detail-visual .practice-page-stack :global(img):nth-child(3) { left: 46%; top: 11%; z-index: 2; transform: rotate(1deg); }
+  .practice-detail-visual .practice-page-stack :global(img):nth-child(4) { left: 65%; top: 13%; z-index: 1; transform: rotate(3deg); }
   /* A missing/short PDF gets a thumbnail, never a full-width cover. */
   .practice-detail-visual > img[data-detail-image] {
     box-sizing: border-box; width: auto; max-width: min(42%, 16rem);
@@ -220,10 +220,10 @@ const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CU
   }
   .practice-detail-visual > img[data-detail-image][hidden] { display: none; }
   @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-    .practice-page-stack:hover img:nth-child(1) { transform: translateX(-.3rem) rotate(-4deg); }
-    .practice-page-stack:hover img:nth-child(2) { transform: translateX(.2rem) rotate(-1deg); }
-    .practice-page-stack:hover img:nth-child(3) { transform: translateX(.4rem) rotate(2deg); }
-    .practice-page-stack:hover img:nth-child(4) { transform: translateX(.6rem) rotate(4deg); }
+    .practice-page-stack:hover :global(img):nth-child(1) { transform: translateX(-.3rem) rotate(-4deg); }
+    .practice-page-stack:hover :global(img):nth-child(2) { transform: translateX(.2rem) rotate(-1deg); }
+    .practice-page-stack:hover :global(img):nth-child(3) { transform: translateX(.4rem) rotate(2deg); }
+    .practice-page-stack:hover :global(img):nth-child(4) { transform: translateX(.6rem) rotate(4deg); }
   }
-  @media (prefers-reduced-motion: reduce) { .practice-detail-visual .practice-page-stack img { transition: none; } }
+  @media (prefers-reduced-motion: reduce) { .practice-detail-visual .practice-page-stack :global(img) { transition: none; } }
 </style>
