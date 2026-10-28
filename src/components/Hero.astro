@@ -65,7 +65,7 @@ const base = import.meta.env.BASE_URL;
     :global(html[lang='ru']) .hero-quote-ru { display: none; }
     .hero-offer { display: block; grid-column: 1; grid-row: 3; align-self: end; padding: clamp(1rem, 4vw, 3.5rem) calc(var(--gutter) + .5rem) clamp(3.5rem, 4.63542vw, 5.5625rem); }
     .hero-offer h2 { margin: 0 0 clamp(1.5rem, 2.1875vw, 2.625rem); font: 400 clamp(1.56rem, 2.5vw, 3rem)/1.2 var(--font-utility); letter-spacing: -.03em; }
-    :global(html[lang='ru']) .hero-offer h2 { font-size: 1.05vw; }
+    :global(html[lang='ru']) .hero-offer h2 { font-size: clamp(1.404rem, 2.25vw, 2.7rem); }
     .hero-offer p { margin: 0; max-width: 40.5rem; font: 400 clamp(.9rem, 1.04167vw, 1.25rem)/1.2 var(--font-body); letter-spacing: -.03em; }
     .hero-offer h2 + p { font-size: clamp(1.008rem, 1.16667vw, 1.4rem); line-height: 1.3; }
     .hero-offer p + p { margin-top: 1rem; font-weight: 500; }
