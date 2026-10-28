@@ -43,8 +43,8 @@ async function loadPracticeResources(language: ResourceData['language']): Promis
     // The prebuild step renders these from the original PDF. If previews are
     // unavailable (e.g. a dev machine without Poppler), use the CMS cover.
     const previewPages: string[] = [];
-    if (data.type === 'pdf' && data.file && /^\\/resources\\/[-a-z0-9_]+\\.pdf$/i.test(data.file)) {
-      const base = data.file.slice('/resources/'.length).replace(/\\.pdf$/i, '');
+    if (data.type === 'pdf' && data.file && /^\/resources\/[-a-z0-9_]+\.pdf$/i.test(data.file)) {
+      const base = data.file.slice('/resources/'.length).replace(/\.pdf$/i, '');
       for (let i = 1; i <= 4; i++) {
         const filename = `/resources/previews/${base}-page-${String(i).padStart(2, '0')}.png`;
         if (!await publicFile(filename, '/resources/previews/')) break;
