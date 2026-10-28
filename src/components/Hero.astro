@@ -36,6 +36,13 @@ const base = import.meta.env.BASE_URL;
   </blockquote>
 
   {locale === 'es' && (
+    <div class="hero-mobile-offer">
+      <h2>{heroEs.offerTitle}</h2>
+      <p>{heroEs.offerClosing}</p>
+    </div>
+  )}
+
+  {locale === 'es' && (
     <div class="hero-offer">
       <h2>{heroEs.offerTitle}</h2>
       <p>{heroEs.offerDescription}</p>
@@ -60,6 +67,13 @@ const base = import.meta.env.BASE_URL;
 <style>
   .hero-meta a { text-decoration: none; }
   .hero-offer { display: none; }
+  .hero-mobile-offer { display: none; }
+  @media (max-width: 37.5rem) {
+    .hero-quote-es { display: none; }
+    .hero-mobile-offer { display: block; grid-column: 1; grid-row: 4; padding: .5rem var(--gutter); text-align: center; }
+    .hero-mobile-offer h2 { margin: 0; font: 400 6.5vw/1.1 var(--font-utility); white-space: nowrap; }
+    .hero-mobile-offer p { margin: .35rem 0 0; font: 400 3.5vw/1.2 var(--font-body); }
+  }
   @media (min-width: 62rem) {
     .hero-quote-es { display: none; }
     :global(html[lang='ru']) .hero-quote-ru { display: none; }
