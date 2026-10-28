@@ -58,6 +58,9 @@ collections:
           - { label: Альтернативный текст изображения, name: alt, widget: string }
           - { label: Первая фраза, name: quote, widget: string }
           - { label: Выделенная фраза, name: strong, widget: string }
+          - { label: Hero — заголовок RU, name: offerTitle, widget: string }
+          - { label: Hero — описание RU, name: offerDescription, widget: text }
+          - { label: Hero — заключительная строка RU, name: offerClosing, widget: string }
           - { label: Кнопка записи, name: reserve, widget: string, hint: "Только кнопка Hero; остальные кнопки не меняются." }
           - { label: Место, name: location, widget: string }
           - { label: Координаты, name: coordinates, widget: string }

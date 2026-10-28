@@ -30,7 +30,7 @@ const base = import.meta.env.BASE_URL;
     </picture>
   </figure>
 
-  <blockquote class:list={[locale === 'es' && 'hero-quote-es']}>
+  <blockquote class:list={[locale === 'es' && 'hero-quote-es', locale === 'ru' && 'hero-quote-ru']}>
     <span>{hero.quote}</span>
     <strong>{hero.strong}</strong>
   </blockquote>
@@ -40,6 +40,14 @@ const base = import.meta.env.BASE_URL;
       <h2>{heroEs.offerTitle}</h2>
       <p>{heroEs.offerDescription}</p>
       <p>{heroEs.offerClosing}</p>
+    </div>
+  )}
+
+  {locale === 'ru' && (
+    <div class="hero-offer">
+      <h2>{heroRu.offerTitle}</h2>
+      <p>{heroRu.offerDescription}</p>
+      <p>{heroRu.offerClosing}</p>
     </div>
   )}
 
@@ -54,6 +62,7 @@ const base = import.meta.env.BASE_URL;
   .hero-offer { display: none; }
   @media (min-width: 62rem) {
     .hero-quote-es { display: none; }
+    :global(html[lang='ru']) .hero-quote-ru { display: none; }
     .hero-offer { display: block; grid-column: 1; grid-row: 3; align-self: end; padding: clamp(1rem, 4vw, 3.5rem) calc(var(--gutter) + .5rem) clamp(3.5rem, 4.63542vw, 5.5625rem); }
     .hero-offer h2 { margin: 0 0 clamp(1.5rem, 2.1875vw, 2.625rem); font: 400 clamp(1.56rem, 2.5vw, 3rem)/1.2 var(--font-utility); letter-spacing: -.03em; }
     .hero-offer p { margin: 0; max-width: 40.5rem; font: 400 clamp(.9rem, 1.04167vw, 1.25rem)/1.2 var(--font-body); letter-spacing: -.03em; }
