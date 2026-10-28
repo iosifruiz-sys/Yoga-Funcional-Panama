@@ -57,8 +57,10 @@ const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CU
         <span>ACCESO / <strong>LIBRE</strong></span>
       </div>
       <p data-detail-description>{resources[0].description}</p>
-      <a class="practice-detail-action" data-detail-action href={resources[0].href} download={resources[0].download ? true : undefined}>{resources[0].download ? 'DESCARGAR PDF' : 'ABRIR RECURSO'} <span aria-hidden="true">↗</span></a>
-      <a class="practice-detail-article" data-detail-article href={resources[0].article ?? undefined} hidden={!resources[0].article}>LEER ARTÍCULO ↗</a>
+      <div class="practice-detail-actions">
+        <a class="practice-detail-action" data-detail-action href={resources[0].href} download={resources[0].download ? true : undefined}>{resources[0].download ? 'DESCARGAR PDF' : 'ABRIR RECURSO'} <span aria-hidden="true">↗</span></a>
+        <a class="practice-detail-article" data-detail-article href={resources[0].article ?? undefined} hidden={!resources[0].article}>LEER ARTÍCULO ↗</a>
+      </div>
     </aside>
     </div>
   ) : <p class="practice-empty">Todavía no hay recursos publicados.</p>}
@@ -167,6 +169,10 @@ const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CU
   .practice-detail > p { margin: 1.5rem 0; font: 1rem/1.5 var(--font-body); }
   .practice-detail-action { display: flex; justify-content: space-between; gap: 1rem; background: var(--color-orange); color: var(--color-dark); padding: 1rem; font: 700 1rem var(--font-body); text-decoration: none; }
   .practice-detail-article { display: inline-block; margin-top: 1rem; color: inherit; font: 1rem var(--font-utility); }
+  .practice-detail-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+  .practice-detail-actions .practice-detail-action { flex: 3 1 0; min-width: min(100%, 12rem); align-items: center; }
+  .practice-detail-actions .practice-detail-article { display: flex; flex: 2 1 0; min-width: min(100%, 10rem); align-items: center; justify-content: center; margin: 0; padding: 1rem; box-sizing: border-box; background: var(--color-light); border: var(--border); color: var(--color-dark); text-decoration: none; }
+  .practice-detail-actions .practice-detail-article[hidden] { display: none; }
   @media (max-width: 61.999rem), (hover: none), (pointer: coarse) {
     .practice-workspace { display: block; }
     .practice-detail { display: none; }
