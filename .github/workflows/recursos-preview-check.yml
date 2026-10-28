@@ -1,0 +1,32 @@
+name: Check Recursos PDF previews
+on:
+  pull_request:
+    paths:
+      - 'src/components/PracticeIndex.astro'
+      - 'src/scripts/practicePreview.ts'
+      - 'src/lib/resources.ts'
+      - 'scripts/build-pdf-previews.mjs'
+      - 'package.json'
+      - '.github/workflows/recursos-preview-check.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: npm run check
+      - run: npm run build
+      - name: Verify real page thumbnails in built site
+        run: |
+          for page in 01 02 03 04; do
+            test -s "dist/resources/previews/que-tan-movil-eres-page-${page}.png"
+          done
