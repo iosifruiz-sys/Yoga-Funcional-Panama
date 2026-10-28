@@ -6,11 +6,15 @@ const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CU
 ---
 <section class="practice-index" data-practice-index>
   <header class="practice-heading">
-    <p>RECURSOS GRATUITOS</p>
-    <h1>Índice de<br />práctica<span aria-hidden="true">↗</span></h1>
+    <h1>RECURSOS</h1>
+    <div class="practice-heading-meta">
+      <p>INVENTARIO / HERRAMIENTAS</p>
+      <p>MATERIAL PRÁCTICO PARA ENTRENAR</p>
+    </div>
   </header>
   {resources.length ? (
-    <ol class="practice-list">
+    <div class="practice-workspace">
+    <ol class="practice-list" aria-label="Recursos disponibles">
       {resources.map((resource, index) => (
         <li>
           <div class="practice-row" data-resource-row={resource.id}>
@@ -30,6 +34,28 @@ const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CU
         </li>
       ))}
     </ol>
+    <aside class="practice-detail" id="practice-detail" aria-label="Vista del recurso seleccionado">
+      <div class="practice-detail-head">
+        <span data-detail-number>ITEM 001</span>
+        <span data-detail-kind>{labels[resources[0].type]}</span>
+      </div>
+      <h2 data-detail-title>{resources[0].title}</h2>
+      <div class="practice-detail-visual">
+        {resources[0].image ? <img data-detail-image src={resources[0].image} alt={resources[0].imageAlt ?? ''} /> : <img data-detail-image alt="" hidden />}
+        <div data-detail-fallback class:list={{ 'detail-hidden': !!resources[0].image }} aria-hidden="true">
+          <span>YOGA FUNCIONAL / RECURSOS</span>
+          <strong data-detail-fallback-title>{resources[0].title}</strong>
+        </div>
+      </div>
+      <div class="practice-detail-meta">
+        <span>ARCHIVO / <strong data-detail-kind-meta>{labels[resources[0].type]}</strong></span>
+        <span>ACCESO / <strong>LIBRE</strong></span>
+      </div>
+      <p data-detail-description>{resources[0].description}</p>
+      <a class="practice-detail-action" data-detail-action href={resources[0].href} download={resources[0].download ? true : undefined}>{resources[0].download ? 'DESCARGAR PDF' : 'ABRIR RECURSO'} <span aria-hidden="true">↗</span></a>
+      <a class="practice-detail-article" data-detail-article href={resources[0].article ?? undefined} hidden={!resources[0].article}>LEER ARTÍCULO ↗</a>
+    </aside>
+    </div>
   ) : <p class="practice-empty">Todavía no hay recursos publicados.</p>}
   <dialog id="practice-preview" class="practice-preview" aria-labelledby="practice-preview-title" aria-describedby="practice-preview-description">
     <button class="practice-close" type="button" aria-label="Cerrar vista previa">CERRAR <span aria-hidden="true">×</span></button>
@@ -103,6 +129,55 @@ const labels = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CU
     .practice-number { font-size: 1.3rem; }
     .practice-title { font-size: clamp(1.5rem, 7vw, 2.5rem); }
     .practice-kind { grid-column: 2; grid-row: 2; font-size: .95rem; }
+    .practice-arrow { grid-column: 3; grid-row: 1; }
+  }
+
+  /* Desktop equipment inventory; original dialog remains for mobile/touch. */
+  .practice-index { padding: 0 0 clamp(3rem, 6vw, 6rem); }
+  .practice-heading { padding: clamp(1.5rem, 3vw, 3rem) var(--gutter) 1.4rem; border-bottom: var(--border); }
+  .practice-heading h1 { margin: 0; font-size: clamp(4rem, 12.5vw, 13rem); line-height: .79; letter-spacing: -.04em; overflow-wrap: anywhere; }
+  .practice-heading-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-top: 1.3rem; }
+  .practice-heading-meta p { margin: 0; font: 1rem var(--font-utility); letter-spacing: .055em; }
+  .practice-workspace { display: grid; grid-template-columns: minmax(0, 42%) minmax(0, 58%); align-items: stretch; }
+  .practice-list { border-top: 0; }
+  .practice-list > li { border-bottom: var(--border); }
+  .practice-row { min-height: 11rem; padding: 1.75rem var(--gutter); grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: auto 1fr auto; gap: .6rem; align-items: start; }
+  .practice-number { grid-column: 1; grid-row: 1; font-size: 1.1rem; }
+  .practice-number::before { content: 'ITEM '; }
+  .practice-title { grid-column: 1 / 3; grid-row: 2; font-size: clamp(1.75rem, 3.1vw, 3.25rem); }
+  .practice-kind { grid-column: 1; grid-row: 3; font-size: 1rem; }
+  .practice-arrow { grid-column: 2; grid-row: 3; justify-self: end; }
+  .practice-row[data-active] { background: var(--color-orange); }
+  .practice-row[data-active] .practice-number, .practice-row[data-active] .practice-arrow { color: var(--color-dark); }
+  .practice-detail { min-width: 0; border-left: var(--border); padding: clamp(1rem, 2.5vw, 3rem); align-self: stretch; }
+  .practice-detail-head { display: flex; justify-content: space-between; font: 1.05rem var(--font-utility); }
+  .practice-detail h2 { margin: .8rem 0 1.5rem; font: 900 clamp(2.1rem, 4.2vw, 5rem)/.95 var(--font-display); text-transform: uppercase; overflow-wrap: anywhere; }
+  .practice-detail-visual { min-height: 15rem; display: grid; place-items: center; background: var(--color-warm); border: var(--border); overflow: hidden; }
+  .practice-detail-visual img { display: block; max-width: 100%; width: 100%; max-height: 26rem; object-fit: contain; }
+  .practice-detail-visual img[hidden], .practice-detail-visual .detail-hidden, .practice-detail-article[hidden] { display: none; }
+  .practice-detail-visual > div { width: 100%; min-height: 17rem; padding: 1.5rem; display: flex; flex-direction: column; justify-content: space-between; gap: 2rem; }
+  .practice-detail-visual > div span { font: 1rem var(--font-utility); }
+  .practice-detail-visual > div strong { font: 900 clamp(2rem, 4vw, 4rem)/.9 var(--font-display); text-transform: uppercase; overflow-wrap: anywhere; }
+  .practice-detail-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; padding: 1rem 0; border-bottom: var(--border); font: 1rem var(--font-utility); }
+  .practice-detail > p { margin: 1.5rem 0; font: 1rem/1.5 var(--font-body); }
+  .practice-detail-action { display: flex; justify-content: space-between; gap: 1rem; background: var(--color-orange); color: var(--color-dark); padding: 1rem; font: 700 1rem var(--font-body); text-decoration: none; }
+  .practice-detail-article { display: inline-block; margin-top: 1rem; color: inherit; font: 1rem var(--font-utility); }
+  @media (max-width: 61.999rem), (hover: none), (pointer: coarse) {
+    .practice-workspace { display: block; }
+    .practice-detail { display: none; }
+    .practice-heading-meta p:last-child { display: none; }
+    .practice-row { min-height: 0; }
+    .practice-row[data-active] { background: transparent; }
+    .practice-row[data-active] .practice-number, .practice-row[data-active] .practice-arrow { color: var(--color-orange); }
+  }
+  @media (max-width: 37.5rem) {
+    .practice-heading h1 { font-size: clamp(3.5rem, 16vw, 6rem); }
+    .practice-heading-meta { margin-top: .75rem; }
+    .practice-row { grid-template-columns: 2.5rem minmax(0, 1fr) 1.5rem; grid-template-rows: auto auto; padding: 1.25rem var(--gutter); gap: .5rem; }
+    .practice-number { grid-column: 1; grid-row: 1; }
+    .practice-number::before { content: ''; }
+    .practice-title { grid-column: 2; grid-row: 1; font-size: clamp(1.5rem, 7vw, 2.5rem); }
+    .practice-kind { grid-column: 2; grid-row: 2; }
     .practice-arrow { grid-column: 3; grid-row: 1; }
   }
   @media (prefers-reduced-motion: reduce) {
