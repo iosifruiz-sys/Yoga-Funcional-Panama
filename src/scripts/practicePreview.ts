@@ -13,6 +13,7 @@ export function setupPracticeIndex(root: HTMLElement) {
   const article = root.querySelector<HTMLAnchorElement>('[data-preview-article]')!;
   const closeButton = root.querySelector<HTMLButtonElement>('.practice-close')!;
   const resources: PracticeResource[] = JSON.parse(root.querySelector('[data-practice-data]')!.textContent!);
+  if (!resources.length) return;
   const rows = [...root.querySelectorAll<HTMLElement>('[data-resource-row]')];
   const hover = matchMedia('(min-width: 62rem) and (hover: hover) and (pointer: fine)');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
@@ -69,11 +70,11 @@ export function setupPracticeIndex(root: HTMLElement) {
       if (hover.matches) selectDesktop(row);
     }));
   });
-  configureDisplay();
   hover.addEventListener('change', configureDisplay);
 
   const actions = { pdf: 'DESCARGAR PDF', video: 'VER VÍDEO', audio: 'ESCUCHAR AUDIO', questionnaire: 'ABRIR CUESTIONARIO', test: 'ABRIR TEST' };
   const kinds = { pdf: 'PDF', video: 'VÍDEO', audio: 'AUDIO', questionnaire: 'CUESTIONARIO', test: 'TEST' };
+  configureDisplay();
   let active: HTMLElement | undefined;
   let opener: HTMLButtonElement | undefined;
   let closeTimer = 0;
