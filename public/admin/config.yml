@@ -572,6 +572,8 @@ collections:
     label: Blog RU
     label_singular: Статья RU
     folder: src/content/blog/ru
+    media_folder: /public/images
+    public_folder: ../../../../public/images
     create: true
     extension: md
     format: frontmatter
@@ -588,6 +590,8 @@ collections:
     fields:
       - { label: Título, name: title, widget: string }
       - { label: Descripción, name: description, widget: text }
+      - { label: Заголовок Open Graph, name: ogTitle, widget: string, required: false }
+      - { label: Описание Open Graph, name: ogDescription, widget: text, required: false }
       - label: Fecha de publicación
         name: publishDate
         widget: datetime
@@ -632,6 +636,13 @@ collections:
         default: true
         hint: "Actívalo para excluir el artículo del sitio, RSS, sitemap y navegación. Desactívalo antes de publicar."
       - { label: Slug испанского перевода, name: translationSlug, widget: string, required: false, hint: "Точный slug соответствующей статьи в Blog ES." }
+      - label: Частые вопросы
+        name: faq
+        widget: list
+        required: false
+        fields:
+          - { label: Вопрос, name: question, widget: string }
+          - { label: Ответ, name: answer, widget: text }
       - { label: Текст, name: body, widget: markdown }
 
 
