@@ -1,47 +1,44 @@
 ---
 title: Quiero hacer yoga. ¿Pero cuál?
 seoTitle: ¿Qué tipo de yoga elegir si eres principiante? Guía y consejos
-description: >-
-  ¿Hatha, vinyasa, ashtanga o yoga funcional? Conoce las diferencias entre estilos, qué esperar de
-  tu primera clase y cómo elegir un profesor.
+description: ¿Hatha, vinyasa, ashtanga o yoga funcional? Conoce las diferencias
+  entre estilos, qué esperar de tu primera clase y cómo elegir un profesor.
 ogTitle: Quiero hacer yoga. ¿Pero cuál?
-ogDescription: >-
-  Hatha, vinyasa, ashtanga y compañía. Una guía para entender los estilos de yoga, elegir tus
-  primeras clases y no terminar huyendo al gimnasio.
-publishDate: '2026-11-02'
+ogDescription: Hatha, vinyasa, ashtanga y compañía. Una guía para entender los
+  estilos de yoga, elegir tus primeras clases y no terminar huyendo al gimnasio.
+publishDate: 2026-11-02
 author: Iosif Ruiz
 category: Yoga Funcional
 tags:
   - yoga
   - movement
   - body
-draft: true
 cover:
   image: ../../../public/images/que-tipo-de-yoga-elegir.png
-  alt: >-
-    Portada sobre estilos de yoga: rostro ilustrado en blanco y negro junto a las palabras
-    «Variedad» y «Yoga» sobre fondo beige.
+  alt: "Portada sobre estilos de yoga: rostro ilustrado en blanco y negro junto a
+    las palabras «Variedad» y «Yoga» sobre fondo beige."
 socialImage: ../../../public/images/que-tipo-de-yoga-elegir.png
+draft: false
 faq:
   - question: ¿Qué tipo de yoga es mejor para empezar?
-    answer: >-
-      Una clase de hatha yoga para principiantes puede ser un buen punto de partida. Generalmente
-      permite conocer las posturas básicas a un ritmo moderado. Pero no es obligatorio empezar por
-      ahí: otros estilos también ofrecen clases para personas sin experiencia.
+    answer: "Una clase de hatha yoga para principiantes puede ser un buen punto de
+      partida. Generalmente permite conocer las posturas básicas a un ritmo
+      moderado. Pero no es obligatorio empezar por ahí: otros estilos también
+      ofrecen clases para personas sin experiencia."
   - question: ¿Puedo hacer yoga si no soy flexible?
-    answer: >-
-      Claro. No necesitas ser flexible para empezar. Lo importante es encontrar una clase adecuada a
-      tu nivel y un profesor que sepa adaptar los ejercicios a tus capacidades.
+    answer: Claro. No necesitas ser flexible para empezar. Lo importante es
+      encontrar una clase adecuada a tu nivel y un profesor que sepa adaptar los
+      ejercicios a tus capacidades.
   - question: ¿Cuál es la diferencia entre hatha yoga y vinyasa?
-    answer: >-
-      En las clases de hatha yoga suele haber más tiempo para trabajar cada postura por separado. En
-      vinyasa, las posturas se enlazan en secuencias dinámicas coordinadas con la respiración. De
-      todos modos, depende bastante del profesor.
+    answer: En las clases de hatha yoga suele haber más tiempo para trabajar cada
+      postura por separado. En vinyasa, las posturas se enlazan en secuencias
+      dinámicas coordinadas con la respiración. De todos modos, depende bastante
+      del profesor.
   - question: ¿Puedo empezar directamente con Yoga Funcional?
-    answer: >-
-      Sí. En mis clases generales entrenan juntos principiantes y personas con experiencia. Todos
-      seguimos el mismo programa y ritmo, pero cada uno utiliza variantes y cargas adaptadas a sus
-      capacidades. También hay clases específicas para principiantes.
+    answer: Sí. En mis clases generales entrenan juntos principiantes y personas con
+      experiencia. Todos seguimos el mismo programa y ritmo, pero cada uno
+      utiliza variantes y cargas adaptadas a sus capacidades. También hay clases
+      específicas para principiantes.
 ---
 
 Cuando por fin decidí empezar a hacer yoga, abrí internet y casi me sangran los ojos. Hatha, ashtanga, vinyasa, kundalini y otra colección de nombres que parecían sacados de un abracadabra. La mitad en sánscrito, la otra en inglés, y lo que realmente hay detrás de cada uno, todo un misterio.
