@@ -589,6 +589,7 @@ collections:
         pattern: "false"
     fields:
       - { label: Título, name: title, widget: string }
+      - { label: Заголовок SEO, name: seoTitle, widget: string, required: false, hint: "Заголовок для поиска; не меняет H1 статьи." }
       - { label: Descripción, name: description, widget: text }
       - { label: Заголовок Open Graph, name: ogTitle, widget: string, required: false }
       - { label: Описание Open Graph, name: ogDescription, widget: text, required: false }
