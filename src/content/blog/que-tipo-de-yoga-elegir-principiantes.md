@@ -39,6 +39,7 @@ faq:
       experiencia. Todos seguimos el mismo programa y ritmo, pero cada uno
       utiliza variantes y cargas adaptadas a sus capacidades. También hay clases
       específicas para principiantes.
+translationSlug: kakuyu-yogu-vybrat-novichku
 ---
 
 Cuando por fin decidí empezar a hacer yoga, abrí internet y casi me sangran los ojos. Hatha, ashtanga, vinyasa, kundalini y otra colección de nombres que parecían sacados de un abracadabra. La mitad en sánscrito, la otra en inglés, y lo que realmente hay detrás de cada uno, todo un misterio.
