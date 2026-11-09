@@ -1,9 +1,12 @@
 ---
-title: "Cómo levantarse del suelo y por qué se vuelve más difícil con la edad"
+title: Cómo levantarse del suelo y por qué se vuelve más difícil con la edad
 seoTitle: "Cómo levantarse del suelo: pasos y ejercicios"
-description: "Aprende cómo levantarte del suelo con apoyo, por qué puede costarte más con la edad y cómo entrenar este movimiento para mantener tu independencia."
+description: Aprende cómo levantarte del suelo con apoyo, por qué puede costarte
+  más con la edad y cómo entrenar este movimiento para mantener tu
+  independencia.
 ogTitle: "Cómo levantarse del suelo: una habilidad que puedes entrenar"
-ogDescription: "Levantarte del suelo puede volverse más difícil con los años. Descubre cómo hacerlo, qué dice la ciencia y cómo recuperar esta habilidad."
+ogDescription: Levantarte del suelo puede volverse más difícil con los años.
+  Descubre cómo hacerlo, qué dice la ciencia y cómo recuperar esta habilidad.
 publishDate: 2026-11-09
 author: Iosif Ruiz
 category: Yoga Funcional
@@ -11,17 +14,29 @@ tags:
   - movement
   - mobility
   - body
+cover:
+  image: ../../../public/images/como-levantarse-del-suelo.png
+  alt: Ilustración en blanco y negro de una persona sentada en el suelo sobre una
+    esterilla, con el título «Levantarse del suelo».
 draft: true
 translationSlug: kak-podnyatsya-s-pola
 faq:
-  - question: "¿Cómo levantarse del suelo sin ayuda de otra persona?"
-    answer: "Una opción es girarte de lado, apoyarte sobre las manos y las rodillas, acercarte a una silla firme y utilizarla para levantarte poco a poco. No tienes que hacerlo sin usar las manos."
-  - question: "¿Por qué me cuesta levantarme del suelo?"
-    answer: "Puede deberse a la falta de fuerza, limitaciones de movilidad, problemas de equilibrio, dolor o simplemente a que no acostumbras realizar ese movimiento. La causa no siempre es la edad."
-  - question: "¿Qué ejercicios ayudan a levantarse del suelo?"
-    answer: "Practicar el propio movimiento es una buena forma de empezar. Puedes dividirlo en partes, trabajar los pasos que te cuestan más y después unirlos. La fuerza y el equilibrio también se pueden entrenar."
-  - question: "¿Cómo levantarse del suelo si no puedo apoyar las rodillas?"
-    answer: "Existen alternativas, como desplazarte sentado hasta una superficie baja y estable, subir primero a ella y después ponerte de pie. El método debe adaptarse a tus posibilidades."
+  - question: ¿Cómo levantarse del suelo sin ayuda de otra persona?
+    answer: Una opción es girarte de lado, apoyarte sobre las manos y las rodillas,
+      acercarte a una silla firme y utilizarla para levantarte poco a poco. No
+      tienes que hacerlo sin usar las manos.
+  - question: ¿Por qué me cuesta levantarme del suelo?
+    answer: Puede deberse a la falta de fuerza, limitaciones de movilidad, problemas
+      de equilibrio, dolor o simplemente a que no acostumbras realizar ese
+      movimiento. La causa no siempre es la edad.
+  - question: ¿Qué ejercicios ayudan a levantarse del suelo?
+    answer: Practicar el propio movimiento es una buena forma de empezar. Puedes
+      dividirlo en partes, trabajar los pasos que te cuestan más y después
+      unirlos. La fuerza y el equilibrio también se pueden entrenar.
+  - question: ¿Cómo levantarse del suelo si no puedo apoyar las rodillas?
+    answer: Existen alternativas, como desplazarte sentado hasta una superficie baja
+      y estable, subir primero a ella y después ponerte de pie. El método debe
+      adaptarse a tus posibilidades.
 ---
 
 **¿Cómo levantarte del suelo por tu cuenta?**
