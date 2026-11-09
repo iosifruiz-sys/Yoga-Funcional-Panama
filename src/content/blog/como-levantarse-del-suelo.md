@@ -12,6 +12,7 @@ tags:
   - mobility
   - body
 draft: true
+translationSlug: kak-podnyatsya-s-pola
 faq:
   - question: "¿Cómo levantarse del suelo sin ayuda de otra persona?"
     answer: "Una opción es girarte de lado, apoyarte sobre las manos y las rodillas, acercarte a una silla firme y utilizarla para levantarte poco a poco. No tienes que hacerlo sin usar las manos."
