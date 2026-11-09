@@ -18,7 +18,7 @@ cover:
   image: ../../../public/images/como-levantarse-del-suelo.png
   alt: Ilustración en blanco y negro de una persona sentada en el suelo sobre una
     esterilla, con el título «Levantarse del suelo».
-draft: true
+draft: false
 translationSlug: kak-podnyatsya-s-pola
 faq:
   - question: ¿Cómo levantarse del suelo sin ayuda de otra persona?
