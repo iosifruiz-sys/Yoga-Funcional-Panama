@@ -566,6 +566,13 @@ collections:
         default: true
         hint: "Actívalo para excluir el artículo del sitio, RSS, sitemap y navegación. Desactívalo antes de publicar."
       - { label: Slug de traducción rusa, name: translationSlug, widget: string, required: false, hint: "Slug exacto del artículo equivalente en Blog RU." }
+      - label: Preguntas frecuentes
+        name: faq
+        widget: list
+        required: false
+        fields:
+          - { label: Pregunta, name: question, widget: string }
+          - { label: Respuesta, name: answer, widget: text }
       - { label: Texto, name: body, widget: markdown }
 
   - name: blog_ru
