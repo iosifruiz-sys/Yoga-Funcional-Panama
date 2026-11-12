@@ -17,7 +17,8 @@ const descriptions = (['estudio', 'domicilio', 'online'] as const).map(place => 
     <p class="catalog-number">{classes.number}</p>
     <h2 id="classes-title"><span>{classes.title.first}</span><span>{classes.title.second}</span></h2>
   </header>
-  <div class="catalog-rows">
+  <div class="catalog-rows" data-classes-circle>
+    <div class="catalog-orb" aria-hidden="true"></div>
     {descriptions.map((format, index) => (
       <article class="catalog-row">
         <p class="catalog-number">0{index + 1} /</p>
@@ -32,6 +33,14 @@ const descriptions = (['estudio', 'domicilio', 'online'] as const).map(place => 
     ))}
   </div>
 </section>
+<script>
+  import { initClassesCircles, disposeClassesCircles } from '../scripts/classes-circle';
+  initClassesCircles();
+  document.addEventListener('astro:page-load', initClassesCircles);
+  document.addEventListener('astro:before-swap', disposeClassesCircles);
+  window.addEventListener('pagehide', disposeClassesCircles);
+  window.addEventListener('pageshow', initClassesCircles);
+</script>
 <style>
   .location-catalog { background: var(--color-light); color: var(--color-dark); border-top: var(--border); }
   .catalog-intro { padding: 2.5rem var(--gutter); }
@@ -40,19 +49,27 @@ const descriptions = (['estudio', 'domicilio', 'online'] as const).map(place => 
   h2 { margin: 0; font: 900 clamp(3rem, 8vw, 7rem)/1 var(--font-display); text-transform: uppercase; letter-spacing: -.035em; }
   h2 span { display: block; }
   h2 span:last-child { color: var(--color-orange); }
-  .catalog-row { display: grid; gap: .85rem; padding: 1.75rem var(--gutter); border-top: var(--border); }
-  .catalog-row:nth-child(even) { background: var(--color-warm); }
+  .catalog-rows { position: relative; isolation: isolate; overflow: hidden; border-top: var(--border); }
+  .catalog-orb { display: none; position: absolute; left: 0; top: 0; z-index: 0; border-radius: 50%; background: var(--color-orange); opacity: 0; pointer-events: none; transform-origin: center; will-change: transform, opacity; }
+  .catalog-row { position: relative; z-index: 1; display: grid; gap: .85rem; padding: 1.75rem var(--gutter); }
+  .catalog-row + .catalog-row { border-top: var(--border); }
   h3 { margin: 0; font: clamp(2.25rem, 6vw, 4rem)/1.1 var(--font-utility); text-transform: uppercase; overflow-wrap: anywhere; }
-  .catalog-copy { min-width: 0; }
+  .catalog-copy { min-width: 0; display: flex; flex-direction: column; }
   .catalog-copy p { margin: 0; max-width: 38rem; font-size: 1rem; line-height: 1.5; }
   .catalog-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
   .catalog-button { flex: 1 1 9rem; display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: 3rem; padding: .65rem .85rem; border: 1px solid var(--color-dark); font: 1.15rem var(--font-utility); text-transform: uppercase; text-decoration: none; }
   .primary { background: var(--color-orange); }
-  @media (min-width: 62rem) {
+  @media (min-width: 62rem) and (hover: hover) and (pointer: fine) {
     .catalog-intro { padding-block: 3.5rem; }
-    .catalog-row { grid-template-columns: 3rem minmax(0, 1fr) minmax(0, 1.15fr); gap: 2rem; padding-block: 2.5rem; align-items: start; }
+    .catalog-rows { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--color-warm); }
+    .catalog-row { min-width: 0; grid-template-rows: auto auto 1fr; gap: 1.5rem; padding: 2rem clamp(1.25rem, 2.2vw, 2.75rem); }
+    .catalog-row + .catalog-row { border-top: 0; border-left: var(--border); }
+    h3 { font-size: clamp(3rem, 4.8vw, 5rem); line-height: 1; }
     .catalog-copy p { font-size: 1.125rem; }
-    .catalog-actions { margin-top: 1.5rem; }
-    .catalog-button { flex: 0 1 12rem; }
+    .catalog-actions { padding-top: 1.5rem; margin-top: auto; }
+    .catalog-button { flex: 1 1 9rem; }
+  }
+  @media (min-width: 62rem) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .catalog-orb { display: block; }
   }
 </style>
