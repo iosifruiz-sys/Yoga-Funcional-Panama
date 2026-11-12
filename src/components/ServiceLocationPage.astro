@@ -39,7 +39,7 @@ const paragraphs = (text: string) => text.split(/\n\s*\n/).filter(paragraph => p
     <div>
       <h2 id="studio-name">{studio.name}</h2>
       <p>{studio.location}</p>
-      {mapsUrl && <a class="map-link" href={mapsUrl.href} target="_blank" rel="noopener noreferrer">{studio.mapsLabel} ↗</a>}
+      {mapsUrl && <a class="map-link" href={mapsUrl.href} target="_blank" rel="noopener noreferrer">{studio.mapsLabel} ↗︎</a>}
       <h3 id="studio-schedule">{studio.scheduleTitle}</h3>
       <ol class="studio-schedule" aria-labelledby="studio-schedule">
         {schedule.map(slot => <li><span>{scheduleCopy.days[slot.day]}</span><time datetime={slot.startTime}>{formatScheduleTime(slot.startTime)}</time></li>)}
@@ -47,7 +47,7 @@ const paragraphs = (text: string) => text.split(/\n\s*\n/).filter(paragraph => p
     </div>
     <div class="studio-contact body">
       <p>{studio.costNotice}</p>
-      <a class="action" href={bookingUrl} target="_blank" rel="noopener noreferrer">{studio.contactLabel} <span aria-hidden="true">↗</span></a>
+      <a class="action" href={bookingUrl} target="_blank" rel="noopener noreferrer">{studio.contactLabel} <span aria-hidden="true">↗︎</span></a>
     </div>
   </section>}
   <div class="services">
@@ -64,7 +64,7 @@ const paragraphs = (text: string) => text.split(/\n\s*\n/).filter(paragraph => p
           </div>
           {item.sections?.filter(section => section.title.trim() && section.body.trim()).map(section => <section class="editorial"><h3>{section.title}</h3><p>{section.body}</p></section>)}
           {!studio && item.price && <p class="price">{item.price}</p>}
-          <a class="action" href={item.href} target={item.href.startsWith('https:') ? '_blank' : undefined} rel={item.href.startsWith('https:') ? 'noopener noreferrer' : undefined}>{item.label} <span aria-hidden="true">{item.href.startsWith('https:') ? '↗' : '→'}</span></a>
+          <a class="action" href={item.href} target={item.href.startsWith('https:') ? '_blank' : undefined} rel={item.href.startsWith('https:') ? 'noopener noreferrer' : undefined}>{item.label} <span aria-hidden="true">{item.href.startsWith('https:') ? '↗︎' : '→'}</span></a>
         </div>
       </article>
     ))}
@@ -75,7 +75,7 @@ const paragraphs = (text: string) => text.split(/\n\s*\n/).filter(paragraph => p
       {paragraphs(t.combination.body).map(paragraph => <p>{paragraph}</p>)}
       <p><strong>{t.combination.emphasis}</strong></p>
     </section>
-    <a class="action" href={bookingUrl} target="_blank" rel="noopener noreferrer">{studio?.contactLabel ?? t.book} <span aria-hidden="true">↗</span></a>
+    <a class="action" href={bookingUrl} target="_blank" rel="noopener noreferrer">{studio?.contactLabel ?? t.book} <span aria-hidden="true">↗︎</span></a>
     <nav aria-label={locale === 'es' ? 'Otras clases' : 'Другие занятия'}>
       {otherPlaces.map(value => <a href={localizedPath(locale, `clases/${value}/`)}>{locations[locale][value].title} <span aria-hidden="true">→</span></a>)}
     </nav>
