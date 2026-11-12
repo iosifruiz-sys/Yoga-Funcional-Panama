@@ -1,70 +1,32 @@
 ---
-import type { Locale } from '../i18n';
+import { localizedPath, type Locale } from '../i18n';
 import classesEs from '../data/classes/es.json';
 import classesRu from '../data/classes/ru.json';
-import links from '../data/classes/links.json';
 interface Props { locale?: Locale }
 const { locale = 'es' } = Astro.props;
 const classes = { es: classesEs, ru: classesRu }[locale];
-const personalBookingUrl = links.personalBookingUrl;
-
-const formats = [
-  {
-    number: '01',
-    name: classes.formats.group.name,
-    paragraphs: [
-      classes.formats.group.description,
-      classes.formats.group.details,
-    ],
-    action: classes.formats.group.action,
-    href: '#horarios',
-  },
-  {
-    number: '02',
-    name: classes.formats.individual.name,
-    price: classes.formats.individual.price,
-    paragraphs: [
-      classes.formats.individual.description,
-      classes.formats.individual.details,
-    ],
-    action: classes.formats.individual.action,
-    href: personalBookingUrl,
-  },
-  {
-    number: '03',
-    name: classes.formats.personal.name,
-    price: classes.formats.personal.price,
-    paragraphs: [
-      classes.formats.personal.description,
-      classes.formats.personal.details,
-    ],
-    action: classes.formats.personal.action,
-    href: personalBookingUrl,
-  },
+const descriptions = locale === 'es' ? [
+  { name: 'En estudio', text: 'Clases grupales e individuales.', action: 'Ver clases', place: 'estudio' },
+  { name: 'A domicilio', text: 'Clases grupales, individuales y entrenamiento personal.', action: 'Ver clases', place: 'domicilio' },
+  { name: 'Online', text: 'Clases individuales y entrenamiento personal en directo.', action: 'Ver clases', place: 'online' },
+] : [
+  { name: 'В студии', text: 'Групповые и индивидуальные занятия.', action: 'Подробнее', place: 'estudio' },
+  { name: 'На выезде', text: 'Групповые и индивидуальные занятия, персональные тренировки.', action: 'Подробнее', place: 'domicilio' },
+  { name: 'Онлайн', text: 'Индивидуальные занятия и персональные тренировки в прямом эфире.', action: 'Подробнее', place: 'online' },
 ];
 ---
-
 <section id="clases" class="classes" aria-labelledby="classes-title">
   <header class="classes-intro">
     <p class="classes-number">{classes.number}</p>
     <h2 id="classes-title"><span>{classes.title.first}</span><span>{classes.title.second}</span></h2>
   </header>
-
   <div class="class-formats">
-    {formats.map((format) => (
+    {descriptions.map((format, index) => (
       <article class="class-format">
-        <p class="format-number">{format.number} /</p>
+        <p class="format-number">0{index + 1} /</p>
         <h3>{format.name}</h3>
-        {format.price && <p class="format-price">{format.price}</p>}
-        <div class="format-copy">
-          {format.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
-        </div>
-        <a
-          class="format-action"
-          href={format.href}
-          target={format.href === personalBookingUrl ? '_blank' : undefined}
-          rel={format.href === personalBookingUrl ? 'noopener noreferrer' : undefined}
-        >{format.action} <span aria-hidden="true">→</span></a>
+        <div class="format-copy"><p>{format.text}</p></div>
+        <a class="format-action" href={localizedPath(locale, `clases/${format.place}/`)}>{format.action}<span aria-hidden="true">→</span></a>
       </article>
     ))}
   </div>
