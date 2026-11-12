@@ -1,0 +1,34 @@
+{
+  "title": "A DOMICILIO",
+  "summary": "Clases grupales, individuales y entrenamiento personal a domicilio.",
+  "readMore": "Ver clases",
+  "back": "VOLVER A CLASES",
+  "book": "CONSULTAR DISPONIBILIDAD",
+  "schedule": "VER HORARIOS",
+  "section": "03 / CLASES",
+  "lead": "Clases grupales, individuales y entrenamiento personal a domicilio.",
+  "seo": {
+    "title": "Clases de yoga a domicilio | Iosif Ruiz",
+    "description": "Clases de yoga a domicilio con Iosif Ruiz. Información sobre formatos y reserva."
+  },
+  "services": {
+    "group": {
+      "title": "CLASE GRUPAL",
+      "body": "Para grupos privados. Consulta disponibilidad y condiciones.",
+      "details": "",
+      "price": ""
+    },
+    "individual": {
+      "title": "CLASE INDIVIDUAL",
+      "body": "Una sesión uno a uno adaptada a tu nivel, tus necesidades y lo que quieres trabajar.",
+      "details": "Sin programas ni compromisos: una clase, un objetivo, una hora de trabajo.",
+      "price": "$30"
+    },
+    "personal": {
+      "title": "ENTRENAMIENTO PERSONAL",
+      "body": "Un proceso diseñado alrededor de ti: evaluación, objetivos, programa de entrenamiento, progresión y ajustes.",
+      "details": "No es solamente una clase. Es un plan para trabajar hacia un resultado concreto.",
+      "price": "$60"
+    }
+  }
+}

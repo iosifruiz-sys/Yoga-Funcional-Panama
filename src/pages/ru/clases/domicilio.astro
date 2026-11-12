@@ -3,14 +3,15 @@ import BaseLayout from '../../../layouts/BaseLayout.astro';
 import Header from '../../../components/Header.astro';
 import Footer from '../../../components/Footer.astro';
 import ServiceLocationPage from '../../../components/ServiceLocationPage.astro';
+import { locations } from '../../../data/classes/locations';
 import { localizedPath } from '../../../i18n';
 const locale = 'ru';
 const place = 'domicilio';
 const esPath = localizedPath('es', 'clases/domicilio/');
 const ruPath = localizedPath('ru', 'clases/domicilio/');
 ---
-<BaseLayout locale={locale} title="Занятия йогой на выезде | Iosif Ruiz" description="Занятия йогой на выезде con Iosif Ruiz. Información sobre formatos y reserva." alternates={{ es: esPath, ru: ruPath }}>
-  <Header locale={locale} alternateUrl={locale === 'es' ? ruPath : esPath} />
+<BaseLayout locale={locale} title={locations[locale][place].seo.title} description={locations[locale][place].seo.description} alternates={{ es: esPath, ru: ruPath }}>
+  <Header locale={locale} alternateUrl={esPath} />
   <main id="contenido"><ServiceLocationPage locale={locale} place={place} /></main>
   <Footer locale={locale} />
 </BaseLayout>

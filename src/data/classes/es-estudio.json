@@ -1,0 +1,28 @@
+{
+  "title": "EN ESTUDIO",
+  "summary": "Clases grupales e individuales en el estudio.",
+  "readMore": "Ver clases",
+  "back": "VOLVER A CLASES",
+  "book": "CONSULTAR DISPONIBILIDAD",
+  "schedule": "VER HORARIOS",
+  "section": "03 / CLASES",
+  "lead": "Clases grupales e individuales en el estudio.",
+  "seo": {
+    "title": "Clases de yoga en estudio | Iosif Ruiz",
+    "description": "Clases de yoga en estudio con Iosif Ruiz. Información sobre formatos y reserva."
+  },
+  "services": {
+    "group": {
+      "title": "CLASE GRUPAL",
+      "body": "Consulta el horario y el espacio donde se realiza la clase.",
+      "details": "",
+      "price": ""
+    },
+    "individual": {
+      "title": "CLASE INDIVIDUAL",
+      "body": "Una sesión uno a uno adaptada a tu nivel, tus necesidades y lo que quieres trabajar.",
+      "details": "Sin programas ni compromisos: una clase, un objetivo, una hora de trabajo.",
+      "price": ""
+    }
+  }
+}

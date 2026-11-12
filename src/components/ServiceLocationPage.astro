@@ -1,74 +1,31 @@
 ---
 import type { Locale } from '../i18n';
 import { localizedPath } from '../i18n';
-import classesEs from '../data/classes/es.json';
-import classesRu from '../data/classes/ru.json';
+import { locations } from '../data/classes/locations';
 import links from '../data/classes/links.json';
 interface Props { locale: Locale; place: 'estudio' | 'domicilio' | 'online' }
 const { locale, place } = Astro.props;
-const copy = {
-  es: {
-    back: 'VOLVER A CLASES',
-    book: 'CONSULTAR DISPONIBILIDAD',
-    title: { estudio: 'EN ESTUDIO', domicilio: 'A DOMICILIO', online: 'ONLINE' },
-    lead: { estudio: 'Clases grupales e individuales en el estudio.', domicilio: 'Clases grupales, individuales y entrenamiento personal a domicilio.', online: 'Clases individuales y entrenamiento personal en directo, estés donde estés.' },
-    group: 'CLASE GRUPAL', individual: 'CLASE INDIVIDUAL', personal: 'ENTRENAMIENTO PERSONAL',
-    groupStudio: 'Consulta el horario y el espacio donde se realiza la clase.',
-    groupHome: 'Para grupos privados. Consulta disponibilidad y condiciones.',
-    individualStudio: 'Trabajo individual adaptado a tu nivel y tus objetivos.',
-    individualHome: 'Una clase uno a uno en tu domicilio.',
-    personalHome: 'Proceso con evaluación, objetivos, programa y seguimiento.',
-    individualOnline: 'Una clase en directo adaptada a tus necesidades.',
-    personalOnline: 'Entrenamiento con programación y seguimiento a distancia.',
-    schedule: 'VER HORARIOS',
-  },
-  ru: {
-    back: 'НАЗАД К ЗАНЯТИЯМ',
-    book: 'УЗНАТЬ О ЗАПИСИ',
-    title: { estudio: 'В СТУДИИ', domicilio: 'НА ВЫЕЗДЕ', online: 'ОНЛАЙН' },
-    lead: { estudio: 'Групповые и индивидуальные занятия в студии.', domicilio: 'Групповые и индивидуальные занятия, а также персональные тренировки на выезде.', online: 'Индивидуальные занятия и персональные тренировки в прямом эфире из любой точки мира.' },
-    group: 'ГРУППОВЫЕ ЗАНЯТИЯ', individual: 'ИНДИВИДУАЛЬНОЕ ЗАНЯТИЕ', personal: 'ПЕРСОНАЛЬНАЯ ТРЕНИРОВКА',
-    groupStudio: 'Расписание и место проведения указаны на главной странице.',
-    groupHome: 'Для частных групп. Условия и доступное время уточняются.',
-    individualStudio: 'Индивидуальная работа с учётом уровня и целей.',
-    individualHome: 'Индивидуальное занятие у вас дома.',
-    personalHome: 'Работа по программе: оценка, цели, прогресс и корректировки.',
-    individualOnline: 'Живое занятие с адаптацией нагрузки.',
-    personalOnline: 'Программа тренировок и сопровождение на расстоянии.',
-    schedule: 'СМОТРЕТЬ РАСПИСАНИЕ',
-  },
-};
-const t = copy[locale], classes = locale === 'es' ? classesEs : classesRu;
-const services = place === 'estudio'
-  ? [
-    { title: t.group, body: t.groupStudio, price: '', href: `${localizedPath(locale)}#horarios`, label: t.schedule },
-    { title: t.individual, body: t.individualStudio, price: '', href: links.personalBookingUrl, label: t.book },
-  ]
-  : place === 'domicilio'
-    ? [
-      { title: t.group, body: t.groupHome, price: '', href: links.personalBookingUrl, label: t.book },
-      { title: t.individual, body: t.individualHome, price: classes.formats.individual.price, href: links.personalBookingUrl, label: t.book },
-      { title: t.personal, body: t.personalHome, price: classes.formats.personal.price, href: links.personalBookingUrl, label: t.book },
-    ]
-    : [
-      { title: t.individual, body: t.individualOnline, price: '$20', href: links.personalBookingUrl, label: t.book },
-      { title: t.personal, body: t.personalOnline, price: '', href: links.personalBookingUrl, label: t.book },
-    ];
+const t = locations[locale][place];
+const services = Object.entries(t.services).map(([kind, service]) => ({
+  ...service,
+  href: kind === 'group' && place === 'estudio' ? `${localizedPath(locale)}#horarios` : links.personalBookingUrl,
+  label: kind === 'group' && place === 'estudio' ? t.schedule : t.book,
+}));
 ---
 <section class="service-page" aria-labelledby="service-title">
   <a class="back" href={`${localizedPath(locale)}#clases`}>← {t.back}</a>
   <header class="intro">
-    <p class="index">03 / {locale === 'es' ? 'CLASES' : 'ЗАНЯТИЯ'}</p>
-    <h1 id="service-title">{t.title[place]}</h1>
-    <p class="lead">{t.lead[place]}</p>
+    <p class="index">{t.section}</p>
+    <h1 id="service-title">{t.title}</h1>
+    <p class="lead">{t.lead}</p>
   </header>
-  <div class="services">
+  <div class="services" style={`--service-count: ${services.length}`}>
     {services.map((item, index) => (
       <article class="service">
         <p class="number">0{index + 1} /</p>
         <h2>{item.title}</h2>
         {item.price && <p class="price">{item.price}</p>}
-        <p class="body">{item.body}</p>
+        <div class="body"><p>{item.body}</p>{item.details && <p>{item.details}</p>}</div>
         <a class="action" href={item.href} target={item.href.startsWith('https:') ? '_blank' : undefined} rel={item.href.startsWith('https:') ? 'noopener noreferrer' : undefined}>{item.label} <span aria-hidden="true">↗</span></a>
       </article>
     ))}
@@ -84,13 +41,16 @@ const services = place === 'estudio'
   h1 { margin: 0; font: clamp(4rem, 12vw, 11rem)/.9 var(--font-utility); overflow-wrap: anywhere; }
   .lead { max-width: 45rem; margin: 2rem 0 0; font-size: clamp(1rem, 2.2vw, 1.45rem); line-height: 1.45; }
   .services { display: grid; }
-  .service { padding: 2rem var(--gutter) 3rem; border-bottom: var(--border); }
-  .service:nth-child(even) { background: var(--color-warm); }
+  .body p { margin: 0; }
+  .body p + p { margin-top: .85rem; }
+  .service { min-width: 0; padding: 2rem var(--gutter) 3rem; border-bottom: var(--border); }
+  .service:nth-child(2) { background: var(--color-dark); color: var(--color-light); }
+  .service:nth-child(3) { background: var(--color-warm); }
   .number { margin: 0 0 1.25rem; }
-  h2 { max-width: 55rem; margin: 0; font: clamp(3.25rem, 7vw, 7rem)/.95 var(--font-utility); text-transform: uppercase; }
+  h2 { overflow-wrap: anywhere; max-width: 55rem; margin: 0; font: clamp(2rem, 8vw, 3.25rem)/1.1 var(--font-utility); text-transform: uppercase; }
   .price { margin: 1.5rem 0 0; color: var(--color-orange); font: clamp(5rem, 12vw, 9rem)/1 var(--font-utility); }
   .body { max-width: 37rem; margin: 1.5rem 0 2.5rem; line-height: 1.5; }
   .action { display: flex; justify-content: space-between; gap: 1rem; border-top: 1px solid; padding-top: .85rem; max-width: 37rem; font: 1.5rem var(--font-utility); text-decoration: none; }
   .action span { color: var(--color-orange); }
-  @media (min-width: 62rem) { .services { grid-template-columns: repeat(3,minmax(0,1fr)); } .service { border-right: var(--border); } h2 { font-size: clamp(3rem, 4vw, 5.4rem); } }
+  @media (min-width: 62rem) { .services { grid-template-columns: repeat(var(--service-count),minmax(0,1fr)); } .service { border-right: var(--border); } h2 { font-size: clamp(2rem, 3vw, 3rem); } }
 </style>

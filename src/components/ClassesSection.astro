@@ -1,19 +1,15 @@
 ---
 import { localizedPath, type Locale } from '../i18n';
+import { locations } from '../data/classes/locations';
 import classesEs from '../data/classes/es.json';
 import classesRu from '../data/classes/ru.json';
 interface Props { locale?: Locale }
 const { locale = 'es' } = Astro.props;
 const classes = { es: classesEs, ru: classesRu }[locale];
-const descriptions = locale === 'es' ? [
-  { name: 'En estudio', text: 'Clases grupales e individuales.', action: 'Ver clases', place: 'estudio' },
-  { name: 'A domicilio', text: 'Clases grupales, individuales y entrenamiento personal.', action: 'Ver clases', place: 'domicilio' },
-  { name: 'Online', text: 'Clases individuales y entrenamiento personal en directo.', action: 'Ver clases', place: 'online' },
-] : [
-  { name: 'В студии', text: 'Групповые и индивидуальные занятия.', action: 'Подробнее', place: 'estudio' },
-  { name: 'На выезде', text: 'Групповые и индивидуальные занятия, персональные тренировки.', action: 'Подробнее', place: 'domicilio' },
-  { name: 'Онлайн', text: 'Индивидуальные занятия и персональные тренировки в прямом эфире.', action: 'Подробнее', place: 'online' },
-];
+const descriptions = (['estudio', 'domicilio', 'online'] as const).map(place => ({
+  name: locations[locale][place].title, text: locations[locale][place].summary,
+  action: locations[locale][place].readMore, place,
+}));
 ---
 <section id="clases" class="classes" aria-labelledby="classes-title">
   <header class="classes-intro">

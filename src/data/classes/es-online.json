@@ -1,0 +1,28 @@
+{
+  "title": "ONLINE",
+  "summary": "Clases individuales y entrenamiento personal en directo, estés donde estés.",
+  "readMore": "Ver clases",
+  "back": "VOLVER A CLASES",
+  "book": "CONSULTAR DISPONIBILIDAD",
+  "schedule": "VER HORARIOS",
+  "section": "03 / CLASES",
+  "lead": "Clases individuales y entrenamiento personal en directo, estés donde estés.",
+  "seo": {
+    "title": "Clases de yoga online | Iosif Ruiz",
+    "description": "Clases de yoga online con Iosif Ruiz. Información sobre formatos y reserva."
+  },
+  "services": {
+    "individual": {
+      "title": "CLASE INDIVIDUAL",
+      "body": "Una sesión uno a uno adaptada a tu nivel, tus necesidades y lo que quieres trabajar.",
+      "details": "Sin programas ni compromisos: una clase, un objetivo, una hora de trabajo.",
+      "price": "$20"
+    },
+    "personal": {
+      "title": "ENTRENAMIENTO PERSONAL",
+      "body": "Un proceso diseñado alrededor de ti: evaluación, objetivos, programa de entrenamiento, progresión y ajustes.",
+      "details": "No es solamente una clase. Es un plan para trabajar hacia un resultado concreto.",
+      "price": ""
+    }
+  }
+}

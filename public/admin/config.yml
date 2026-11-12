@@ -700,3 +700,254 @@ collections:
         value_field: "{{slug}}"
         required: false
         hint: "Solo se mostrará si el artículo de este idioma está publicado."
+
+  - name: class_locations
+    label: Clases por lugar / Занятия по месту
+    format: json
+    editor:
+      preview: false
+    files:
+      - name: es_estudio
+        label: ES — EN ESTUDIO
+        file: src/data/classes/es-estudio.json
+        fields:
+          - { label: title, name: title, widget: string }
+          - { label: summary, name: summary, widget: text }
+          - { label: readMore, name: readMore, widget: string }
+          - { label: back, name: back, widget: string }
+          - { label: book, name: book, widget: string }
+          - { label: schedule, name: schedule, widget: string }
+          - { label: section, name: section, widget: string }
+          - { label: lead, name: lead, widget: text }
+          - label: seo
+            name: seo
+            widget: object
+            fields:
+              - { label: title, name: title, widget: string }
+              - { label: description, name: description, widget: text }
+          - label: services
+            name: services
+            widget: object
+            fields:
+              - label: group
+                name: group
+                widget: object
+                fields:
+                  - { label: title, name: title, widget: string }
+                  - { label: body, name: body, widget: text }
+                  - { label: details, name: details, widget: text }
+                  - { label: price, name: price, widget: string, required: false }
+              - label: individual
+                name: individual
+                widget: object
+                fields:
+                  - { label: title, name: title, widget: string }
+                  - { label: body, name: body, widget: text }
+                  - { label: details, name: details, widget: text }
+                  - { label: price, name: price, widget: string, required: false }
+      - name: es_domicilio
+        label: ES — A DOMICILIO
+        file: src/data/classes/es-domicilio.json
+        fields:
+          - { label: title, name: title, widget: string }
+          - { label: summary, name: summary, widget: text }
+          - { label: readMore, name: readMore, widget: string }
+          - { label: back, name: back, widget: string }
+          - { label: book, name: book, widget: string }
+          - { label: schedule, name: schedule, widget: string }
+          - { label: section, name: section, widget: string }
+          - { label: lead, name: lead, widget: text }
+          - label: seo
+            name: seo
+            widget: object
+            fields:
+              - { label: title, name: title, widget: string }
+              - { label: description, name: description, widget: text }
+          - label: services
+            name: services
+            widget: object
+            fields:
+              - label: group
+                name: group
+                widget: object
+                fields:
+                  - { label: title, name: title, widget: string }
+                  - { label: body, name: body, widget: text }
+                  - { label: details, name: details, widget: text }
+                  - { label: price, name: price, widget: string, required: false }
+              - label: individual
+                name: individual
+                widget: object
+                fields:
+                  - { label: title, name: title, widget: string }
+                  - { label: body, name: body, widget: text }
+                  - { label: details, name: details, widget: text }
+                  - { label: price, name: price, widget: string, required: false }
+              - label: personal
+                name: personal
+                widget: object
+                fields:
+                  - { label: title, name: title, widget: string }
+                  - { label: body, name: body, widget: text }
+                  - { label: details, name: details, widget: text }
+                  - { label: price, name: price, widget: string, required: false }
+      - name: es_online
+        label: ES — ONLINE
+        file: src/data/classes/es-online.json
+        fields:
+          - { label: title, name: title, widget: string }
+          - { label: summary, name: summary, widget: text }
+          - { label: readMore, name: readMore, widget: string }
+          - { label: back, name: back, widget: string }
+          - { label: book, name: book, widget: string }
+          - { label: schedule, name: schedule, widget: string }
+          - { label: section, name: section, widget: string }
+          - { label: lead, name: lead, widget: text }
+          - label: seo
+            name: seo
+            widget: object
+            fields:
+              - { label: title, name: title, widget: string }
+              - { label: description, name: description, widget: text }
+          - label: services
+            name: services
+            widget: object
+            fields:
+              - label: individual
+                name: individual
+                widget: object
+                fields:
+                  - { label: title, name: title, widget: string }
+                  - { label: body, name: body, widget: text }
+                  - { label: details, name: details, widget: text }
+                  - { label: price, name: price, widget: string, required: false }
+              - label: personal
+                name: personal
+                widget: object
+                fields:
+                  - { label: title, name: title, widget: string }
+                  - { label: body, name: body, widget: text }
+                  - { label: details, name: details, widget: text }
+                  - { label: price, name: price, widget: string, required: false }
+      - name: ru_estudio
+        label: RU — В СТУДИИ
+        file: src/data/classes/ru-estudio.json
+        fields:
+          - { label: title, name: title, widget: string }
+          - { label: summary, name: summary, widget: text }
+          - { label: readMore, name: readMore, widget: string }
+          - { label: back, name: back, widget: string }
+          - { label: book, name: book, widget: string }
+          - { label: schedule, name: schedule, widget: string }
+          - { label: section, name: section, widget: string }
+          - { label: lead, name: lead, widget: text }
+          - label: seo
+            name: seo
+            widget: object
+            fields:
+              - { label: title, name: title, widget: string }
+              - { label: description, name: description, widget: text }
+          - label: services
+            name: services
+            widget: object
+            fields:
+              - label: group
+                name: group
+                widget: object
+                fields:
+                  - { label: title, name: title, widget: string }
+                  - { label: body, name: body, widget: text }
+                  - { label: details, name: details, widget: text }
+                  - { label: price, name: price, widget: string, required: false }
+              - label: individual
+                name: individual
+                widget: object
+                fields:
+                  - { label: title, name: title, widget: string }
+                  - { label: body, name: body, widget: text }
+                  - { label: details, name: details, widget: text }
+                  - { label: price, name: price, widget: string, required: false }
+      - name: ru_domicilio
+        label: RU — НА ВЫЕЗДЕ
+        file: src/data/classes/ru-domicilio.json
+        fields:
+          - { label: title, name: title, widget: string }
+          - { label: summary, name: summary, widget: text }
+          - { label: readMore, name: readMore, widget: string }
+          - { label: back, name: back, widget: string }
+          - { label: book, name: book, widget: string }
+          - { label: schedule, name: schedule, widget: string }
+          - { label: section, name: section, widget: string }
+          - { label: lead, name: lead, widget: text }
+          - label: seo
+            name: seo
+            widget: object
+            fields:
+              - { label: title, name: title, widget: string }
+              - { label: description, name: description, widget: text }
+          - label: services
+            name: services
+            widget: object
+            fields:
+              - label: group
+                name: group
+                widget: object
+                fields:
+                  - { label: title, name: title, widget: string }
+                  - { label: body, name: body, widget: text }
+                  - { label: details, name: details, widget: text }
+                  - { label: price, name: price, widget: string, required: false }
+              - label: individual
+                name: individual
+                widget: object
+                fields:
+                  - { label: title, name: title, widget: string }
+                  - { label: body, name: body, widget: text }
+                  - { label: details, name: details, widget: text }
+                  - { label: price, name: price, widget: string, required: false }
+              - label: personal
+                name: personal
+                widget: object
+                fields:
+                  - { label: title, name: title, widget: string }
+                  - { label: body, name: body, widget: text }
+                  - { label: details, name: details, widget: text }
+                  - { label: price, name: price, widget: string, required: false }
+      - name: ru_online
+        label: RU — ОНЛАЙН
+        file: src/data/classes/ru-online.json
+        fields:
+          - { label: title, name: title, widget: string }
+          - { label: summary, name: summary, widget: text }
+          - { label: readMore, name: readMore, widget: string }
+          - { label: back, name: back, widget: string }
+          - { label: book, name: book, widget: string }
+          - { label: schedule, name: schedule, widget: string }
+          - { label: section, name: section, widget: string }
+          - { label: lead, name: lead, widget: text }
+          - label: seo
+            name: seo
+            widget: object
+            fields:
+              - { label: title, name: title, widget: string }
+              - { label: description, name: description, widget: text }
+          - label: services
+            name: services
+            widget: object
+            fields:
+              - label: individual
+                name: individual
+                widget: object
+                fields:
+                  - { label: title, name: title, widget: string }
+                  - { label: body, name: body, widget: text }
+                  - { label: details, name: details, widget: text }
+                  - { label: price, name: price, widget: string, required: false }
+              - label: personal
+                name: personal
+                widget: object
+                fields:
+                  - { label: title, name: title, widget: string }
+                  - { label: body, name: body, widget: text }
+                  - { label: details, name: details, widget: text }
+                  - { label: price, name: price, widget: string, required: false }
