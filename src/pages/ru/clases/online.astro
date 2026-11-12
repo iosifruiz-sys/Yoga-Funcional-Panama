@@ -1,0 +1,16 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/Header.astro';
+import Footer from '../../../components/Footer.astro';
+import ServiceLocationPage from '../../../components/ServiceLocationPage.astro';
+import { localizedPath } from '../../../i18n';
+const locale = 'ru';
+const place = 'online';
+const esPath = localizedPath('es', 'clases/online/');
+const ruPath = localizedPath('ru', 'clases/online/');
+---
+<BaseLayout locale={locale} title="Занятия йогой онлайн | Iosif Ruiz" description="Занятия йогой онлайн con Iosif Ruiz. Información sobre formatos y reserva." alternates={{ es: esPath, ru: ruPath }}>
+  <Header locale={locale} alternateUrl={locale === 'es' ? ruPath : esPath} />
+  <main id="contenido"><ServiceLocationPage locale={locale} place={place} /></main>
+  <Footer locale={locale} />
+</BaseLayout>
