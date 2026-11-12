@@ -25,7 +25,7 @@ const descriptions = (['estudio', 'domicilio', 'online'] as const).map(place => 
         <h3>{format.name}</h3>
         <div class="catalog-copy"><p>{format.text}</p>
           <div class="catalog-actions">
-            <a class="catalog-button primary" href={classBookingUrl(locale, format.place)} target="_blank" rel="noopener noreferrer">{locale === 'es' ? 'RESERVAR' : 'ЗАПИСАТЬСЯ'} <span aria-hidden="true">↗</span></a>
+            <a class="catalog-button primary" href={classBookingUrl(locale, format.place)} target="_blank" rel="noopener noreferrer">{locale === 'es' ? 'RESERVAR' : 'ЗАПИСАТЬСЯ'} <span aria-hidden="true">↗︎</span></a>
             <a class="catalog-button" href={localizedPath(locale, `clases/${format.place}/`)}>{format.action} <span aria-hidden="true">→</span></a>
           </div>
         </div>
@@ -43,7 +43,7 @@ const descriptions = (['estudio', 'domicilio', 'online'] as const).map(place => 
 </script>
 <style>
   .location-catalog { background: var(--color-light); color: var(--color-dark); border-top: var(--border); }
-  .catalog-intro { padding: 2.5rem var(--gutter); }
+  .catalog-intro { padding: 2.5rem var(--gutter); background: var(--color-warm); }
   .catalog-number { margin: 0; font: 1.25rem var(--font-utility); letter-spacing: .05em; }
   .catalog-intro .catalog-number { margin-bottom: 1.5rem; }
   h2 { margin: 0; font: 900 clamp(3rem, 8vw, 7rem)/1 var(--font-display); text-transform: uppercase; letter-spacing: -.035em; }
@@ -66,7 +66,7 @@ const descriptions = (['estudio', 'domicilio', 'online'] as const).map(place => 
   }
   @media (min-width: 62rem) and (hover: hover) and (pointer: fine) {
     .catalog-intro { padding-block: 3.5rem; }
-    .catalog-rows { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--color-warm); }
+    .catalog-rows { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--color-light); }
     .catalog-row { min-width: 0; grid-template-rows: auto auto 1fr; gap: 1.5rem; padding: 2rem clamp(1.25rem, 2.2vw, 2.75rem); }
     .catalog-row + .catalog-row { border-top: 0; border-left: var(--border); }
     h3 { font-size: clamp(3rem, 4.8vw, 5rem); line-height: 1; }
