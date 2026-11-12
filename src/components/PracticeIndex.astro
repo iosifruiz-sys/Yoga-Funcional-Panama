@@ -29,7 +29,7 @@ const actions = { pdf: 'DESCARGAR PDF', video: 'VER VÍDEO', audio: 'ESCUCHAR AU
             <span class="practice-kind">{labels[resource.type]}</span>
             <button type="button" class="practice-arrow" data-resource-open
               aria-label={`Abrir vista previa: ${resource.title}`} aria-haspopup="dialog"
-              aria-controls="practice-preview" aria-expanded="false"><span aria-hidden="true">↗</span></button>
+              aria-controls="practice-preview" aria-expanded="false"><span aria-hidden="true">↗︎</span></button>
           </div>
           <div class="practice-mobile">
             <button class="practice-mobile-trigger" type="button" aria-expanded={index === 0 ? 'true' : 'false'} aria-controls={`practice-mobile-panel-${index}`} data-mobile-trigger>
@@ -49,12 +49,12 @@ const actions = { pdf: 'DESCARGAR PDF', video: 'VER VÍDEO', audio: 'ESCUCHAR AU
               <div class="practice-mobile-meta"><span>ARCHIVO / <strong>{labels[resource.type]}</strong></span><span>ACCESO / <strong>LIBRE</strong></span></div>
               <p class="practice-mobile-description">{resource.description}</p>
               <div class="practice-mobile-actions">
-                <a href={resource.href} download={resource.download ? true : undefined}>{resource.download ? `DESCARGAR ${labels[resource.type]}` : actions[resource.type]} <span aria-hidden="true">↗</span></a>
-                {resource.article && <a href={resource.article}>LEER ARTÍCULO <span aria-hidden="true">↗</span></a>}
+                <a href={resource.href} download={resource.download ? true : undefined}>{resource.download ? `DESCARGAR ${labels[resource.type]}` : actions[resource.type]} <span aria-hidden="true">↗︎</span></a>
+                {resource.article && <a href={resource.article}>LEER ARTÍCULO <span aria-hidden="true">↗︎</span></a>}
               </div>
             </div>
           </div>
-          <noscript><a class="practice-fallback" href={resource.href} download={resource.download}>{resource.title} ↗</a></noscript>
+          <noscript><a class="practice-fallback" href={resource.href} download={resource.download}>{resource.title} ↗︎</a></noscript>
         </li>
       ))}
     </ol>
@@ -82,8 +82,8 @@ const actions = { pdf: 'DESCARGAR PDF', video: 'VER VÍDEO', audio: 'ESCUCHAR AU
       </div>
       <p data-detail-description>{resources[0].description}</p>
       <div class="practice-detail-actions">
-        <a class="practice-detail-action" data-detail-action href={resources[0].href} download={resources[0].download ? true : undefined}>{resources[0].download ? 'DESCARGAR PDF' : 'ABRIR RECURSO'} <span aria-hidden="true">↗</span></a>
-        <a class="practice-detail-article" data-detail-article href={resources[0].article ?? undefined} hidden={!resources[0].article}>LEER ARTÍCULO ↗</a>
+        <a class="practice-detail-action" data-detail-action href={resources[0].href} download={resources[0].download ? true : undefined}>{resources[0].download ? 'DESCARGAR PDF' : 'ABRIR RECURSO'} <span aria-hidden="true">↗︎</span></a>
+        <a class="practice-detail-article" data-detail-article href={resources[0].article ?? undefined} hidden={!resources[0].article}>LEER ARTÍCULO ↗︎</a>
       </div>
     </aside>
     </div>
@@ -100,7 +100,7 @@ const actions = { pdf: 'DESCARGAR PDF', video: 'VER VÍDEO', audio: 'ESCUCHAR AU
         <h2 id="practice-preview-title"></h2>
         <p id="practice-preview-description"></p>
         <a class="practice-action" data-preview-action></a>
-        <a class="practice-article" data-preview-article hidden>LEER ARTÍCULO <span aria-hidden="true">↗</span></a>
+        <a class="practice-article" data-preview-article hidden>LEER ARTÍCULO <span aria-hidden="true">↗︎</span></a>
       </div>
     </div>
   </dialog>
