@@ -26,7 +26,7 @@ const bookingUrl = 'https://wa.me/50762331434?text=Hola%2C%20quiero%20saber%20m%
       <li class="language-switcher" aria-label="Language"><a href={locale === 'es' ? Astro.url.pathname : (alternateUrl ?? fallbackAlternate)} aria-current={locale === 'es' ? 'page' : undefined}>ES</a><span aria-hidden="true">|</span><a href={locale === 'ru' ? Astro.url.pathname : (alternateUrl ?? fallbackAlternate)} aria-current={locale === 'ru' ? 'page' : undefined}>RU</a></li>
     </ul>
   </nav>
-  <a class="header-cta" href={bookingUrl} target="_blank" rel="noopener noreferrer">{t.reserve} <span aria-hidden="true">↗</span></a>
+  <a class="header-cta" href={bookingUrl} target="_blank" rel="noopener noreferrer">{t.reserve} <span aria-hidden="true">↗︎</span></a>
 </header>
 <script>
   const header = document.querySelector<HTMLElement>('.site-header');
