@@ -1,0 +1,51 @@
+{
+  "title": "ONLINE",
+  "summary": "Clases individuales y entrenamiento personal en directo, estés donde estés.",
+  "readMore": "VER DETALLES",
+  "back": "VOLVER A CLASES",
+  "book": "CONSULTAR DISPONIBILIDAD",
+  "schedule": "VER HORARIOS",
+  "section": "03 / CLASES",
+  "lead": "Clases individuales y entrenamiento personal en directo, estés donde estés.",
+  "seo": {
+    "title": "Clases de yoga online | Iosif Ruiz",
+    "description": "Clases de yoga online con Iosif Ruiz. Información sobre formatos y reserva."
+  },
+  "services": {
+    "individual": {
+      "title": "CLASE INDIVIDUAL",
+      "body": "Entrenamiento regular, con toda la atención del profesor para ti.",
+      "details": "Es el mismo concepto de entrenamiento progresivo que en las clases grupales, pero en una sesión individual.\n\nTrabajamos la condición física general: fuerza, movilidad, equilibrio y coordinación. Los ejercicios, la dificultad y la intensidad se adaptan a tus capacidades. A medida que progresas, las clases también evolucionan.",
+      "price": "$20",
+      "benefitsTitle": "¿Qué recibes?",
+      "benefits": [
+        "Una clase individual completa.",
+        "Ejercicios e intensidad adaptados a tu nivel.",
+        "Atención constante a la técnica.",
+        "Progresión gradual y nuevos desafíos.",
+        "La posibilidad de entrenar regularmente de manera individual."
+      ],
+      "closing": "No es una versión reducida del entrenamiento personal. Es un formato diferente para quienes prefieren entrenar individualmente."
+    },
+    "personal": {
+      "title": "ENTRENAMIENTO PERSONAL",
+      "body": "¿Tienes un objetivo concreto? Vamos a trabajar en cómo conseguirlo.",
+      "details": "¿Quieres lograr un split, aprender un ejercicio complejo, desarrollar una capacidad física específica o entender cómo entrenar por tu cuenta para alcanzar una meta?\n\nEl entrenamiento personal se centra precisamente en eso: tu objetivo.\n\nPrimero definimos qué quieres conseguir y evaluamos tus capacidades actuales. Después seleccionamos los ejercicios necesarios, entrenamos, revisamos la técnica y organizamos el trabajo.\n\nTe explico cómo continuar por tu cuenta: qué ejercicios hacer, cómo ajustar la intensidad y cuántas veces por semana entrenar.",
+      "price": "$60",
+      "benefitsTitle": "¿Qué incluye una sesión de $60?",
+      "benefits": [
+        "Una sesión completa de entrenamiento personal.",
+        "Evaluación de tus capacidades en relación con tu objetivo.",
+        "Selección de ejercicios y aprendizaje de la técnica.",
+        "Orientación para organizar tus entrenamientos independientes.",
+        "La posibilidad de consultarme después si tienes preguntas sobre lo trabajado durante la sesión."
+      ],
+      "closing": "Después puedes seguir entrenando por tu cuenta. Si necesitas otra sesión de entrenamiento personal, podemos volver a trabajar sobre tu objetivo.\n\nLos programas escritos en PDF y los videos personalizados de ejercicios están disponibles como servicios adicionales, con costo aparte."
+    }
+  },
+  "combination": {
+    "title": "¿Puedes combinar diferentes tipos de clases?",
+    "body": "Por supuesto.\n\nPor ejemplo, puedes tomar una sesión de entrenamiento personal para aprender cómo trabajar un objetivo específico y después continuar con clases grupales o individuales. Las clases individuales a domicilio cuestan $30 y las individuales online, $20.\n\nTambién puedes seguir entrenando por tu cuenta y solicitar otra sesión de entrenamiento personal cuando lo necesites.",
+    "emphasis": "No hay una secuencia obligatoria ni tienes que elegir la opción más cara. Elige la que mejor se adapte a lo que necesitas ahora."
+  }
+}

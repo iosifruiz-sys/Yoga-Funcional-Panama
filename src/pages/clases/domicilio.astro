@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import ServiceLocationPage from '../../components/ServiceLocationPage.astro';
+import { locations } from '../../data/classes/locations';
+import { localizedPath } from '../../i18n';
+const locale = 'es';
+const place = 'domicilio';
+const esPath = localizedPath('es', 'clases/domicilio/');
+const ruPath = localizedPath('ru', 'clases/domicilio/');
+---
+<BaseLayout locale={locale} title={locations[locale][place].seo.title} description={locations[locale][place].seo.description} alternates={{ es: esPath, ru: ruPath }}>
+  <Header locale={locale} alternateUrl={ruPath} />
+  <main id="contenido"><ServiceLocationPage locale={locale} place={place} /></main>
+  <Footer locale={locale} />
+</BaseLayout>

@@ -1,71 +1,58 @@
 ---
-import type { Locale } from '../i18n';
+import { localizedPath, type Locale } from '../i18n';
+import { locations } from '../data/classes/locations';
+import { classBookingUrl } from '../lib/class-booking';
 import classesEs from '../data/classes/es.json';
 import classesRu from '../data/classes/ru.json';
-import links from '../data/classes/links.json';
 interface Props { locale?: Locale }
 const { locale = 'es' } = Astro.props;
 const classes = { es: classesEs, ru: classesRu }[locale];
-const personalBookingUrl = links.personalBookingUrl;
-
-const formats = [
-  {
-    number: '01',
-    name: classes.formats.group.name,
-    paragraphs: [
-      classes.formats.group.description,
-      classes.formats.group.details,
-    ],
-    action: classes.formats.group.action,
-    href: '#horarios',
-  },
-  {
-    number: '02',
-    name: classes.formats.individual.name,
-    price: classes.formats.individual.price,
-    paragraphs: [
-      classes.formats.individual.description,
-      classes.formats.individual.details,
-    ],
-    action: classes.formats.individual.action,
-    href: personalBookingUrl,
-  },
-  {
-    number: '03',
-    name: classes.formats.personal.name,
-    price: classes.formats.personal.price,
-    paragraphs: [
-      classes.formats.personal.description,
-      classes.formats.personal.details,
-    ],
-    action: classes.formats.personal.action,
-    href: personalBookingUrl,
-  },
-];
+const descriptions = (['estudio', 'domicilio', 'online'] as const).map(place => ({
+  name: locations[locale][place].title, text: locations[locale][place].summary,
+  action: locations[locale][place].readMore, place,
+}));
 ---
-
-<section id="clases" class="classes" aria-labelledby="classes-title">
-  <header class="classes-intro">
-    <p class="classes-number">{classes.number}</p>
+<section id="clases" class="location-catalog" aria-labelledby="classes-title">
+  <header class="catalog-intro">
+    <p class="catalog-number">{classes.number}</p>
     <h2 id="classes-title"><span>{classes.title.first}</span><span>{classes.title.second}</span></h2>
   </header>
-
-  <div class="class-formats">
-    {formats.map((format) => (
-      <article class="class-format">
-        <p class="format-number">{format.number} /</p>
+  <div class="catalog-rows">
+    {descriptions.map((format, index) => (
+      <article class="catalog-row">
+        <p class="catalog-number">0{index + 1} /</p>
         <h3>{format.name}</h3>
-        {format.price && <p class="format-price">{format.price}</p>}
-        <div class="format-copy">
-          {format.paragraphs.map((paragraph) => <p>{paragraph}</p>)}
+        <div class="catalog-copy"><p>{format.text}</p>
+          <div class="catalog-actions">
+            <a class="catalog-button primary" href={classBookingUrl(locale, format.place)} target="_blank" rel="noopener noreferrer">{locale === 'es' ? 'RESERVAR' : 'ЗАПИСАТЬСЯ'} <span aria-hidden="true">↗</span></a>
+            <a class="catalog-button" href={localizedPath(locale, `clases/${format.place}/`)}>{format.action} <span aria-hidden="true">→</span></a>
+          </div>
         </div>
-        <a
-          class="format-action"
-          href={format.href}
-          target={format.href === personalBookingUrl ? '_blank' : undefined}
-          rel={format.href === personalBookingUrl ? 'noopener noreferrer' : undefined}
-        >{format.action} <span aria-hidden="true">→</span></a>
       </article>
     ))}
   </div>
 </section>
+<style>
+  .location-catalog { background: var(--color-light); color: var(--color-dark); border-top: var(--border); }
+  .catalog-intro { padding: 2.5rem var(--gutter); }
+  .catalog-number { margin: 0; font: 1.25rem var(--font-utility); letter-spacing: .05em; }
+  .catalog-intro .catalog-number { margin-bottom: 1.5rem; }
+  h2 { margin: 0; font: 900 clamp(3rem, 8vw, 7rem)/1 var(--font-display); text-transform: uppercase; letter-spacing: -.035em; }
+  h2 span { display: block; }
+  h2 span:last-child { color: var(--color-orange); }
+  .catalog-row { display: grid; gap: .85rem; padding: 1.75rem var(--gutter); border-top: var(--border); }
+  .catalog-row:nth-child(even) { background: var(--color-warm); }
+  h3 { margin: 0; font: clamp(2.25rem, 6vw, 4rem)/1.1 var(--font-utility); text-transform: uppercase; overflow-wrap: anywhere; }
+  .catalog-copy { min-width: 0; }
+  .catalog-copy p { margin: 0; max-width: 38rem; font-size: 1rem; line-height: 1.5; }
+  .catalog-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
+  .catalog-button { flex: 1 1 9rem; display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: 3rem; padding: .65rem .85rem; border: 1px solid var(--color-dark); font: 1.15rem var(--font-utility); text-transform: uppercase; text-decoration: none; }
+  .primary { background: var(--color-orange); }
+  @media (min-width: 62rem) {
+    .catalog-intro { padding-block: 3.5rem; }
+    .catalog-row { grid-template-columns: 3rem minmax(0, 1fr) minmax(0, 1.15fr); gap: 2rem; padding-block: 2.5rem; align-items: start; }
+    .catalog-copy p { font-size: 1.125rem; }
+    .catalog-actions { margin-top: 1.5rem; }
+    .catalog-button { flex: 0 1 12rem; }
+  }
+</style>
