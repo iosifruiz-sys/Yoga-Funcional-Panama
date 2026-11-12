@@ -725,12 +725,6 @@ collections:
             fields:
               - { label: title, name: title, widget: string }
               - { label: description, name: description, widget: text }
-          - label: Введение / Introducción
-            name: overview
-            widget: object
-            fields:
-              - { label: Заголовок / Título, name: title, widget: string }
-              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
           - label: Сочетание форматов / Combinar formatos
             name: combination
             widget: object
@@ -770,6 +764,17 @@ collections:
                     widget: list
                     field: { label: Пункт / Punto, name: item, widget: text }
                   - { label: Заключительные абзацы / Párrafos finales, name: closing, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
+          - label: Студия / Estudio
+            name: studio
+            widget: object
+            fields:
+              - { label: Название / Nombre, name: name, widget: string }
+              - { label: Расположение / Ubicación, name: location, widget: string }
+              - { label: Подтверждённая ссылка Google Maps / Enlace confirmado, name: mapsUrl, widget: string, required: false, pattern: ['^https://[^\s]+$', 'Usa una URL HTTPS confirmada.'], hint: "Добавляйте только подтверждённую точку студии. Sin enlace aproximado." }
+              - { label: Подпись карты / Etiqueta del mapa, name: mapsLabel, widget: string }
+              - { label: Заголовок расписания / Título del horario, name: scheduleTitle, widget: string }
+              - { label: Стоимость и условия / Costo y condiciones, name: costNotice, widget: text }
+              - { label: Кнопка студии / Botón del estudio, name: contactLabel, widget: string }
       - name: es_domicilio
         label: ES — A DOMICILIO
         file: src/data/classes/es-domicilio.json
@@ -788,12 +793,6 @@ collections:
             fields:
               - { label: title, name: title, widget: string }
               - { label: description, name: description, widget: text }
-          - label: Введение / Introducción
-            name: overview
-            widget: object
-            fields:
-              - { label: Заголовок / Título, name: title, widget: string }
-              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
           - label: Сочетание форматов / Combinar formatos
             name: combination
             widget: object
@@ -865,12 +864,6 @@ collections:
             fields:
               - { label: title, name: title, widget: string }
               - { label: description, name: description, widget: text }
-          - label: Введение / Introducción
-            name: overview
-            widget: object
-            fields:
-              - { label: Заголовок / Título, name: title, widget: string }
-              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
           - label: Сочетание форматов / Combinar formatos
             name: combination
             widget: object
@@ -928,12 +921,6 @@ collections:
             fields:
               - { label: title, name: title, widget: string }
               - { label: description, name: description, widget: text }
-          - label: Введение / Introducción
-            name: overview
-            widget: object
-            fields:
-              - { label: Заголовок / Título, name: title, widget: string }
-              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
           - label: Сочетание форматов / Combinar formatos
             name: combination
             widget: object
@@ -973,8 +960,19 @@ collections:
                     widget: list
                     field: { label: Пункт / Punto, name: item, widget: text }
                   - { label: Заключительные абзацы / Párrafos finales, name: closing, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
+          - label: Студия / Estudio
+            name: studio
+            widget: object
+            fields:
+              - { label: Название / Nombre, name: name, widget: string }
+              - { label: Расположение / Ubicación, name: location, widget: string }
+              - { label: Подтверждённая ссылка Google Maps / Enlace confirmado, name: mapsUrl, widget: string, required: false, pattern: ['^https://[^\s]+$', 'Usa una URL HTTPS confirmada.'], hint: "Добавляйте только подтверждённую точку студии. Sin enlace aproximado." }
+              - { label: Подпись карты / Etiqueta del mapa, name: mapsLabel, widget: string }
+              - { label: Заголовок расписания / Título del horario, name: scheduleTitle, widget: string }
+              - { label: Стоимость и условия / Costo y condiciones, name: costNotice, widget: text }
+              - { label: Кнопка студии / Botón del estudio, name: contactLabel, widget: string }
       - name: ru_domicilio
-        label: RU — У ВАС
+        label: RU — ВЫЕЗДНЫЕ ТРЕНИРОВКИ
         file: src/data/classes/ru-domicilio.json
         fields:
           - { label: title, name: title, widget: string }
@@ -991,12 +989,6 @@ collections:
             fields:
               - { label: title, name: title, widget: string }
               - { label: description, name: description, widget: text }
-          - label: Введение / Introducción
-            name: overview
-            widget: object
-            fields:
-              - { label: Заголовок / Título, name: title, widget: string }
-              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
           - label: Сочетание форматов / Combinar formatos
             name: combination
             widget: object
@@ -1068,12 +1060,6 @@ collections:
             fields:
               - { label: title, name: title, widget: string }
               - { label: description, name: description, widget: text }
-          - label: Введение / Introducción
-            name: overview
-            widget: object
-            fields:
-              - { label: Заголовок / Título, name: title, widget: string }
-              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
           - label: Сочетание форматов / Combinar formatos
             name: combination
             widget: object

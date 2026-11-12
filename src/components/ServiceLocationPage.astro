@@ -3,17 +3,27 @@ import type { Locale } from '../i18n';
 import { localizedPath } from '../i18n';
 import { locations } from '../data/classes/locations';
 import { classBookingUrl, type ClassPlace } from '../lib/class-booking';
+import scheduleData from '../data/schedule/classes.json';
+import scheduleEs from '../data/schedule/es.json';
+import scheduleRu from '../data/schedule/ru.json';
+import { sortGroupClasses, formatScheduleTime } from '../lib/schedule';
 interface Props { locale: Locale; place: 'estudio' | 'domicilio' | 'online' }
 const { locale, place } = Astro.props;
 const t = locations[locale][place];
 const bookingUrl = classBookingUrl(locale, place);
+interface StudioInformation { name: string; location: string; mapsUrl?: string; mapsLabel: string; scheduleTitle: string; costNotice: string; contactLabel: string }
+const studio: StudioInformation | undefined = 'studio' in t ? t.studio : undefined;
+const scheduleCopy = locale === 'es' ? scheduleEs : scheduleRu;
+const schedule = studio ? sortGroupClasses(scheduleData.classes) : [];
+const mapsUrl = studio?.mapsUrl ? new URL(studio.mapsUrl) : undefined;
+if (mapsUrl && mapsUrl.protocol !== 'https:') throw new Error('Studio map URL must use HTTPS.');
 // Optional editorial sections can be supplied later without rendering empty blocks.
 interface EditorialSection { title: string; body: string }
 interface Service { title: string; body: string; details: string; price?: string; benefitsTitle: string; benefits: string[]; closing: string; sections?: EditorialSection[]; href: string; label: string }
 const services = Object.entries(t.services).map(([kind, service]): Service => ({
   ...service,
-  href: kind === 'group' && place === 'estudio' ? `${localizedPath(locale)}#horarios` : bookingUrl,
-  label: kind === 'group' && place === 'estudio' ? t.schedule : t.book,
+  href: kind === 'group' && studio ? '#studio-schedule' : bookingUrl,
+  label: kind === 'group' && studio ? t.schedule : studio?.contactLabel ?? t.book,
 }));
 const otherPlaces = (['estudio', 'domicilio', 'online'] as ClassPlace[]).filter(value => value !== place);
 const paragraphs = (text: string) => text.split(/\n\s*\n/).filter(paragraph => paragraph.trim());
@@ -25,10 +35,21 @@ const paragraphs = (text: string) => text.split(/\n\s*\n/).filter(paragraph => p
     <h1 id="service-title">{t.title}</h1>
     <p class="lead">{t.lead}</p>
   </header>
-  <section class="overview" aria-labelledby="overview-title">
-    <h2 id="overview-title">{t.overview.title}</h2>
-    <div class="information body">{paragraphs(t.overview.body).map(paragraph => <p>{paragraph}</p>)}</div>
-  </section>
+  {studio && <section class="studio-information" aria-labelledby="studio-name">
+    <div>
+      <h2 id="studio-name">{studio.name}</h2>
+      <p>{studio.location}</p>
+      {mapsUrl && <a class="map-link" href={mapsUrl.href} target="_blank" rel="noopener noreferrer">{studio.mapsLabel} ↗</a>}
+      <h3 id="studio-schedule">{studio.scheduleTitle}</h3>
+      <ol class="studio-schedule" aria-labelledby="studio-schedule">
+        {schedule.map(slot => <li><span>{scheduleCopy.days[slot.day]}</span><time datetime={slot.startTime}>{formatScheduleTime(slot.startTime)}</time></li>)}
+      </ol>
+    </div>
+    <div class="studio-contact body">
+      <p>{studio.costNotice}</p>
+      <a class="action" href={bookingUrl} target="_blank" rel="noopener noreferrer">{studio.contactLabel} <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>}
   <div class="services">
     {services.map((item, index) => (
       <article class="service">
@@ -42,7 +63,7 @@ const paragraphs = (text: string) => text.split(/\n\s*\n/).filter(paragraph => p
             {paragraphs(item.closing).map(paragraph => <p>{paragraph}</p>)}
           </div>
           {item.sections?.filter(section => section.title.trim() && section.body.trim()).map(section => <section class="editorial"><h3>{section.title}</h3><p>{section.body}</p></section>)}
-          {item.price && <p class="price">{item.price}</p>}
+          {!studio && item.price && <p class="price">{item.price}</p>}
           <a class="action" href={item.href} target={item.href.startsWith('https:') ? '_blank' : undefined} rel={item.href.startsWith('https:') ? 'noopener noreferrer' : undefined}>{item.label} <span aria-hidden="true">{item.href.startsWith('https:') ? '↗' : '→'}</span></a>
         </div>
       </article>
@@ -54,7 +75,7 @@ const paragraphs = (text: string) => text.split(/\n\s*\n/).filter(paragraph => p
       {paragraphs(t.combination.body).map(paragraph => <p>{paragraph}</p>)}
       <p><strong>{t.combination.emphasis}</strong></p>
     </section>
-    <a class="action" href={bookingUrl} target="_blank" rel="noopener noreferrer">{t.book} <span aria-hidden="true">↗</span></a>
+    <a class="action" href={bookingUrl} target="_blank" rel="noopener noreferrer">{studio?.contactLabel ?? t.book} <span aria-hidden="true">↗</span></a>
     <nav aria-label={locale === 'es' ? 'Otras clases' : 'Другие занятия'}>
       {otherPlaces.map(value => <a href={localizedPath(locale, `clases/${value}/`)}>{locations[locale][value].title} <span aria-hidden="true">→</span></a>)}
     </nav>
@@ -70,8 +91,15 @@ const paragraphs = (text: string) => text.split(/\n\s*\n/).filter(paragraph => p
   h1 { margin: 0; font: clamp(3rem, 8vw, 7rem)/1.05 var(--font-utility); overflow-wrap: anywhere; }
   .lead { max-width: 45rem; margin: 1.25rem 0 0; font-size: 1.125rem; line-height: 1.5; }
   .services { display: grid; }
-  .overview { display: grid; gap: 1.5rem; padding: 2rem var(--gutter); border-bottom: var(--border); }
-  .overview h2, .combination h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); text-transform: none; }
+  .combination h2 { font-size: clamp(1.75rem, 3vw, 2.5rem); text-transform: none; }
+  .studio-information { display: grid; gap: 1.5rem; padding: 2rem var(--gutter); border-bottom: var(--border); }
+  .studio-information > div { min-width: 0; }
+  .studio-information p { line-height: 1.5; }
+  .studio-information h3 { margin: 1.5rem 0 1rem; }
+  .studio-schedule { max-width: 32rem; list-style: none; margin: 0; padding: 0; }
+  .studio-schedule li { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .5rem 1rem; padding: .75rem 0; border-top: 1px solid var(--color-dark); }
+  .studio-schedule time { white-space: nowrap; }
+  .map-link { display: inline-flex; align-items: center; min-height: 3rem; }
   .body p { margin: 0; }
   .body p + p { margin-top: .85rem; }
   .benefits { margin-block: 1.5rem; }
@@ -96,7 +124,7 @@ const paragraphs = (text: string) => text.split(/\n\s*\n/).filter(paragraph => p
   .service-closing nav a { display: inline-flex; align-items: center; gap: 1rem; min-height: 3rem; font: 1.15rem var(--font-utility); }
   @media (min-width: 62rem) {
     .intro { padding-block: 3rem; }
-    .overview { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 2rem; padding-block: 2.5rem; }
+    .studio-information { grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 2rem; padding-block: 2.5rem; }
     .service { grid-template-columns: 3rem minmax(0, 1fr) minmax(0, 1.15fr); gap: 2rem; padding-block: 2.5rem; align-items: start; }
     .body { font-size: 1.125rem; }
   }
