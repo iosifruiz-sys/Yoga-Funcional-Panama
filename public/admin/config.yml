@@ -725,6 +725,19 @@ collections:
             fields:
               - { label: title, name: title, widget: string }
               - { label: description, name: description, widget: text }
+          - label: Введение / Introducción
+            name: overview
+            widget: object
+            fields:
+              - { label: Заголовок / Título, name: title, widget: string }
+              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
+          - label: Сочетание форматов / Combinar formatos
+            name: combination
+            widget: object
+            fields:
+              - { label: Заголовок / Título, name: title, widget: string }
+              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
+              - { label: Главная мысль / Idea principal, name: emphasis, widget: text }
           - label: services
             name: services
             widget: object
@@ -737,6 +750,12 @@ collections:
                   - { label: body, name: body, widget: text }
                   - { label: details, name: details, widget: text }
                   - { label: price, name: price, widget: string, required: false }
+                  - { label: Заголовок преимуществ / Título de beneficios, name: benefitsTitle, widget: string }
+                  - label: Что получает клиент / Qué recibes
+                    name: benefits
+                    widget: list
+                    field: { label: Пункт / Punto, name: item, widget: text }
+                  - { label: Заключительные абзацы / Párrafos finales, name: closing, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
               - label: individual
                 name: individual
                 widget: object
@@ -745,6 +764,12 @@ collections:
                   - { label: body, name: body, widget: text }
                   - { label: details, name: details, widget: text }
                   - { label: price, name: price, widget: string, required: false }
+                  - { label: Заголовок преимуществ / Título de beneficios, name: benefitsTitle, widget: string }
+                  - label: Что получает клиент / Qué recibes
+                    name: benefits
+                    widget: list
+                    field: { label: Пункт / Punto, name: item, widget: text }
+                  - { label: Заключительные абзацы / Párrafos finales, name: closing, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
       - name: es_domicilio
         label: ES — A DOMICILIO
         file: src/data/classes/es-domicilio.json
@@ -763,6 +788,19 @@ collections:
             fields:
               - { label: title, name: title, widget: string }
               - { label: description, name: description, widget: text }
+          - label: Введение / Introducción
+            name: overview
+            widget: object
+            fields:
+              - { label: Заголовок / Título, name: title, widget: string }
+              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
+          - label: Сочетание форматов / Combinar formatos
+            name: combination
+            widget: object
+            fields:
+              - { label: Заголовок / Título, name: title, widget: string }
+              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
+              - { label: Главная мысль / Idea principal, name: emphasis, widget: text }
           - label: services
             name: services
             widget: object
@@ -775,6 +813,12 @@ collections:
                   - { label: body, name: body, widget: text }
                   - { label: details, name: details, widget: text }
                   - { label: price, name: price, widget: string, required: false }
+                  - { label: Заголовок преимуществ / Título de beneficios, name: benefitsTitle, widget: string }
+                  - label: Что получает клиент / Qué recibes
+                    name: benefits
+                    widget: list
+                    field: { label: Пункт / Punto, name: item, widget: text }
+                  - { label: Заключительные абзацы / Párrafos finales, name: closing, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
               - label: individual
                 name: individual
                 widget: object
@@ -783,6 +827,12 @@ collections:
                   - { label: body, name: body, widget: text }
                   - { label: details, name: details, widget: text }
                   - { label: price, name: price, widget: string, required: false }
+                  - { label: Заголовок преимуществ / Título de beneficios, name: benefitsTitle, widget: string }
+                  - label: Что получает клиент / Qué recibes
+                    name: benefits
+                    widget: list
+                    field: { label: Пункт / Punto, name: item, widget: text }
+                  - { label: Заключительные абзацы / Párrafos finales, name: closing, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
               - label: personal
                 name: personal
                 widget: object
@@ -791,6 +841,12 @@ collections:
                   - { label: body, name: body, widget: text }
                   - { label: details, name: details, widget: text }
                   - { label: price, name: price, widget: string, required: false }
+                  - { label: Заголовок преимуществ / Título de beneficios, name: benefitsTitle, widget: string }
+                  - label: Что получает клиент / Qué recibes
+                    name: benefits
+                    widget: list
+                    field: { label: Пункт / Punto, name: item, widget: text }
+                  - { label: Заключительные абзацы / Párrafos finales, name: closing, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
       - name: es_online
         label: ES — ONLINE
         file: src/data/classes/es-online.json
@@ -809,6 +865,19 @@ collections:
             fields:
               - { label: title, name: title, widget: string }
               - { label: description, name: description, widget: text }
+          - label: Введение / Introducción
+            name: overview
+            widget: object
+            fields:
+              - { label: Заголовок / Título, name: title, widget: string }
+              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
+          - label: Сочетание форматов / Combinar formatos
+            name: combination
+            widget: object
+            fields:
+              - { label: Заголовок / Título, name: title, widget: string }
+              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
+              - { label: Главная мысль / Idea principal, name: emphasis, widget: text }
           - label: services
             name: services
             widget: object
@@ -821,6 +890,12 @@ collections:
                   - { label: body, name: body, widget: text }
                   - { label: details, name: details, widget: text }
                   - { label: price, name: price, widget: string, required: false }
+                  - { label: Заголовок преимуществ / Título de beneficios, name: benefitsTitle, widget: string }
+                  - label: Что получает клиент / Qué recibes
+                    name: benefits
+                    widget: list
+                    field: { label: Пункт / Punto, name: item, widget: text }
+                  - { label: Заключительные абзацы / Párrafos finales, name: closing, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
               - label: personal
                 name: personal
                 widget: object
@@ -829,6 +904,12 @@ collections:
                   - { label: body, name: body, widget: text }
                   - { label: details, name: details, widget: text }
                   - { label: price, name: price, widget: string, required: false }
+                  - { label: Заголовок преимуществ / Título de beneficios, name: benefitsTitle, widget: string }
+                  - label: Что получает клиент / Qué recibes
+                    name: benefits
+                    widget: list
+                    field: { label: Пункт / Punto, name: item, widget: text }
+                  - { label: Заключительные абзацы / Párrafos finales, name: closing, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
       - name: ru_estudio
         label: RU — В СТУДИИ
         file: src/data/classes/ru-estudio.json
@@ -847,6 +928,19 @@ collections:
             fields:
               - { label: title, name: title, widget: string }
               - { label: description, name: description, widget: text }
+          - label: Введение / Introducción
+            name: overview
+            widget: object
+            fields:
+              - { label: Заголовок / Título, name: title, widget: string }
+              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
+          - label: Сочетание форматов / Combinar formatos
+            name: combination
+            widget: object
+            fields:
+              - { label: Заголовок / Título, name: title, widget: string }
+              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
+              - { label: Главная мысль / Idea principal, name: emphasis, widget: text }
           - label: services
             name: services
             widget: object
@@ -859,6 +953,12 @@ collections:
                   - { label: body, name: body, widget: text }
                   - { label: details, name: details, widget: text }
                   - { label: price, name: price, widget: string, required: false }
+                  - { label: Заголовок преимуществ / Título de beneficios, name: benefitsTitle, widget: string }
+                  - label: Что получает клиент / Qué recibes
+                    name: benefits
+                    widget: list
+                    field: { label: Пункт / Punto, name: item, widget: text }
+                  - { label: Заключительные абзацы / Párrafos finales, name: closing, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
               - label: individual
                 name: individual
                 widget: object
@@ -867,8 +967,14 @@ collections:
                   - { label: body, name: body, widget: text }
                   - { label: details, name: details, widget: text }
                   - { label: price, name: price, widget: string, required: false }
+                  - { label: Заголовок преимуществ / Título de beneficios, name: benefitsTitle, widget: string }
+                  - label: Что получает клиент / Qué recibes
+                    name: benefits
+                    widget: list
+                    field: { label: Пункт / Punto, name: item, widget: text }
+                  - { label: Заключительные абзацы / Párrafos finales, name: closing, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
       - name: ru_domicilio
-        label: RU — НА ВЫЕЗДЕ
+        label: RU — У ВАС
         file: src/data/classes/ru-domicilio.json
         fields:
           - { label: title, name: title, widget: string }
@@ -885,6 +991,19 @@ collections:
             fields:
               - { label: title, name: title, widget: string }
               - { label: description, name: description, widget: text }
+          - label: Введение / Introducción
+            name: overview
+            widget: object
+            fields:
+              - { label: Заголовок / Título, name: title, widget: string }
+              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
+          - label: Сочетание форматов / Combinar formatos
+            name: combination
+            widget: object
+            fields:
+              - { label: Заголовок / Título, name: title, widget: string }
+              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
+              - { label: Главная мысль / Idea principal, name: emphasis, widget: text }
           - label: services
             name: services
             widget: object
@@ -897,6 +1016,12 @@ collections:
                   - { label: body, name: body, widget: text }
                   - { label: details, name: details, widget: text }
                   - { label: price, name: price, widget: string, required: false }
+                  - { label: Заголовок преимуществ / Título de beneficios, name: benefitsTitle, widget: string }
+                  - label: Что получает клиент / Qué recibes
+                    name: benefits
+                    widget: list
+                    field: { label: Пункт / Punto, name: item, widget: text }
+                  - { label: Заключительные абзацы / Párrafos finales, name: closing, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
               - label: individual
                 name: individual
                 widget: object
@@ -905,6 +1030,12 @@ collections:
                   - { label: body, name: body, widget: text }
                   - { label: details, name: details, widget: text }
                   - { label: price, name: price, widget: string, required: false }
+                  - { label: Заголовок преимуществ / Título de beneficios, name: benefitsTitle, widget: string }
+                  - label: Что получает клиент / Qué recibes
+                    name: benefits
+                    widget: list
+                    field: { label: Пункт / Punto, name: item, widget: text }
+                  - { label: Заключительные абзацы / Párrafos finales, name: closing, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
               - label: personal
                 name: personal
                 widget: object
@@ -913,6 +1044,12 @@ collections:
                   - { label: body, name: body, widget: text }
                   - { label: details, name: details, widget: text }
                   - { label: price, name: price, widget: string, required: false }
+                  - { label: Заголовок преимуществ / Título de beneficios, name: benefitsTitle, widget: string }
+                  - label: Что получает клиент / Qué recibes
+                    name: benefits
+                    widget: list
+                    field: { label: Пункт / Punto, name: item, widget: text }
+                  - { label: Заключительные абзацы / Párrafos finales, name: closing, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
       - name: ru_online
         label: RU — ОНЛАЙН
         file: src/data/classes/ru-online.json
@@ -931,6 +1068,19 @@ collections:
             fields:
               - { label: title, name: title, widget: string }
               - { label: description, name: description, widget: text }
+          - label: Введение / Introducción
+            name: overview
+            widget: object
+            fields:
+              - { label: Заголовок / Título, name: title, widget: string }
+              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
+          - label: Сочетание форматов / Combinar formatos
+            name: combination
+            widget: object
+            fields:
+              - { label: Заголовок / Título, name: title, widget: string }
+              - { label: Абзацы / Párrafos, name: body, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
+              - { label: Главная мысль / Idea principal, name: emphasis, widget: text }
           - label: services
             name: services
             widget: object
@@ -943,6 +1093,12 @@ collections:
                   - { label: body, name: body, widget: text }
                   - { label: details, name: details, widget: text }
                   - { label: price, name: price, widget: string, required: false }
+                  - { label: Заголовок преимуществ / Título de beneficios, name: benefitsTitle, widget: string }
+                  - label: Что получает клиент / Qué recibes
+                    name: benefits
+                    widget: list
+                    field: { label: Пункт / Punto, name: item, widget: text }
+                  - { label: Заключительные абзацы / Párrafos finales, name: closing, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
               - label: personal
                 name: personal
                 widget: object
@@ -951,3 +1107,9 @@ collections:
                   - { label: body, name: body, widget: text }
                   - { label: details, name: details, widget: text }
                   - { label: price, name: price, widget: string, required: false }
+                  - { label: Заголовок преимуществ / Título de beneficios, name: benefitsTitle, widget: string }
+                  - label: Что получает клиент / Qué recibes
+                    name: benefits
+                    widget: list
+                    field: { label: Пункт / Punto, name: item, widget: text }
+                  - { label: Заключительные абзацы / Párrafos finales, name: closing, widget: text, hint: "Разделяйте абзацы пустой строкой. Separa los párrafos con una línea en blanco." }
