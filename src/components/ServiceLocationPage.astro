@@ -2,15 +2,20 @@
 import type { Locale } from '../i18n';
 import { localizedPath } from '../i18n';
 import { locations } from '../data/classes/locations';
-import links from '../data/classes/links.json';
+import { classBookingUrl, type ClassPlace } from '../lib/class-booking';
 interface Props { locale: Locale; place: 'estudio' | 'domicilio' | 'online' }
 const { locale, place } = Astro.props;
 const t = locations[locale][place];
-const services = Object.entries(t.services).map(([kind, service]) => ({
+const bookingUrl = classBookingUrl(locale, place);
+// Optional editorial sections can be supplied later without rendering empty blocks.
+interface EditorialSection { title: string; body: string }
+interface Service { title: string; body: string; details: string; price?: string; sections?: EditorialSection[]; href: string; label: string }
+const services = Object.entries(t.services).map(([kind, service]): Service => ({
   ...service,
-  href: kind === 'group' && place === 'estudio' ? `${localizedPath(locale)}#horarios` : links.personalBookingUrl,
+  href: kind === 'group' && place === 'estudio' ? `${localizedPath(locale)}#horarios` : bookingUrl,
   label: kind === 'group' && place === 'estudio' ? t.schedule : t.book,
 }));
+const otherPlaces = (['estudio', 'domicilio', 'online'] as ClassPlace[]).filter(value => value !== place);
 ---
 <section class="service-page" aria-labelledby="service-title">
   <a class="back" href={`${localizedPath(locale)}#clases`}>← {t.back}</a>
@@ -19,38 +24,56 @@ const services = Object.entries(t.services).map(([kind, service]) => ({
     <h1 id="service-title">{t.title}</h1>
     <p class="lead">{t.lead}</p>
   </header>
-  <div class="services" style={`--service-count: ${services.length}`}>
+  <div class="services">
     {services.map((item, index) => (
       <article class="service">
         <p class="number">0{index + 1} /</p>
         <h2>{item.title}</h2>
-        {item.price && <p class="price">{item.price}</p>}
-        <div class="body"><p>{item.body}</p>{item.details && <p>{item.details}</p>}</div>
-        <a class="action" href={item.href} target={item.href.startsWith('https:') ? '_blank' : undefined} rel={item.href.startsWith('https:') ? 'noopener noreferrer' : undefined}>{item.label} <span aria-hidden="true">↗</span></a>
+        <div class="information">
+          <div class="body"><p>{item.body}</p>{item.details && <p>{item.details}</p>}</div>
+          {item.sections?.filter(section => section.title.trim() && section.body.trim()).map(section => <section class="editorial"><h3>{section.title}</h3><p>{section.body}</p></section>)}
+          {item.price && <p class="price">{item.price}</p>}
+          <a class="action" href={item.href} target={item.href.startsWith('https:') ? '_blank' : undefined} rel={item.href.startsWith('https:') ? 'noopener noreferrer' : undefined}>{item.label} <span aria-hidden="true">{item.href.startsWith('https:') ? '↗' : '→'}</span></a>
+        </div>
       </article>
     ))}
   </div>
+  <footer class="service-closing">
+    <a class="action" href={bookingUrl} target="_blank" rel="noopener noreferrer">{t.book} <span aria-hidden="true">↗</span></a>
+    <nav aria-label={locale === 'es' ? 'Otras clases' : 'Другие занятия'}>
+      {otherPlaces.map(value => <a href={localizedPath(locale, `clases/${value}/`)}>{locations[locale][value].title} <span aria-hidden="true">→</span></a>)}
+    </nav>
+  </footer>
 </section>
 <style>
-  .service-page { background: var(--color-light); min-height: 70vh; }
-  .back { display: block; padding: 1.25rem var(--gutter); border-bottom: var(--border); font: 1.25rem var(--font-utility); letter-spacing: .04em; text-decoration: none; }
+  .service-page { background: var(--color-light); color: var(--color-dark); }
+  .back { display: block; padding: 1rem var(--gutter); border-bottom: var(--border); font: 1.15rem var(--font-utility); letter-spacing: .04em; text-decoration: none; }
   .back:hover { color: var(--color-orange); }
-  .intro { padding: clamp(4rem, 9vw, 8rem) var(--gutter); color: var(--color-light); background: var(--color-dark); }
-  .index, .number { color: var(--color-orange); font: 1.5rem var(--font-utility); letter-spacing: .06em; }
-  .index { margin: 0 0 2.5rem; }
-  h1 { margin: 0; font: clamp(4rem, 12vw, 11rem)/.9 var(--font-utility); overflow-wrap: anywhere; }
-  .lead { max-width: 45rem; margin: 2rem 0 0; font-size: clamp(1rem, 2.2vw, 1.45rem); line-height: 1.45; }
+  .intro { padding: 2rem var(--gutter); background: var(--color-warm); }
+  .index, .number { font: 1.25rem var(--font-utility); letter-spacing: .06em; }
+  .index { margin: 0 0 1.25rem; }
+  h1 { margin: 0; font: clamp(3rem, 8vw, 7rem)/1.05 var(--font-utility); overflow-wrap: anywhere; }
+  .lead { max-width: 45rem; margin: 1.25rem 0 0; font-size: 1.125rem; line-height: 1.5; }
   .services { display: grid; }
   .body p { margin: 0; }
   .body p + p { margin-top: .85rem; }
-  .service { min-width: 0; padding: 2rem var(--gutter) 3rem; border-bottom: var(--border); }
-  .service:nth-child(2) { background: var(--color-dark); color: var(--color-light); }
-  .service:nth-child(3) { background: var(--color-warm); }
-  .number { margin: 0 0 1.25rem; }
-  h2 { overflow-wrap: anywhere; max-width: 55rem; margin: 0; font: clamp(2rem, 8vw, 3.25rem)/1.1 var(--font-utility); text-transform: uppercase; }
-  .price { margin: 1.5rem 0 0; color: var(--color-orange); font: clamp(5rem, 12vw, 9rem)/1 var(--font-utility); }
-  .body { max-width: 37rem; margin: 1.5rem 0 2.5rem; line-height: 1.5; }
-  .action { display: flex; justify-content: space-between; gap: 1rem; border-top: 1px solid; padding-top: .85rem; max-width: 37rem; font: 1.5rem var(--font-utility); text-decoration: none; }
-  .action span { color: var(--color-orange); }
-  @media (min-width: 62rem) { .services { grid-template-columns: repeat(var(--service-count),minmax(0,1fr)); } .service { border-right: var(--border); } h2 { font-size: clamp(2rem, 3vw, 3rem); } }
+  .service { min-width: 0; display: grid; gap: 1rem; padding: 2rem var(--gutter); border-bottom: var(--border); }
+  .service:nth-child(even) { background: var(--color-warm); }
+  .number { margin: 0; }
+  h2 { overflow-wrap: anywhere; margin: 0; font: clamp(1.75rem, 5vw, 3rem)/1.15 var(--font-utility); text-transform: uppercase; }
+  .information { min-width: 0; max-width: 40rem; }
+  .price { margin: 1rem 0 0; font: clamp(2.5rem, 4vw, 3.5rem)/1.1 var(--font-utility); }
+  .body, .editorial { line-height: 1.5; }
+  .editorial { margin-top: 1.5rem; }
+  .editorial h3 { margin: 0 0 .75rem; }
+  .action { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3rem; margin-top: 1.25rem; padding: .65rem .85rem; max-width: 25rem; border: 1px solid var(--color-dark); background: var(--color-orange); font: 1.25rem var(--font-utility); text-decoration: none; }
+  .service-closing { padding: 1.5rem var(--gutter); }
+  .service-closing .action { margin-top: 0; }
+  .service-closing nav { display: flex; flex-wrap: wrap; gap: 1rem 2rem; margin-top: 1.25rem; }
+  .service-closing nav a { display: inline-flex; align-items: center; gap: 1rem; min-height: 3rem; font: 1.15rem var(--font-utility); }
+  @media (min-width: 62rem) {
+    .intro { padding-block: 3rem; }
+    .service { grid-template-columns: 3rem minmax(0, 1fr) minmax(0, 1.15fr); gap: 2rem; padding-block: 2.5rem; align-items: start; }
+    .body { font-size: 1.125rem; }
+  }
 </style>
