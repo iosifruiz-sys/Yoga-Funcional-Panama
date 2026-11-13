@@ -10,7 +10,7 @@ const resources = resourceNavigation[locale];
 const hasResources = resources.path && (await getPracticeResources(locale)).length > 0;
 const links = [
   [t.nav[0], `${home}#metodo`], [t.nav[1], `${home}#clases`],
-  [t.nav[2], `${home}#horarios`], [t.nav[3], `${home}#sobre-mi`],
+  [t.nav[2], `${localizedPath(locale, 'clases/estudio/')}#studio-schedule`], [t.nav[3], `${home}#sobre-mi`],
   [t.nav[4], localizedPath(locale, 'blog/')],
   ...(hasResources ? [[resources.label, localizedPath(locale, resources.path!)]] : []),
 ];

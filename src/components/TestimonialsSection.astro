@@ -1,0 +1,69 @@
+---
+import type { Locale } from '../i18n';
+import es from '../data/testimonials/es.json';
+import ru from '../data/testimonials/ru.json';
+import source from '../data/testimonials/source.json';
+import { localizedPath } from '../i18n';
+interface Props { locale?: Locale }
+const { locale = 'es' } = Astro.props;
+const t = locale === 'es' ? es : ru;
+---
+<section id="testimonios" class="testimonials" aria-labelledby="testimonials-title" data-schedule-url={`${localizedPath(locale, 'clases/estudio/')}#studio-schedule`}>
+  <header class="testimonials-intro">
+    <p class="testimonials-number">{t.number}</p>
+    <h2 id="testimonials-title">{t.title}</h2>
+  </header>
+  <div class="testimonials-grid">
+    {t.reviews.map(review => (
+      <figure class="testimonial">
+        <blockquote cite={source.url}><p>{review.quote}</p></blockquote>
+        <figcaption>
+          <p class="testimonial-author">{review.author}</p>
+          <p class="testimonial-meta"><span>{source.name}</span><span>{review.rating}/5</span></p>
+          <p class="testimonial-note">{review.note}</p>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+  <a class="testimonials-link" href={source.url} target="_blank" rel="noopener noreferrer">
+    <span>{t.linkLabel}</span>
+    <svg aria-hidden="true" width="32" height="24" viewBox="0 0 32 24" fill="none"><path d="M2 12h27M20 3l9 9-9 9" stroke="currentColor" stroke-width="2" /></svg>
+  </a>
+</section>
+<script>
+  // Preserve existing article links/bookmarks to the retired homepage schedule.
+  const followScheduleLink = () => {
+    const target = document.querySelector<HTMLElement>('.testimonials')?.dataset.scheduleUrl;
+    if (location.hash === '#horarios' && target) location.replace(target);
+  };
+  followScheduleLink();
+  window.addEventListener('hashchange', followScheduleLink);
+  document.addEventListener('astro:page-load', followScheduleLink);
+</script>
+<style>
+  .testimonials { background: var(--color-light); color: var(--color-dark); border-top: var(--border); }
+  .testimonials-intro { padding: 2.5rem var(--gutter); }
+  .testimonials-number { margin: 0 0 1.5rem; font: 1.25rem var(--font-utility); letter-spacing: .05em; }
+  h2 { margin: 0; font: 900 clamp(2.5rem, 8vw, 7rem)/1 var(--font-display); letter-spacing: -.035em; text-transform: uppercase; overflow-wrap: anywhere; }
+  .testimonials-grid { display: grid; border-top: var(--border); }
+  .testimonial { min-width: 0; margin: 0; padding: 1.75rem var(--gutter); display: flex; flex-direction: column; gap: 2rem; }
+  .testimonial + .testimonial { border-top: var(--border); background: var(--color-warm); }
+  blockquote { grid-column: auto; grid-row: auto; align-self: auto; margin: 0; padding: 0; font: 1.25rem/1.5 var(--font-body); }
+  blockquote p { margin: 0; }
+  figcaption { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--color-dark); }
+  .testimonial-author { margin: 0; font: 1.75rem/1.2 var(--font-utility); overflow-wrap: anywhere; }
+  .testimonial-meta { display: flex; justify-content: space-between; gap: 1rem; margin: .75rem 0 0; font-size: .875rem; }
+  .testimonial-note { margin: .5rem 0 0; font-size: .875rem; line-height: 1.5; }
+  .testimonials-link { display: flex; justify-content: space-between; align-items: center; gap: 1rem; min-height: 3rem; padding: 1.25rem var(--gutter); border-top: var(--border); font: 1.25rem var(--font-utility); text-decoration: none; }
+  .testimonials-link svg { flex-shrink: 0; color: var(--color-orange); }
+  .testimonials-link:focus-visible { outline-offset: -4px; }
+  @media (hover: hover) and (pointer: fine) { .testimonials-link:hover { background: var(--color-orange); } .testimonials-link:hover svg { color: var(--color-dark); } }
+  @media (min-width: 62rem) {
+    .testimonials-intro { padding-block: 3.5rem; }
+    .testimonials-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .testimonial { padding-block: 2.5rem; }
+    .testimonial + .testimonial { border-top: 0; border-left: var(--border); }
+    blockquote { font-size: 1.5rem; }
+    .testimonial-author { font-size: 2rem; }
+  }
+</style>
