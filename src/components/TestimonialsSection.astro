@@ -1,0 +1,75 @@
+---
+import type { Locale } from '../i18n';
+import es from '../data/testimonials/es.json';
+import ru from '../data/testimonials/ru.json';
+import { localizedPath } from '../i18n';
+interface Props { locale?: Locale }
+const { locale = 'es' } = Astro.props;
+const t = locale === 'es' ? es : ru;
+interface Review {
+  author: string; quote: Record<Locale, string>; url: string; source: string;
+  rating: number; originalLanguage: string; note: Record<Locale, string>;
+  order: number; published: boolean;
+}
+const entries = import.meta.glob<{ default: Review }>('../data/testimonials/reviews/*.json', { eager: true });
+const reviews = Object.entries(entries).map(([key, entry]) => ({ ...entry.default, key }))
+  .filter(review => review.published)
+  .sort((a, b) => a.order - b.order || a.key.localeCompare(b.key));
+---
+<section id="testimonios" class="testimonials schedule" aria-labelledby="testimonials-title" data-schedule-url={`${localizedPath(locale, 'clases/estudio/')}#studio-schedule`}>
+  <header class="schedule-intro">
+    <p class="schedule-number">{t.number}</p>
+    <h2 id="testimonials-title"><span>{t.title.first}</span><span class="schedule-title-line-last">{t.title.second}</span></h2>
+  </header>
+  <div class="schedule-meta" aria-label={t.number}>
+    <strong>{t.meta.first}</strong><span>{t.meta.second}</span><span>{t.meta.third}</span>
+  </div>
+  <div class="testimonials-grid schedule-list">
+    {reviews.map(review => (
+      <figure class="testimonial schedule-slot">
+        <span class="testimonial-quote-mark" aria-hidden="true">“</span>
+        <blockquote cite={review.url}><p>{review.quote[locale]}</p></blockquote>
+        <figcaption>
+          <a class="testimonial-author" href={review.url} target="_blank" rel="noopener noreferrer">{review.author}</a>
+        </figcaption>
+      </figure>
+    ))}
+  </div>
+  <footer class="schedule-booking">
+    <a href={t.url} target="_blank" rel="noopener noreferrer">{t.action} <span aria-hidden="true">→︎</span></a>
+  </footer>
+</section>
+<script>
+  // Preserve existing article links/bookmarks to the retired homepage schedule.
+  const followScheduleLink = () => {
+    const target = document.querySelector<HTMLElement>('.testimonials')?.dataset.scheduleUrl;
+    if (location.hash === '#horarios' && target) location.replace(target);
+  };
+  followScheduleLink();
+  window.addEventListener('hashchange', followScheduleLink);
+  document.addEventListener('astro:page-load', followScheduleLink);
+</script>
+<style>
+  .testimonials { color: var(--color-dark); }
+  .testimonials h2 { font-size: 16vw; }
+  .testimonials-grid { display: grid; grid-template-columns: minmax(0, 1fr); }
+  .testimonial { margin: 0; min-height: 0; display: flex; flex-direction: column; gap: 1.25rem; text-transform: none; }
+  .testimonial-quote-mark { height: 2.75rem; color: var(--color-orange); font: 10rem/1 var(--font-display); }
+  blockquote { grid-column: auto; grid-row: auto; align-self: auto; margin: 0; padding: 0; font: italic 500 clamp(1.125rem, 1.7vw, 1.5rem)/1.5 var(--font-body); }
+  blockquote p { margin: 0; }
+  figcaption { align-self: stretch; margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--color-dark); }
+  .testimonial-author { display: inline; font: clamp(1.75rem, 2.5vw, 2.5rem)/1.2 var(--font-utility); text-transform: uppercase; overflow-wrap: anywhere; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: .2em; transition: color 160ms ease; }
+  @media (hover: hover) and (pointer: fine) {
+    .testimonial-author:hover { color: var(--color-orange); }
+  }
+  @media (min-width: 40rem) {
+    .testimonials-grid { grid-template-columns: repeat(auto-fit, minmax(50%, 1fr)); }
+    .testimonial { border-right: var(--border); }
+  }
+  @media (min-width: 62rem) {
+    .testimonials h2 { font-size: 8.6vw; }
+    .testimonials-grid { grid-template-columns: repeat(auto-fit, minmax(calc(100% / 3), 1fr)); }
+    .testimonial { align-items: stretch; justify-content: initial; }
+  }
+  @media (prefers-reduced-motion: reduce) { .testimonial-author { transition: none; } }
+</style>
