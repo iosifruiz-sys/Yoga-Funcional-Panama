@@ -7,6 +7,9 @@ import classesRu from '../data/classes/ru.json';
 interface Props { locale?: Locale }
 const { locale = 'es' } = Astro.props;
 const classes = { es: classesEs, ru: classesRu }[locale];
+const advantages = locale === 'es'
+  ? ['FLEXIBILIDAD', 'COMODIDAD', 'A TU RITMO']
+  : ['ГИБКОСТЬ', 'УДОБСТВО', 'В СВОЁМ ТЕМПЕ'];
 const descriptions = (['estudio', 'domicilio', 'online'] as const).map(place => ({
   name: locations[locale][place].title, text: locations[locale][place].summary,
   action: locations[locale][place].readMore, place,
@@ -17,11 +20,13 @@ const descriptions = (['estudio', 'domicilio', 'online'] as const).map(place => 
     <p class="catalog-number">{classes.number}</p>
     <h2 id="classes-title"><span>{classes.title.first}</span><span>{classes.title.second}</span></h2>
   </header>
+  <div class="schedule-meta" aria-label={classes.number}>
+    <strong>{advantages[0]}</strong><span>{advantages[1]}</span><span>{advantages[2]}</span>
+  </div>
   <div class="catalog-rows" data-classes-circle>
     <div class="catalog-orb" aria-hidden="true"></div>
-    {descriptions.map((format, index) => (
+    {descriptions.map((format) => (
       <article class="catalog-row">
-        <p class="catalog-number">0{index + 1} /</p>
         <h3>{format.name}</h3>
         <div class="catalog-copy"><p>{format.text}</p>
           <div class="catalog-actions">
@@ -43,36 +48,45 @@ const descriptions = (['estudio', 'domicilio', 'online'] as const).map(place => 
 </script>
 <style>
   .location-catalog { background: var(--color-light); color: var(--color-dark); border-top: var(--border); }
-  .catalog-intro { padding: 2.5rem var(--gutter); background: var(--color-warm); }
+  .catalog-intro { padding: 1.75rem var(--gutter); background: var(--color-warm); }
   .catalog-number { margin: 0; font: 1.25rem var(--font-utility); letter-spacing: .05em; }
-  .catalog-intro .catalog-number { margin-bottom: 1.5rem; }
-  h2 { margin: 0; font: 900 clamp(3rem, 8vw, 7rem)/1 var(--font-display); text-transform: uppercase; letter-spacing: -.035em; }
+  .catalog-intro .catalog-number { margin-bottom: clamp(1rem, 2vw, 2rem); color: var(--color-orange); font-size: clamp(1.3rem, 3vw, 2rem); }
+  .schedule-meta > span:first-of-type { text-align: center; }
+  h2 { margin: 0; font: 900 clamp(2.5rem, 12.5vw, 5rem)/.9 var(--font-display); text-transform: uppercase; letter-spacing: -.04em; }
   h2 span { display: block; }
   h2 span:last-child { color: var(--color-orange); }
-  .catalog-rows { position: relative; isolation: isolate; overflow: hidden; border-top: var(--border); }
+  .catalog-rows { position: relative; isolation: isolate; overflow: hidden; border-bottom: var(--border); }
   .catalog-orb { display: none; position: absolute; left: 0; top: 0; z-index: 0; border-radius: 50%; background: var(--color-orange); opacity: 0; pointer-events: none; transform-origin: center; will-change: transform, opacity; }
   .catalog-row { position: relative; z-index: 1; display: grid; gap: .85rem; padding: 1.75rem var(--gutter); }
+  .catalog-row:nth-of-type(even) { background: var(--color-warm); }
   .catalog-row + .catalog-row { border-top: var(--border); }
-  h3 { margin: 0; font: clamp(2.25rem, 6vw, 4rem)/1.1 var(--font-utility); text-transform: uppercase; overflow-wrap: anywhere; }
+  h3 { margin: 0; font: clamp(2.75rem, 12vw, 4.5rem)/1 var(--font-utility); text-transform: uppercase; overflow-wrap: anywhere; }
   .catalog-copy { min-width: 0; display: flex; flex-direction: column; }
   .catalog-copy p { margin: 0; max-width: 38rem; font-size: 1rem; line-height: 1.5; }
   .catalog-actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.25rem; }
-  .catalog-button { flex: 1 1 9rem; display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: 3rem; padding: .65rem .85rem; border: 1px solid var(--color-dark); font: 1.15rem var(--font-utility); text-transform: uppercase; text-decoration: none; }
+  .catalog-button { flex: 1 1 9rem; display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: 3rem; padding: .65rem .85rem; border: 0; color: var(--color-dark); background: transparent; font: 1.15rem var(--font-utility); text-transform: uppercase; text-decoration: none; }
   .primary { background: var(--color-orange); color: var(--color-dark); }
   .primary:focus-visible { background: var(--color-dark); color: var(--color-light); }
+  .catalog-button:not(.primary):focus-visible { color: var(--color-orange); }
   @media (hover: hover) and (pointer: fine) {
-    .primary { transition: color .18s ease, background-color .18s ease; }
+    .catalog-button { transition: color .18s ease, background-color .18s ease; }
     .primary:hover { background: var(--color-dark); color: var(--color-light); }
+    .catalog-button:not(.primary):hover { color: var(--color-orange); }
   }
   @media (min-width: 62rem) and (hover: hover) and (pointer: fine) {
-    .catalog-intro { padding-block: 3.5rem; }
-    .catalog-rows { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--color-light); }
-    .catalog-row { min-width: 0; grid-template-rows: auto auto 1fr; gap: 1.5rem; padding: 2rem clamp(1.25rem, 2.2vw, 2.75rem); }
+    .catalog-intro { padding-block: clamp(2rem, 3vw, 3rem); }
+    h2 { display: flex; gap: .12em; font-size: 9.5vw; line-height: .78; letter-spacing: -.065em; }
+    h2 span { white-space: nowrap; }
+    :global(html[lang='ru']) h2 { font-size: 8.8vw; }
+    .catalog-rows { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: linear-gradient(to right, var(--color-light) 0% 33.333333%, var(--color-warm) 33.333333% 66.666667%, var(--color-light) 66.666667% 100%); }
+    .catalog-row { min-width: 0; grid-template-rows: auto 1fr; gap: 1.5rem; padding: 2rem clamp(1.25rem, 2.2vw, 2.75rem); }
+    .catalog-row:nth-of-type(n) { background: transparent; }
     .catalog-row + .catalog-row { border-top: 0; border-left: var(--border); }
-    h3 { font-size: clamp(3rem, 4.8vw, 5rem); line-height: 1; }
+    h3 { font-size: clamp(3.25rem, 6.7vw, 7rem); line-height: 1; }
+    :global(html[lang='ru']) h3 { font-size: clamp(2.75rem, 5.2vw, 5.5rem); }
     .catalog-copy p { font-size: 1.125rem; }
-    .catalog-actions { padding-top: 1.5rem; margin-top: auto; }
-    .catalog-button { flex: 1 1 9rem; }
+    .catalog-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; padding-top: 1.5rem; margin-top: auto; }
+    .catalog-button { min-width: 0; padding-inline: .55rem; gap: .4rem; }
   }
   @media (min-width: 62rem) and (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
     .catalog-orb { display: block; }
