@@ -57,11 +57,41 @@ collections:
         file: src/data/testimonials/es.json
         fields:
           - { label: Encabezado / Заголовок, name: number, widget: string }
+          - label: Título / Заголовок
+            name: title
+            widget: object
+            fields:
+              - { label: Primera parte / Первая часть, name: first, widget: string }
+              - { label: Segunda parte / Вторая часть, name: second, widget: string }
+          - label: Franja informativa / Информационная полоса
+            name: meta
+            widget: object
+            fields:
+              - { label: Izquierda / Слева, name: first, widget: string }
+              - { label: Centro / По центру, name: second, widget: string }
+              - { label: Derecha / Справа, name: third, widget: string }
+          - { label: Botón / Кнопка, name: action, widget: string }
+          - { label: URL de Google Maps, name: url, widget: string, pattern: ['^https://[^\s]+$', 'Usa una URL HTTPS completa.'] }
       - name: testimonials_ru
         label: Отзывы RU
         file: src/data/testimonials/ru.json
         fields:
           - { label: Encabezado / Заголовок, name: number, widget: string }
+          - label: Título / Заголовок
+            name: title
+            widget: object
+            fields:
+              - { label: Primera parte / Первая часть, name: first, widget: string }
+              - { label: Segunda parte / Вторая часть, name: second, widget: string }
+          - label: Franja informativa / Информационная полоса
+            name: meta
+            widget: object
+            fields:
+              - { label: Izquierda / Слева, name: first, widget: string }
+              - { label: Centro / По центру, name: second, widget: string }
+              - { label: Derecha / Справа, name: third, widget: string }
+          - { label: Botón / Кнопка, name: action, widget: string }
+          - { label: URL de Google Maps, name: url, widget: string, pattern: ['^https://[^\s]+$', 'Usa una URL HTTPS completa.'] }
   - name: homepage
     label: Página principal
     format: json
