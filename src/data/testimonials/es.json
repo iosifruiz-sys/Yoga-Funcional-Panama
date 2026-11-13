@@ -1,19 +1,3 @@
 {
-  "number": "04 / TESTIMONIOS",
-  "title": "Testimonios",
-  "linkLabel": "VER RESEÑAS EN GOOGLE",
-  "reviews": [
-    {
-      "author": "Milena Van Der Laat",
-      "rating": 5,
-      "quote": "Había tomado yoga de forma casual antes, pero las clases de Iosif están en otra liga. Me han ayudado mucho a mejorar en fuerza, flexibilidad y manejo del estrés.",
-      "note": "Extracto del original en español"
-    },
-    {
-      "author": "Nataly G",
-      "rating": 5,
-      "quote": "Cuando volví a Panamá, tenía un dolor constante de espalda que afectaba mi vida. Después encontré el yoga e Iosif, y mi vida cambió. Mi cuerpo es más flexible y, lo más importante, el dolor de espalda desapareció.",
-      "note": "Traducción del inglés"
-    }
-  ]
+  "number": "04 / TESTIMONIOS"
 }

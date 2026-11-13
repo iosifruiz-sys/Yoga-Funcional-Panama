@@ -15,6 +15,53 @@ slug:
   sanitize_replacement: "-"
 
 collections:
+  - name: testimonials
+    label: Testimonios / Отзывы
+    label_singular: Testimonio / Отзыв
+    folder: src/data/testimonials/reviews
+    create: true
+    extension: json
+    format: json
+    identifier_field: author
+    slug: "{{slug}}"
+    summary: "{{author}} — {{order}}"
+    sortable_fields: [order, author]
+    editor:
+      preview: false
+    fields:
+      - { label: Autor / Автор, name: author, widget: string }
+      - label: Texto / Текст
+        name: quote
+        widget: object
+        fields:
+          - { label: Español, name: es, widget: text }
+          - { label: Русский, name: ru, widget: text }
+      - { label: URL de la reseña / Ссылка на отзыв, name: url, widget: string, pattern: ['^https://[^\s]+$', 'Usa una URL HTTPS completa.'] }
+      - { label: Fuente / Источник, name: source, widget: string, default: Google Maps }
+      - { label: Valoración / Оценка, name: rating, widget: number, value_type: int, min: 1, max: 5, default: 5 }
+      - { label: Idioma original / Язык оригинала, name: originalLanguage, widget: string }
+      - label: Nota de traducción / Подпись перевода
+        name: note
+        widget: object
+        fields:
+          - { label: Español, name: es, widget: string }
+          - { label: Русский, name: ru, widget: string }
+      - { label: Orden / Порядок, name: order, widget: number, value_type: int, min: 0, default: 0 }
+      - { label: Publicar en la página principal / Показывать на главной, name: published, widget: boolean, default: false }
+  - name: testimonials_labels
+    label: Encabezados de testimonios / Заголовки отзывов
+    format: json
+    files:
+      - name: testimonials_es
+        label: Testimonios ES
+        file: src/data/testimonials/es.json
+        fields:
+          - { label: Encabezado / Заголовок, name: number, widget: string }
+      - name: testimonials_ru
+        label: Отзывы RU
+        file: src/data/testimonials/ru.json
+        fields:
+          - { label: Encabezado / Заголовок, name: number, widget: string }
   - name: homepage
     label: Página principal
     format: json
