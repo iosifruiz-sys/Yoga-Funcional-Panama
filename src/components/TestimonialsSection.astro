@@ -51,7 +51,10 @@ const reviews = Object.entries(entries).map(([key, entry]) => ({ ...entry.defaul
 </script>
 <style>
   .testimonials { color: var(--color-dark); }
-  .testimonials h2 { font-size: 16vw; }
+  .testimonials .schedule-intro { padding-block: clamp(2.5rem, 4vw, 4rem); }
+  .testimonials .schedule-number { margin-bottom: clamp(1.25rem, 2.5vw, 2.5rem); }
+  .testimonials h2 { font-size: clamp(2.8rem, 10.5vw, 6.5rem); }
+  .testimonials h2 .schedule-title-line-last { margin-left: 0; }
   .testimonials .schedule-booking a { font-size: clamp(2rem, 3.5vw, 3.5rem); }
   .testimonials-grid { display: grid; grid-template-columns: minmax(0, 1fr); }
   .testimonial { margin: 0; min-height: 0; display: flex; flex-direction: column; gap: 1.25rem; text-transform: none; }
@@ -68,7 +71,7 @@ const reviews = Object.entries(entries).map(([key, entry]) => ({ ...entry.defaul
     .testimonial { border-right: var(--border); }
   }
   @media (min-width: 62rem) {
-    .testimonials h2 { font-size: 8.6vw; }
+    .testimonials h2 { font-size: 5.7vw; }
     .testimonials-grid { grid-template-columns: repeat(auto-fit, minmax(calc(100% / 3), 1fr)); }
     .testimonial { align-items: stretch; justify-content: initial; }
   }
