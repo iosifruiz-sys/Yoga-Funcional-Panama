@@ -1,30 +1,57 @@
 ---
-title: "¿Cómo empezar a entrenar después de los 40?"
-seoTitle: "Cómo empezar a entrenar después de los 40 sin abandonar"
-description: "¿Quieres empezar a entrenar después de los 40? Cómo elegir ejercicios, ajustar la carga, medir tus avances y mantener el hábito sin agotarte."
+title: ¿Cómo empezar a entrenar después de los 40?
+seoTitle: Cómo empezar a entrenar después de los 40 sin abandonar
+description: ¿Quieres empezar a entrenar después de los 40? Cómo elegir
+  ejercicios, ajustar la carga, medir tus avances y mantener el hábito sin
+  agotarte.
 ogTitle: "Entrenar después de los 40: ¿por dónde empezar?"
-ogDescription: "¿Gimnasio, yoga, pesas o boxeo? Aprende a elegir una actividad, empezar sin excesos y convertir el entrenamiento en parte de tu vida."
-publishDate: 2026-11-30T18:00:00.000Z
-author: "Iosif Ruiz"
-category: "Yoga Funcional"
+ogDescription: ¿Gimnasio, yoga, pesas o boxeo? Aprende a elegir una actividad,
+  empezar sin excesos y convertir el entrenamiento en parte de tu vida.
+publishDate: 2026-11-23T22:58:00.000Z
+author: Iosif Ruiz
+category: Yoga Funcional
 tags:
   - movement
   - strength
   - body
   - science
-draft: true
+cover:
+  alt: Portada de «Cómo empezar a entrenar después de los 40», con un guante de
+    boxeo y tipografía en blanco y naranja.
+  image: ../../../public/images/como-empezar-a-entrenar-despues-de-los-40.webp
+draft: false
 translationSlug: kak-nachat-trenirovatsya-posle-40
 faq:
-  - question: "¿Necesito hacerme un chequeo médico antes de empezar a entrenar después de los 40?"
-    answer: "No necesariamente. Tener más de 40 años no significa que debas hacerte un chequeo médico antes de empezar. Si no tienes enfermedades conocidas ni síntomas preocupantes, generalmente puedes comenzar con actividad ligera o moderada. Si tienes alguna enfermedad crónica, dolor en el pecho, falta de aire fuera de lo normal, desmayos u otros síntomas de alerta, consulta con un médico antes de decidir qué tipo de ejercicio hacer y con qué intensidad."
+  - question: ¿Necesito hacerme un chequeo médico antes de empezar a entrenar
+      después de los 40?
+    answer: No necesariamente. Tener más de 40 años no significa que debas hacerte
+      un chequeo médico antes de empezar. Si no tienes enfermedades conocidas ni
+      síntomas preocupantes, generalmente puedes comenzar con actividad ligera o
+      moderada. Si tienes alguna enfermedad crónica, dolor en el pecho, falta de
+      aire fuera de lo normal, desmayos u otros síntomas de alerta, consulta con
+      un médico antes de decidir qué tipo de ejercicio hacer y con qué
+      intensidad.
   - question: "¿Qué es mejor después de los 40: pesas o cardio?"
-    answer: "No tienes que elegir. El cardio ayuda a mejorar la resistencia, mientras que los ejercicios de fuerza permiten desarrollar y mantener la fuerza muscular. Lo recomendable es combinar ambos según tus posibilidades."
-  - question: "¿Puedo empezar a entrenar en casa sin ir al gimnasio?"
-    answer: "Claro. Puedes hacer ejercicios con tu propio peso, usar un par de mancuernas o bandas elásticas. No necesitas comprar mucho equipo para comenzar. Lo importante es elegir ejercicios adecuados, entrenar con regularidad y aumentar la dificultad poco a poco."
-  - question: "¿Cómo sé si la carga es adecuada para mí?"
-    answer: "Deberías poder hacer el ejercicio manteniendo el control del movimiento, sin necesidad de llegar al límite en cada serie. Si empiezas a perder el control, baja el peso, haz menos repeticiones o prueba una versión más sencilla. Si aparece un dolor fuerte, mareo o un malestar importante, detén el ejercicio."
-  - question: "¿Qué puedo hacer en mi primera sesión?"
-    answer: "Empieza con cinco o diez minutos de calentamiento suave. Después prueba algunos ejercicios sencillos, como sentarte y levantarte de una silla, hacer flexiones contra la pared o remar con una banda elástica. Haz pocas repeticiones y no intentes llegar a tu máximo. Primero conoce los movimientos y encuentra una carga que puedas manejar."
+    answer: No tienes que elegir. El cardio ayuda a mejorar la resistencia, mientras
+      que los ejercicios de fuerza permiten desarrollar y mantener la fuerza
+      muscular. Lo recomendable es combinar ambos según tus posibilidades.
+  - question: ¿Puedo empezar a entrenar en casa sin ir al gimnasio?
+    answer: Claro. Puedes hacer ejercicios con tu propio peso, usar un par de
+      mancuernas o bandas elásticas. No necesitas comprar mucho equipo para
+      comenzar. Lo importante es elegir ejercicios adecuados, entrenar con
+      regularidad y aumentar la dificultad poco a poco.
+  - question: ¿Cómo sé si la carga es adecuada para mí?
+    answer: Deberías poder hacer el ejercicio manteniendo el control del movimiento,
+      sin necesidad de llegar al límite en cada serie. Si empiezas a perder el
+      control, baja el peso, haz menos repeticiones o prueba una versión más
+      sencilla. Si aparece un dolor fuerte, mareo o un malestar importante,
+      detén el ejercicio.
+  - question: ¿Qué puedo hacer en mi primera sesión?
+    answer: Empieza con cinco o diez minutos de calentamiento suave. Después prueba
+      algunos ejercicios sencillos, como sentarte y levantarte de una silla,
+      hacer flexiones contra la pared o remar con una banda elástica. Haz pocas
+      repeticiones y no intentes llegar a tu máximo. Primero conoce los
+      movimientos y encuentra una carga que puedas manejar.
 ---
 
 Abres una lata de cerveza, pones YouTube y te quedas pegado viendo un torneo de artes marciales. O una novela turca, donde el flaco de turno aparece con su mirada intensa, su peinado impecable y unos abdominales que parecen tallados en piedra.
